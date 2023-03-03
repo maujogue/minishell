@@ -1,22 +1,21 @@
 .PHONY:     			all $(NAME) clear mkbuild lib clear clean fclean re sanitize
 
-NAME					= pipex
+NAME					= minishell
 
 BUILD_DIR				= build/
 
 HEADER_DIR				= header/
 
-HEADER_FILE				= pipex.h
+HEADER_FILE				= minishell.h
 
 DIR						= src/
 
-SRC			 			=
+SRC			 			=	ms_main.c	ms_utils
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
 
 LIBFT					= libft.a
 LIB_DIR					= libft/
-
 	
 CC						= cc
 CFLAGS					= -Wall -Wextra -Werror
