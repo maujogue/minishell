@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 09:33:43 by maujogue          #+#    #+#             */
-/*   Updated: 2022/11/19 14:34:51 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:26:25 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ static int	get_right(char const *s, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*res;
-	int		i;
 	int		start;
 	int		end;
 
 	if (!s1)
 		return (NULL);
-	i = 0;
 	start = get_left(s1, set);
 	if (start == (int)ft_strlen(s1))
 	{
