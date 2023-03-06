@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/06 13:02:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:24:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,4 @@ t_listenv *ft_env(char **envp)
 	listenv = ft_fill_env(listenv, envp);
 	return (listenv);
 }
+/////////////////////////////////
