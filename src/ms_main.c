@@ -14,11 +14,11 @@ int	main(int argc, char** argv, char **envp) {
 	t_listenv *listenv;
 
 	listenv = ft_env(envp);
-	while (listenv->next != NULL)
+	while (listenv != NULL)
 	{
+		printf("%s", listenv->key);
 		printf("%s\n", listenv->content);
 		listenv = listenv->next;
-
 	}
 	while (1)
 	{
