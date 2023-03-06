@@ -7,11 +7,19 @@ void handler()
 }
 
 
-int	main(int argc, char** argv) {
+int	main(int argc, char** argv, char **envp) {
 	(void)argc;
 	(void) argv;
 	char *cmd;
+	t_listenv *listenv;
 
+	listenv = ft_env(envp);
+	while (listenv->next != NULL)
+	{
+		printf("%s\n", listenv->content);
+		listenv = listenv->next;
+
+	}
 	while (1)
 	{
 		cmd = readline(">>");
