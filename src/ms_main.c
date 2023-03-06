@@ -1,4 +1,11 @@
 #include "../header/minishell.h"
+#include <signal.h>
+
+void handler()
+{
+	write(1, "nope\n", 5);
+}
+
 
 int	main(int argc, char** argv) {
 	(void)argc;
@@ -11,6 +18,9 @@ int	main(int argc, char** argv) {
 		if (ft_strlen(cmd) > 0)
 			add_history(cmd);
 		printf("%s\n", cmd);
+		if (ft_strncmp(cmd, "clear", 5) == 0)
+			rl_clear_history();
+		
 	}
 	return 0;
 }
