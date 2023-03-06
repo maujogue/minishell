@@ -6,8 +6,17 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:13 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/06 10:08:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:30:24 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+void    pwd(void)
+{
+    char *path;
+
+    path = getcwd(NULL, 0);
+    ft_putstr_fd(path, 1);
+    free(path);
+}
