@@ -6,21 +6,43 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/06 13:24:21 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:23:47 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-t_listenv	*ft_lstenv_new(char *content)
+char	**ft_fusion_split(char	**split)
+{
+	int		i;
+	
+	i = 2;
+	if (split[2])
+	{
+		while (split[i])
+		{
+			split[1] = ft_strjoin(split[1], split[i]);
+			i++;
+		}
+	}
+	return (split);
+}
+
+t_listenv	*ft_lstenv_new(char *str)
 {
 	t_listenv	*new;
+	char	**split;
 
 	new = malloc(sizeof(t_listenv));
 	if (!new)
 		return (NULL);
-	new->content = content;
+	split = ft_split(str, '=');
+	if (!split)
+		return (NULL);
+	new->key = split[0];
+	new->content = split[1];
 	new->next = NULL;
+	ft_freetab(split);
 	return (new);
 }
 
@@ -48,6 +70,8 @@ t_listenv	*ft_fill_env(t_listenv *listenv, char **envp)
 	while(envp[i])
 	{
 		node = ft_lstenv_new(envp[i]);
+		if (!node)
+			return (NULL);
 		ft_lstenvadd_back(&listenv, node);
 		i++;
 	}
@@ -60,6 +84,7 @@ t_listenv *ft_env(char **envp)
 
 	listenv = NULL;
 	listenv = ft_fill_env(listenv, envp);
+	if (!listenv)
+		return (NULL);
 	return (listenv);
 }
-/////////////////////////////////

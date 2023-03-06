@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ms_utils_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/06 14:22:03 by avaganay         ###   ########.fr       */
+/*   Created: 2023/03/06 14:19:50 by avaganay          #+#    #+#             */
+/*   Updated: 2023/03/06 14:20:57 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../header/minishell.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <signal.h>
-
-#include <readline/readline.h>
-#include <readline/history.h>
-
-typedef struct s_listenv
+void    ft_freetab(char **tab)
 {
-	char			*key;
-	char			*content;
-	struct s_listenv	*next;
-}	t_listenv;
+    int i;
 
-t_listenv *ft_env(char **envp);
-void    ft_freetab(char **tab);
-
-#endif
+    i = 0;
+    while (tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+}
