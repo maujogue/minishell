@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_main.c                                          :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/17 12:06:43 by avaganay         ###   ########.fr       */
+/*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
+/*   Updated: 2023/03/17 12:07:11 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/minishell.h"
-#include <signal.h>
+#include "../../header/minishell.h"
 
-void handler()
+void    ft_builtins(char *cmd, t_listenv *listenv, char **envp)
 {
-	write(1, "nope\n", 5);
-}
-
-
-int	main(int argc, char** argv, char **envp) {
-	(void)argc;
-	(void) argv;
-	char *cmd;
-	t_listenv *listenv;
-
-	listenv = ft_env(envp);
-	while (1)
-	{
-		cmd = readline(">>");
-		if (ft_strlen(cmd) > 0)
-			add_history(cmd);
-		ft_builtins(cmd, listenv, envp);
-		printf("%s\n", cmd);
-	}
-	return 0;
+    if (ft_strncmp(cmd, "clear", 5) == 0)
+		clear_history();
+	if (ft_strncmp(cmd, "env", 3) == 0)
+		ft_print_listenv(listenv, cmd);
+	if (ft_strncmp(cmd, "export", 6) == 0)
+		ft_export(envp);
+	if (ft_strncmp(cmd, "unset", 5) == 0)
+		ft_unset(listenv, cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:16 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/16 13:41:56 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/17 10:29:47 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char    *ft_arg_unset(char *cmd)
 	return (str);
 }
 
-t_listenv   ft_unset(t_listenv *listenv, char *cmd)
+t_listenv   ft_unsetlast(t_listenv *listenv, char *cmd)
 {
     char    *str;
 
@@ -54,4 +54,49 @@ t_listenv   ft_unset(t_listenv *listenv, char *cmd)
         listenv = listenv->next;
     }
     return (*listenv);
+}
+
+int	ft_find_unset(const char *s1, const char *s2, int n)
+{
+	int	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+    printf("s1%s\n",s1);
+    printf("s2%c\n",s2[i]);
+	while ((s1[i + 6] == s2[i]) && s1[i + 6] && (i < n - 1))
+    {
+        printf("ICI");
+        if (s2[i] == '\0')
+            return (1);
+		i++;
+    }
+    return (0);
+}
+
+void    ft_unset(t_listenv *listenv, char *cmd)
+{
+    t_listenv   *prev;
+    t_listenv   *tmp;
+    int len;
+    
+    len = ft_strlen(cmd);
+    tmp = listenv;
+    prev = NULL;
+    while (tmp)
+    {
+        printf("%d\n",ft_find_unset(cmd, tmp->key, len));
+        if  (ft_find_unset(cmd, tmp->key, len) == 1)
+        {
+            printf("%s\n","Key unset find");
+            prev->next = tmp->next;
+            free(tmp->key);
+            free(tmp->content);
+            free(tmp);
+            return ;
+        }
+        prev = tmp;
+        tmp = tmp->next;
+    }
 }
