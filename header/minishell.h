@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/17 12:06:54 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:19:56 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ typedef struct s_listenv
 
 void    ft_builtins(char *cmd, t_listenv *listenv, char **envp);
 
+void    ft_cd(char *path);
 t_listenv *ft_env(char **envp);
+void ft_exit(int code);
 void    ft_export(char  **envp);
 void   ft_unset(t_listenv *listenv, char *cmd);
 

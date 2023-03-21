@@ -6,16 +6,16 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/17 11:47:28 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:18:32 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-// void    ft_cd()
-// {
-//     if (chdir() == -1)
-//     {
-//         perror("");
-//     }
-// }
+void    ft_cd(char *path)
+{
+    if (chdir(path) == -1)
+    {
+        perror("chdir()");
+    }
+}

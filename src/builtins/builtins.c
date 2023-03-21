@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/17 12:07:11 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:21:01 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void    ft_builtins(char *cmd, t_listenv *listenv, char **envp)
 {
+    if (ft_strncmp(cmd, "exit", 4) == 0)
+        ft_exit(0);
     if (ft_strncmp(cmd, "clear", 5) == 0)
 		clear_history();
 	if (ft_strncmp(cmd, "env", 3) == 0)
