@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/21 14:19:56 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:10:55 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,37 @@
 # include <stdio.h>
 # include <signal.h>
 
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
 
 typedef struct s_listenv
 {
-	char			*key;
-	char			*content;
+	char				*key;
+	char				*content;
 	struct s_listenv	*next;
 }	t_listenv;
 
-void    ft_builtins(char *cmd, t_listenv *listenv, char **envp);
+typedef struct s_all
+{
+	t_listenv	*listenv;
+	char		*
+}	t_all;
 
-void    ft_cd(char *path);
-t_listenv *ft_env(char **envp);
-void ft_exit(int code);
-void    ft_export(char  **envp);
-void   ft_unset(t_listenv *listenv, char *cmd);
+void    ft_builtins(char *cmd, t_all *all, char **envp);
 
-void    ft_print_listenv(t_listenv *listenv, char *cmd);
-void	ft_print_tab(char **tab);
+void		ft_cd(char *path);
+void		ft_echo(t_all *all, char *cmd);
+t_listenv	*ft_env(char **envp);
+void		ft_exit(int code);
+void		ft_export(char **envp);
+void		ft_pwd(void);
+void		ft_unset(t_listenv *listenv, char *cmd);
 
-void    ft_freetab(char **tab);
+void		ft_print_listenv(t_listenv *listenv, char *cmd);
+void		ft_print_tab(char **tab);
+void		ft_print_export(char **tab);
+
+void		ft_freetab(char **tab);
 
 #endif

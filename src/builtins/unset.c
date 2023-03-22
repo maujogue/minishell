@@ -6,38 +6,38 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:16 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/21 14:14:17 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:53:34 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char    *ft_arg_unset(char *cmd)
+/*char	*ft_arg_unset(char *cmd)
 {
-    char    *str;
-    int     i;
-    int     j;
+	char	*str;
+	int		i;
+	int		j;
 
-    i = 0;
+	i = 0;
 	j = 0;
-    while (cmd[i] != ' ')
-    {
-        i++;
-    }
+	while (cmd[i] != ' ')
+	{
+		i++;
+	}
 	i++;
-    str = malloc(sizeof(char) * (ft_strlen(cmd) - i));
-    while (cmd[i])
-    {
-        str[j] = cmd[i];
+	str = malloc(sizeof(char) * (ft_strlen(cmd) - i));
+	while (cmd[i])
+	{
+		str[j] = cmd[i];
 		i++;
 		j++;
-    }
+	}
 	return (str);
 }
 
 t_listenv   ft_unsetlast(t_listenv *listenv, char *cmd)
 {
-    char    *str;
+	char	*str;
 
 	if	(cmd[5] != ' ')
 	{
@@ -54,7 +54,7 @@ t_listenv   ft_unsetlast(t_listenv *listenv, char *cmd)
         listenv = listenv->next;
     }
     return (*listenv);
-}
+}*/
 
 int	ft_find_unset(const char *s1, const char *s2, int n)
 {
