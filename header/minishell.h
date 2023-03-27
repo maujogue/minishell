@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/27 13:15:59 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:59:59 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_listenv
 typedef struct s_all
 {
 	t_listenv	*listenv;
-	
+	t_listenv	*listexport;
 }	t_all;
 
 void    ft_builtins(char *cmd, t_all *all, char **envp);
@@ -42,11 +42,11 @@ void		ft_cd(char *path);
 void		ft_echo(t_all *all, char *cmd);
 t_listenv	*ft_env(char **envp);
 void		ft_exit(int code);
-void		ft_export(char **envp);
+void		ft_export(char **envp, t_all *all, char *cmd);
 void		ft_pwd(void);
 void		ft_unset(t_listenv *listenv, char *cmd);
 
-void		ft_print_listenv(t_listenv *listenv, char *cmd);
+void    	ft_print_listenv(t_all *all, char *cmd);
 void		ft_print_tab(char **tab);
 void		ft_print_export(char **tab);
 

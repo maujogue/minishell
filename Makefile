@@ -10,7 +10,7 @@ HEADER_FILE				= minishell.h
 
 DIR						= src/
 
-SRC			 			=	ms_main.c	ms_utils_free.c	ms_utils_print.c	\
+SRC			 			=	ms_main.c	ms_utils_free.c	ms_utils_print.c	ms_utils_pars_arg.c \
 							builtins/env.c	builtins/unset.c	builtins/export.c	builtins/builtins.c	\
 							builtins/cd.c	builtins/exit.c		builtins/pwd.c		builtins/echo.c
 							

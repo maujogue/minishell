@@ -6,13 +6,13 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/21 15:51:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:03:22 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char    **ft_dup_env(char **envp)
+char	**ft_dup_env(char **envp)
 {
 	char	**dup;
 	int	count;
@@ -35,7 +35,7 @@ char    **ft_dup_env(char **envp)
 	return (dup);
 }
 
-void		ft_sort_env(char **envp)
+void	ft_sort_env(char **envp)
 {
 	char	**dup;
 	char	*tmp;
@@ -64,7 +64,89 @@ void		ft_sort_env(char **envp)
 	ft_freetab(dup);
 }
 
-void    ft_export(char  **envp)
+int	ft_is_arg_export(char	*cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i] && cmd[i] != ' ')
+	{
+		i++;
+		if (cmd[i] == ' ')
+		{
+			i++;
+			if (cmd[i] != ' ' && cmd[i] != '\0')
+			{
+				return (1);
+			}
+		}
+	}
+	return (0);
+}
+
+// char	**ft_tabvar(char *cmd)
+// {
+// 	char	**var;
+// 	int		nb;
+// 	int		i;
+
+// 	i = 0;
+// 	nb = -1;
+// 	while (cmd[i])
+// 	{
+// 		while (cmd[i] == ' ')
+// 		{
+// 			if (cmd[i + 1] != '\0' && cmd[i + 1] != ' ')
+// 				nb++;
+// 			i++;
+// 		}
+// 		i++;
+// 	}
+// 	printf("%d\n", nb);
+// 	return (var);
+// }
+
+void	ft_fill_var_export(t_all *all, char *cmd)
+{
+	t_listenv	*listexport;
+	char		**var;
+
+	(void)listexport;
+	(void)var;
+	if (ft_is_arg_export(cmd))
+	{
+		// var = ft_tabvar(cmd);
+		int		nb;
+		int		i;
+
+		i = 0;
+		nb = -1;
+		while (cmd[i])
+		{
+			while (cmd[i] == ' ')
+			{
+				if (cmd[i + 1] != '\0' && cmd[i + 1] != ' ')
+					nb++;
+				i++;
+			}
+			i++;
+		}
+		printf("%d\n", nb);
+		if (all->listexport == NULL)
+		{
+			printf("OUI");
+		}
+	}
+}
+
+// void	ft_print_var_export(t_all *all)
+// {
+	
+// }
+
+void	ft_export(char **envp, t_all *all, char *cmd)
 {
     ft_sort_env(envp);
+	ft_fill_var_export(all, cmd);
+	// ft_print_var_export(all);
 }

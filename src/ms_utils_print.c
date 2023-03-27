@@ -6,13 +6,13 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/21 15:53:14 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:25:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void    ft_print_listenv(t_listenv *listenv, char *cmd)
+void    ft_print_listenv(t_all *all, char *cmd)
 {
 	if (cmd[3] != '\0' && (cmd[4] != ' ' && cmd[4] != '\0'))
 	{
@@ -20,12 +20,12 @@ void    ft_print_listenv(t_listenv *listenv, char *cmd)
 		printf("%s\n", ": No such file or directory");
 		return ;
 	}
-    while (listenv != NULL)
+    while (all->listenv != NULL)
 	{
-		printf("%s", listenv->key);
+		printf("%s", all->listenv->key);
         printf("%c", '=');
-		printf("%s\n", listenv->content);
-		listenv = listenv->next;
+		printf("%s\n", all->listenv->content);
+		all->listenv = all->listenv->next;
 	}
 }
 

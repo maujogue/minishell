@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/22 15:36:19 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:58:28 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,13 @@ void	ft_printecho(char *arg)
 	int	i;
 
 	i = 0;
-	if (arg[0] != '"')
-		printf("%s", arg);
-	else
+	while (arg[i] == '"')
+		i++;
+	while (arg[i])
 	{
-		while (arg[i] == '"')
-			i++;
-		while (arg[i])
-		{
-			if (arg[i] != '"')
-				printf("%c", arg[i]);
-			i++;
-		}
+		if (arg[i] != '"')
+			printf("%c", arg[i]);
+		i++;
 	}
 }
 
