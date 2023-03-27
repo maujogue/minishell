@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/22 16:10:55 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:15:59 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_listenv
 typedef struct s_all
 {
 	t_listenv	*listenv;
-	char		*
+	
 }	t_all;
 
 void    ft_builtins(char *cmd, t_all *all, char **envp);
