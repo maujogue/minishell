@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/29 13:57:54 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:26:23 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,25 @@ void	ft_lstexportadd_back(t_listenv **lst, t_listenv *new)
 
 void	ft_export_fillkeycontentvar(t_listenv *new, char *var)
 {
-	new->content = var;
+	int	i;
+
+	i = 0;
+	while (var[i])
+	{
+		if (var[i] == '=')
+		{
+			new->key = ft_substr(var, 0, i);
+			new->content = ft_substr(var, i + 1, ft_strlen(var));
+			return ;
+		}
+		if (var[i + 1] == '\0')
+		{
+			new->key = ft_substr(var, 0, i + 1);
+			new->content = NULL;
+			return ;
+		}
+		i++;
+	}
 }
 
 void	ft_export_fill_lstvar(t_listenv **listexport, char **var)

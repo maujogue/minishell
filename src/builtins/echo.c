@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/27 15:58:28 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:40:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,29 @@ int	ft_nbargecho(char **tabecho)
 	return (i);
 }
 
-void	ft_printecho(char *arg)
+
+void	ft_echo_var(t_all *all, char *arg)
+{
+	if (!all->listexport)
+		return ;
+	while (all->listexport != NULL)
+	{
+		if (ft_strcmp(arg, all->listexport->key) == 0)
+			printf("%s", all->listexport->content);
+		all->listexport = all->listexport->next;
+	}
+}
+
+void	ft_printecho(t_all *all, char *arg)
 {
 	int	i;
 
 	i = 0;
+	if (arg[0] == '$' || (arg[0] == '"' && arg[1] == '$'))
+	{
+		ft_echo_var(all, arg);
+		return ;
+	}
 	while (arg[i] == '"')
 		i++;
 	while (arg[i])
@@ -71,7 +89,7 @@ void    ft_echo(t_all *all, char *cmd)
 	}
     while (tabecho[i])
 	{
-		ft_printecho(tabecho[i]);
+		ft_printecho(all, tabecho[i]);
 		if (tabecho[2] && tabecho[2][0] != '\0' && i != ft_nbargecho(tabecho) - 1)
 			printf(" ");
 		i++;
