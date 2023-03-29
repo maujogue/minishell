@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/27 14:25:21 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:28:57 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ void    ft_print_listenv(t_all *all, char *cmd)
         printf("%c", '=');
 		printf("%s\n", all->listenv->content);
 		all->listenv = all->listenv->next;
+	}
+}
+
+void    ft_print_listexport(t_listenv *listexport)
+{
+    if (listexport == NULL)
+        return ;
+    while (listexport != NULL)
+	{
+		printf("declare -x %s\n", listexport->content);
+		listexport = listexport->next;
 	}
 }
 
