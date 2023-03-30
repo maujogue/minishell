@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/28 15:31:06 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:37:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char** argv, char **envp)
 	//t_listenv *listenv;
 	t_all	all;
 
+	// all->listenv = NULL;
 	all.listenv = ft_env(envp);
 	all.listexport = NULL;
 	while (1)

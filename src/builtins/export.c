@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/29 14:26:23 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:42:50 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ t_listenv	*ft_fill_var_export(t_listenv *listexport, char *cmd)
 		// {
 		// ft_print_listexport(listexport);
 		ft_export_fill_lstvar(&listexport, var);
-		ft_print_listexport(listexport);
+		// ft_print_listexport(listexport);
 		//ft_print_listexport(listexport);
 		// }
 		// else
@@ -222,6 +222,7 @@ t_listenv	*ft_fill_var_export(t_listenv *listexport, char *cmd)
 		// }
 		// ft_freetab(var);
 	}
+	ft_print_listexport(listexport);
 	return (listexport);
 }
 
