@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/30 15:42:50 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:44:16 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	ft_is_arg_export(char	*cmd)
 	int	i;
 
 	i = 0;
+	if (ft_strncmp(cmd, "export\0", 7) == 0)
+        return (0);
 	while (cmd[i] && cmd[i] != ' ')
 	{
 		i++;
@@ -80,6 +82,13 @@ int	ft_is_arg_export(char	*cmd)
 				return (1);
 			}
 		}
+	}
+	i--;
+	while (cmd[i])
+	{
+		if (cmd[i] != ' ')
+			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -175,6 +184,22 @@ void	ft_export_fillkeycontentvar(t_listenv *new, char *var)
 	}
 }
 
+int	ft_check_name_var(char *var)
+{
+	int	i;
+
+	i = 0;
+	if (var[0] >= '0' && var[0] <= '9')
+		return (printf("minishell: export: \'%s\': not a valid identifier\n", var), 1);
+	while (var[i] && var[i] != '=')
+	{
+		if (var[i] >= 33 && var[i] <= 47)
+			return (printf("minishell: export: \'%s\': not a valid identifier\n", var), 1);
+		i++;		
+	}
+	return (0);
+}
+
 void	ft_export_fill_lstvar(t_listenv **listexport, char **var)
 {
 	int			i;
@@ -188,18 +213,21 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var)
 	n--;
 	while(i <= n)
 	{
-		new = malloc(sizeof(t_listenv));
-		ft_export_fillkeycontentvar(new, var[i]);
-		new->next = NULL;
+		if (ft_check_name_var(var[i]) == 0)
+		{
+			new = malloc(sizeof(t_listenv));
+			ft_export_fillkeycontentvar(new, var[i]);
+			new->next = NULL;
 		// printf("-------------\n");
 		// printf("%s\n", var[i]);
 		// printf("-------------\n");
-		ft_lstexportadd_back(listexport, new);
+			ft_lstexportadd_back(listexport, new);
+		}
 		i++;
 	}
 }
 
-t_listenv	*ft_fill_var_export(t_listenv *listexport, char *cmd)
+t_listenv	*ft_fill_var_export(t_listenv *listexport, t_all *all, char *cmd)
 {
 	char		**var;
 
@@ -222,7 +250,8 @@ t_listenv	*ft_fill_var_export(t_listenv *listexport, char *cmd)
 		// }
 		// ft_freetab(var);
 	}
-	ft_print_listexport(listexport);
+	else
+		ft_print_listexport(listexport, all);
 	return (listexport);
 }
 
@@ -234,6 +263,6 @@ t_listenv	*ft_fill_var_export(t_listenv *listexport, char *cmd)
 void	ft_export(char **envp, t_all *all, char *cmd)
 {
     ft_sort_env(envp);
-	all->listexport = ft_fill_var_export(all->listexport, cmd);
+	all->listexport = ft_fill_var_export(all->listexport, all, cmd);
 	// ft_print_var_export(all);
 }

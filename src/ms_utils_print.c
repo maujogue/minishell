@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/29 14:39:16 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:48:34 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void    ft_print_listenv(t_all *all, char *cmd)
 {
+	t_listenv *tmp;
+	
 	if (cmd[3] != '\0' && (cmd[4] != ' ' && cmd[4] != '\0'))
 	{
 		printf("%s", cmd);
 		printf("%s\n", ": No such file or directory");
 		return ;
 	}
+	tmp = all->listenv;
     while (all->listenv != NULL)
 	{
 		printf("%s", all->listenv->key);
@@ -27,10 +30,22 @@ void    ft_print_listenv(t_all *all, char *cmd)
 		printf("%s\n", all->listenv->content);
 		all->listenv = all->listenv->next;
 	}
+	all->listenv = tmp;
 }
 
-void    ft_print_listexport(t_listenv *listexport)
+void    ft_print_listexport(t_listenv *listexport, t_all *all)
 {
+	t_listenv *tmp;
+	
+	tmp = all->listenv;
+	while (all->listenv != NULL)
+	{
+		printf("%s", all->listenv->key);
+        printf("%c", '=');
+		printf("%s\n", all->listenv->content);
+		all->listenv = all->listenv->next;
+	}
+	all->listenv = tmp;
     if (listexport == NULL)
         return ;
     while (listexport != NULL)
