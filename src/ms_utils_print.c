@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/31 16:50:56 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:39:58 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,14 @@ void	ft_print_tab(char **tab)
     }
 }
 
-void	ft_print_export(char **tab)
+void	ft_print_tabexport(char **tab)
 {
     int i;
 
     i = 0;
-    while (tab[i])
+    while (ft_strcmp(tab[i], "\0") != 0)
     {
-		printf("%s", "declare -x ");
-        printf("%s\n",tab[i]);
+        printf("declare -x %s\n",tab[i]);
         i++;
     }
 }

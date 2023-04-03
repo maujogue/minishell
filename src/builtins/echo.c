@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/30 16:53:12 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:01:55 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,54 @@ void	ft_echo_var(t_all *all, char *arg)
 	free(key);
 }
 
+void	ft_echo_env(t_all *all, char *arg)
+{
+	char *key;
+	int	i;
+	t_listenv *tmp;
+
+	tmp = all->listenv;
+	i = 0;
+	if (arg[0] == '\"' || arg[1] == '\"')
+	{
+		i = 2;
+		key = malloc(sizeof(char) * (ft_strlen(arg) - 3));
+		while (arg[i + 1])
+		{
+			key[i - 2] = arg[i];
+			i++;
+		}	
+	}
+	else
+	{
+		i = 1;
+		key = malloc(sizeof(char) * (ft_strlen(arg) - 1));
+		while (arg[i])
+		{
+			key[i - 1] = arg[i];
+			i++;
+		}
+		key[i - 1] = '\0';
+	}
+	if (!all->listenv)
+		return ;
+	while (all->listenv != NULL)
+	{
+		// printf("%s\n", key);
+		if (ft_strcmp(key, all->listenv->key) == 0)
+		{
+			// printf("ICICICICI");
+			if (all->listenv->content != NULL)
+				printf("%s", all->listenv->content);
+			all->listenv = tmp;
+			return ;
+		}
+		all->listenv = all->listenv->next;
+	}
+	all->listenv = tmp;
+	free(key);
+}
+
 void	ft_printecho(t_all *all, char *arg)
 {
 	int	i;
@@ -91,6 +139,7 @@ void	ft_printecho(t_all *all, char *arg)
 	if (arg[0] == '$' || (arg[0] == '"' && arg[1] == '$'))
 	{
 		ft_echo_var(all, arg);
+		ft_echo_env(all, arg);
 		return ;
 	}
 	while (arg[i] == '"')
@@ -118,11 +167,16 @@ void    ft_echo(t_all *all, char *cmd)
 	i = 1;
 	argn = 0;
     tabecho = ft_split(cmd, ' ');
-	if (ft_strcmp(tabecho[1], "-n") == 0) 
+	while ((ft_strcmp(tabecho[i], "-n") == 0) || (ft_strcmp(tabecho[i], "\"-n\"") == 0))
 	{
-		i = 2;
+		i++;
 		argn = 1;
 	}
+	// if ((ft_strcmp(tabecho[1], "-n") == 0) || (ft_strcmp(tabecho[1], "\"-n\"") == 0)) 
+	// {
+	// 	i = 2;
+	// 	argn = 1;
+	// }
     while (tabecho[i])
 	{
 		ft_printecho(all, tabecho[i]);
