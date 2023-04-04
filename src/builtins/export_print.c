@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:04:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/03 14:49:27 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:08:45 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char    **ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 		return (tab);
 	}
 	tmp = listexport;
-	printf("export%d\n", sizexport);
+	// printf("export%d\n", sizexport);
 	// printf("%s\n", tab[i]);
 	// tab[i] = ft_strdup(listexport->key);
 	// tab[i] = malloc(1);

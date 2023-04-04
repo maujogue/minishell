@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/03 16:01:55 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:35:49 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ void	ft_echo_var(t_all *all, char *arg)
 	free(key);
 }
 
+void	ft_print_before_var(char *arg)
+{
+	if (arg[0] != '$' && ((arg[0] >= 33 && arg[0] <= 46) || arg[0] == 91 || arg[0] == 93))
+		printf("%c", arg[0]);
+}
+
 void	ft_echo_env(t_all *all, char *arg)
 {
 	char *key;
@@ -91,11 +97,11 @@ void	ft_echo_env(t_all *all, char *arg)
 
 	tmp = all->listenv;
 	i = 0;
-	if (arg[0] == '\"' || arg[1] == '\"')
+	if (arg[0] == '\"' || arg[1] == '\"' || (arg[0] >= 91 && arg[0] <= 93) || (arg[0] >= 33 && arg[0] <= 46 && arg[0] != 36))
 	{
 		i = 2;
 		key = malloc(sizeof(char) * (ft_strlen(arg) - 3));
-		while (arg[i + 1])
+		while (arg[i])
 		{
 			key[i - 2] = arg[i];
 			i++;
@@ -112,6 +118,7 @@ void	ft_echo_env(t_all *all, char *arg)
 		}
 		key[i - 1] = '\0';
 	}
+	ft_print_before_var(arg);
 	if (!all->listenv)
 		return ;
 	while (all->listenv != NULL)
@@ -136,7 +143,7 @@ void	ft_printecho(t_all *all, char *arg)
 	int	i;
 
 	i = 0;
-	if (arg[0] == '$' || (arg[0] == '"' && arg[1] == '$'))
+	if (arg[0] == '$' || ((arg[0] >= 33 && arg[0] <= 41) && arg[1] == '$') || ((arg[0] >= 91 && arg[0] <= 93) && arg[1] == '$'))
 	{
 		ft_echo_var(all, arg);
 		ft_echo_env(all, arg);
@@ -152,12 +159,33 @@ void	ft_printecho(t_all *all, char *arg)
 	}
 }
 
+int	ft_echosolo(char *cmd)
+{
+	int	i;
+
+	i = 4;
+	while (cmd[i] == 'e' || cmd[i] == 'c' || cmd[i] == 'h' || cmd[i] == 'o' || cmd[i] == '"' || cmd[i] == '\'')
+		i++;
+	while (cmd[i] == ' ')
+	{
+		if (cmd[i + 1] == '\0')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void    ft_echo(t_all *all, char *cmd)
 {
     char    **tabecho;
     int     i;
 	int		argn;
 	
+	if (ft_echosolo(cmd))
+	{
+		printf("\n");
+		return ;
+	}
 	if (ft_strcmp(cmd, "echo") == 0)
 	{
 		printf("\n");

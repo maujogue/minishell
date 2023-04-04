@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/31 15:29:17 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:52:13 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ void	ft_sort_env(char **envp)
     // ft_print_export(dup);
 	ft_freetab(dup);
 }
+
+// int	ft_exportsolo(char *cmd)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (cmd[i])
+// 	return (0);
+// }
 
 int	ft_is_arg_export(char	*cmd)
 {
