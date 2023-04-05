@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/04 16:33:06 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:32:07 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void    ft_builtins(char *cmd, t_all *all, char **envp)
 	else if (ft_strncmpexport(tabcmd[0], "export\0", 7) == 0)
 		ft_export(envp, all, cmd);
 	else if (ft_strncmp(cmd, "unset", 5) == 0)
-		ft_unset(all->listenv, cmd);
+		ft_unset(all->listenv, all, cmd);
 	else if (ft_strncmp(cmd, "cd", 2) == 0)
 		ft_cd(tabcmd[1]);
 	else if (ft_strncmp(cmd, "pwd", 3) == 0)

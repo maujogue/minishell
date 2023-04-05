@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:16 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/04 16:49:57 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:37:34 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,19 @@ t_listenv   ft_unsetlast(t_listenv *listenv, char *cmd)
 int	ft_find_unset(const char *s1, const char *s2, int n)
 {
 	int	i;
+	int	jump;
 
 	i = 0;
+	jump = 6;
 	if (n == 0)
 		return (0);
-	while ((s1[i + 6] == s2[i]) && s1[i + 6] && (i < n - 1))
+	while (s1[jump] == ' ')
+		jump++;
+	// printf("s1%s\n", s1);
+	// printf("s2%s\n", s2);
+	// printf("s1:%c\n", s1[i + jump]);
+	// printf("s2:%c\n", s2[i]);
+	while ((s1[i + jump] == s2[i]) && s1[i + jump] && (i < n - 1))
     {
         if (s2[i + 1] == '\0')
             return (1);
@@ -97,7 +105,7 @@ void	ft_arg_not_valid(char *cmd)
 	ft_freetab(tab);
 }
 
-void    ft_unset(t_listenv *listenv, char *cmd)
+void    ft_unset(t_listenv *listenv, t_all *all, char *cmd)
 {
     t_listenv   *prev;
     t_listenv   *tmp;
@@ -115,7 +123,21 @@ void    ft_unset(t_listenv *listenv, char *cmd)
             free(tmp->key);
             free(tmp->content);
             free(tmp);
-            return ;
+        }
+        prev = tmp;
+        tmp = tmp->next;
+    }
+	tmp = all->listexport;
+	prev = NULL;
+	while (tmp)
+    {
+		printf("ICI");
+        if  (ft_find_unset(cmd, tmp->key, len) == 1)
+        {
+            prev->next = tmp->next;
+            free(tmp->key);
+            free(tmp->content);
+            free(tmp);
         }
         prev = tmp;
         tmp = tmp->next;

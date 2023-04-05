@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/05 13:11:49 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:56:03 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int	ft_lstexportsize(t_listenv *lst)
 	return (i);
 }
 
-char	*ft_substrexport(char const *s, unsigned int start, size_t len)
+char	*ft_substrexportkey(char const *s, unsigned int start, size_t len)
 {
 	char			*src;
 	char			*str;
@@ -211,10 +211,52 @@ char	*ft_substrexport(char const *s, unsigned int start, size_t len)
 	str = malloc(sizeof(char) * (len + 1));
 	if (!(str))
 		return (0);
-	while (j < start + len && src[i])
+	while (j < start + len && src[i] && src[j] != '=')
 	{
 		// printf("%c", src[j]);
 		if (src[j] != '\"' && src[j] != '\'' && src[j] != '=')
+		{
+			// printf("ICI\n");
+			str[i] = src[j];
+			i++;
+		}
+		j++;
+	}
+	str[i] = '\0';
+	// printf("%s\n", str);
+	return (str);
+}
+
+char	*ft_substrexportcontent(char const *s, unsigned int start, size_t len)
+{
+	char			*src;
+	char			*str;
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = start;
+	src = (char *)s;
+	if (!s)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == '"')
+			start--;
+		i++;
+	}
+	i = 0;
+	if (len > (ft_strlen(s) - start))
+		len = (ft_strlen(s) - start);
+	if (len > ft_strlen(s) || start >= ft_strlen(src) || s == 0 || len <= 0)
+		len = 0;
+	str = malloc(sizeof(char) * (len + 1));
+	if (!(str))
+		return (0);
+	while (j < start + len && src[i])
+	{
+		// printf("%c", src[j]);
+		if (src[j] != '\"')
 		{
 			// printf("ICI\n");
 			str[i] = src[j];
@@ -236,13 +278,13 @@ void	ft_export_fillkeycontentvar(t_listenv *new, char *var)
 	{
 		if (var[i] == '=')
 		{
-			new->key = ft_substrexport(var, 0, i);
-			new->content = ft_substr(var, i + 1, ft_strlen(var));
+			new->key = ft_substrexportkey(var, 0, i);
+			new->content = ft_substrexportcontent(var, i + 1, ft_strlen(var));
 			return ;
 		}
 		if (var[i + 1] == '\0')
 		{
-			new->key = ft_substrexport(var, 0, i + 1);
+			new->key = ft_substrexportkey(var, 0, i + 1);
 			new->content = NULL;
 			return ;
 		}
@@ -253,12 +295,18 @@ void	ft_export_fillkeycontentvar(t_listenv *new, char *var)
 int	ft_check_name_var(char *var)
 {
 	int	i;
+	int len;
 
+	len = ft_strlen(var);
 	i = 0;
 	if (var[0] >= '0' && var[0] <= '9')
 		return (printf("minishell: export: \'%s\': not a valid identifier\n", var), 1);
-	while (var[i] && var[i] != '=')
+	// printf("%s\n", var);
+	while (var[i] && var[i] != '=' && i <= len)
 	{
+		// printf("i%d",i);
+		// printf("len%d",len);
+		// printf("%c\n", var[i]);
 		if (var[i] >= 33 && var[i] <= 47 && var[i] != 34 && var[i] != 39)
 			return (printf("minishell: export: \'%s\': not a valid identifier\n", var), 1);
 		i++;		
@@ -279,6 +327,7 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var)
 	n--;
 	while(i <= n)
 	{
+		// printf("*%s\n", var[i]);
 		if (ft_check_name_var(var[i]) == 0)
 		{
 			new = malloc(sizeof(t_listenv));

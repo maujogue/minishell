@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/03 14:39:46 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:32:35 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_listenv	*ft_env(char **envp);
 void		ft_exit(int code);
 void		ft_export(char **envp, t_all *all, char *cmd);
 void		ft_pwd(void);
-void		ft_unset(t_listenv *listenv, char *cmd);
+void    	ft_unset(t_listenv *listenv, t_all *all, char *cmd);
 
 void    	ft_print_listenv(t_all *all, char *cmd);
 void		ft_print_tab(char **tab);
