@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/05 13:56:03 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:14:16 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,8 +313,81 @@ int	ft_check_name_var(char *var)
 	}
 	return (0);
 }
+char	*ft_fillkeyvar(char	*var)
+{
+	int	i;
+	char	*res;
 
-void	ft_export_fill_lstvar(t_listenv **listexport, char **var)
+	i = 0;
+	while (var[i])
+	{
+		if (var[i] == '=')
+		{
+			res = ft_substr(var, 0 , i);
+			return (res);
+		}
+		i++;
+	}
+	return (var);
+}
+
+int	ft_check_double_var(char *var, t_listenv *listexport, t_all **all)
+{
+	t_listenv *tmp;
+	char	*keyvar;
+	
+	tmp = listexport;
+	keyvar = ft_fillkeyvar(var);
+	while (listexport)
+	{
+		// printf("%s\n", keyvar);
+		// printf("%s\n", listexport->key);
+		if (ft_strcmp(keyvar, listexport->key) == 0)
+			return (1);
+		listexport = listexport->next;
+	}
+	listexport = tmp;
+	tmp = (*all)->listenv;
+	while ((*all)->listenv)
+	{
+		// printf("%s\n", var);
+		if (ft_strcmp(keyvar, (*all)->listenv->key) == 0)
+			return (1);
+		(*all)->listenv = (*all)->listenv->next;
+	}
+	(*all)->listenv = tmp;
+	return (0);
+}
+
+void	ft_replace_double(char *var, t_listenv *listexport, t_all **all)
+{
+	t_listenv	*tmp;
+	int			i;
+	
+	(void)all;
+	i = 0;
+	tmp = listexport;
+	while (listexport)
+	{
+		// printf("%s\n", var);
+		if (ft_strcmp(var, listexport->key) == 0)
+		{
+			while (var[i] != '=' && var[i])
+				i++;
+			if (var[i])
+			{
+				printf("REPLACE NO =\n");
+				listexport->content = ft_substrexportcontent(var, i, ft_strlen(var));
+				listexport = tmp;
+			}
+			return ;
+		}
+		listexport = listexport->next;
+	}
+	listexport = tmp;
+}
+
+void	ft_export_fill_lstvar(t_listenv **listexport, char **var, t_all **all)
 {
 	int			i;
 	int			n;
@@ -330,13 +403,21 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var)
 		// printf("*%s\n", var[i]);
 		if (ft_check_name_var(var[i]) == 0)
 		{
-			new = malloc(sizeof(t_listenv));
-			ft_export_fillkeycontentvar(new, var[i]);
-			new->next = NULL;
+			if (ft_check_double_var(var[i], *listexport, all) == 1)
+			{
+				printf("DOUBLE FIND\n");
+				ft_replace_double(var[i], *listexport, all);
+			}
+			else
+			{
+				new = malloc(sizeof(t_listenv));
+				ft_export_fillkeycontentvar(new, var[i]);
+				new->next = NULL;
+				ft_lstexportadd_back(listexport, new);
+			}
 		// printf("-------------\n");
 		// printf("%s\n", var[i]);
 		// printf("-------------\n");
-			ft_lstexportadd_back(listexport, new);
 		}
 		i++;
 	}
@@ -354,7 +435,7 @@ t_listenv	*ft_fill_var_export(t_listenv *listexport, t_all *all, char *cmd)
 		// if (all->listexport == NULL)
 		// {
 		// ft_print_listexport(listexport);
-		ft_export_fill_lstvar(&listexport, var);
+		ft_export_fill_lstvar(&listexport, var, &all);
 		// ft_print_listexport(listexport);
 		//ft_print_listexport(listexport);
 		// }

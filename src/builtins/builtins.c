@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/05 14:32:07 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:41:36 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,30 @@ int	ft_strncmpecho(const char *s1, const char *s2, size_t n)
 }
 
 int	ft_strncmpexport(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	// if (ft_strcmp(s1, "echo \0") == 0)
+	// 	return(printf("\n"), 1);
+	if (n == 0)
+		return (n);
+	while (s1[i] == '\'' || s1[i] == '\"')
+	{
+		n++;
+		i++;
+	}
+	while ((s1[i] == s2[j]) && s1[i] && (i < n - 1) && s1[i] != ' ')
+	{
+		i++;
+		j++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[j]);
+}
+
+int	ft_strncmpunset(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -111,7 +135,7 @@ void    ft_builtins(char *cmd, t_all *all, char **envp)
 		ft_print_listenv(all, cmd);
 	else if (ft_strncmpexport(tabcmd[0], "export\0", 7) == 0)
 		ft_export(envp, all, cmd);
-	else if (ft_strncmp(cmd, "unset", 5) == 0)
+	else if (ft_strncmpunset(tabcmd[0], "unset\0", 6) == 0)
 		ft_unset(all->listenv, all, cmd);
 	else if (ft_strncmp(cmd, "cd", 2) == 0)
 		ft_cd(tabcmd[1]);
