@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:16 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/06 16:11:15 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:22:00 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void    ft_unset(t_listenv *listenv, t_all *all, char *cmd)
     ft_arg_not_valid(cmd);
     while (tmp)
     {
+		printf("%s\n", tmp->key);
         if  (ft_find_unset(cmd, tmp->key, len) == 1)
         {
             prev->next = tmp->next;
@@ -136,7 +137,7 @@ void    ft_unset(t_listenv *listenv, t_all *all, char *cmd)
 	prev = NULL;
 	while (tmp)
     {
-			printf("%s\n", tmp->key);
+			// printf("%s\n", tmp->key);
         if  (ft_find_unset(cmd, tmp->key, len) == 1)
         {
             prev->next = tmp->next;
