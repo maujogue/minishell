@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:04:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/05 14:16:00 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:48:27 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	**ft_sort_tabexport(char **tabexport)
 			// 	tmp = tabexport[i];
 			// 	tabexport[i] = tabexport[j];
 			// 	tabexport[j] = tmp;
+			// 	printf("%s\n", tmp);
 			// }
 			j++;
 		}
