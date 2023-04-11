@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/07 17:27:27 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:40:41 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_all
 	t_listenv	*listenv;
 	t_listenv	*listexport;
 	t_pars		**parspipex;
+	char		*infile;
+	char		*outfile;
 }	t_all;
 
 void    	ft_builtins(char *cmd, t_all *all, char **envp);
@@ -59,6 +61,7 @@ void    	ft_unset(t_listenv *listenv, t_all *all, char *cmd);
 
 void    	ft_print_listenv(t_all *all, char *cmd);
 void		ft_print_tab(char **tab);
+void	ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);
 void		ft_print_listexport(t_listenv *listexport, t_all *all);
 
