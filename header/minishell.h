@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/11 14:40:41 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:24:45 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ void    	ft_unset(t_listenv *listenv, t_all *all, char *cmd);
 
 void    	ft_print_listenv(t_all *all, char *cmd);
 void		ft_print_tab(char **tab);
-void	ft_print_tab_pipe(char **tab);
+void		ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);
 void		ft_print_listexport(t_listenv *listexport, t_all *all);
+void    	ft_print_tabarg(char **tab);
 
 int			ft_strncmpecho(const char *s1, const char *s2, size_t n);
 int			ft_strncmpexport(const char *s1, const char *s2, size_t n);

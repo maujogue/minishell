@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/11 17:35:17 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:29:20 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,108 @@ char	*ft_fillparsopt(char *cmd)
 	return (NULL);
 }
 
+int	ft_isopt(char *cmd, int i)
+{
+	while (cmd[i] == ' ')
+		i++;
+	if (cmd[i] == '-')
+		return (1);
+	return (0);
+}
+
+int	ft_endcmdopt(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i] == ' ' && cmd[i])
+		i++;
+	while (cmd[i] && cmd[i] != ' ')
+		i++;
+	while (ft_isopt(cmd, i))
+	{
+		while (cmd[i] == ' ')
+			i++;
+		while (cmd[i] != ' ' && cmd[i])
+			i++;
+		while (cmd[i] == ' ')
+			i++;
+	}
+	return (i);
+}
+
+int	ft_nbargcmd(char *cmd, int i)
+{
+	int	nb;
+
+	nb = 0;
+	while (cmd[i])
+	{
+		while (cmd[i] == ' ')
+			i++;
+		if (cmd[i] != '\0' && cmd[i] != ' ')
+			nb++;
+		while (cmd[i] != ' ' && cmd[i])
+			i++;
+	}
+	return (nb);
+}
+
+char	*ft_fillarg(char *cmd, int *i)
+{
+	char	*res;
+	int		start;
+	int		isarg;
+
+	isarg = 0;
+	while (cmd[*i] == ' ')
+		*i += 1;
+	start = *i;
+	while (cmd[*i] != ' ' && cmd[*i])
+	{
+		isarg = 1;
+		*i += 1;
+	}
+	if (isarg == 0)
+		return (NULL);
+	res = ft_substr(cmd, start, *i - start);
+	return (res);
+}
+
+char	**ft_fillparsarg(char *cmd)
+{
+	char	**tab;
+	int		i;
+	int		nb;
+	int		count;
+
+	count = 0;
+	i = ft_endcmdopt(cmd);
+	nb = ft_nbargcmd(cmd, i);
+	tab = malloc(sizeof(char *) * (nb + 1));
+	while (cmd[i] && count < nb)
+	{
+		tab[count] = ft_fillarg(cmd, &i);
+		count++;
+		i++;
+	}
+	tab[count] = NULL;
+	return (tab);
+}
+
 t_pars	*ft_cleanpipe(char *cmd)
 {
 	t_pars	*cmdpars;
 
+	(void)cmd;
 	cmdpars = malloc(sizeof(t_pars));
 	cmdpars->cmd = ft_fillparscmd(cmd);
 	printf("%s /", cmdpars->cmd);
 	cmdpars->opt = ft_fillparsopt(cmd);
-	printf("%s /\n", cmdpars->opt);
+	printf("%s /", cmdpars->opt);
+	cmdpars->arg = ft_fillparsarg(cmd);
+	ft_print_tabarg(cmdpars->arg);
+	printf("\n");
 	return (cmdpars);
 }
 
@@ -105,6 +198,7 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 	len = 0;
 	while (tabcmd[len])
 		len++;
+	all->parspipex = malloc(sizeof(t_pars) * (len + 1));
 	while (i < len)
 	{
 		// printf("ICI");
