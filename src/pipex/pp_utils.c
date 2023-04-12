@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/11 14:37:47 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/12 10:42:58 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	check_cmd(t_pip *pip)
 	if (!cmd)
 		return (1);
 	else if (ft_strnstr(cmd, "./", 2) || (ft_strnstr(cmd, "/", 1)
-			&& ft_strlen(cmd) == 1) || ft_strnstr(pip->argv[pip->curr / 2], " ", 1))
+			&& ft_strlen(cmd) == 1))// || ft_strnstr(pip->argv[pip->curr / 2], " ", 1))
 		return (1);
 	else
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pp_pipex.c                                         :+:      :+:    :+:   */
+/*   pp_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/11 15:12:01 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:10:38 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,27 @@ void	close_p(t_pip *pip)
 	}
 }
 
-void	dup_pipe(t_pip *pip)
+void	dup_pipe(t_all *all,t_pip *pip)
 {
+	if (all->infile && pip->curr == 0)
+	{
+		if (dup2(pip->fd_infile, STDIN_FILENO) < 0)
+			free_exit(pip, 1, "Error: Dup2 failed 1\n");
+	}
 	if (pip->curr != 0)
 	{
 		if (dup2(pip->fds[pip->curr - 2], STDIN_FILENO) < 0)
 			free_exit(pip, 1, "Error: Dup2 failed 1\n");
-
 	}
 	if (pip->curr / 2 < pip->nb_arg - 1)
 	{
 		if (dup2(pip->fds[pip->curr + 1], STDOUT_FILENO) < 0)
 			free_exit(pip, 1, "Error: Dup2 failed 2\n");
+	}
+	if (all->outfile && pip->curr / 2 == pip->nb_arg - 1)
+	{
+		if (dup2(pip->fd_outfile, STDOUT_FILENO) < 0)
+			free_exit(pip, 1, "Error: Dup2 failed 1\n");
 	}
 }
 
@@ -69,7 +78,7 @@ void	exec_cmd(t_pip *pip)
 		free_exit(pip, 1, "Error\nFork failed");
 	if (pid == 0)
 	{
-		dup_pipe(pip);
+		dup_pipe(all, pip);
 		close_p(pip);
 		execve(pip->path_cmd1, pip->cmd1, pip->envp);
 		perror("");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/07 13:33:00 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:26:30 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void    ft_builtins(char *cmd, t_all *all, char **envp)
 	else if (ft_strncmp(cmd, "pwd", 3) == 0)
 		ft_pwd();
 	else
+		// pipex(all);
 		printf("%s: command not found\n", tabcmd[0]);
 	//ft_freetab(tabcmd);
 }

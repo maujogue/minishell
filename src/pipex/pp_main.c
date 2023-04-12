@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/11 15:04:49 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:22:43 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_files(t_all *all, t_pip *pip)
 
 void	init_cmd(t_pip *pip)
 {
-	pip->cmd1 = ft_strdup(pip->tab_cmd[pip->curr / 2]);
+	pip->cmd1 = pip->tab_cmd[pip->curr / 2];
 	if (!pip->cmd1)
 		free_exit(pip, 1, "Error\nMalloc failed");
 }
@@ -56,27 +56,29 @@ void	create_pipes(t_pip *pip)
 
 void	init_pip(t_all *all, t_pip *pip)
 {
+	
 	pip->curr = 0;
-	pip->path = get_path_envp(pip->envp);
+	pip->envp = NULL;
+	pip->tab_cmd = NULL;
 	pip->fds = NULL;
 	pip->cmd1 = NULL;
 	pip->path_cmd1 = NULL;
+	pip->envp = lst_to_tab(all->listenv);
+	pip->path = get_path_envp(pip->envp);
+	pip->tab_cmd = struct_lst_to_tab(all->parspipex);
 	create_pipes(pip);
 	init_files(all, pip);
 }
 
 int	pipex(t_all *all)
 {
-	char	**envp;
-	
 	t_pip	pip;
 
-	envp = list_to_tab(all->listenv);
-	pip.tab_cmd = struct_list_to_tab(all->parspipex);
-	pip.nb_arg = ft_lstsize(all->parspipex);
+	
+	pip.nb_arg = ft_strlen_parse(all->parspipex);
 	if (pip.nb_arg  >= 2)
 	{
-		init_pip(&all, &pip);
+		init_pip(all, &pip);
 		while (pip.curr / 2 < pip.nb_arg)
 		{
 			// ft_printf("%d|",pip->nb_arg);
@@ -87,8 +89,8 @@ int	pipex(t_all *all)
 			exec_cmd(&pip);
 			pip.curr += 2;
 		}
-		close_p(pip);
-		wait_id(pip);
+		close_p(&pip);
+		wait_id(&pip);
 		free_exit(&pip, 0, NULL);
 	}
 	else if (pip.nb_arg < 2)
