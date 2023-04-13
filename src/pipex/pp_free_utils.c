@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/12 13:29:25 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:39:24 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,17 @@ void	free_triple_array(char ***tab)
 	{
 		while (tab[++i])
 			free_array(tab[i]);
-		free(tab);
 	}
 }
-
 
 void	free_exit(t_pip *pip, int i, char *message)
 {
 	free_array(pip->cmd1);
+	free(pip->path_cmd1);
 	free_array(pip->envp);
 	free_triple_array(pip->tab_cmd);
-	free(pip->path_cmd1);
 	free(pip->fds);
+	free(pip->path);
 	if (i == 0)
 	{
 		free_fd();
