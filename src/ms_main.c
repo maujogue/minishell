@@ -6,12 +6,26 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 13:24:40 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 13:29:34 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 #include <signal.h>
+
+int	ft_find_pipe(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '|')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	ft_init_all(t_all *all, char **envp)
 {
