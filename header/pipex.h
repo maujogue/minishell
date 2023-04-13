@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/12 13:25:26 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:22:15 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ int		check_cmd(t_pip *pip);
 char	*get_path_envp(char **envp);
 char	*get_path_cmd(t_pip *pip, char *cmd, char *path);
 
-void	exec_cmd(t_pip *pip);
+void	exec_cmd(t_all *all, t_pip *pip);
 int		pipex(t_all *all);
 void    wait_id(t_pip *pip);
-void	dup_pipe(t_pip *pip);
+void	dup_pipe(t_all *all, t_pip *pip);
 void	close_p(t_pip *pip);
 
-char ***struct_lst_to_tab(t_pars **parspipex);
-int	ft_strlen_parse(t_pars **parspipex);
+char    ***get_pip_cmds(t_pars **parspipex);
+int     ft_strlen_parse(t_pars **parspipex);
 char	**ft_strdup_array(char **s1);
-int	ft_strlen_array(char **str);
-char **lst_to_tab(t_listenv	*listenv);
-int	ft_lstsize_env(t_listenv *lst);
+int     ft_strlen_array(char **str);
+char    **lst_to_tab(t_listenv	*listenv);
+int     ft_lstsize_env(t_listenv *lst);
+void	join_cmds(t_pars **parspipex);
 #endif

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/12 10:42:58 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:39:23 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_path_envp(char **envp)
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH", 4) == 0)
-			return (envp[i] + 5);
+			return (ft_strdup(envp[i] + 5));
 		i++;
 	}
 	return (NULL);
@@ -57,13 +57,13 @@ char	*get_path_cmd(t_pip *pip, char *cmd, char *path)
 
 int	check_cmd(t_pip *pip)
 {
-	char *cmd;
-	
+	char	*cmd;
+
 	cmd = pip->cmd1[0];
 	if (!cmd)
 		return (1);
 	else if (ft_strnstr(cmd, "./", 2) || (ft_strnstr(cmd, "/", 1)
-			&& ft_strlen(cmd) == 1))// || ft_strnstr(pip->argv[pip->curr / 2], " ", 1))
+			&& ft_strlen(cmd) == 1))
 		return (1);
 	else
 	{
@@ -71,6 +71,5 @@ int	check_cmd(t_pip *pip)
 		if (!pip->path_cmd1)
 			return (1);
 	}
-
 	return (0);
 }

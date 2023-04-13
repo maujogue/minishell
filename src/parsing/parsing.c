@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/12 15:39:50 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:13:48 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_fillparscmd(char *cmd)
 	}
 	while (cmd[len] != '\0' && cmd[len] != ' ')
 		len++;
-	res = ft_substr(cmd, nospace, len);
+	res = ft_substr(cmd, nospace, len - nospace);
 	return (res);
 }
 
