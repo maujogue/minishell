@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/12 14:10:38 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:11:20 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void    wait_id(t_pip *pip)
     }
 }
 
-void	exec_cmd(t_pip *pip)
+void	exec_cmd(t_all *all, t_pip *pip)
 {
 	int	pid;
+
 	
 	if (check_cmd(pip) == 1)
 	{
