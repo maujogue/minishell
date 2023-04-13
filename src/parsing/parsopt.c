@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsopt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:45:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 16:01:57 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:26:05 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ char	*ft_fillparsopt(char *cmd)
 {
 	char	*res;
 	int		i;
-	int		len;
-	int		start;
 
 	i = ft_endcmd(cmd);
 	// len = 0;
