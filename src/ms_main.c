@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 13:29:34 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:41:35 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char** argv, char **envp)
 	{
 		cmd = readline(">>");
 		add_history(cmd);
+		// ft_fillfile(&all, cmd);
 		if (ft_find_pipe(cmd))
 		{
 			ft_parsing(&all, cmd);
