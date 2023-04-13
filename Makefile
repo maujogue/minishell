@@ -16,6 +16,7 @@ SRC			 			=	ms_main.c	ms_utils_free.c	ms_utils_print.c	ms_utils_pars_arg.c		ms_u
 							builtins/cd.c	builtins/exit.c		builtins/pwd.c	\
 							builtins/echo.c builtins/echo_var.c	\
 							builtins/ft_strncmpbuil.c \
+              parsing/parsing.c\
 							pipex/pp_main.c pipex/pp_utils.c pipex/pp_exec.c pipex/pp_free_utils.c pipex/pp_array_utils.c\
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
@@ -45,8 +46,8 @@ clear:
 $(NAME): 				$(OBJECTS) $(LIB_DIR)$(LIBFT)
 						$(CC) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) -lreadline
 
-sanitize :				$(OBJECTS) $(LIB_DIR)$(LIBFT)
-						$(CC) $(SANITIZE) $(OBJECTS) -o $(NAME) $(LIB_DIR) $(LIBFT) -lreadline
+sanitize :				$(OBJECTS)
+						$(CC) $(SANITIZE) $(OBJECTS) -o $(NAME) ${LIB_DIR} -lreadline
 
 lib:
 						@make -C $(LIB_DIR) --no-print-directory

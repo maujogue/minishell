@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/11 15:10:43 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:24:45 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "typedef.h"
 # include "pipex.h"
 
-void    ft_builtins(char *cmd, t_all *all, char **envp);
+void    	ft_builtins(char *cmd, t_all *all, char **envp);
 
 void		ft_cd(char *path);
 void		ft_echo(t_all *all, char *cmd);
@@ -40,8 +40,10 @@ void    	ft_unset(t_listenv *listenv, t_all *all, char *cmd);
 
 void    	ft_print_listenv(t_all *all, char *cmd);
 void		ft_print_tab(char **tab);
+void		ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);
 void		ft_print_listexport(t_listenv *listexport, t_all *all);
+void    	ft_print_tabarg(char **tab);
 
 int			ft_strncmpecho(const char *s1, const char *s2, size_t n);
 int			ft_strncmpexport(const char *s1, const char *s2, size_t n);
@@ -52,6 +54,9 @@ t_listenv	*ft_lstexport_new(char *var);
 t_listenv	*ft_lstexportlast(t_listenv *lst);
 void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
 int			ft_lstexportsize(t_listenv *lst);
+
+int			ft_find_pipe(char *cmd);
+void		ft_parsing(t_all *all, char *cmd);
 
 void		ft_freetab(char **tab);
 
