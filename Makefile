@@ -16,7 +16,7 @@ SRC			 			=	ms_main.c	ms_utils_free.c	ms_utils_print.c	ms_utils_pars_arg.c		ms_u
 							builtins/cd.c	builtins/exit.c		builtins/pwd.c	\
 							builtins/echo.c builtins/echo_var.c	\
 							builtins/ft_strncmpbuil.c	\
-							parsing/parsing.c	parsing/parsarg.c	\
+							parsing/parsing.c	parsing/parsarg.c	parsing/parsopt.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
 

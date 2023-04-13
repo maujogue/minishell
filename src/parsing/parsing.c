@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 13:29:29 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:43:17 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,44 +29,6 @@ char	*ft_fillparscmd(char *cmd)
 		len++;
 	res = ft_substr(cmd, nospace, len - nospace);
 	return (res);
-}
-
-char	*ft_fillparsopt(char *cmd)
-{
-	char	*res;
-	int		i;
-	int		len;
-	int		start;
-
-	i = 1;
-	len = 0;
-	while (cmd[i])
-	{
-		if (cmd[i] == '-' && cmd[i - 1] == ' ')
-		{
-			start = i;
-			while (cmd[i] != ' ')
-			{
-				i++;
-				len++;
-			}
-			while (cmd[i] == ' ')
-				i++;
-			if (cmd[i] == '-')
-			{
-				len++;
-				while (cmd[i] != ' ')
-				{
-					i++;
-					len++;
-				}
-			}
-			res = ft_substr(cmd, start, len);
-			return (res);
-		}
-		i++;
-	}
-	return (NULL);
 }
 
 t_pars	*ft_cleanpipe(char *cmd)
