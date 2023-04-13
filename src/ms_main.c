@@ -6,18 +6,20 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/11 14:09:22 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 13:24:40 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 #include <signal.h>
 
-void handler()
+void	ft_init_all(t_all *all, char **envp)
 {
-	write(1, "nope\n", 5);
+	all->listenv = ft_env(envp);
+	all->listexport = NULL;
+	all->infile = NULL;
+	all->outfile = NULL;
 }
-
 
 int	main(int argc, char** argv, char **envp)
 {
@@ -28,8 +30,7 @@ int	main(int argc, char** argv, char **envp)
 	t_all	all;
 
 	// all->listenv = NULL;
-	all.listenv = ft_env(envp);
-	all.listexport = NULL;
+	ft_init_all(&all, envp);
 	while (1)
 	{
 		cmd = readline(">>");
