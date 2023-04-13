@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
 /*   Updated: 2023/04/13 13:46:23 by avaganay         ###   ########.fr       */
@@ -18,34 +18,13 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <signal.h>
-
+# include <sys/wait.h>
+# include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
-
-typedef struct s_listenv
-{
-	char				*key;
-	char				*content;
-	struct s_listenv	*next;
-}	t_listenv;
-
-typedef struct s_pars
-{
-	char	**tabfinal;
-	char	*cmd;
-	char	*opt;
-	char	**arg;
-} t_pars;
-
-typedef struct s_all
-{
-	t_listenv	*listenv;
-	t_listenv	*listexport;
-	t_pars		**parspipex;
-	char		*infile;
-	char		*outfile;
-}	t_all;
+# include "typedef.h"
+# include "pipex.h"
 
 void    	ft_builtins(char *cmd, t_all *all, char **envp);
 

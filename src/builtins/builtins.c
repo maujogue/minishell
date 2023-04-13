@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/12 16:09:39 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 13:57:45 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void    ft_builtins(char *cmd, t_all *all, char **envp)
 	else if (ft_strncmp(cmd, "pwd", 3) == 0)
 		ft_pwd();
 	else
+		// pipex(all);
 		printf("%s: command not found\n", tabcmd[0]);
 	//ft_freetab(tabcmd);
 }
