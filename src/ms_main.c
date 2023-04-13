@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 16:05:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:39:15 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	main(int argc, char** argv, char **envp)
 	{
 		cmd = readline(">>");
 		add_history(cmd);
-		// ft_fillfile(&all, cmd);
 		if (ft_find_pipe(cmd))
 		{
 			ft_parsing(&all, cmd);
@@ -57,7 +56,6 @@ int	main(int argc, char** argv, char **envp)
 		}
 		else
 			ft_builtins(cmd, &all, envp);
-		//printf("%s\n", cmd);
 	}
 	return 0;
 }

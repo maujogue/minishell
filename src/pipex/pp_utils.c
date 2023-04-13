@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 15:39:23 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:57:54 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_path_envp(char **envp)
 	return (NULL);
 }
 
-char	*get_path_cmd(t_pip *pip, char *cmd, char *path)
+char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 {
 	char	**tab;
 	char	*temp_path;
@@ -38,7 +38,7 @@ char	*get_path_cmd(t_pip *pip, char *cmd, char *path)
 	i = 1;
 	tab = ft_split(path, ':');
 	if (!tab)
-		free_exit(pip, 1, "Error\nMalloc failed1");
+		free_exit(all, pip, 1, "Error\nMalloc failed1");
 	while (tab[i + 1])
 	{
 		temp_path = ft_strjoin(tab[i], "/");
@@ -55,7 +55,7 @@ char	*get_path_cmd(t_pip *pip, char *cmd, char *path)
 	return (free_array(tab), NULL);
 }
 
-int	check_cmd(t_pip *pip)
+int	check_cmd(t_all *all, t_pip *pip)
 {
 	char	*cmd;
 
@@ -67,7 +67,7 @@ int	check_cmd(t_pip *pip)
 		return (1);
 	else
 	{
-		pip->path_cmd1 = get_path_cmd(pip, cmd, pip->path);
+		pip->path_cmd1 = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd1)
 			return (1);
 	}

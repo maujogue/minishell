@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 16:05:21 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:03:01 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 void	write_error(char *str);
 void	free_array(char **tab);
 void	free_fd(void);
-void	free_exit(t_pip *pip, int i, char *message);
+void	free_exit(t_all *all, t_pip *pip, int i, char *message);
 
-void	create_pipes(t_pip *pip);
-void	init_cmd(t_pip *pip);
-int		check_cmd(t_pip *pip);
+void	create_pipes(t_all *all, t_pip *pip);
+void	init_cmd(t_all *all, t_pip *pip);
+int     check_cmd(t_all *all, t_pip *pip);
 char	*get_path_envp(char **envp);
-char	*get_path_cmd(t_pip *pip, char *cmd, char *path);
+char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path);
 
 void	exec_cmd(t_all *all, t_pip *pip);
 int		pipex(t_all *all);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 16:05:48 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:14:27 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,30 @@ void	init_files(t_all *all, t_pip *pip)
 		if (pip->fd_outfile == -1)
 		{
 			perror(NULL);
-			free_exit(pip, 1, "");
+			free_exit(all, pip, 1, "");
 		}
 	}
 }
 
-void	init_cmd(t_pip *pip)
+void	init_cmd(t_all *all, t_pip *pip)
 {
 	pip->cmd1 = ft_strdup_array(pip->tab_cmd[pip->curr / 2]);
 	if (!pip->cmd1)
-		free_exit(pip, 1, "Error\nMalloc failed");
+		free_exit(all, pip, 1, "Error\nMalloc failed");
 }
 
-void	create_pipes(t_pip *pip)
+void	create_pipes(t_all *all, t_pip *pip)
 {
 	int	i;
 
 	i = 0;
 	pip->fds = malloc(sizeof(int) * (pip->nb_arg * 2));
 	if (!pip->fds)
-		free_exit(pip, 1, "Error\nMalloc failed");
+		free_exit(all, pip, 1, "Error\nMalloc failed");
 	while (i < pip->nb_arg)
 	{
 		if (pipe(&pip->fds[i * 2]))
-			free_exit(pip, 1, "Error\nPipe failed");
+			free_exit(all, pip, 1, "Error\nPipe failed");
 		i ++;
 	}
 }
@@ -67,7 +67,7 @@ void	init_pip(t_all *all, t_pip *pip)
 	pip->envp = lst_to_tab(all->listenv);
 	pip->path = get_path_envp(pip->envp);
 	pip->tab_cmd = get_pip_cmds(all->parspipex);
-	create_pipes(pip);
+	create_pipes(all, pip);
 	// init_files(all, pip);
 }
 
@@ -76,7 +76,7 @@ int	pipex(t_all *all)
 	t_pip	pip;
 
 	pip.nb_arg = ft_strlen_parse(all->parspipex);
-	if (pip.nb_arg >= 2)
+	if (pip.nb_arg >= 1)
 	{
 		init_pip(all, &pip);
 		while (pip.curr / 2 < pip.nb_arg)
@@ -84,15 +84,15 @@ int	pipex(t_all *all)
 			// if (!(pip->fd_infile == -1 && pip->curr != 0))
 			free_array(pip.cmd1);
 			free(pip.path_cmd1);
-			init_cmd(&pip);
+			init_cmd(all, &pip);
 			exec_cmd(all, &pip);
 			pip.curr += 2;
 		}
 		close_p(&pip);
 		wait_id(&pip);
-		free_exit(&pip, 0, NULL);
+		// free_exit(all, &pip, 0, NULL);
 	}
-	else if (pip.nb_arg < 2)
+	else
 		write_error("Error: too much arguments (4 required)");
 	return (0);
 }

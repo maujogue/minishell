@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 15:39:24 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:14:25 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,62 @@ void	free_triple_array(char ***tab)
 	}
 }
 
-void	free_exit(t_pip *pip, int i, char *message)
+void	ft_lstclear_env(t_listenv *lst)
+{
+	t_listenv	*temp;
+
+	if (!lst)
+		return ;
+	while (lst != NULL)
+	{
+		temp = (lst)->next;
+		free(lst->key);
+		free(lst->content);
+		free(lst->next);
+		lst = temp;
+	}
+	lst = NULL;
+}
+
+
+
+void	free_parse_tab(t_all *all)
+{
+	int	i;
+
+	i = 0;
+	while (all->parspipex[i])
+	{
+		free_array(all->parspipex[i]->tabfinal);
+		free_array(all->parspipex[i]->arg);
+		free(all->parspipex[i]->opt);
+		free(all->parspipex[i]->cmd);
+	}
+}
+
+void	free_exit_all_pipex(t_all *all)
+{
+	free(all->infile);
+	free(all->outfile);
+	free_parse_tab(all);
+}
+
+void	free_exit(t_all *all, t_pip *pip, int i, char *message)
 {
 	free_array(pip->cmd1);
 	free(pip->path_cmd1);
+	pip->cmd1 = NULL;
+	pip->path_cmd1 = NULL;
 	free_array(pip->envp);
 	free_triple_array(pip->tab_cmd);
-	free(pip->fds);
 	free(pip->path);
+	free_exit_all_pipex(all);
+	free(pip->fds);
 	if (i == 0)
-	{
 		free_fd();
-		exit(EXIT_SUCCESS);
-	}
 	else
 	{
-		write(2, message, ft_strlen(message));
+		write(1, message, ft_strlen(message));
 		free_fd();
-		exit(EXIT_FAILURE);
 	}
 }
