@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/12 14:24:45 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/13 13:28:31 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
 int			ft_lstexportsize(t_listenv *lst);
 
 int			ft_find_pipe(char *cmd);
+char		**ft_fillparsarg(char *cmd);
 void		ft_parsing(t_all *all, char *cmd);
 
 void		ft_freetab(char **tab);

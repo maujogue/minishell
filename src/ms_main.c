@@ -6,18 +6,34 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 10:04:29 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:46:34 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 #include <signal.h>
 
-void handler()
+int	ft_find_pipe(char *cmd)
 {
-	write(1, "nope\n", 5);
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '|')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
+void	ft_init_all(t_all *all, char **envp)
+{
+	all->listenv = ft_env(envp);
+	all->listexport = NULL;
+	all->infile = NULL;
+	all->outfile = NULL;
+}
 
 int	main(int argc, char** argv, char **envp)
 {
@@ -28,8 +44,7 @@ int	main(int argc, char** argv, char **envp)
 	t_all	all;
 
 	// all->listenv = NULL;
-	all.listenv = ft_env(envp);
-	all.listexport = NULL;
+	ft_init_all(&all, envp);
 	while (1)
 	{
 		cmd = readline(">>");
