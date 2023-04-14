@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 17:03:56 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/14 09:02:10 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ void	dup_pipe(t_all *all, t_pip *pip)
 {
 	if (all->infile && pip->curr == 0)
 	{
-		ft_printf("");
-		// if (dup2(pip->fd_infile, STDIN_FILENO) < 0)
-		// 	free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+		if (dup2(pip->fd_infile, STDIN_FILENO) < 0)
+			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
 	}
 	if (pip->curr != 0)
 	{
@@ -42,11 +41,11 @@ void	dup_pipe(t_all *all, t_pip *pip)
 		if (dup2(pip->fds[pip->curr + 1], STDOUT_FILENO) < 0)
 			free_exit(all, pip, 1, "Error: Dup2 failed 2\n");
 	}
-	// if (all->outfile && pip->curr / 2 == pip->nb_arg - 1)
-	// {
-	// 	if (dup2(pip->fd_outfile, STDOUT_FILENO) < 0)
-	// 		free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
-	// }
+	if (all->outfile && pip->curr / 2 == pip->nb_arg - 1)
+	{
+		if (dup2(pip->fd_outfile, STDOUT_FILENO) < 0)
+			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+	}
 }
 
 void	wait_id(t_pip *pip)

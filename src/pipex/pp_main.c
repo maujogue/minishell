@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 17:14:27 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/14 09:12:34 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	init_pip(t_all *all, t_pip *pip)
 	pip->path = get_path_envp(pip->envp);
 	pip->tab_cmd = get_pip_cmds(all->parspipex);
 	create_pipes(all, pip);
-	// init_files(all, pip);
+	init_files(all, pip);
 }
 
 int	pipex(t_all *all)
@@ -81,7 +81,6 @@ int	pipex(t_all *all)
 		init_pip(all, &pip);
 		while (pip.curr / 2 < pip.nb_arg)
 		{
-			// if (!(pip->fd_infile == -1 && pip->curr != 0))
 			free_array(pip.cmd1);
 			free(pip.path_cmd1);
 			init_cmd(all, &pip);
@@ -90,7 +89,7 @@ int	pipex(t_all *all)
 		}
 		close_p(&pip);
 		wait_id(&pip);
-		// free_exit(all, &pip, 0, NULL);
+		free_exit(all, &pip, 0, NULL);
 	}
 	else
 		write_error("Error: too much arguments (4 required)");

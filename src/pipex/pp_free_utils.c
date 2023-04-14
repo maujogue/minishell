@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_free_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 17:14:25 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/14 09:11:31 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	free_parse_tab(t_all *all)
 		free_array(all->parspipex[i]->arg);
 		free(all->parspipex[i]->opt);
 		free(all->parspipex[i]->cmd);
+		i++;
 	}
 }
 
@@ -91,25 +92,22 @@ void	free_exit_all_pipex(t_all *all)
 {
 	free(all->infile);
 	free(all->outfile);
-	free_parse_tab(all);
+	all->infile = NULL;
+	all->outfile = NULL;
+	// free_parse_tab(all);
 }
 
 void	free_exit(t_all *all, t_pip *pip, int i, char *message)
 {
-	free_array(pip->cmd1);
-	free(pip->path_cmd1);
-	pip->cmd1 = NULL;
-	pip->path_cmd1 = NULL;
+	// free_array(pip->cmd1); crashes when input file doesn't exist
+	// free(pip->path_cmd1);
+	// pip->cmd1 = NULL;
+	// pip->path_cmd1 = NULL;
 	free_array(pip->envp);
 	free_triple_array(pip->tab_cmd);
 	free(pip->path);
 	free_exit_all_pipex(all);
 	free(pip->fds);
-	if (i == 0)
-		free_fd();
-	else
-	{
+	if (i != 0)
 		write(1, message, ft_strlen(message));
-		free_fd();
-	}
 }

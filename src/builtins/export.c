@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/06 17:14:16 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/14 08:43:17 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_sort_env(char **envp)
 		}
 		i++;
 	}
-	dup[i - 1] = '\0';
+	dup[i - 1] = NULL;
     // ft_print_export(dup);
 	ft_freetab(dup);
 }
