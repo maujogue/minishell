@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 16:30:56 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:22:19 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void    ft_builtins(char *cmd, t_all *all, char **envp)
 		return ;
 	tabcmd = ft_split(cmd, ' ');
 	tabcmd[0] = ft_clean_cmd(tabcmd[0]);
-	// printf("tabcmd[0]%s",tabcmd[0]);
+	ft_fillfile(all, cmd);
     if (ft_strncmp(cmd, "exit", 4) == 0)
         ft_exit(0);
     else if (ft_strncmp(cmd, "clear", 5) == 0)

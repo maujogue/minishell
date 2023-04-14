@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 16:39:15 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:45:34 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char** argv, char **envp)
 		add_history(cmd);
 		if (ft_find_pipe(cmd))
 		{
+			ft_fillfile(&all, cmd);
 			ft_parsing(&all, cmd);
 			pipex(&all);
 		}
