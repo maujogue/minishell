@@ -6,13 +6,13 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/14 14:44:25 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:50:13 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-int		ft_charspe(char c)
+int	ft_charspe(char c)
 {
 	if (c >= 33 && c <= 47)
 		return (1);
@@ -30,7 +30,7 @@ char	*ft_fillnamefile(char *cmd, int i)
 	char	*infile;
 	int		start;
 	int		len;
-	
+
 	len = 0;
 	i++;
 	while (cmd[i] && cmd[i] == ' ')

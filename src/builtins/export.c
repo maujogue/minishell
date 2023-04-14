@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/14 08:43:17 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/04/14 15:10:54 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ char	**ft_dup_env(char **envp)
 	char	**dup;
 	int	count;
 
-    count = 0;
-    while (envp[count])
-    {
-        count++;
-    }
+	count = 0;
+	while (envp[count])
+	{
+		count++;
+	}
 	dup = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!dup)
 		return (NULL);
@@ -39,8 +39,8 @@ void	ft_sort_env(char **envp)
 {
 	char	**dup;
 	char	*tmp;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	dup = ft_dup_env(envp);
 	i = 0;
@@ -60,18 +60,8 @@ void	ft_sort_env(char **envp)
 		i++;
 	}
 	dup[i - 1] = NULL;
-    // ft_print_export(dup);
 	ft_freetab(dup);
 }
-
-// int	ft_exportsolo(char *cmd)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (cmd[i])
-// 	return (0);
-// }
 
 int	ft_is_arg_export(char	*cmd)
 {
@@ -121,18 +111,6 @@ int	ft_nb_var(char *cmd)
 	}
 	return (nb);
 }
-
-// char	**ft_tabvar(char *cmd)
-// {
-// 	char	**var;
-// 	int		nb;
-
-// 	nb = ft_nb_var(cmd);
-// 	var = ft_split(cmd, ' ');
-// 	if (!var)
-// 		return (NULL);
-// 	return (var);
-// }
 
 t_listenv	*ft_lstexport_new(char *var)
 {
@@ -213,17 +191,14 @@ char	*ft_substrexportkey(char const *s, unsigned int start, size_t len)
 		return (0);
 	while (j < start + len && src[i] && src[j] != '=')
 	{
-		// printf("%c", src[j]);
 		if (src[j] != '\"' && src[j] != '\'' && src[j] != '=')
 		{
-			// printf("ICI\n");
 			str[i] = src[j];
 			i++;
 		}
 		j++;
 	}
 	str[i] = '\0';
-	// printf("%s\n", str);
 	return (str);
 }
 
@@ -255,17 +230,14 @@ char	*ft_substrexportcontent(char const *s, unsigned int start, size_t len)
 		return (0);
 	while (j < start + len && src[i])
 	{
-		// printf("%c", src[j]);
 		if (src[j] != '\"')
 		{
-			// printf("ICI\n");
 			str[i] = src[j];
 			i++;
 		}
 		j++;
 	}
 	str[i] = '\0';
-	// printf("%s\n", str);
 	return (str);
 }
 
@@ -301,12 +273,8 @@ int	ft_check_name_var(char *var)
 	i = 0;
 	if (var[0] >= '0' && var[0] <= '9')
 		return (printf("minishell: export: \'%s\': not a valid identifier\n", var), 1);
-	// printf("%s\n", var);
 	while (var[i] && var[i] != '=' && i <= len)
 	{
-		// printf("i%d",i);
-		// printf("len%d",len);
-		// printf("%c\n", var[i]);
 		if (var[i] >= 33 && var[i] <= 47 && var[i] != 34 && var[i] != 39)
 			return (printf("minishell: export: \'%s\': not a valid identifier\n", var), 1);
 		i++;		
@@ -315,7 +283,7 @@ int	ft_check_name_var(char *var)
 }
 char	*ft_fillkeyvar(char	*var)
 {
-	int	i;
+	int		i;
 	char	*res;
 
 	i = 0;
@@ -333,15 +301,13 @@ char	*ft_fillkeyvar(char	*var)
 
 int	ft_check_double_var(char *var, t_listenv *listexport, t_all **all)
 {
-	t_listenv *tmp;
-	char	*keyvar;
+	t_listenv	*tmp;
+	char		*keyvar;
 	
 	tmp = listexport;
 	keyvar = ft_fillkeyvar(var);
 	while (listexport)
 	{
-		// printf("%s\n", keyvar);
-		// printf("%s\n", listexport->key);
 		if (ft_strcmp(keyvar, listexport->key) == 0)
 			return (1);
 		listexport = listexport->next;
@@ -350,7 +316,6 @@ int	ft_check_double_var(char *var, t_listenv *listexport, t_all **all)
 	tmp = (*all)->listenv;
 	while ((*all)->listenv)
 	{
-		// printf("%s\n", var);
 		if (ft_strcmp(keyvar, (*all)->listenv->key) == 0)
 			return (1);
 		(*all)->listenv = (*all)->listenv->next;
@@ -369,7 +334,6 @@ void	ft_replace_double(char *var, t_listenv *listexport, t_all **all)
 	tmp = listexport;
 	while (listexport)
 	{
-		// printf("%s\n", var);
 		if (ft_strcmp(var, listexport->key) == 0)
 		{
 			while (var[i] != '=' && var[i])
@@ -400,7 +364,6 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var, t_all **all)
 	n--;
 	while(i <= n)
 	{
-		// printf("*%s\n", var[i]);
 		if (ft_check_name_var(var[i]) == 0)
 		{
 			if (ft_check_double_var(var[i], *listexport, all) == 1)
@@ -415,9 +378,6 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var, t_all **all)
 				new->next = NULL;
 				ft_lstexportadd_back(listexport, new);
 			}
-		// printf("-------------\n");
-		// printf("%s\n", var[i]);
-		// printf("-------------\n");
 		}
 		i++;
 	}
@@ -432,33 +392,15 @@ t_listenv	*ft_fill_var_export(t_listenv *listexport, t_all *all, char *cmd)
 		var = ft_split(cmd, ' ');
 		if (!var)
 			return (NULL);
-		// if (all->listexport == NULL)
-		// {
-		// ft_print_listexport(listexport);
 		ft_export_fill_lstvar(&listexport, var, &all);
-		// ft_print_listexport(listexport);
-		//ft_print_listexport(listexport);
-		// }
-		// else
-		// {
-		// 	printf("LISTE REMPLI");
-		// 	ft_export_lstempty(&listexport, var);
-		// }
-		// ft_freetab(var);
 	}
 	else
 		ft_print_listexport(listexport, all);
 	return (listexport);
 }
 
-// void	ft_print_var_export(t_all *all)
-// {
-	
-// }
-
 void	ft_export(char **envp, t_all *all, char *cmd)
 {
-    ft_sort_env(envp);
+	ft_sort_env(envp);
 	all->listexport = ft_fill_var_export(all->listexport, all, cmd);
-	// ft_print_var_export(all);
 }

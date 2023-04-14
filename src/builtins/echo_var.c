@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:40:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/07 13:41:32 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:02:58 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_echo_var(t_all *all, char *arg)
 {
-	char *key;
-	int	i;
-	t_listenv *tmp;
+	char		*key;
+	int			i;
+	t_listenv	*tmp;
 
 	tmp = all->listexport;
 	i = 0;
@@ -45,10 +45,8 @@ void	ft_echo_var(t_all *all, char *arg)
 		return ;
 	while (all->listexport != NULL)
 	{
-		// printf("%s\n", key);
 		if (ft_strcmp(key, all->listexport->key) == 0)
 		{
-			// printf("ICICICICI");
 			if (all->listexport->content != NULL)
 				printf("%s", all->listexport->content);
 			all->listexport = tmp;
@@ -62,19 +60,21 @@ void	ft_echo_var(t_all *all, char *arg)
 
 void	ft_print_before_var(char *arg)
 {
-	if (arg[0] != '$' && ((arg[0] >= 33 && arg[0] <= 46) || arg[0] == 91 || arg[0] == 93))
+	if (arg[0] != '$' && ((arg[0] >= 33 && arg[0] <= 46)
+			|| arg[0] == 91 || arg[0] == 93))
 		printf("%c", arg[0]);
 }
 
 void	ft_echo_env(t_all *all, char *arg)
 {
-	char *key;
-	int	i;
-	t_listenv *tmp;
+	char		*key;
+	int			i;
+	t_listenv	*tmp;
 
 	tmp = all->listenv;
 	i = 0;
-	if (arg[0] == '\"' || arg[1] == '\"' || (arg[0] >= 91 && arg[0] <= 93) || (arg[0] >= 33 && arg[0] <= 46 && arg[0] != 36))
+	if (arg[0] == '\"' || arg[1] == '\"' || (arg[0] >= 91 && arg[0] <= 93)
+		|| (arg[0] >= 33 && arg[0] <= 46 && arg[0] != 36))
 	{
 		i = 2;
 		key = malloc(sizeof(char) * (ft_strlen(arg) - 3));
@@ -100,10 +100,8 @@ void	ft_echo_env(t_all *all, char *arg)
 		return ;
 	while (all->listenv != NULL)
 	{
-		// printf("%s\n", key);
 		if (ft_strcmp(key, all->listenv->key) == 0)
 		{
-			// printf("ICICICICI");
 			if (all->listenv->content != NULL)
 				printf("%s", all->listenv->content);
 			all->listenv = tmp;
