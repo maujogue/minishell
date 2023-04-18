@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/18 10:39:16 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:21:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	close_p(t_pip *pip)
 // {
 // 	int	fd;
 // 	char *line;
-	
+
 // 	if (all->heredoc)
 // 	{
 // 		fd = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
@@ -85,7 +85,7 @@ void	wait_id(t_pip *pip)
 void	exec_cmd(t_all *all, t_pip *pip)
 {
 	int	pid;
-	
+
 	if (check_cmd(all, pip) == 1)
 	{
 		write_error("No such file or directory\n");

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:21:59 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 15:31:56 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:02:30 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_strdup_array(char **s1)
 	int			i;
 
 	i = 0;
-	s2 = malloc(sizeof(char *) * ft_strlen_array(s1) + 1);
+	s2 = malloc(sizeof(char *) * (ft_strlen_array(s1) + 1));
 	while (s1[i] != NULL)
 	{
 		s2[i] = ft_strdup(s1[i]);
@@ -54,7 +54,7 @@ char	***get_pip_cmds(t_pars **parspipex)
 	int		i;
 
 	i = ft_strlen_parse(parspipex);
-	tab_cmd = malloc(sizeof(char **) * i);
+	tab_cmd = malloc(sizeof(char **) * (i + 1));
 	i = -1;
 	while (parspipex[++i])
 		tab_cmd[i] = ft_strdup_array(parspipex[i]->tabfinal);

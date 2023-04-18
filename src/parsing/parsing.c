@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/14 14:49:50 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:11:53 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 		all->parspipex[i] = ft_cleanpipe(tabcmd[i]);
 		i++;
 	}
+	all->parspipex[i] = NULL;
 }
 
 void	ft_parsing(t_all *all, char *cmd)

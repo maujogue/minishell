@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/14 14:45:34 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:10:08 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_init_all(t_all *all, char **envp)
 	all->listexport = NULL;
 	all->infile = NULL;
 	all->outfile = NULL;
+	all->parspipex = NULL;
 }
 
 int	main(int argc, char** argv, char **envp)

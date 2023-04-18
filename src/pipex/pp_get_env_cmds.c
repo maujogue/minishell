@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:07:51 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/18 10:26:40 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:57:44 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**lst_to_tab(t_listenv	*listenv)
 	int		i;
 
 	i = 0;
-	envp = malloc(sizeof(char *) * ft_lstsize_env(listenv));
+	envp = malloc(sizeof(char *) * (ft_lstsize_env(listenv) + 1));
 	while (listenv)
 	{
 		temp1 = ft_strjoin_gnl(ft_strdup(listenv->key), "=");

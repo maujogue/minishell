@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/18 10:05:08 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:20:36 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int	pipex(t_all *all)
 		init_pip(all, &pip);
 		while (pip.curr / 2 < pip.nb_arg)
 		{
-			free_array(pip.cmd1);
-			free(pip.path_cmd1);
 			init_cmd(all, &pip);
 			exec_cmd(all, &pip);
 			pip.curr += 2;
