@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:07:51 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 17:11:16 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/18 10:26:40 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	join_cmds(t_pars **parspipex)
 	int	i;
 
 	i = 0;
-	while (parspipex[i])
+	while (parspipex[i] != NULL)
 	{
 		parspipex[i]->tabfinal = parse_cmds(parspipex[i]);
 		i++;
