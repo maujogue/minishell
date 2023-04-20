@@ -32,7 +32,7 @@ SANITIZE				= $(CFLAGS) -fsanitize=address
 RM 						= rm -rf
 CLEAR					= clear
 
-$(BUILD_DIR)%.o:		$(DIR)%.c $(HEADER_DIR) ${LIB_DIR}*.c ${LIB_DIR}/${LIB_HEADER} ${LIB_DIR} Makefile 
+$(BUILD_DIR)%.o:		$(DIR)%.c $(HEADER_DIR)* ${LIB_DIR}*.c ${LIB_DIR}/${LIB_HEADER} ${LIB_DIR} Makefile 
 						@mkdir -p $(@D)
 						$(CC) $(CFLAGS) -I$(HEADER_DIR) -I$(LIB_DIR) -c $< -o $@
 

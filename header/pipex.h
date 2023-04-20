@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 17:03:01 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/19 10:03:54 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,7 @@ int     ft_strlen_array(char **str);
 char    **lst_to_tab(t_listenv	*listenv);
 int     ft_lstsize_env(t_listenv *lst);
 void	join_cmds(t_pars **parspipex);
+
+void	here_doc(t_all *all, t_pip *pip);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/13 16:48:30 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:06:36 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_all
 	t_pars		**parspipex;
 	char		*infile;
 	char		*outfile;
+	int			outfile_append;
+	char		**heredoc_delim;
 }	t_all;
 
 typedef struct pip
@@ -50,7 +52,7 @@ typedef struct pip
 	int		nb_arg;
 	int		curr;
 	int		*fds;
-	
+	int		fd_heredoc;
 }	t_pip;
 
 #endif

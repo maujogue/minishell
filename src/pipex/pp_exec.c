@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/18 16:21:22 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:44:08 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,53 +24,56 @@ void	close_p(t_pip *pip)
 	}
 }
 
-// void	here_doc(t_all *all, t_pip *pip)
-// {
-// 	int	fd;
-// 	char *line;
+void	here_doc(t_all *all, t_pip *pip)
+{
+	char	*line;
+	int		fd[2];
+	int		i;
 
-// 	if (all->heredoc)
-// 	{
-// 		fd = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
-// 		if (fd < 0)
-// 			free_exit(all, pip, 1, "Error: open failed \n");
-// 		while (1)
-// 		{
-// 			line = readline("heredoc>");
-// 			if (ft_strncmp(line, all->heredoc, ft_strlen(line)) == 0)
-// 				break;
-// 			write(fd, line, ft_strlen(line));
-// 			write(fd, "\n", 1);
-// 			free(line);
-// 		}
-// 		free(line);
-// 		close(fd);
-// 		pip->fd_heredoc = fd;
-// 	}
-// }
+	i = 0;
+	if (all->heredoc_delim)
+	{
+		if (pipe(fd) < 0)
+			free_exit(all, pip, 1, "Error: open failed \n");
+		while (i < ft_strlen_array(all->heredoc_delim))
+		{
+			while (1)
+			{
+				line = readline("heredoc>");
+				if (ft_strncmp(line, all->heredoc_delim[i],
+						ft_strlen(line)) == 0
+					&& ft_strncmp(line, all->heredoc_delim[i],
+						ft_strlen(all->heredoc_delim[i])) == 0)
+					break ;
+				write(fd[1], line, ft_strlen(line));
+				write(fd[1], "\n", 1);
+				free(line);
+			}
+			i++;
+		}
+		free(line);
+		close(fd[1]);
+		pip->fd_heredoc = fd[0];
+	}
+}
 
 void	dup_pipe(t_all *all, t_pip *pip)
 {
-	if (all->infile && pip->curr == 0)
-	{
-		if (dup2(pip->fd_infile, STDIN_FILENO) < 0)
-			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
-	}
-	if (pip->curr != 0)
-	{
-		if (dup2(pip->fds[pip->curr - 2], STDIN_FILENO) < 0)
-			free_exit(all, pip, 1, "Error: Dup2 failed 11\n");
-	}
-	if (pip->curr / 2 < pip->nb_arg - 1)
-	{
-		if (dup2(pip->fds[pip->curr + 1], STDOUT_FILENO) < 0)
-			free_exit(all, pip, 1, "Error: Dup2 failed 2\n");
-	}
-	if (all->outfile && pip->curr / 2 == pip->nb_arg - 1)
-	{
-		if (dup2(pip->fd_outfile, STDOUT_FILENO) < 0)
-			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
-	}
+	if (all->infile && pip->curr == 0
+		&& dup2(pip->fd_infile, STDIN_FILENO) < 0)
+		free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+	if (all->heredoc_delim // && pip->curr == all->nb_heredoc - 1)
+		&& dup2(pip->fd_heredoc, STDIN_FILENO) < 0)
+		free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+	if (pip->curr != 0
+		&& dup2(pip->fds[pip->curr - 2], STDIN_FILENO) < 0)
+		free_exit(all, pip, 1, "Error: Dup2 failed 3\n");
+	if (pip->curr / 2 < pip->nb_arg - 1
+		&& dup2(pip->fds[pip->curr + 1], STDOUT_FILENO) < 0)
+		free_exit(all, pip, 1, "Error: Dup2 failed 4\n");
+	if (all->outfile && pip->curr / 2 == pip->nb_arg - 1
+		&& dup2(pip->fd_outfile, STDOUT_FILENO) < 0)
+		free_exit(all, pip, 1, "Error: Dup2 failed 5\n");
 }
 
 void	wait_id(t_pip *pip)
