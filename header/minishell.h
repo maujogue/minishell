@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/13 15:59:26 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:18:39 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "typedef.h"
 # include "pipex.h"
 
-void    	ft_builtins(char *cmd, t_all *all, char **envp);
+int         ft_builtins(t_all *all, t_pip *pip);
 
 void		ft_cd(char *path);
 void		ft_echo(t_all *all, char *cmd);

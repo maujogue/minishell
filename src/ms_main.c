@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/18 16:10:08 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:06:13 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,9 @@ int	main(int argc, char** argv, char **envp)
 	{
 		cmd = readline(">>");
 		add_history(cmd);
-		if (ft_find_pipe(cmd))
-		{
-			ft_fillfile(&all, cmd);
-			ft_parsing(&all, cmd);
-			pipex(&all);
-		}
-		else
-			ft_builtins(cmd, &all, envp);
+		ft_fillfile(&all, cmd);
+		ft_parsing(&all, cmd);
+		pipex(&all);
 	}
 	return 0;
 }

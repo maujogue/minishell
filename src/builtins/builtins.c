@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/20 12:44:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:46:16 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,27 @@ char	*ft_clean_cmd(char *cmd)
 }
 
 
-void    ft_builtins(char *cmd, t_all *all, char **envp)
+int	ft_builtins(t_all *all, t_pip *pip)
 {
-	char	**tabcmd;
-
-	if (cmd == NULL || cmd[0] == '\0')
-		return ;
-	tabcmd = ft_split(cmd, ' ');
-	tabcmd[0] = ft_clean_cmd(tabcmd[0]);
-	ft_fillfile(all, cmd);
-    if (ft_strncmp(cmd, "exit", 4) == 0)
+	pip->cmd[0] = ft_clean_cmd(pip->cmd[0]);
+    if (ft_strncmp(pip->cmd[0], "exit", 4) == 0)
         ft_exit(0);
-    else if (ft_strncmp(cmd, "clear", 5) == 0)
+    else if (ft_strncmp(pip->cmd[0], "clear", 5) == 0)
 		clear_history();
-	else if (ft_strncmpecho(tabcmd[0], "echo\0", 5) == 0)
-		ft_echo(all, cmd);
-	else if (ft_strncmp(cmd, "env", 3) == 0)
-		ft_print_listenv(all, cmd);
-	else if (ft_strncmpexport(tabcmd[0], "export\0", 7) == 0)
-		ft_export(envp, all, cmd);
-	else if (ft_strncmpunset(tabcmd[0], "unset\0", 6) == 0)
-		ft_unset(all->listenv, all, cmd);
-	else if (ft_strncmp(cmd, "cd", 2) == 0)
-		ft_cd(tabcmd[1]);
-	else if (ft_strncmp(cmd, "pwd", 3) == 0)
+	else if (ft_strncmpecho(pip->cmd[0], "echo\0", 5) == 0)
+		ft_echo(all, pip->cmd[0]);
+	else if (ft_strncmp(pip->cmd[0], "env", 3) == 0)
+		ft_print_listenv(all, pip->cmd[0]);
+	else if (ft_strncmpexport(pip->cmd[0], "export\0", 7) == 0)
+		ft_export(pip->envp, all, pip->cmd[0]);
+	else if (ft_strncmpunset(pip->cmd[0], "unset\0", 6) == 0)
+		ft_unset(all->listenv, all, pip->cmd[0]);
+	else if (ft_strncmp(pip->cmd[0], "cd", 2) == 0)
+		ft_cd(pip->cmd[1]);
+	else if (ft_strncmp(pip->cmd[0], "pwd", 3) == 0)
 		ft_pwd();
 	else
-	{
-		ft_parsing(all, cmd);
-		pipex(all);
-	}
-	//ft_freetab(tabcmd);
+		return (1);
+	free_exit(all, pip, 1, "");
+	return (0);
 }

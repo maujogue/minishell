@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/20 11:06:36 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:59:45 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct pip
 {
 	char	***tab_cmd;
 	char	**envp;
-	char	**cmd1;
-	char	*path_cmd1;
+	char	**cmd;
+	char	*path_cmd;
 	char	*path;
 	int		fd_infile;
 	int		fd_outfile;

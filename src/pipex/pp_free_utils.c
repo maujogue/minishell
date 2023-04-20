@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/20 11:29:43 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:00:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,15 @@ void	free_exit_all_pipex(t_all *all)
 
 void	free_exit(t_all *all, t_pip *pip, int i, char *message)
 {
-	free_array(pip->cmd1); //crashes when input file doesn't exist
-	free(pip->path_cmd1);
+	free_array(pip->cmd); //crashes when input file doesn't exist
+	free(pip->path_cmd);
 	free_array(pip->envp);
 	free_triple_array(pip->tab_cmd);
 	free(pip->path);
 	free_exit_all_pipex(all);
 	free(pip->fds);
-	pip->cmd1 = NULL;
-	pip->path_cmd1 = NULL;
+	pip->cmd = NULL;
+	pip->path_cmd = NULL;
 	pip->envp = NULL;
 	pip->tab_cmd = NULL;
 	pip->path = NULL;

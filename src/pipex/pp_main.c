@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/20 12:35:24 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:00:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	init_files(t_all *all, t_pip *pip)
 
 void	init_cmd(t_all *all, t_pip *pip)
 {
-	pip->cmd1 = ft_strdup_array(pip->tab_cmd[pip->curr / 2]);
-	if (!pip->cmd1)
+	pip->cmd = ft_strdup_array(pip->tab_cmd[pip->curr / 2]);
+	if (!pip->cmd)
 		free_exit(all, pip, 1, "Error\nMalloc failed");
 }
 
@@ -71,8 +71,8 @@ void	init_pip(t_all *all, t_pip *pip)
 	pip->envp = NULL;
 	pip->tab_cmd = NULL;
 	pip->fds = NULL;
-	pip->cmd1 = NULL;
-	pip->path_cmd1 = NULL;
+	pip->cmd = NULL;
+	pip->path_cmd = NULL;
 	join_cmds(all->parspipex);
 	pip->envp = lst_to_tab(all->listenv);
 	pip->path = get_path_envp(pip->envp);
