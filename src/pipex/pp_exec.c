@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/20 15:02:21 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:18:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void	exec_cmd(t_all *all, t_pip *pip)
 			execve(pip->path_cmd, pip->cmd, pip->envp);
 			perror("");
 		}
-		free_exit(all, pip, 1, "");
+		free_exit(all, pip, 0, "");
 	}
-	if (ft_builtins(all, pip) == -1)
+	if (ft_strncmp(pip->cmd[0], "exit\0", 5) == 0)
 		ft_exit(pip->cmd);
 }

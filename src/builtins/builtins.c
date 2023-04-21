@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/21 10:56:50 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:17:41 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ int	ft_builtins(t_all *all, t_pip *pip)
 		ft_pwd(pip->cmd);
 	else
 		return (1);
-	free_exit(all, pip, 1, "");
 	return (0);
 }
