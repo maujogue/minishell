@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/20 13:46:16 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/21 10:56:50 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ char	*ft_clean_cmd(char *cmd)
 int	ft_builtins(t_all *all, t_pip *pip)
 {
 	pip->cmd[0] = ft_clean_cmd(pip->cmd[0]);
-    if (ft_strncmp(pip->cmd[0], "exit", 4) == 0)
-        ft_exit(0);
-    else if (ft_strncmp(pip->cmd[0], "clear", 5) == 0)
-		clear_history();
+    if (ft_strncmp(pip->cmd[0], "exit\0", 5) == 0)
+        return (-1);
 	else if (ft_strncmpecho(pip->cmd[0], "echo\0", 5) == 0)
 		ft_echo(all, pip->cmd[0]);
 	else if (ft_strncmp(pip->cmd[0], "env", 3) == 0)
@@ -61,8 +59,8 @@ int	ft_builtins(t_all *all, t_pip *pip)
 		ft_unset(all->listenv, all, pip->cmd[0]);
 	else if (ft_strncmp(pip->cmd[0], "cd", 2) == 0)
 		ft_cd(pip->cmd[1]);
-	else if (ft_strncmp(pip->cmd[0], "pwd", 3) == 0)
-		ft_pwd();
+	else if (ft_strncmp(pip->cmd[0], "pwd\0", 4) == 0)
+		ft_pwd(pip->cmd);
 	else
 		return (1);
 	free_exit(all, pip, 1, "");

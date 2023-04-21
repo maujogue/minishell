@@ -6,13 +6,39 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/06 13:30:18 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:44:50 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-void ft_exit(int code)
+int check_numeric(char *str)
 {
-    exit(code);
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
+void ft_exit(char **cmd)
+{
+    if (ft_strlen_array(cmd) > 2)
+    {
+        write_error("exit\nbash: exit: too many arguments\n");
+        exit(1);    
+    }
+    else if (cmd[1] && check_numeric(cmd[1]) == 1)
+    {
+        write_error("exit\nbash: exit: s: numeric argument required\n");
+    }
+    else if (cmd[1])
+        exit(ft_atoi(cmd[1]));
+    else
+        exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/20 13:18:39 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:22:04 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void		ft_echo(t_all *all, char *cmd);
 void		ft_echo_var(t_all *all, char *arg);
 void		ft_echo_env(t_all *all, char *arg);
 t_listenv	*ft_env(char **envp);
-void		ft_exit(int code);
+void		ft_exit(char **cmd);
 void		ft_export(char **envp, t_all *all, char *cmd);
-void		ft_pwd(void);
+void		ft_pwd(char **cmd);
 void    	ft_unset(t_listenv *listenv, t_all *all, char *cmd);
 
 void    	ft_print_listenv(t_all *all, char *cmd);
