@@ -12,7 +12,7 @@ DIR						= src/
 
 SRC			 			=	ms_main.c	ms_utils_free.c	ms_utils_print.c	ms_utils_pars_arg.c		ms_utils_libft.c\
 							builtins/export.c	builtins/export_print.c	\
-							builtins/env.c	builtins/unset.c	builtins/builtins.c	\
+							builtins/env.c	builtins/env_utils.c builtins/unset.c	builtins/builtins.c	\
 							builtins/cd.c	builtins/exit.c		builtins/pwd.c	\
 							builtins/echo.c builtins/echo_var.c	\
 							builtins/ft_strncmpbuil.c \

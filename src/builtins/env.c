@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/22 13:30:35 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:33:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	**ft_fusion_split(char	**split)
 	{
 		while (split[i])
 		{
-			split[1] = ft_strjoin(split[1], "=");
-			split[1] = ft_strjoin(split[1], split[i]);
+			split[1] = ft_strjoin_gnl(split[1], "=");
+			split[1] = ft_strjoin_gnl(split[1], split[i]);
 			i++;
 		}
 	}
@@ -48,7 +48,7 @@ t_listenv	*ft_lstenv_new(char *str)
 	split = ft_fusion_split(split);
 	new->content = split[1];
 	new->next = NULL;
-	// ft_freetab(split);
+	// free_array(split);
 	return (new);
 }
 

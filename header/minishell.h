@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/20 14:22:04 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:29:18 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@
 # include "pipex.h"
 
 int         ft_builtins(t_all *all, t_pip *pip);
+int         is_builtin(t_all *all, t_pip *pip);
 
-void		ft_cd(char *path);
+void        ft_cd(t_all *all, t_pip *pip);
 void		ft_echo(t_all *all, char *cmd);
 void		ft_echo_var(t_all *all, char *arg);
 void		ft_echo_env(t_all *all, char *arg);
@@ -50,6 +51,10 @@ int			ft_strncmpexport(const char *s1, const char *s2, size_t n);
 int			ft_strncmpunset(const char *s1, const char *s2, size_t n);
 
 int			ft_strcmp(const char *s1, const char *s2);
+
+char        *get_env_content(t_listenv	*listenv, char *arg);
+void        replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
+
 t_listenv	*ft_lstexport_new(char *var);
 t_listenv	*ft_lstexportlast(t_listenv *lst);
 void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
