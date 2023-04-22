@@ -6,11 +6,32 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/14 14:50:28 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:39:36 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+int	ft_isredir(char *cmd, int i)
+{
+	while (cmd[i])
+	{
+		if (cmd[i] == '<' || cmd[i] == '>')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_jump_redir(char *cmd, int *i)
+{
+	while (cmd[*i] != ' ' && cmd[*i])
+		*i += 1;
+	while (cmd[*i] == ' ')
+		*i += 1;
+	while (cmd[*i] != ' ' && cmd[*i])
+		*i += 1;
+}
 
 int	ft_isopt(char *cmd, int i)
 {
@@ -51,7 +72,14 @@ int	ft_nbargcmd(char *cmd, int i)
 	{
 		while (cmd[i] == ' ')
 			i++;
-		if (cmd[i] != '\0' && cmd[i] != ' ')
+		if (cmd[i] == '<' || cmd [i] == '>')
+		{
+			while (cmd[i] != ' ' && cmd[i])
+				i++;
+			while (cmd[i] == ' ')
+				i++;
+		}
+		else if (cmd[i] != '\0' && cmd[i] != ' ')
 			nb++;
 		while (cmd[i] != ' ' && cmd[i])
 			i++;
@@ -95,6 +123,10 @@ char	**ft_fillparsarg(char *cmd)
 		return (NULL);
 	while (cmd[i] && count < nb)
 	{
+		while (cmd[i] == ' ')
+			i++;
+		if (cmd[i] == '<' || cmd [i] == '>')
+			ft_jump_redir(cmd, &i);
 		tab[count] = ft_fillarg(cmd, &i);
 		count++;
 		i++;
