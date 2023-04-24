@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:24:03 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 15:34:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:58:05 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ void    ft_fillheredoc(t_all *all, char *cmd)
 		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
 		{
 			ft_fillheredocdelim(all, cmd, &i);
+		}
+		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
+		{
+			all->outfile_append = 1;
 		}
 		i++;
 	}

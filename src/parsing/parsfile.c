@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 15:33:57 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:58:43 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	ft_fillfile_heredoc(t_all *all, char *cmd)
 		printf("heredoc_delim: ");
 		ft_print_tab(all->heredoc_delim);
 	}	
+	printf("outfile_append = %d\n", all->outfile_append);
 }
