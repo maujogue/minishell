@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/07 13:41:27 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:21:19 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,35 @@ int	ft_echosolo(char *cmd)
 	return (0);
 }
 
+int	ft_echo_infini_n(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '\"')
+	{
+		i++;
+		if (str[i] == '-' && str[i + 1] == 'n')
+			i++;
+		while (str[i] == 'n' && str[i])
+			i++;
+		if (str[i] == '\"')
+			i++;
+		if (str[i] == '\0')
+			return (1);	
+	}
+	else
+	{
+		if (str[i] == '-' && str[i + 1] == 'n')
+			i++;
+		while (str[i] == 'n' && str[i])
+			i++;
+		if (str[i] == '\0')
+			return (1);	
+	}
+	return (0);
+}
+
 void    ft_echo(t_all *all, char *cmd)
 {
     char    **tabecho;
@@ -81,7 +110,7 @@ void    ft_echo(t_all *all, char *cmd)
 	i = 1;
 	argn = 0;
     tabecho = ft_split(cmd, ' ');
-	while ((ft_strcmp(tabecho[i], "-n") == 0) || (ft_strcmp(tabecho[i], "\"-n\"") == 0))
+	while ((ft_echo_infini_n(tabecho[i]) == 1) || (ft_strcmp(tabecho[i], "-n") == 0) || (ft_strcmp(tabecho[i], "\"-n\"") == 0))
 	{
 		i++;
 		argn = 1;
