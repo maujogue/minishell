@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/21 16:29:18 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:25:12 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int			ft_find_pipe(char *cmd);
 int			ft_isopt(char *cmd, int i);
 char		*ft_fillparsopt(char *cmd);
 char		**ft_fillparsarg(char *cmd);
-void		ft_fillfile(t_all *all, char *cmd);
+void		ft_fillfile_heredoc(t_all *all, char *cmd);
+void		ft_fillheredoc(t_all *all, char *cmd);
 
 void		ft_freetab(char **tab);
 

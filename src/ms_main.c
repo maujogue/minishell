@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/21 15:28:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:26:47 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_init_all(t_all *all, char **envp)
 	all->infile = NULL;
 	all->outfile = NULL;
 	all->parspipex = NULL;
+	all->heredoc_delim = NULL;
+	all->outfile_append = 0;
 }
 
 int	main(int argc, char** argv, char **envp)
@@ -50,7 +52,7 @@ int	main(int argc, char** argv, char **envp)
 	{
 		cmd = readline(">>");
 		add_history(cmd);
-		ft_fillfile(&all, cmd);
+		ft_fillfile_heredoc(&all, cmd);
 		ft_parsing(&all, cmd);
 		pipex(&all);
 	}
