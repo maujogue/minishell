@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/21 16:29:18 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:12:52 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int         ft_builtins(t_all *all, t_pip *pip);
 int         is_builtin(t_all *all, t_pip *pip);
 
 void        ft_cd(t_all *all, t_pip *pip);
-void		ft_echo(t_all *all, char *cmd);
+void		ft_echo(t_all *all, char **tabecho);
 void		ft_echo_var(t_all *all, char *arg);
 void		ft_echo_env(t_all *all, char *arg);
 t_listenv	*ft_env(char **envp);
 void		ft_exit(char **cmd);
-void		ft_export(char **envp, t_all *all, char *cmd);
+void		ft_export(char **envp, t_all *all, char **cmd);
 void		ft_pwd(char **cmd);
-void    	ft_unset(t_listenv *listenv, t_all *all, char *cmd);
+void    	ft_unset(t_all *all, t_pip *pip);
 
 void    	ft_print_listenv(t_all *all, char *cmd);
 void		ft_print_tab(char **tab);
@@ -52,6 +52,7 @@ int			ft_strncmpunset(const char *s1, const char *s2, size_t n);
 
 int			ft_strcmp(const char *s1, const char *s2);
 
+void	    unset_env_var(char *cmd, t_listenv *tmp);
 char        *get_env_content(t_listenv	*listenv, char *arg);
 void        replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 

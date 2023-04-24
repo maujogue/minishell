@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/22 14:21:19 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:53:23 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
-
-int	ft_nbargecho(char **tabecho)
-{
-	int	i;
-
-	i = 0;
-	while (tabecho[i])
-	{
-		i++;
-	}
-	return (i);
-}
 
 void	ft_printecho(t_all *all, char *arg)
 {
@@ -43,22 +31,6 @@ void	ft_printecho(t_all *all, char *arg)
 			printf("%c", arg[i]);
 		i++;
 	}
-}
-
-int	ft_echosolo(char *cmd)
-{
-	int	i;
-
-	i = 4;
-	while (cmd[i] == 'e' || cmd[i] == 'c' || cmd[i] == 'h' || cmd[i] == 'o' || cmd[i] == '"' || cmd[i] == '\'')
-		i++;
-	while (cmd[i] == ' ')
-	{
-		if (cmd[i + 1] == '\0')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 int	ft_echo_infini_n(char *str)
@@ -90,18 +62,26 @@ int	ft_echo_infini_n(char *str)
 	return (0);
 }
 
-void    ft_echo(t_all *all, char *cmd)
+int	check_option_n(char *str)
 {
-    char    **tabecho;
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' && str[i + 1] == 'n')
+		i++;
+	while (str[i] == 'n')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	return (1);
+}
+
+void    ft_echo(t_all *all, char **tabecho)
+{
     int     i;
 	int		argn;
 	
-	if (ft_echosolo(cmd))
-	{
-		printf("\n");
-		return ;
-	}
-	if (ft_strcmp(cmd, "echo") == 0)
+	if (ft_strlen_array(tabecho) == 1)
 	{
 		printf("\n");
 		return ;
@@ -109,25 +89,19 @@ void    ft_echo(t_all *all, char *cmd)
 	(void)all;
 	i = 1;
 	argn = 0;
-    tabecho = ft_split(cmd, ' ');
-	while ((ft_echo_infini_n(tabecho[i]) == 1) || (ft_strcmp(tabecho[i], "-n") == 0) || (ft_strcmp(tabecho[i], "\"-n\"") == 0))
-	{
-		i++;
-		argn = 1;
-	}
-	// if ((ft_strcmp(tabecho[1], "-n") == 0) || (ft_strcmp(tabecho[1], "\"-n\"") == 0)) 
-	// {
-	// 	i = 2;
-	// 	argn = 1;
-	// }
     while (tabecho[i])
 	{
-		ft_printecho(all, tabecho[i]);
-		if (tabecho[2] && tabecho[2][0] != '\0' && i != ft_nbargecho(tabecho) - 1)
-			printf(" ");
+		ft_printf("[%s]\n", tabecho[i]);
+		if (check_option_n(tabecho[i]) == 0)
+			argn = 1;
+		else
+		{
+			ft_printecho(all, tabecho[i]);
+			if (tabecho[i] && tabecho[i][0] != '\0' && i != ft_strlen_array(tabecho) - 1)
+				printf(" ");
+		}
 		i++;
 	}
 	if (argn == 0)
 		printf("\n");
-	
 }
