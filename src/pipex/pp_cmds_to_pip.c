@@ -6,13 +6,23 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:21:59 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/18 16:02:30 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:58:20 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
 int	ft_strlen_array(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+		i++;
+	return (i);
+}
+
+int	ft_strlen_triple_char(char ***str)
 {
 	int	i;
 
