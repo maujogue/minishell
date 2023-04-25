@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 15:12:52 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:58:38 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_strncmpunset(const char *s1, const char *s2, size_t n);
 
 int			ft_strcmp(const char *s1, const char *s2);
 
-void	    unset_env_var(char *cmd, t_listenv *tmp);
+t_listenv   *unset_env_var(char *cmd, t_listenv *tmp);
 char        *get_env_content(t_listenv	*listenv, char *arg);
 void        replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 
@@ -67,6 +67,9 @@ int			ft_isopt(char *cmd, int i);
 char		*ft_fillparsopt(char *cmd);
 char		**ft_fillparsarg(char *cmd);
 void		ft_fillfile(t_all *all, char *cmd);
+
+
+int	ft_strlen_triple_char(char ***str); 
 
 void		ft_freetab(char **tab);
 

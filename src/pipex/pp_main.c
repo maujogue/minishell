@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/21 13:36:41 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:27:11 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,5 @@ int	pipex(t_all *all)
 		wait_id(&pip);
 		free_exit(all, &pip, 0, NULL);
 	}
-	else
-		write_error("Error: too much arguments (4 required)");
 	return (0);
 }
