@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/21 11:16:02 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:00:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void ft_exit(char **cmd)
 {
     if (ft_strlen_array(cmd) > 2)
     {
-        write_error("exit\nbash: exit: too many arguments\n");
+        write_error("exit\nbash: ", "exit", ": too many arguments\n");
         exit(1);    
     }
     else if (cmd[1] && check_numeric(cmd[1]) == 1)
     {
-        write_error("exit\nbash: exit: s: numeric argument required\n");
+        write_error("exit\nbash: exit: ", cmd[1],": numeric argument required\n");
     }
     else if (cmd[1])
         exit(ft_atoi(cmd[1]));

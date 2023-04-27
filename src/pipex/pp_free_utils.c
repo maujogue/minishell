@@ -6,15 +6,17 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/20 13:00:22 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:03:24 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-void	write_error(char *str)
+void	write_error(char *bash, char *str, char *message)
 {
+	write(2, bash, ft_strlen(bash));
 	write(2, str, ft_strlen(str));
+	write(2, message, ft_strlen(message));
 }
 
 void	free_array(char **tab)
@@ -85,12 +87,14 @@ void	free_parse_tab(t_all *all)
 
 void	free_exit_all_pipex(t_all *all)
 {
-	// free(all->infile);
-	// free(all->outfile);
-	// free_array(all->heredoc_delim);
-	// all->infile = NULL;
-	// all->outfile = NULL;
-	// all->heredoc_delim = NULL;
+	free(all->infile);
+	free(all->outfile);
+	free_array(all->heredoc_delim);
+	all->infile = NULL;
+	all->outfile = NULL;
+	all->heredoc_delim = NULL;
+	free_listenv(all->listenv);
+	free_listenv(all->listexport);
 	free_parse_tab(all);
 }
 

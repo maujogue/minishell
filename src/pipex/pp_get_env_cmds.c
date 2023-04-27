@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:07:51 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/18 15:57:44 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 11:25:20 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	**lst_to_tab(t_listenv	*listenv)
 		free(temp1);
 		free(temp2);
 		listenv = listenv->next;
+		if (!listenv)
+			break ;
 	}
 	envp[i] = NULL;
 	return (envp);

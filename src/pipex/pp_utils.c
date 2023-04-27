@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/21 13:37:22 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:44:55 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	int		i;
 
 	if (!cmd || access(cmd, F_OK) == 0 || !pip->path)
-		return (cmd);
+		return (ft_strdup(cmd));
 	i = 1;
 	tab = ft_split(path, ':');
 	if (!tab)
@@ -55,23 +55,43 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	return (free_array(tab), NULL);
 }
 
+
+
+int	check_point_slash(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (ft_strcmp(".", cmd) == 0)
+		return (write_error("bash: ", cmd, ": filename argument required\n"), 1);
+	while (cmd[i] && cmd[i] == '.')
+		i++;
+	if (cmd[i] ==  '\0')
+		return (write_error("bash: ", cmd, ": command not found\n"), 1);
+	i = 0;
+	while (cmd[i] && (cmd[i] == '/' || cmd[i] == '.'))
+		i++;
+	if (cmd[i] ==  '\0')
+		return (write_error("bash: ", cmd, ": Is a directory\n"), 1);
+	return (0);
+}
+
 int	check_cmd(t_all *all, t_pip *pip)
 {
 	char	*cmd;
 
 	cmd = pip->cmd[0];
-	if (!cmd)
+	if (!cmd || cmd[0] == '\0')
 		return (1);
 	if (is_builtin(all, pip) == 0)
 		return (0);
-	else if (ft_strnstr(cmd, "./", 2) || (ft_strnstr(cmd, "/", 1)
-			&& ft_strlen(cmd) == 1))
+	if (check_point_slash(cmd) == 1)
 		return (1);
 	else
-	{
+	{	
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd)
-			return (1);
+			return (write_error("bash: ", cmd, ": command not found\n"),1);
 	}
 	return (0);
 }

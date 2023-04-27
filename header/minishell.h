@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/25 14:18:31 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:13:01 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -56,6 +57,7 @@ t_listenv   *unset_env_var(char *cmd, t_listenv *tmp);
 char        *get_env_content(t_listenv	*listenv, char *arg);
 void        replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 
+void	    free_listenv(t_listenv *lst);
 t_listenv	*ft_lstexport_new(char *var);
 t_listenv	*ft_lstexportlast(t_listenv *lst);
 void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
@@ -68,8 +70,12 @@ char		*ft_fillparsopt(char *cmd);
 char		**ft_fillparsarg(char *cmd);
 void		ft_fillfile_heredoc(t_all *all, char *cmd);
 void		ft_fillheredoc(t_all *all, char *cmd);
-int	ft_strlen_triple_char(char ***str); 
+int         ft_strlen_triple_char(char ***str); 
 
 void		ft_freetab(char **tab);
+void	    free_exit_all_pipex(t_all *all);
 
+void        signals(void);
+void	sigint_handler_in_process(int sig);
+void	sigquit_handler_in_process(int sig);
 #endif

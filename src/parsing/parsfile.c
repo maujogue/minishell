@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 15:58:43 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:54:38 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,15 @@ void	ft_fillfile_heredoc(t_all *all, char *cmd)
 {
 	ft_fillfile(all, cmd);
 	ft_fillheredoc(all, cmd);
-	if (all->infile == NULL)
-		printf("infile: NULL\n");
-	else
+	if (all->infile)
 		printf("infile: %s\n", all->infile);
-	if (all->outfile == NULL)
-		printf("outfile: NULL\n");
-	else
+	if (all->outfile)
 		printf("outfile: %s\n", all->outfile);
-	if (all->heredoc_delim == NULL)
-		printf("heredoc_delim: NULL\n");
-	else
+	if (all->heredoc_delim)
 	{
 		printf("heredoc_delim: ");
 		ft_print_tab(all->heredoc_delim);
-	}	
-	printf("outfile_append = %d\n", all->outfile_append);
+	}
+	if (all->outfile_append != 0)
+		printf("outfile_append = %d\n", all->outfile_append);
 }
