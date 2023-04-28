@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_free_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/27 13:03:24 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:17:57 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ void	free_parse_tab(t_all *all)
 	{
 		free_array(all->parspipex[i]->tabfinal);
 		free_array(all->parspipex[i]->arg);
-		free(all->parspipex[i]->opt);
+		free_array(all->parspipex[i]->opt2);
 		free(all->parspipex[i]->cmd);
 		all->parspipex[i]->tabfinal = NULL;
 		all->parspipex[i]->arg = NULL;
-		all->parspipex[i]->opt = NULL;
+		all->parspipex[i]->opt2 = NULL;
 		all->parspipex[i]->cmd = NULL;
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_get_env_cmds.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:07:51 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/27 11:25:20 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:27:21 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,26 @@ char	**lst_to_tab(t_listenv	*listenv)
 
 char	**parse_cmds(t_pars *parspipex)
 {
-	int		len;
+	int		len_arg;
+	int		len_opt;
 	int		j;
 	int		k;
 	char	**tab_final;
 
 	j = 0;
 	k = 0;
-	len = 0;
+	len_arg = 0;
+	len_opt = 0;
+	if (parspipex->opt2)
+		len_opt = ft_strlen_array(parspipex->opt2);
 	if (parspipex->arg)
-	{
-		while (parspipex->arg[len])
-			len++;
-	}
-	if (parspipex->opt)
-		len++;
-	len++;
-	tab_final = malloc(sizeof(char *) * (len + 1));
+		len_arg = ft_strlen_array(parspipex->arg);
+	tab_final = malloc(sizeof(char *) * (len_arg + len_opt + 2));
 	tab_final[j++] = ft_strdup(parspipex->cmd);
-	if (parspipex->opt)
-		tab_final[j++] = ft_strdup(parspipex->opt);
-	while (j < len)
+	while (j < len_opt + 1)
+		tab_final[j++] = ft_strdup(parspipex->opt2[k++]);
+	k = 0;
+	while (j < len_opt + len_arg + 1)
 		tab_final[j++] = ft_strdup(parspipex->arg[k++]);
 	tab_final[j] = NULL;
 	return (tab_final);

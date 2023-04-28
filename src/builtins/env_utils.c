@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/27 11:34:46 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:25:08 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,14 @@ t_listenv *unset_env_var(char *cmd, t_listenv *lst)
 		{
 			free(lst->key);
 			free(lst->content);
-			free(lst);
 			if (prev)
+			{
 				prev->next = lst->next;
+				free(lst);
+				break ;				
+			}
 			else
-				return (lst->next);
+				return (free(lst), lst->next);
 		}
 		prev = lst;
 		lst = lst->next;

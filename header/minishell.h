@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/28 09:56:06 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:30:11 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		ft_export(char **envp, t_all *all, char **cmd);
 void		ft_pwd(char **cmd);
 void    	ft_unset(t_all *all, t_pip *pip);
 
-void    	ft_print_listenv(t_all *all, char *cmd);
+void        ft_print_listenv(t_all *all, char *cmd, int path_exists);
 void		ft_print_tab(char **tab);
 void		ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);

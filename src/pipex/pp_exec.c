@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/27 16:19:47 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:40:31 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ void	exec_cmd(t_all *all, t_pip *pip)
 			execve(pip->path_cmd, pip->cmd, pip->envp);
 			perror("");
 		}
-		else if (ft_strlen_triple_char(pip->tab_cmd) > 1)
+		else if (ft_strlen_triple_char(pip->tab_cmd) > 1 || all->outfile)
 			ft_builtins(all, pip);
 		free_exit(all, pip, 0, "");
 	}
-	if (is_builtin(all, pip) == 0 && ft_strlen_triple_char(pip->tab_cmd) == 1)
+	if (is_builtin(all, pip) == 0 && ft_strlen_triple_char(pip->tab_cmd) == 1 && !all->outfile)
 		ft_builtins(all, pip);
 }

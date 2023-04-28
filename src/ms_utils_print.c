@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/25 11:26:49 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:31:18 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void    ft_print_listenv(t_all *all, char *cmd)
+void    ft_print_listenv(t_all *all, char *cmd, int path_exists)
 {
 	t_listenv *tmp;
 	
+    if (path_exists == 1)
+        return write_error("bash: env: No such file or directory\n", "", "");
 	if (cmd[3] != '\0' && (cmd[4] != ' ' && cmd[4] != '\0'))
 	{
 		printf("%s", cmd);

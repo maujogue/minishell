@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 15:13:09 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:30:58 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_builtins(t_all *all, t_pip *pip)
 	else if (ft_strncmpecho(pip->cmd[0], "echo\0", 5) == 0)
 		ft_echo(all, pip->cmd);
 	else if (ft_strncmp(pip->cmd[0], "env\0", 4) == 0)
-		ft_print_listenv(all, pip->cmd[0]);
+		ft_print_listenv(all, pip->cmd[0], !pip->path);
 	else if (ft_strncmpexport(pip->cmd[0], "export\0", 7) == 0)
 		ft_export(pip->envp, all, pip->cmd);
 	else if (ft_strncmpunset(pip->cmd[0], "unset\0", 6) == 0)

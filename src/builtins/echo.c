@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/24 13:53:23 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:33:53 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void    ft_echo(t_all *all, char **tabecho)
 	argn = 0;
     while (tabecho[i])
 	{
-		ft_printf("[%s]\n", tabecho[i]);
 		if (check_option_n(tabecho[i]) == 0)
 			argn = 1;
 		else

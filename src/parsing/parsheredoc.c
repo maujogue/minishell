@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsheredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:24:03 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 15:58:05 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:49:39 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_tabheredocdelim(char **tab, char *delim)
 	{
 		res = malloc(sizeof(char *) * 2);
 		res[0] = delim;
-		res[1] = '\0';	
+		res[1] = 0;	
 		return (res);
 	}
 	while (tab[size] != NULL)
