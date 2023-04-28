@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 15:58:43 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:09:14 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,66 @@ char	*ft_fillnamefile(char *cmd, int i)
 	return (infile);
 }
 
+int	ft_lentab(char **tab)
+{
+	int len;
+
+	len = 0;
+	while (tab[len])
+	{
+		len++;
+	}
+	return (len);
+}
+
+char	**ft_infiletodouble(char **tab, char *infile)
+{
+	char	**res;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_lentab(tab);
+	res = malloc(sizeof(char *) * (len + 1));
+	while (tab[i])
+	{
+		res[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	res[i] = ft_strdup(infile);
+	res[i + 1] = NULL;
+	return (res);
+}
+
+void	ft_fillallfile(t_all *all, char *cmd)
+{
+	int		i;
+	char	*infile;
+	char	**res;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
+		{
+			if (all->infile2 == NULL)
+			{
+				infile = ft_fillnamefile(cmd, i);
+				res = malloc(sizeof(char *) * 2);
+				res[0] = ft_strdup(infile);
+				res[1] = NULL;
+				all->infile2 = res;
+			}
+			else
+			{
+				infile = ft_fillnamefile(cmd, i);
+				all->infile2 = ft_infiletodouble(all->infile2, infile);
+			}
+		}
+		i++;
+	}
+}
+
 void	ft_fillfile(t_all *all, char *cmd)
 {
 	int	i;
@@ -59,6 +119,7 @@ void	ft_fillfile(t_all *all, char *cmd)
 	i = 0;
 	is_infile = 0;
 	is_outfile = 0;
+	ft_fillallfile(all, cmd);
 	while (cmd[i])
 	{
 		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
@@ -87,6 +148,10 @@ void	ft_fillfile_heredoc(t_all *all, char *cmd)
 		printf("infile: NULL\n");
 	else
 		printf("infile: %s\n", all->infile);
+	// if (all->infile2 == NULL)
+	// 	printf("infile: NULL\n");
+	// else
+	// 	ft_print_tab(all->infile2);
 	if (all->outfile == NULL)
 		printf("outfile: NULL\n");
 	else
