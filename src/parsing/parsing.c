@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/22 15:47:15 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/28 09:42:12 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_fillparscmd(char *cmd)
 	int		len;
 	int		nospace;
 	char	*res;
+	// char	*reswithoutquote;
 
 	len = 0;
 	nospace = 0;
@@ -28,6 +29,29 @@ char	*ft_fillparscmd(char *cmd)
 	while (cmd[len] != '\0' && cmd[len] != ' ')
 		len++;
 	res = ft_substr(cmd, nospace, len - nospace);
+	// printf("ICI\n");
+	// printf("%s\n", res);
+	// len = 0;
+	// nospace = 0;
+	// while (res[len])
+	// {
+	// 	if (res[len] != '\"' && res[len] != '\'')
+	// 		nospace++;
+	// 	len++;
+	// }
+	// reswithoutquote = malloc(sizeof(char) * (nospace + 1));
+	// len = 0;
+	// nospace = 0;
+	// while (res[len])
+	// {
+	// 	if (res[len] != '\"' && res[len] != '\'')
+	// 	{
+	// 		reswithoutquote[nospace] = res[len];
+	// 		nospace++;
+	// 	}
+	// 	len++;
+	// }
+	// printf("%s\n", reswithoutquote);
 	return (res);
 }
 
@@ -41,7 +65,13 @@ t_pars	*ft_cleanpipe(char *cmd)
 	printf("%s /", cmdpars->cmd);
 	cmdpars->opt = ft_fillparsopt(cmd);
 	printf("%s /", cmdpars->opt);
+	cmdpars->opt2 = ft_fillparsopt2(cmd);
+	if (cmdpars->opt2 != NULL)
+		ft_print_tabarg(cmdpars->opt2);
+	else
+		printf("(null)");
 	cmdpars->arg = ft_fillparsarg(cmd);
+	printf("/");
 	if (cmdpars->arg != NULL)
 		ft_print_tabarg(cmdpars->arg);
 	else

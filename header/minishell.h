@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/24 13:25:12 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/28 09:37:25 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void		ft_parsing(t_all *all, char *cmd);
 int			ft_find_pipe(char *cmd);
 int			ft_isopt(char *cmd, int i);
 char		*ft_fillparsopt(char *cmd);
+char	**ft_fillparsopt2(char *cmd);
 char		**ft_fillparsarg(char *cmd);
 void		ft_fillfile_heredoc(t_all *all, char *cmd);
 void		ft_fillheredoc(t_all *all, char *cmd);
