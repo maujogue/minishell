@@ -6,7 +6,7 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/28 11:35:10 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/04/28 16:47:53 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	init_files(t_all *all, t_pip *pip)
 {
 	if (all->infile)
-	{
 		pip->fd_infile = open(all->infile, O_RDONLY);
-	}
 	if (all->outfile && all->outfile_append == 1)
 	{	
 		pip->fd_outfile = open(all->outfile,

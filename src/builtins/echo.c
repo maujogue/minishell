@@ -6,7 +6,7 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/28 11:33:53 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/04/28 20:21:43 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	check_option_n(char *str)
 	int	i;
 
 	i = 0;
+	if (!(str[i] == '-' && str[i + 1] == 'n'))
+		return (1);
 	if (str[i] == '-' && str[i + 1] == 'n')
 		i++;
 	while (str[i] == 'n')
@@ -80,21 +82,20 @@ void    ft_echo(t_all *all, char **tabecho)
 {
     int     i;
 	int		argn;
+	int		argecho;
 	
 	if (ft_strlen_array(tabecho) == 1)
-	{
-		printf("\n");
-		return ;
-	}
-	(void)all;
+		return (void)printf("\n");
 	i = 1;
 	argn = 0;
+	argecho = 0;
     while (tabecho[i])
 	{
-		if (check_option_n(tabecho[i]) == 0)
+		if (check_option_n(tabecho[i]) == 0 && argecho == 0)
 			argn = 1;
 		else
 		{
+			argecho = 1;
 			ft_printecho(all, tabecho[i]);
 			if (tabecho[i] && tabecho[i][0] != '\0' && i != ft_strlen_array(tabecho) - 1)
 				printf(" ");
