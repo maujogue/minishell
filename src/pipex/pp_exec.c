@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/21 14:36:01 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:19:47 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	close_p(t_pip *pip)
 	int	i;
 
 	i = 0;
-	while (i < pip->nb_arg * 2)
+	while (i < pip->curr)
 	{
 		close(pip->fds[i]);
 		i++;
@@ -59,7 +59,12 @@ void	here_doc(t_all *all, t_pip *pip)
 
 void	dup_pipe(t_all *all, t_pip *pip)
 {
-	if (all->infile && pip->curr == 0
+	if (all->infile && pip->fd_infile == -1)
+	{
+		write_error("bash: ", all->infile, " :No such file or directory\n");
+		free_exit(all, pip, 1, "");
+	}
+	if (all->infile && pip->fd_infile > 0
 		&& dup2(pip->fd_infile, STDIN_FILENO) < 0)
 		free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
 	if (all->heredoc_delim // && pip->curr == all->nb_heredoc - 1)
@@ -88,12 +93,11 @@ void	wait_id(t_pip *pip)
 void	exec_cmd(t_all *all, t_pip *pip)
 {
 	int	pid;
-
+	
 	if (check_cmd(all, pip) == 1)
-	{
-		write_error("No such file or directory\n");
 		return ;
-	}
+	signal(SIGINT, sigint_handler_in_process);
+	signal(SIGQUIT, sigquit_handler_in_process);
 	pid = fork();
 	if (pid < 0)
 		free_exit(all, pip, 1, "Error\nFork failed");
@@ -106,8 +110,10 @@ void	exec_cmd(t_all *all, t_pip *pip)
 			execve(pip->path_cmd, pip->cmd, pip->envp);
 			perror("");
 		}
+		else if (ft_strlen_triple_char(pip->tab_cmd) > 1)
+			ft_builtins(all, pip);
 		free_exit(all, pip, 0, "");
 	}
-	if (is_builtin(all, pip) == 0)
+	if (is_builtin(all, pip) == 0 && ft_strlen_triple_char(pip->tab_cmd) == 1)
 		ft_builtins(all, pip);
 }

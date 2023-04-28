@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/19 10:03:54 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:39:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minishell.h"
 
-void	write_error(char *str);
+void	write_error(char *bash, char *str, char *message);
 void	free_array(char **tab);
 void	free_fd(void);
 void	free_exit(t_all *all, t_pip *pip, int i, char *message);

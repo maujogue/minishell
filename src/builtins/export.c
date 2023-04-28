@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/14 15:10:54 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:35:06 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,35 +61,6 @@ void	ft_sort_env(char **envp)
 	}
 	dup[i - 1] = NULL;
 	ft_freetab(dup);
-}
-
-int	ft_is_arg_export(char	*cmd)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strncmp(cmd, "export\0", 7) == 0)
-        return (0);
-	while (cmd[i] && cmd[i] != ' ')
-	{
-		i++;
-		if (cmd[i] == ' ')
-		{
-			i++;
-			if (cmd[i] != ' ' && cmd[i] != '\0')
-			{
-				return (1);
-			}
-		}
-	}
-	i--;
-	while (cmd[i])
-	{
-		if (cmd[i] != ' ')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 int	ft_nb_var(char *cmd)
@@ -383,23 +354,16 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var, t_all **all)
 	}
 }
 
-t_listenv	*ft_fill_var_export(t_listenv *listexport, t_all *all, char *cmd)
+t_listenv	*ft_fill_var_export(t_listenv *listexport, t_all *all, char **cmd)
 {
-	char		**var;
-
-	if (ft_is_arg_export(cmd))
-	{
-		var = ft_split(cmd, ' ');
-		if (!var)
-			return (NULL);
-		ft_export_fill_lstvar(&listexport, var, &all);
-	}
+	if (ft_strlen_array(cmd) > 1)
+		ft_export_fill_lstvar(&listexport, cmd, &all);
 	else
 		ft_print_listexport(listexport, all);
 	return (listexport);
 }
 
-void	ft_export(char **envp, t_all *all, char *cmd)
+void	ft_export(char **envp, t_all *all, char **cmd)
 {
 	ft_sort_env(envp);
 	all->listexport = ft_fill_var_export(all->listexport, all, cmd);

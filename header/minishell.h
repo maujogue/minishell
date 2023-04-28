@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/28 09:37:25 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/04/28 09:56:06 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -30,14 +31,14 @@ int         ft_builtins(t_all *all, t_pip *pip);
 int         is_builtin(t_all *all, t_pip *pip);
 
 void        ft_cd(t_all *all, t_pip *pip);
-void		ft_echo(t_all *all, char *cmd);
+void		ft_echo(t_all *all, char **tabecho);
 void		ft_echo_var(t_all *all, char *arg);
 void		ft_echo_env(t_all *all, char *arg);
 t_listenv	*ft_env(char **envp);
 void		ft_exit(char **cmd);
-void		ft_export(char **envp, t_all *all, char *cmd);
+void		ft_export(char **envp, t_all *all, char **cmd);
 void		ft_pwd(char **cmd);
-void    	ft_unset(t_listenv *listenv, t_all *all, char *cmd);
+void    	ft_unset(t_all *all, t_pip *pip);
 
 void    	ft_print_listenv(t_all *all, char *cmd);
 void		ft_print_tab(char **tab);
@@ -52,9 +53,11 @@ int			ft_strncmpunset(const char *s1, const char *s2, size_t n);
 
 int			ft_strcmp(const char *s1, const char *s2);
 
+t_listenv   *unset_env_var(char *cmd, t_listenv *tmp);
 char        *get_env_content(t_listenv	*listenv, char *arg);
 void        replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 
+void	    free_listenv(t_listenv *lst);
 t_listenv	*ft_lstexport_new(char *var);
 t_listenv	*ft_lstexportlast(t_listenv *lst);
 void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
@@ -68,7 +71,12 @@ char	**ft_fillparsopt2(char *cmd);
 char		**ft_fillparsarg(char *cmd);
 void		ft_fillfile_heredoc(t_all *all, char *cmd);
 void		ft_fillheredoc(t_all *all, char *cmd);
+int         ft_strlen_triple_char(char ***str); 
 
 void		ft_freetab(char **tab);
+void	    free_exit_all_pipex(t_all *all);
 
+void        signals(void);
+void	sigint_handler_in_process(int sig);
+void	sigquit_handler_in_process(int sig);
 #endif

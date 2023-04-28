@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/21 13:36:41 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:39:15 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	init_files(t_all *all, t_pip *pip)
 	if (all->infile)
 	{
 		pip->fd_infile = open(all->infile, O_RDONLY);
-		if (pip->fd_infile == -1)
-			perror(NULL);
 	}
 	if (all->outfile && all->outfile_append == 1)
 	{	
@@ -26,7 +24,7 @@ void	init_files(t_all *all, t_pip *pip)
 				O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (pip->fd_outfile == -1)
 		{
-			perror(NULL);
+			perror("");
 			free_exit(all, pip, 1, "");
 		}
 	}
@@ -36,7 +34,7 @@ void	init_files(t_all *all, t_pip *pip)
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (pip->fd_outfile == -1)
 		{
-			perror(NULL);
+			perror("");
 			free_exit(all, pip, 1, "");
 		}
 	}
@@ -54,7 +52,7 @@ void	create_pipes(t_all *all, t_pip *pip)
 	int	i;
 
 	i = 0;
-	pip->fds = malloc(sizeof(int) * (pip->nb_arg * 2));
+	pip->fds = malloc(sizeof(int) * (pip->nb_arg * (2 + 1)));
 	if (!pip->fds)
 		free_exit(all, pip, 1, "Error\nMalloc failed");
 	while (i < pip->nb_arg)
@@ -101,12 +99,12 @@ int	pipex(t_all *all)
 			init_cmd(all, &pip);
 			exec_cmd(all, &pip);
 			pip.curr += 2;
+			// free(all->infile); A remplacer par infile **
+			// all->infile = NULL;
 		}
 		close_p(&pip);
 		wait_id(&pip);
 		free_exit(all, &pip, 0, NULL);
 	}
-	else
-		write_error("Error: too much arguments (4 required)");
 	return (0);
 }
