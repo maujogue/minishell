@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/28 11:09:14 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:58:10 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	ft_lentab(char **tab)
 	{
 		len++;
 	}
+	printf("len:%d\n", len);
 	return (len);
 }
 
@@ -70,12 +71,13 @@ char	**ft_infiletodouble(char **tab, char *infile)
 
 	i = 0;
 	len = ft_lentab(tab);
-	res = malloc(sizeof(char *) * (len + 1));
-	while (tab[i])
+	res = malloc(sizeof(char *) * (len + 2));
+	while (tab[i] != NULL)
 	{
 		res[i] = ft_strdup(tab[i]);
 		i++;
 	}
+	printf("i:%d\n", i);
 	res[i] = ft_strdup(infile);
 	res[i + 1] = NULL;
 	return (res);
@@ -94,9 +96,10 @@ void	ft_fillallfile(t_all *all, char *cmd)
 		{
 			if (all->infile2 == NULL)
 			{
+				all->infile2 = NULL;
 				infile = ft_fillnamefile(cmd, i);
 				res = malloc(sizeof(char *) * 2);
-				res[0] = ft_strdup(infile);
+				res[0] = infile;
 				res[1] = NULL;
 				all->infile2 = res;
 			}
@@ -148,10 +151,19 @@ void	ft_fillfile_heredoc(t_all *all, char *cmd)
 		printf("infile: NULL\n");
 	else
 		printf("infile: %s\n", all->infile);
-	// if (all->infile2 == NULL)
-	// 	printf("infile: NULL\n");
-	// else
-	// 	ft_print_tab(all->infile2);
+	if (all->infile2 == NULL)
+		printf("infile: NULL\n");
+	else
+	{
+		int i;
+
+    	i = 0;
+		while (all->infile2[i] != NULL)
+		{
+			printf("%s\n",all->infile2[i]);
+			i++;
+		}
+	}
 	if (all->outfile == NULL)
 		printf("outfile: NULL\n");
 	else
