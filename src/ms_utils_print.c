@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/28 12:31:18 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/01 22:57:35 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_print_tab(char **tab)
     int i;
 
     i = 0;
-    while (ft_strcmp(tab[i], "\0") != 0)
+    while (ft_strcmp(tab[i], "\0") != 0 || tab[i] != NULL)
     {
         printf("%s\n",tab[i]);
         i++;

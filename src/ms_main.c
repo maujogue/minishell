@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/27 15:49:37 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:57:30 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_init_all(t_all *all, char **envp)
 	all->listenv = ft_env(envp);
 	all->listexport = NULL;
 	all->infile = NULL;
+	all->infile2 = NULL;
 	all->outfile = NULL;
 	all->parspipex = NULL;
 	all->heredoc_delim = NULL;
