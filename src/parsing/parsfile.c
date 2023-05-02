@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/02 15:13:27 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:50:58 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_lentab(char **tab)
 	{
 		len++;
 	}
-	printf("len:%d\n", len);
+	// printf("len:%d\n", len);
 	return (len);
 }
 
@@ -77,10 +77,33 @@ char	**ft_infiletodouble(char **tab, char *infile)
 		res[i] = ft_strdup(tab[i]);
 		i++;
 	}
-	printf("i:%d\n", i);
+	// printf("i:%d\n", i);
 	res[i] = ft_strdup(infile);
 	res[i + 1] = NULL;
 	return (res);
+}
+
+int	ft__sizeinfile_position(char *cmd, char c)
+{
+	int	size;
+	int	i;
+
+	i = 0;
+	size = 0;
+	while (cmd[i])
+	{
+		while (cmd[i] != '|' && cmd[i])
+		{
+			if (cmd[i] == c)
+			{
+				size++;
+				break ;
+			}
+			i++;
+		}
+		i++;
+	}
+	return (size);
 }
 
 void	ft_fillallfile(t_all *all, char *cmd)
@@ -88,8 +111,11 @@ void	ft_fillallfile(t_all *all, char *cmd)
 	int		i;
 	char	*infile;
 	char	**res;
+	int		sizeinfile_position;
 
 	i = 0;
+	sizeinfile_position = ft__sizeinfile_position(cmd, '<');
+	printf("sizeinfile_position: %d\n", sizeinfile_position);
 	while (cmd[i])
 	{
 		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
