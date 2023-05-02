@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/28 16:47:53 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/02 14:54:27 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,18 @@
 
 void	init_files(t_all *all, t_pip *pip)
 {
-	if (all->infile)
-		pip->fd_infile = open(all->infile, O_RDONLY);
+	int	i;
+
+	i = 0;
+	if (all->infile2)
+	{
+		pip->fd_infile = malloc(sizeof(int *) * (ft_strlen_array(all->infile2) + 1));
+		while (all->infile2[i])
+		{
+			pip->fd_infile[i] = open(all->infile2[i], O_RDONLY);
+			i++;
+		}
+	}
 	if (all->outfile && all->outfile_append == 1)
 	{	
 		pip->fd_outfile = open(all->outfile,
@@ -74,12 +84,14 @@ void	init_pip(t_all *all, t_pip *pip)
 	pip->path = get_path_envp(pip->envp);
 	pip->tab_cmd = get_pip_cmds(all->parspipex);
 	create_pipes(all, pip);
-	// all->infile = "infile";
 	// all->outfile_append = 1;
 	// all->outfile = "out";
 	// all->heredoc_delim[0] = "ok1";
 	// all->heredoc_delim[1] = "ok2";
-	all->heredoc_delim = NULL;
+	all->infile_position = malloc(sizeof(int *) * (ft_strlen_array(all->infile2) + 1));
+	all->infile_position[0] = -1;
+	all->infile_position[1] = 1;
+	all->infile_position[2] = -1;
 	init_files(all, pip);
 }
 
@@ -97,8 +109,6 @@ int	pipex(t_all *all)
 			init_cmd(all, &pip);
 			exec_cmd(all, &pip);
 			pip.curr += 2;
-			// free(all->infile); A remplacer par infile **
-			// all->infile = NULL;
 		}
 		close_p(&pip);
 		wait_id(&pip);

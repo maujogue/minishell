@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/28 11:40:31 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/02 14:47:57 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,37 @@ void	here_doc(t_all *all, t_pip *pip)
 	}
 }
 
+int	check_infile_position(t_all *all, t_pip *pip)
+{
+	int	i;
+
+	i = 0;
+	while (all->infile_position[i] != -1)
+	{
+		if (all->infile_position[i] == pip->curr / 2)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 void	dup_pipe(t_all *all, t_pip *pip)
 {
-	if (all->infile && pip->fd_infile == -1)
+	int	j;
+
+	j = check_infile_position(all, pip);
+	if (j != -1 && all->infile2[j] && pip->fd_infile[j] == -1)
 	{
-		write_error("bash: ", all->infile, " :No such file or directory\n");
+		write_error("bash: ", all->infile2[j], " :No such file or directory\n");
 		free_exit(all, pip, 1, "");
 	}
-	if (all->infile && pip->fd_infile > 0
-		&& dup2(pip->fd_infile, STDIN_FILENO) < 0)
+	else if (j != -1 && all->infile2[j]
+		&& dup2(pip->fd_infile[j], STDIN_FILENO) < 0)
 		free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
 	if (all->heredoc_delim // && pip->curr == all->nb_heredoc - 1)
 		&& dup2(pip->fd_heredoc, STDIN_FILENO) < 0)
 		free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
-	if (pip->curr != 0
+	if (j == -1 && pip->curr != 0
 		&& dup2(pip->fds[pip->curr - 2], STDIN_FILENO) < 0)
 		free_exit(all, pip, 1, "Error: Dup2 failed 3\n");
 	if (pip->curr / 2 < pip->nb_arg - 1

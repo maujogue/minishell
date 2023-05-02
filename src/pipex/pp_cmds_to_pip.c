@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:21:59 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/25 13:58:20 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:53:35 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int	ft_strlen_array(char **str)
 	int	i;
 
 	i = 0;
-	while (str[i] != NULL)
-		i++;
+	if (str)
+	{
+		while (str[i] != NULL)
+			i++;
+	}
 	return (i);
 }
 

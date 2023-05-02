@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/28 17:06:51 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/02 10:52:49 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	check_cmd(t_all *all, t_pip *pip)
 	else
 	{	
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
-		printf("%s\n", pip->path_cmd);
 		if (!pip->path_cmd)
 			return (write_error("bash: ", cmd, ": command not found\n"),1);
 	}

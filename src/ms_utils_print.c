@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/01 22:57:35 by axel             ###   ########.fr       */
+/*   Updated: 2023/05/02 15:08:21 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void    ft_print_listenv(t_all *all, char *cmd, int path_exists)
 	t_listenv *tmp;
 	
     if (path_exists == 1)
-        return write_error("bash: env: No such file or directory\n", "", "");
+    {
+        write_error("bash: env: No such file or directory\n", "", "");
+        return ;
+    }
 	if (cmd[3] != '\0' && (cmd[4] != ' ' && cmd[4] != '\0'))
 	{
 		printf("%s", cmd);
@@ -40,10 +43,13 @@ void	ft_print_tab(char **tab)
     int i;
 
     i = 0;
-    while (ft_strcmp(tab[i], "\0") != 0 || tab[i] != NULL)
+    if (tab)
     {
-        printf("%s\n",tab[i]);
-        i++;
+        while (tab[i] != NULL)
+        {
+            printf("%s\n",tab[i]);
+            i++;
+        }
     }
 }
 

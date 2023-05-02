@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_free_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/28 11:17:57 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/02 14:37:51 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,12 @@ void	free_parse_tab(t_all *all)
 
 void	free_exit_all_pipex(t_all *all)
 {
-	free(all->infile);
+	free_array(all->infile2);
+	free(all->infile_position);
 	free(all->outfile);
 	free_array(all->heredoc_delim);
-	all->infile = NULL;
+	all->infile_position = NULL;
+	all->infile2 = NULL;
 	all->outfile = NULL;
 	all->heredoc_delim = NULL;
 	free_listenv(all->listenv);
