@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/03 14:23:31 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 15:12:10 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_pars
 	char	*opt;
 	char	**opt2;
 	char	**arg;
-	char	*infile;
+	char	**infile;
 	char	**outfile;
 	char	**heredoc;
 	char	**outfile_append;
@@ -55,12 +55,13 @@ typedef struct pip
 	char	**cmd;
 	char	*path_cmd;
 	char	*path;
-	int		*fd_infile;
-	int		fd_outfile;
 	int		nb_arg;
 	int		curr;
 	int		*fds;
-	int		fd_heredoc;
+	int		*fd_infile;
+	int		*fd_outfile;
+	int		*fd_outfile_append;
+	int		*fd_heredoc;
 }	t_pip;
 
 #endif
