@@ -6,11 +6,42 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 16:15:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:32:28 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
+{
+	int		i;
+	char	*heredoc;
+	char	**res;
+
+	i = 0;
+	while (cmd[i])
+	{
+		// printf("%c\n", cmd[i]);
+		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
+		{
+			if (pars->heredoc == NULL)
+			{
+				pars->heredoc = NULL;
+				heredoc = ft_fillnamefile(cmd, i + 1);
+				res = malloc(sizeof(char *) * 2);
+				res[0] = heredoc;
+				res[1] = NULL;
+				pars->heredoc = res;
+			}
+			else
+			{
+				heredoc = ft_fillnamefile(cmd, i + 1);
+				pars->heredoc = ft_filetodouble(pars->heredoc, heredoc);
+			}
+		}
+		i++;
+	}
+}
 
 void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 {
@@ -108,11 +139,13 @@ void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
 	int	i;
 	int	is_infile;
 	int	is_outfile;
+	int	is_heredoc;
 	int	is_outfile_append;
 
 	i = 0;
 	is_infile = 0;
 	is_outfile = 0;
+	is_heredoc = 0;
 	is_outfile_append = 0;
 	while (cmd[i])
 	{
@@ -128,6 +161,12 @@ void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
 				ft_fillpars_outfile(pars[number], cmd);
 			is_outfile = 1;
 		}
+		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
+		{
+			if (is_heredoc == 0)
+				ft_fillpars_heredoc(pars[number], cmd);
+			is_heredoc = 1;
+		}
 		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
 		{
 			if (is_outfile_append == 0)
@@ -140,6 +179,8 @@ void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
 		pars[number]->infile = NULL;
 	if (is_outfile == 0)
 		pars[number]->outfile = NULL;
+	if (is_heredoc == 0)
+		pars[number]->heredoc = NULL;
 	if (is_outfile_append == 0)
 		pars[number]->outfile_append = NULL;
 }
@@ -148,6 +189,7 @@ void	ft_initpars(t_pars *pars)
 {
 	pars->infile = NULL;
 	pars->outfile = NULL;
+	pars->heredoc = NULL;
 	pars->outfile_append = NULL;
 }
 
@@ -183,6 +225,18 @@ void	ft_fillstructpars(t_pars **pars, char **tabcmd)
 			while (pars[number]->outfile[i] != NULL)
 			{
 				printf("%s\n",pars[number]->outfile[i]);
+				i++;
+			}
+		}
+		if (pars[number]->heredoc  == NULL)
+			printf("heredoc: NULL\n");
+		else
+		{
+    		i = 0;
+			printf("heredoc:\n");
+			while (pars[number]->heredoc[i] != NULL)
+			{
+				printf("%s\n",pars[number]->heredoc[i]);
 				i++;
 			}
 		}
