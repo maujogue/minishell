@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 14:09:46 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:23:47 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ void		ft_freetab(char **tab);
 void	    free_exit_all_pipex(t_all *all);
 
 void        signals(void);
-void	sigint_handler_in_process(int sig);
-void	sigquit_handler_in_process(int sig);
+void        signals_in_process(void);
 #endif

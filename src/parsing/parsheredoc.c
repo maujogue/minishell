@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:24:03 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/02 15:03:22 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:31:48 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**ft_tabheredocdelim(char **tab, char *delim)
 		size++;
 	}
 	res[size] = delim;
-	res[size + 1] = "\0";
+	res[size + 1] = NULL;
 	return (res);
 }
 
