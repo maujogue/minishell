@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 14:53:34 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 15:31:58 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ char	**ft_filetodouble(char **tab, char *file)
 	// printf("i:%d\n", i);
 	res[i] = ft_strdup(file);
 	res[i + 1] = NULL;
+	// printf("*****************************************\n");
+	// ft_print_tab(res);
+	// printf("*****************************************\n");
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/03 14:23:31 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 15:05:15 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_pars
 	char	*opt;
 	char	**opt2;
 	char	**arg;
-	char	*infile;
+	char	**infile;
 	char	**outfile;
 	char	**heredoc;
 	char	**outfile_append;
