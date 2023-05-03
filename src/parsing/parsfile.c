@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 15:31:58 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:06:05 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ char	*ft_fillnamefile(char *cmd, int i)
 	i++;
 	while (cmd[i] && cmd[i] == ' ')
 		i++;
-	if (cmd[i] == '\0' || ft_charspe(cmd[i]))
-	{
-		printf("minishell: syntax error near unexpected token '%c'\n", cmd[i]);
-		return (NULL);
-	}
+	// if (cmd[i] == '\0' || ft_charspe(cmd[i]))
+	// {
+	// 	printf("minishell: syntax error near unexpected token '%c'\n", cmd[i]);
+	// 	return (NULL);
+	// }
 	start = i;
 	while (cmd[i] && cmd[i] != ' ')
 	{
