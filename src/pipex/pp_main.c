@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/02 14:54:27 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:23:24 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,6 @@ void	init_pip(t_all *all, t_pip *pip)
 	// all->outfile = "out";
 	// all->heredoc_delim[0] = "ok1";
 	// all->heredoc_delim[1] = "ok2";
-	all->infile_position = malloc(sizeof(int *) * (ft_strlen_array(all->infile2) + 1));
-	all->infile_position[0] = -1;
-	all->infile_position[1] = 1;
-	all->infile_position[2] = -1;
 	init_files(all, pip);
 }
 

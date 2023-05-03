@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/28 17:20:05 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/03 14:13:19 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,6 @@ void	ft_parsing(t_all *all, char *cmd)
 
 	tabcmd = ft_split(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
+	// ft_fillfile_heredoc(all, cmd);
+	ft_fillstructpars(all->parspipex, tabcmd);
 }

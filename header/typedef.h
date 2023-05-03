@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/02 11:04:47 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:22:13 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ typedef struct s_pars
 	char	*opt;
 	char	**opt2;
 	char	**arg;
+	char	*infile;
+	char	**outfile;
+	char	**heredoc;
+	char	**outfile_append;
+	int		heredoc_last;
 } t_pars;
 
 typedef struct s_all

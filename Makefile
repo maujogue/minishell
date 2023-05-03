@@ -16,7 +16,7 @@ SRC			 			=	ms_main.c	ms_signals.c	ms_utils_free.c	ms_utils_print.c	ms_utils_par
 							builtins/cd.c	builtins/exit.c		builtins/pwd.c	\
 							builtins/echo.c builtins/echo_var.c	\
 							builtins/ft_strncmpbuil.c \
-              				parsing/parsing.c parsing/parsarg.c	parsing/parsopt.c 	parsing/parsfile.c	parsing/parsheredoc.c\
+              				parsing/parsing.c parsing/parsarg.c	parsing/parsopt.c 	parsing/parsfile.c	parsing/parsheredoc.c	parsing/pars.c\
 							pipex/pp_main.c pipex/pp_utils.c pipex/pp_exec.c pipex/pp_free_utils.c\
 							pipex/pp_get_env_cmds.c pipex/pp_cmds_to_pip.c \
 							

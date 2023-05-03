@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/02 14:55:45 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:29:09 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ int	main(int argc, char** argv, char **envp)
 			exit(0);
 		}
 		add_history(cmd);
-		ft_fillfile_heredoc(&all, cmd);
-		// printf("OK");
 		ft_parsing(&all, cmd);
-		pipex(&all);
+		// pipex(&all);
 	}
 	return 0;
 }
