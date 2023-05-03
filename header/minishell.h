@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 14:23:47 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:54:49 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ char		*ft_fillparsopt(char *cmd);
 char		**ft_fillparsopt2(char *cmd);
 char		**ft_fillparsarg(char *cmd);
 char		*ft_fillnamefile(char *cmd, int i);
+char		**ft_filetodouble(char **tab, char *file);
 void		ft_fillfile_heredoc(t_all *all, char *cmd);
 void		ft_fillheredoc(t_all *all, char *cmd);
 int         ft_strlen_triple_char(char ***str); 

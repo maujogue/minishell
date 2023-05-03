@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/02 17:50:58 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:53:34 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_lentab(char **tab)
 	return (len);
 }
 
-char	**ft_infiletodouble(char **tab, char *infile)
+char	**ft_filetodouble(char **tab, char *file)
 {
 	char	**res;
 	int		len;
@@ -78,7 +78,7 @@ char	**ft_infiletodouble(char **tab, char *infile)
 		i++;
 	}
 	// printf("i:%d\n", i);
-	res[i] = ft_strdup(infile);
+	res[i] = ft_strdup(file);
 	res[i + 1] = NULL;
 	return (res);
 }
@@ -132,7 +132,7 @@ void	ft_fillallfile(t_all *all, char *cmd)
 			else
 			{
 				infile = ft_fillnamefile(cmd, i);
-				all->infile2 = ft_infiletodouble(all->infile2, infile);
+				all->infile2 = ft_filetodouble(all->infile2, infile);
 			}
 		}
 		i++;
