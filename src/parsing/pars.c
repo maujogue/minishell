@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 16:09:04 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:15:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 			if (pars->outfile_append == NULL)
 			{
 				pars->outfile_append = NULL;
-				outfile_append = ft_fillnamefile(cmd, i);
+				outfile_append = ft_fillnamefile(cmd, i + 1);
 				res = malloc(sizeof(char *) * 2);
 				res[0] = outfile_append;
 				res[1] = NULL;
@@ -35,7 +35,7 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 			}
 			else
 			{
-				outfile_append = ft_fillnamefile(cmd, i);
+				outfile_append = ft_fillnamefile(cmd, i + 1);
 				pars->outfile_append = ft_filetodouble(pars->outfile_append, outfile_append);
 			}
 		}
