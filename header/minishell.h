@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/28 12:30:11 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/03 13:28:52 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ void		ft_freetab(char **tab);
 void	    free_exit_all_pipex(t_all *all);
 
 void        signals(void);
-void	sigint_handler_in_process(int sig);
-void	sigquit_handler_in_process(int sig);
+void        signals_in_process(void);
 #endif
