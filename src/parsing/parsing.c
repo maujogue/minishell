@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 14:13:19 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:10:23 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ char	*ft_fillparscmd(char *cmd)
 		nospace++;
 	}
 	while (cmd[len] != '\0' && cmd[len] != ' ')
+	{
+		if (cmd[len] == '<' || cmd[len] == '>')
+			return (NULL);
 		len++;
+	}
 	res = ft_substr(cmd, nospace, len - nospace);
 	// printf("ICI\n");
 	// printf("%s\n", res);

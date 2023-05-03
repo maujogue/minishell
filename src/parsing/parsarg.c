@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/22 13:39:36 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:07:46 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ int	ft_isopt(char *cmd, int i)
 	return (0);
 }
 
+void	ft_jumpfile(char *cmd, int *i)
+{
+	while (cmd[*i] != ' ' && cmd[*i])
+		*i += 1;
+	while (cmd[*i] == ' ')
+		*i += 1;
+	while (cmd[*i] != ' ' && cmd[*i])
+		*i += 1;
+}
+
 int	ft_endcmdopt(char *cmd)
 {
 	int	i;
@@ -50,7 +60,13 @@ int	ft_endcmdopt(char *cmd)
 	while (cmd[i] == ' ' && cmd[i])
 		i++;
 	while (cmd[i] && cmd[i] != ' ')
+	{
+		if (cmd[i] == '<' || cmd[i] == '>')
+		{
+			ft_jumpfile(cmd, &i);
+		}
 		i++;
+	}
 	while (ft_isopt(cmd, i))
 	{
 		while (cmd[i] == ' ')
