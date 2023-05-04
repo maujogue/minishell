@@ -6,11 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/03 15:12:10 by maujogue         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/03 15:05:15 by avaganay         ###   ########.fr       */
->>>>>>> 776d6d93125d07a84924c46d16c15406cfe6dcb8
+/*   Updated: 2023/05/04 14:16:51 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +33,7 @@ typedef struct s_pars
 	char	**heredoc;
 	char	**outfile_append;
 	int		heredoc_last;
+	int		outfile_last;
 } t_pars;
 
 typedef struct s_all
