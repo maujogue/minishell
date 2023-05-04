@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/03 15:05:15 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:41:50 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_pars
 	char	**heredoc;
 	char	**outfile_append;
 	int		heredoc_last;
+	int		outfile_last;
 } t_pars;
 
 typedef struct s_all

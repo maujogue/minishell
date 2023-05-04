@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 16:50:34 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:50:24 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,27 @@ int	ft_is_heredoc_last(char *cmd)
 	return (0);
 }
 
+int	ft_is_outfile_last(char *cmd)
+{
+	int	i;
+
+	i = ft_strlen(cmd);
+	while (i != 0)
+	{
+		if (cmd[i] == '<')
+			return (0);
+		if (cmd[i] == '>')
+		{
+			if (cmd[i + 1] != '>' && cmd[i - 1] != '>')
+				return (1);
+			else
+				return (0);
+		}
+		i--;
+	}
+	return (0);
+}
+
 void	ft_initpars(t_pars *pars)
 {
 	pars->infile = NULL;
@@ -213,6 +234,7 @@ void	ft_initpars(t_pars *pars)
 	pars->heredoc = NULL;
 	pars->outfile_append = NULL;
 	pars->heredoc_last = 0;
+	pars->outfile_last = 0;
 }
 
 void	ft_fillstructpars(t_pars **pars, char **tabcmd)
@@ -226,6 +248,7 @@ void	ft_fillstructpars(t_pars **pars, char **tabcmd)
 		ft_initpars(pars[number]);
 		ft_fillparsfile(pars, tabcmd[number], number);
 		pars[number]->heredoc_last = ft_is_heredoc_last(tabcmd[number]);
+		pars[number]->outfile_last = ft_is_outfile_last(tabcmd[number]);
 		//////////////////////////////////////////////////////////////
 		if (pars[number]->infile  == NULL)
 			printf("infile: NULL\n");
@@ -276,6 +299,7 @@ void	ft_fillstructpars(t_pars **pars, char **tabcmd)
 			}
 		}
 		printf("heredoc_last: %d\n", pars[number]->heredoc_last);
+		printf("outfile_last: %d\n", pars[number]->outfile_last);
 		printf("----------------\n");
 		///////////////////////////////////////////////////////////
 		number++;
