@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/04 14:16:51 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:17:44 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct pip
 	int		*fd_infile;
 	int		*fd_outfile;
 	int		*fd_outfile_append;
-	int		*fd_heredoc;
+	int		fd_heredoc;
 }	t_pip;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/27 15:39:22 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:11:25 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ int     ft_lstsize_env(t_listenv *lst);
 void	join_cmds(t_pars **parspipex);
 
 void	here_doc(t_all *all, t_pip *pip);
+void	init_files(t_all *all, t_pip *pip);
+void	dup_pipe(t_all *all, t_pip *pip);
 
 #endif
