@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:45:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/28 09:36:08 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/04 12:50:16 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ int	ft_endcmd(char *cmd)
 	i = 0;
 	while (cmd[i] == ' ' && cmd[i])
 		i++;
+	if (cmd[i] == '<' || cmd[i] == '>')
+	{
+		while (cmd[i] == '<' || cmd[i] == '>')
+			i++;
+		while (cmd[i] == ' ')
+			i++;
+		while (cmd[i] && cmd[i] != ' ')
+			i++;
+		while (cmd[i] == ' ')
+			i++;
+	}
 	while (cmd[i] && cmd[i] != ' ')
 		i++;
 	return (i);
