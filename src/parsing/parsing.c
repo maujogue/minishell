@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/04 11:59:57 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:35:15 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,13 @@ char	*ft_fillparscmd(char *cmd)
 	return (res);
 }
 
-t_pars	*ft_cleanpipe(char *cmd)
+t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 {
 	t_pars	*cmdpars;
+	char	*cmdfinal;
 
-	(void)cmd;
+	cmdfinal = ft_replace_var(all, cmd);
+	printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));
 	cmdpars->cmd = ft_fillparscmd(cmd);
 	printf("%s /", cmdpars->cmd);
@@ -96,7 +98,7 @@ t_pars	*ft_cleanpipe(char *cmd)
 		ft_print_tabarg(cmdpars->opt2);
 	else
 		printf("(null)");
-	cmdpars->arg = ft_fillparsarg(cmd);
+	cmdpars->arg = ft_fillparsarg(all, cmd);
 	printf("/");
 	if (cmdpars->arg != NULL)
 		ft_print_tabarg(cmdpars->arg);
@@ -120,7 +122,7 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 	while (i < len)
 	{
 		printf("cmd %d:", i);
-		all->parspipex[i] = ft_cleanpipe(tabcmd[i]);
+		all->parspipex[i] = ft_cleanpipe(all, tabcmd[i]);
 		i++;
 	}
 	all->parspipex[i] = NULL;
