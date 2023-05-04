@@ -6,11 +6,33 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 17:10:23 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:59:57 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+char	*ft_fill_cmd_is_file(char *cmd, int i)
+{
+	int		start;
+	char	*res;
+
+	while (cmd[i] == '<' || cmd[i] == '>')
+		i++;
+	while (cmd[i] == ' ')
+		i++;
+	while (cmd[i] != ' ' && cmd[i])
+		i++;
+	if (cmd[i] == '\0')
+		return (NULL);
+	while (cmd[i] == ' ')
+		i++;
+	start = i;
+	while (cmd[i] != ' ' && cmd[i])
+		i++;
+	res = ft_substr(cmd, start, i - start);
+	return (res);
+}
 
 char	*ft_fillparscmd(char *cmd)
 {
@@ -29,7 +51,7 @@ char	*ft_fillparscmd(char *cmd)
 	while (cmd[len] != '\0' && cmd[len] != ' ')
 	{
 		if (cmd[len] == '<' || cmd[len] == '>')
-			return (NULL);
+			return (ft_fill_cmd_is_file(cmd, len));
 		len++;
 	}
 	res = ft_substr(cmd, nospace, len - nospace);
