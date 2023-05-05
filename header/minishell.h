@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 14:51:27 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:18:13 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void		ft_print_tabarg(char **tab);
 int			ft_strncmpecho(const char *s1, const char *s2, size_t n);
 int			ft_strncmpexport(const char *s1, const char *s2, size_t n);
 int			ft_strncmpunset(const char *s1, const char *s2, size_t n);
-int			ft_strcmp(const char *s1, const char *s2);
 
 t_listenv	*unset_env_var(char *cmd, t_listenv *tmp);
 char		*get_env_content(t_listenv	*listenv, char *arg);
@@ -73,7 +72,6 @@ int			ft_lstexportsize(t_listenv *lst);
 /****************************PARSING********************************/
 
 void		ft_parsing(t_all *all, char *cmd);
-int			ft_find_pipe(char *cmd);
 int			ft_isopt(char *cmd, int i);
 char		*ft_fillparsopt(char *cmd);
 char		**ft_fillparsopt2(char *cmd);
@@ -84,8 +82,6 @@ void		ft_fillfile_heredoc(t_all *all, char *cmd);
 void		ft_fillheredoc(t_all *all, char *cmd);
 int			ft_strlen_triple_char(char ***str);
 void		ft_fillstructpars(t_pars **pars, char **tabcmd);
-
-void		ft_freetab(char **tab);
 
 /****************************SIGNALS********************************/
 

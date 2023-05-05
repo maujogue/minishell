@@ -6,28 +6,12 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/04 14:17:56 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:12:18 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 #include <signal.h>
-
-int g_signal;
-
-int	ft_find_pipe(char *cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if (cmd[i] == '|')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 void	ft_init_all(t_all *all, char **envp)
 {
@@ -41,13 +25,13 @@ void	ft_init_all(t_all *all, char **envp)
 	all->outfile_append = 0;
 }
 
-int	main(int argc, char** argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	(void) argc;
-	(void) argv;
-	char *cmd;
+	char	*cmd;
 	t_all	all;
 
+	(void) argc;
+	(void) argv;
 	ft_init_all(&all, envp);
 	while (1)
 	{
@@ -62,5 +46,5 @@ int	main(int argc, char** argv, char **envp)
 		ft_parsing(&all, cmd);
 		pipex(&all);
 	}
-	return 0;
+	return (0);
 }

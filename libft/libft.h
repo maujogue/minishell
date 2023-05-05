@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 11:11:31 by maujogue          #+#    #+#             */
-/*   Updated: 2023/03/03 13:25:52 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:16:01 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *str);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strnstr(const char *haystack, const char *needle,
 					size_t len);
 char			*ft_strrchr(const char *string, int searchedCh);
