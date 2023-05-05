@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:06:38 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:22:41 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ char	*ft_fillnamefile(char *cmd, int i)
 	i++;
 	while (cmd[i] && cmd[i] == ' ')
 		i++;
-	// if (cmd[i] == '\0' || ft_charspe(cmd[i]))
-	// {
-	// 	printf("minishell: syntax error near unexpected token '%c'\n", cmd[i]);
-	// 	return (NULL);
-	// }
 	start = i;
 	while (cmd[i] && cmd[i] != ' ')
 	{
@@ -59,7 +54,6 @@ int	ft_lentab(char **tab)
 	{
 		len++;
 	}
-	// printf("len:%d\n", len);
 	return (len);
 }
 
@@ -77,12 +71,8 @@ char	**ft_filetodouble(char **tab, char *file)
 		res[i] = ft_strdup(tab[i]);
 		i++;
 	}
-	// printf("i:%d\n", i);
 	res[i] = ft_strdup(file);
 	res[i + 1] = NULL;
-	// printf("*****************************************\n");
-	// ft_print_tab(res);
-	// printf("*****************************************\n");
 	return (res);
 }
 

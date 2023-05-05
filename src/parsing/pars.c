@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/04 13:50:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:23:17 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		// printf("%c\n", cmd[i]);
 		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
 		{
 			if (pars->heredoc == NULL)
@@ -52,7 +51,6 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		// printf("%c\n", cmd[i]);
 		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
 		{
 			if (pars->outfile_append == NULL)

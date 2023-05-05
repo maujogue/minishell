@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:04:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 14:23:05 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:25:18 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,7 @@ char    **ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 	tab = malloc(sizeof(char *) * (sizexport + sizenv + 1));
 	while (i < sizenv)
 	{
-		// printf("i:%d\n", i);
-		// printf("sizenv:%d\n", sizenv);
-		// printf("sizexport:%d\n", sizexport);
-		// printf("%s\n", all->listenv->content);
 		tab[i] = ft_strdupexport(all->listenv->key, all->listenv->content);
-		// tab[i] = malloc(sizeof(char) * ft_strlen(all->listenv->content));
 		all->listenv = all->listenv->next;
 		i++;
 	}
@@ -104,14 +99,9 @@ char    **ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 		return (tab);
 	}
 	tmp = listexport;
-	// printf("export%d\n", sizexport);
-	// printf("%s\n", tab[i]);
-	// tab[i] = ft_strdup(listexport->key);
-	// tab[i] = malloc(1);
+
 	while (i <= sizexport && listexport)
 	{
-		// printf("i%d\n", i);
-		// printf("%s\n", tab[i]);
 		if (listexport->content == NULL)
 			tab[i] = ft_strdup(listexport->key);
 		else
@@ -127,29 +117,8 @@ char    **ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 void    ft_print_listexport(t_listenv *listexport, t_all *all)
 {
     char		**tabexport;
-	// t_listenv	*tmp;
-	
+
 	tabexport = ft_creat_tab_sort_export(listexport, all);
-	// (void)tabexport;
 	tabexport = ft_sort_tabexport(tabexport);
 	ft_print_tabexport(tabexport);
-	// tmp = all->listenv;
-	// while (all->listenv != NULL)
-	// {
-	// 	printf("%s", all->listenv->key);
-    //     printf("%c", '=');
-	// 	printf("%s\n", all->listenv->content);
-	// 	all->listenv = all->listenv->next;
-	// }
-	// all->listenv = tmp;
-    // if (listexport == NULL)
-    //     return ;
-    // while (listexport != NULL)
-	// {
-    //     if (listexport->content == NULL)
-    //         printf("declare -x %s=\"\"\n", listexport->key);
-	// 	else
-    //         printf("declare -x %s=\"%s\"\n", listexport->key, listexport->content);
-	// 	listexport = listexport->next;
-	// }
 }

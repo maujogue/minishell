@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 14:23:06 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:22:26 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*ft_fillparscmd(char *cmd)
 	int		len;
 	int		nospace;
 	char	*res;
-	// char	*reswithoutquote;
 
 	len = 0;
 	nospace = 0;
@@ -55,29 +54,6 @@ char	*ft_fillparscmd(char *cmd)
 		len++;
 	}
 	res = ft_substr(cmd, nospace, len - nospace);
-	// printf("ICI\n");
-	// printf("%s\n", res);
-	// len = 0;
-	// nospace = 0;
-	// while (res[len])
-	// {
-	// 	if (res[len] != '\"' && res[len] != '\'')
-	// 		nospace++;
-	// 	len++;
-	// }
-	// reswithoutquote = malloc(sizeof(char) * (nospace + 1));
-	// len = 0;
-	// nospace = 0;
-	// while (res[len])
-	// {
-	// 	if (res[len] != '\"' && res[len] != '\'')
-	// 	{
-	// 		reswithoutquote[nospace] = res[len];
-	// 		nospace++;
-	// 	}
-	// 	len++;
-	// }
-	// printf("%s\n", reswithoutquote);
 	return (res);
 }
 
@@ -132,6 +108,5 @@ void	ft_parsing(t_all *all, char *cmd)
 
 	tabcmd = ft_split(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
-	// ft_fillfile_heredoc(all, cmd);
 	ft_fillstructpars(all->parspipex, tabcmd);
 }

@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/04 15:46:37 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:23:01 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,27 +103,6 @@ int	ft_nbargcmd(char *cmd, int i)
 	return (nb);
 }
 
-// char	*ft_replace_var(char *cmd, int *i, int isarg)
-// {
-// 	int		start;
-// 	char	*res;
-	
-// 	while (cmd[*i] != ' ' && cmd[*i])
-// 		*i += 1;
-// 	while (cmd[*i] == ' ')
-// 		*i += 1;
-// 	start = *i;
-// 	while (cmd[*i] != ' ' && cmd[*i])
-// 	{
-// 		isarg = 1;
-// 		*i += 1;
-// 	}
-// 	if (isarg == 0)
-// 		return (NULL);
-// 	res = ft_substr(cmd, start, *i - start);
-// 	return (res);
-// }
-
 char	*ft_fillarg(t_all *all, char *cmd, int *i)
 {
 	char	*res;
@@ -143,7 +122,6 @@ char	*ft_fillarg(t_all *all, char *cmd, int *i)
 	if (isarg == 0)
 		return (NULL);
 	res = ft_substr(cmd, start, *i - start);
-	// printf("res: %s\n", res);
 	return (res);
 }
 

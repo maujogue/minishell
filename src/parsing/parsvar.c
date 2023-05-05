@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 14:12:18 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:23:58 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 char	*ft_fill_replace_var(t_listenv *listenv, char *var)
 {
-	// printf("AAAAAAAAAAAAAAAAAAAAAAAA");
-	// printf("AAAAAAAAA: %s\n", listexport->key);
 	while (listenv)
 	{
-		// printf("ENTRE DANS LISTEXPORT ");
-		// printf("%s\n", listenv->key);
 		if (ft_strcmp(var, listenv->key) == 0)
 			return (listenv->content);
 		listenv = listenv->next;
@@ -45,9 +41,6 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	int		i;
 	char	*var;
 
-	(void)all;
-	// ft_print_listexport(all->listexport, all);
-	// printf("AAAAAAAAA: %s\n", all->listenv->key);
 	i = 0;
 	while (cmd[i] && cmd[i] != '$')
 		i++;
