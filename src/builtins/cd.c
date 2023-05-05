@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/21 16:28:16 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:03:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	cd_empty_or_previous(t_all *all, t_pip *pip, char *pwd, char *old_pwd)
 	arg = pip->cmd[1];
 	if (!arg)
 	{
-		arg = ft_strdup(get_env_content(all->listenv, "HOME"));
+		arg = get_env_content(all->listenv, "HOME");
+		if (!arg)
+			return (write_error("bash: cd: HOME not set\n", "", ""), 2);
 		replace_env_arg(all->listenv, "OLDPWD", pwd);
 		replace_env_arg(all->listenv, "PWD", arg);
 		chdir(arg);

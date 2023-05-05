@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/02 10:52:49 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:53:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	return (free_array(tab), NULL);
 }
 
-
-
 int	check_point_slash(char *cmd)
 {
 	int	i;
@@ -66,12 +64,12 @@ int	check_point_slash(char *cmd)
 		return (write_error("bash: ", cmd, ": filename argument required\n"), 1);
 	while (cmd[i] && cmd[i] == '.')
 		i++;
-	if (cmd[i] ==  '\0')
+	if (cmd[i] == '\0')
 		return (write_error("bash: ", cmd, ": command not found\n"), 1);
 	i = 0;
 	while (cmd[i] && (cmd[i] == '/' || cmd[i] == '.'))
 		i++;
-	if (cmd[i] ==  '\0')
+	if (cmd[i] == '\0')
 		return (write_error("bash: ", cmd, ": Is a directory\n"), 1);
 	return (0);
 }
@@ -91,7 +89,7 @@ int	check_cmd(t_all *all, t_pip *pip)
 	{	
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd)
-			return (write_error("bash: ", cmd, ": command not found\n"),1);
+			return (write_error("bash: ", cmd, ": command not found\n"), 1);
 	}
 	return (0);
 }

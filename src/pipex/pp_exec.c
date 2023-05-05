@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/04 14:10:27 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:54:12 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	wait_id(t_pip *pip)
 void	exec_cmd(t_all *all, t_pip *pip)
 {
 	int	pid;
-	
+
 	if (check_cmd(all, pip) == 1)
 		return ;
 	signals_in_process();
@@ -56,6 +56,7 @@ void	exec_cmd(t_all *all, t_pip *pip)
 			ft_builtins(all, pip);
 		free_exit(all, pip, 0, "");
 	}
-	if (is_builtin(all, pip) == 0 && ft_strlen_triple_char(pip->tab_cmd) == 1 && !all->outfile)
+	if (is_builtin(all, pip) == 0
+		&& ft_strlen_triple_char(pip->tab_cmd) == 1 && !all->outfile)
 		ft_builtins(all, pip);
 }

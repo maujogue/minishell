@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/28 12:25:08 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/05 14:20:58 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	replace_env_arg(t_listenv	*listenv, char *arg, char *replacement)
 	}
 }
 
-t_listenv *unset_env_var(char *cmd, t_listenv *lst)
+t_listenv	*unset_env_var(char *cmd, t_listenv *lst)
 {
 	t_listenv	*prev;
 	t_listenv	*tmp;
@@ -54,7 +54,7 @@ t_listenv *unset_env_var(char *cmd, t_listenv *lst)
 			{
 				prev->next = lst->next;
 				free(lst);
-				break ;				
+				break ;
 			}
 			else
 				return (free(lst), lst->next);
@@ -68,7 +68,8 @@ t_listenv *unset_env_var(char *cmd, t_listenv *lst)
 
 void	free_listenv(t_listenv *lst)
 {
-	t_listenv *temp;
+	t_listenv	*temp;
+
 	while (lst)
 	{
 		temp = lst->next;

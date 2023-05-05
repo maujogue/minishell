@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/27 11:29:30 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:21:31 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	**ft_fusion_split(char	**split)
 {
 	int		i;
-	
+
 	i = 2;
 	if (split[2])
 	{
@@ -32,7 +32,7 @@ char	**ft_fusion_split(char	**split)
 t_listenv	*ft_lstenv_new(char *str)
 {
 	t_listenv	*new;
-	char	**split;
+	char		**split;
 
 	new = malloc(sizeof(t_listenv) + 1);
 	if (!new)
@@ -64,11 +64,11 @@ void	ft_lstenvadd_back(t_listenv **lst, t_listenv *new)
 
 t_listenv	*ft_fill_env(t_listenv *listenv, char **envp)
 {
-	int	i;
+	int			i;
 	t_listenv	*node;
 
 	i = 0;
-	while(envp[i])
+	while (envp[i])
 	{
 		node = ft_lstenv_new(envp[i]);
 		if (!node)
@@ -79,7 +79,7 @@ t_listenv	*ft_fill_env(t_listenv *listenv, char **envp)
 	return (listenv);
 }
 
-t_listenv *ft_env(char **envp)
+t_listenv	*ft_env(char **envp)
 {
 	t_listenv	*listenv;
 
