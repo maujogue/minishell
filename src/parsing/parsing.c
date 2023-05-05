@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/04 16:35:15 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:23:06 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	cmdpars = malloc(sizeof(t_pars));
 	cmdpars->cmd = ft_fillparscmd(cmd);
 	printf("%s /", cmdpars->cmd);
-	cmdpars->opt = ft_fillparsopt(cmd);
-	printf("%s /", cmdpars->opt);
 	cmdpars->opt2 = ft_fillparsopt2(cmd);
 	if (cmdpars->opt2 != NULL)
 		ft_print_tabarg(cmdpars->opt2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsheredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:24:03 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/02 15:31:48 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:47:25 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,47 +39,47 @@ char	**ft_tabheredocdelim(char **tab, char *delim)
 	return (res);
 }
 
-void ft_fillheredocdelim(t_all *all, char *cmd, int *i)
-{
-    char    *delim;
-    int     len;
-    int     start;
+// void ft_fillheredocdelim(t_all *all, char *cmd, int *i)
+// {
+//     char    *delim;
+//     int     len;
+//     int     start;
 
-    len = 0;
-    while (cmd[*i] == '<')
-        *i += 1;
-    while (cmd[*i] == ' ')
-        *i += 1;
-    if (cmd[*i] == '<')
-    {
-        printf("minishell: syntax error near unexpected token `<<'");
-        return ;
-    }
-	start = *i;
-    while (cmd[*i] != ' ' && cmd[*i] != '<' && cmd[*i] != '|' && cmd[*i])
-    {
-        *i += 1;
-        len++;
-    }
-    delim = ft_substr(cmd, start, len);
-	all->heredoc_delim = ft_tabheredocdelim(all->heredoc_delim, delim);
-}
+//     len = 0;
+//     while (cmd[*i] == '<')
+//         *i += 1;
+//     while (cmd[*i] == ' ')
+//         *i += 1;
+//     if (cmd[*i] == '<')
+//     {
+//         printf("minishell: syntax error near unexpected token `<<'");
+//         return ;
+//     }
+// 	start = *i;
+//     while (cmd[*i] != ' ' && cmd[*i] != '<' && cmd[*i] != '|' && cmd[*i])
+//     {
+//         *i += 1;
+//         len++;
+//     }
+//     delim = ft_substr(cmd, start, len);
+// 	all->heredoc_delim = ft_tabheredocdelim(all->heredoc_delim, delim);
+// }
 
-void    ft_fillheredoc(t_all *all, char *cmd)
-{
-    int	i;
+// void    ft_fillheredoc(t_all *all, char *cmd)
+// {
+//     int	i;
 
-    i = 0;
-    while (cmd[i] && cmd[i + 1])
-    {
-		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
-		{
-			ft_fillheredocdelim(all, cmd, &i);
-		}
-		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
-		{
-			all->outfile_append = 1;
-		}
-		i++;
-	}
-}
+//     i = 0;
+//     while (cmd[i] && cmd[i + 1])
+//     {
+// 		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
+// 		{
+// 			ft_fillheredocdelim(all, cmd, &i);
+// 		}
+// 		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
+// 		{
+// 			all->outfile_append = 1;
+// 		}
+// 		i++;
+// 	}
+// }
