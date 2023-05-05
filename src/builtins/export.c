@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:23:18 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:17:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_sort_env(char **envp)
 		i++;
 	}
 	dup[i - 1] = NULL;
-	ft_freetab(dup);
+	free_array(dup);
 }
 
 int	ft_nb_var(char *cmd)
