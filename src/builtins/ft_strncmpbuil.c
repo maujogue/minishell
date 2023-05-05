@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmpbuil.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:26:42 by avaganay          #+#    #+#             */
-/*   Updated: 2023/04/12 16:10:35 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:38:55 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	ft_strncmpecho(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	j = 0;
-	// if (ft_strcmp(s1, "echo \0") == 0)
-	// 	return(printf("\n"), 1);
 	if (n == 0)
 		return (n);
 	while (s1[i] == '\'' || s1[i] == '\"')
@@ -43,8 +41,6 @@ int	ft_strncmpexport(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	j = 0;
-	// if (ft_strcmp(s1, "echo \0") == 0)
-	// 	return(printf("\n"), 1);
 	if (n == 0)
 		return (n);
 	while (s1[i] == '\'' || s1[i] == '\"')
@@ -67,8 +63,6 @@ int	ft_strncmpunset(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	j = 0;
-	// if (ft_strcmp(s1, "echo \0") == 0)
-	// 	return(printf("\n"), 1);
 	if (n == 0)
 		return (n);
 	while (s1[i] == '\'' || s1[i] == '\"')

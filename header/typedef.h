@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:45:25 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:56:31 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_listenv
 	struct s_listenv	*next;
 }	t_listenv;
 
-
 typedef struct s_pars
 {
 	char	**tabfinal;
@@ -33,7 +32,7 @@ typedef struct s_pars
 	char	**outfile_append;
 	int		heredoc_last;
 	int		outfile_last;
-} t_pars;
+}	t_pars;
 
 typedef struct s_all
 {
@@ -55,11 +54,12 @@ typedef struct pip
 	char	**cmd;
 	char	*path_cmd;
 	char	*path;
-	int		*fd_infile;
-	int		fd_outfile;
 	int		nb_arg;
 	int		curr;
 	int		*fds;
+	int		*fd_infile;
+	int		*fd_outfile;
+	int		*fd_outfile_append;
 	int		fd_heredoc;
 }	t_pip;
 

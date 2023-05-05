@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/04/24 14:35:06 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:23:18 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	**ft_dup_env(char **envp)
 {
 	char	**dup;
-	int	count;
+	int		count;
 
 	count = 0;
 	while (envp[count])
