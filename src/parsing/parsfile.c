@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/03 16:06:05 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:06:38 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,102 +107,4 @@ int	ft__sizeinfile_position(char *cmd, char c)
 		i++;
 	}
 	return (size);
-}
-
-void	ft_fillallfile(t_all *all, char *cmd)
-{
-	int		i;
-	char	*infile;
-	char	**res;
-	int		sizeinfile_position;
-
-	i = 0;
-	sizeinfile_position = ft__sizeinfile_position(cmd, '<');
-	printf("sizeinfile_position: %d\n", sizeinfile_position);
-	while (cmd[i])
-	{
-		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
-		{
-			if (all->infile2 == NULL)
-			{
-				all->infile2 = NULL;
-				infile = ft_fillnamefile(cmd, i);
-				res = malloc(sizeof(char *) * 2);
-				res[0] = infile;
-				res[1] = NULL;
-				all->infile2 = res;
-			}
-			else
-			{
-				infile = ft_fillnamefile(cmd, i);
-				all->infile2 = ft_filetodouble(all->infile2, infile);
-			}
-		}
-		i++;
-	}
-}
-
-void	ft_fillfile(t_all *all, char *cmd)
-{
-	int	i;
-	int	is_infile;
-	int	is_outfile;
-
-	i = 0;
-	is_infile = 0;
-	is_outfile = 0;
-	ft_fillallfile(all, cmd);
-	while (cmd[i])
-	{
-		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
-		{
-			is_infile = 1;
-			all->infile = ft_fillnamefile(cmd, i);
-		}
-		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>')
-		{
-			is_outfile = 1;
-			all->outfile = ft_fillnamefile(cmd, i);
-		}
-		i++;
-	}
-	if (is_infile == 0)
-		all->infile = NULL;
-	if (is_outfile == 0)
-		all->outfile = NULL;
-}
-
-void	ft_fillfile_heredoc(t_all *all, char *cmd)
-{
-	ft_fillfile(all, cmd);
-	ft_fillheredoc(all, cmd);
-	if (all->infile == NULL)
-		printf("infile: NULL\n");
-	else
-		printf("infile: %s\n", all->infile);
-	if (all->infile2 == NULL)
-		printf("infile: NULL\n");
-	else
-	{
-		int i;
-
-    	i = 0;
-		while (all->infile2[i] != NULL)
-		{
-			printf("%s\n",all->infile2[i]);
-			i++;
-		}
-	}
-	if (all->outfile == NULL)
-		printf("outfile: NULL\n");
-	else
-		printf("outfile: %s\n", all->outfile);
-	if (all->heredoc_delim == NULL)
-		printf("heredoc_delim: NULL\n");
-	else
-	{
-		printf("heredoc_delim: ");
-		ft_print_tab(all->heredoc_delim);
-	}	
-	printf("outfile_append = %d\n", all->outfile_append);
 }

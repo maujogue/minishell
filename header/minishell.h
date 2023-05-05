@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:18:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:20:06 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,10 @@ int			ft_lstexportsize(t_listenv *lst);
 
 void		ft_parsing(t_all *all, char *cmd);
 int			ft_isopt(char *cmd, int i);
-char		*ft_fillparsopt(char *cmd);
 char		**ft_fillparsopt2(char *cmd);
-char		**ft_fillparsarg(char *cmd);
+char		**ft_fillparsarg(t_all *all, char *cmd);
 char		*ft_fillnamefile(char *cmd, int i);
 char		**ft_filetodouble(char **tab, char *file);
-void		ft_fillfile_heredoc(t_all *all, char *cmd);
-void		ft_fillheredoc(t_all *all, char *cmd);
 int			ft_strlen_triple_char(char ***str);
 void		ft_fillstructpars(t_pars **pars, char **tabcmd);
 

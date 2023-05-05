@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 13:56:34 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:56:31 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_pars
 {
 	char	**tabfinal;
 	char	*cmd;
-	char	*opt;
 	char	**opt2;
 	char	**arg;
 	char	**infile;
@@ -40,12 +39,12 @@ typedef struct s_all
 	t_listenv	*listenv;
 	t_listenv	*listexport;
 	t_pars		**parspipex;
-	char		*infile;
-	char		**infile2;
-	int			*infile_position;
-	char		*outfile;
-	int			outfile_append;
-	char		**heredoc_delim;
+	// char		*infile;
+	// char		**infile2;
+	// int			*infile_position;
+	// char		*outfile;
+	// int			outfile_append;
+	// char		**heredoc_delim;
 }	t_all;
 
 typedef struct pip
