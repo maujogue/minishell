@@ -6,18 +6,33 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:19:37 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:21:04 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 #include <signal.h>
 
+void	incr_shell_lvl(t_all *all, int n)
+{
+	char	*lvl_char;
+	int		lvl_int;
+
+	lvl_char = get_env_content(all->listenv, "SHLVL");
+	lvl_int = ft_atoi(lvl_char);
+	lvl_int += n;
+	free(lvl_char);
+	lvl_char = ft_itoa(lvl_int);
+	replace_env_arg(all->listenv, "SHLVL", lvl_char);
+	free(lvl_char);
+}
+
 void	ft_init_all(t_all *all, char **envp)
 {
 	all->listenv = NULL;
 	all->listenv = ft_env(envp);
 	all->listexport = NULL;
+	incr_shell_lvl(all, 1);
 	// all->infile2 = NULL;
 	// all->outfile = NULL;
 	// all->parspipex = NULL;
@@ -46,5 +61,6 @@ int	main(int argc, char **argv, char **envp)
 		ft_parsing(&all, cmd);
 		pipex(&all);
 	}
+	incr_shell_lvl(&all, -1);
 	return (0);
 }
