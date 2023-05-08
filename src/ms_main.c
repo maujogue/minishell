@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:21:04 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:09:12 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ void	ft_init_all(t_all *all, char **envp)
 	// all->parspipex = NULL;
 	// all->heredoc_delim = NULL;
 	// all->outfile_append = 0;
+}
+
+void	ft_initpars(t_pars *pars)
+{
+	pars->infile = NULL;
+	pars->outfile = NULL;
+	pars->heredoc = NULL;
+	pars->outfile_append = NULL;
+	pars->heredoc_last = 0;
+	pars->outfile_last = 0;
 }
 
 int	main(int argc, char **argv, char **envp)
