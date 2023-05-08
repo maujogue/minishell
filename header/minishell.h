@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:01:02 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:24:39 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int			ft_lstexportsize(t_listenv *lst);
 /****************************PARSING********************************/
 
 void		ft_parsing(t_all *all, char *cmd);
+int			ft_isredir(char *cmd, int i);
+void		ft_jump_redir(char *cmd, int *i);
+void		ft_jumpfile(char *cmd, int *i);
 int			ft_isopt(char *cmd, int i);
 char		**ft_fillparsopt2(char *cmd);
 char		**ft_fillparsarg(t_all *all, char *cmd);
@@ -79,7 +82,11 @@ char		*ft_fillnamefile(char *cmd, int i);
 char		**ft_filetodouble(char **tab, char *file);
 int			ft_strlen_triple_char(char ***str);
 void		ft_fillstructpars(t_pars **pars, char **tabcmd);
-char        *ft_replace_var(t_all *all, char *cmd);
+char		*ft_replace_var(t_all *all, char *cmd);
+void		ft_fillpars_infile(t_pars *pars, char *cmd);
+void		ft_fillpars_outfile(t_pars *pars, char *cmd);
+void		ft_fillpars_outfile_append(t_pars *pars, char *cmd);
+void		ft_fillpars_heredoc(t_pars *pars, char *cmd);
 
 /****************************SIGNALS********************************/
 

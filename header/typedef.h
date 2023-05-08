@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:56:31 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 09:57:29 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ typedef struct s_all
 	t_listenv	*listenv;
 	t_listenv	*listexport;
 	t_pars		**parspipex;
-	// char		*infile;
-	// char		**infile2;
-	// int			*infile_position;
-	// char		*outfile;
-	// int			outfile_append;
-	// char		**heredoc_delim;
 }	t_all;
 
 typedef struct pip

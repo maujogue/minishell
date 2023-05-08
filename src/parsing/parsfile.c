@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:22:41 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:38:36 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_fillnamefile(char *cmd, int i)
 
 int	ft_lentab(char **tab)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (tab[len])
