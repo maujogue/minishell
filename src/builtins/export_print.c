@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:04:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 14:27:11 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:37:16 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ char	**ft_sort_tabexport(char **tabexport)
 				tmp = tabexport[i];
 				tabexport[i] = tabexport[j];
 				tabexport[j] = tmp;
-				printf("%s\n", tmp);
 			}
 			j++;
 		}

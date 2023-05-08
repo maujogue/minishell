@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:50:48 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:49:47 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	join_cmds(t_pars **parspipex);
 
 void	init_all_here_doc(t_all *all, char **heredoc, t_pip *pip);
 void	init_files(t_all *all, t_pip *pip);
+void	only_files(t_all *all, t_pip *pip);
 
 #endif

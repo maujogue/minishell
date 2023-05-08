@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:12:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:08:18 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:50:25 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,12 @@ void	init_files(t_all *all, t_pip *pip)
 	init_outfile_tab(all->parspipex[pip->curr]->outfile, pip);
 	init_outfile_append_tab(all->parspipex[pip->curr]->outfile_append, pip);
 	init_all_here_doc(all, all->parspipex[pip->curr]->heredoc, pip);
+}
+
+void	only_files(t_all *all, t_pip *pip)
+{
+	init_infile_tab(all->parspipex[0]->infile, pip);
+	init_outfile_tab(all->parspipex[0]->outfile, pip);
+	init_outfile_append_tab(all->parspipex[0]->outfile_append, pip);
+	init_all_here_doc(all, all->parspipex[0]->heredoc, pip);
 }
