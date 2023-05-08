@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:04:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:25:18 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:51:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ char	*ft_strdupexport(const char *key, char *content)
 
 char	**ft_sort_tabexport(char **tabexport)
 {
-	// char	*tmp;
 	int	i;
 	int	j;
+	// char	*tmp;
 
 	i = 0;
 	while (tabexport[i])
@@ -72,12 +72,12 @@ char	**ft_sort_tabexport(char **tabexport)
 	return (tabexport);
 }
 
-char    **ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
+char	**ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 {
-	char	**tab;
-	int		i;
-	int		sizenv;
-	int		sizexport;
+	char		**tab;
+	int			i;
+	int			sizenv;
+	int			sizexport;
 	t_listenv	*tmp;
 
 	i = 0;
@@ -99,7 +99,6 @@ char    **ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 		return (tab);
 	}
 	tmp = listexport;
-
 	while (i <= sizexport && listexport)
 	{
 		if (listexport->content == NULL)
@@ -108,15 +107,15 @@ char    **ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 			tab[i] = ft_strdupexport(listexport->key, listexport->content);
 		listexport = listexport->next;
 		i++;
-	} 
+	}
 	listexport = tmp;
 	tab[i] = "\0";
 	return (tab);
 }
 
-void    ft_print_listexport(t_listenv *listexport, t_all *all)
+void	ft_print_listexport(t_listenv *listexport, t_all *all)
 {
-    char		**tabexport;
+	char	**tabexport;
 
 	tabexport = ft_creat_tab_sort_export(listexport, all);
 	tabexport = ft_sort_tabexport(tabexport);

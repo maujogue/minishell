@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:06:38 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:52:20 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ t_listenv	*ft_lstexport_new(char *var);
 t_listenv	*ft_lstexportlast(t_listenv *lst);
 void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
 int			ft_lstexportsize(t_listenv *lst);
+void		ft_replace_double(char *var, t_listenv *listexport, t_all **all);
+int			ft_check_double_var(char *var, t_listenv *listexport, t_all **all);
+int			ft_check_name_var(char *var);
+void		ft_export_fillkeycontentvar(t_listenv *new, char *var);
+char		*ft_substrexportkey(char const *s, unsigned int start, size_t len);
+char		*ft_substrexportcontent(char const *s, unsigned int start, size_t len);
+void		ft_sort_env(char **envp);
 
 /****************************PARSING********************************/
 
