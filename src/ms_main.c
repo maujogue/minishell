@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 11:09:12 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:50:26 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ void	ft_init_all(t_all *all, char **envp)
 	all->listenv = ft_env(envp);
 	all->listexport = NULL;
 	incr_shell_lvl(all, 1);
-	// all->infile2 = NULL;
-	// all->outfile = NULL;
-	// all->parspipex = NULL;
-	// all->heredoc_delim = NULL;
-	// all->outfile_append = 0;
 }
 
 void	ft_initpars(t_pars *pars)

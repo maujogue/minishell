@@ -6,13 +6,26 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:04:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 14:36:26 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:57:07 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char	*ft_strdupexport(const char *key, char *content)
+char	*ft_strdupexport_utils(char *res, char *key, size_t *i)
+{
+	while (key && key[*i])
+	{
+		res[*i] = key[*i];
+		i++;
+	}
+	res[*i] = '=';
+	res[*i + 1] = '"';
+	*i = *i + 2;
+	return (res);
+}
+
+char	*ft_strdupexport(char *key, char *content)
 {
 	char		*res;
 	size_t		len;
@@ -27,14 +40,7 @@ char	*ft_strdupexport(const char *key, char *content)
 	res = malloc(sizeof(char) * (len + len2 + 4));
 	if (!(res))
 		return (NULL);
-	while (key && key[i])
-	{
-		res[i] = key[i];
-		i++;
-	}
-	res[i] = '=';
-	res[i + 1] = '"';
-	i = i + 2;
+	res = ft_strdupexport_utils(res, key, &i);
 	while (content && content[j])
 	{
 		res[i] = content[j];
