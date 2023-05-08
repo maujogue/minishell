@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:56:13 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:09:32 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		ft_sort_env(char **envp);
 /****************************PARSING********************************/
 
 void		ft_parsing(t_all *all, char *cmd);
+void		ft_initpars(t_pars *pars);
 int			ft_isredir(char *cmd, int i);
 void		ft_jump_redir(char *cmd, int *i);
 void		ft_jumpfile(char *cmd, int *i);

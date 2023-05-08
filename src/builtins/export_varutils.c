@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:41:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:49:27 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:27:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ int	ft_check_name_var(char *var)
 	len = ft_strlen(var);
 	i = 0;
 	if (var[0] >= '0' && var[0] <= '9')
-		return (write_error("minishell: export: ", var, ": not a valid identifier\n"), 1);
+		return (write_error("minishell: export: ", var
+				, ": not a valid identifier\n"), 1);
 	while (var[i] && var[i] != '=' && i <= len)
 	{
 		if (var[i] >= 33 && var[i] <= 47 && var[i] != 34 && var[i] != 39)
-			return (write_error("minishell: export: ", var, ": not a valid identifier\n"), 1);
+			return (write_error("minishell: export: ", var
+					, ": not a valid identifier\n"), 1);
 		i++;
 	}
 	return (0);

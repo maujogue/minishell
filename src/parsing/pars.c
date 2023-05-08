@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:22:35 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:25:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,16 +105,6 @@ int	ft_is_outfile_last(char *cmd)
 		i--;
 	}
 	return (0);
-}
-
-void	ft_initpars(t_pars *pars)
-{
-	pars->infile = NULL;
-	pars->outfile = NULL;
-	pars->heredoc = NULL;
-	pars->outfile_append = NULL;
-	pars->heredoc_last = 0;
-	pars->outfile_last = 0;
 }
 
 void	ft_fillstructpars(t_pars **pars, char **tabcmd)

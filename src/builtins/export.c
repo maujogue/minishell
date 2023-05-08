@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/08 10:47:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:26:47 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var, t_all **all)
 		if (ft_check_name_var(var[i]) == 0)
 		{
 			if (ft_check_double_var(var[i], *listexport, all) == 1)
-			{
-				printf("DOUBLE FIND\n");
 				ft_replace_double(var[i], *listexport, all);
-			}
 			else
 			{
 				new = malloc(sizeof(t_listenv));
