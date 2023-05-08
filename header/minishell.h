@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/08 13:53:38 by avaganay         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/08 13:40:46 by maujogue         ###   ########.fr       */
+>>>>>>> 2fa590cef0bcbb47935265269cb68c4e6cf21565
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +52,7 @@ void		ft_print_listenv(t_all *all, char *cmd, int path_exists);
 void		ft_print_tab(char **tab);
 void		ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);
-void		ft_print_listexport(t_listenv *listexport, t_all *all);
+void		ft_print_listexport(t_all *all);
 void		ft_print_tabarg(char **tab);
 
 /****************************STRCMP_UTILS****************************/
