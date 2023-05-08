@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:04:14 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:22:35 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,15 @@ void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
 				ft_fillpars_outfile(pars[number], cmd);
 			is_outfile = 1;
 		}
-		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
+		if (cmd[i - 1] != '<' && cmd[i] == '<'
+			&& cmd[i + 1] == '<' && cmd[i + 2] != '<')
 		{
 			if (is_heredoc == 0)
 				ft_fillpars_heredoc(pars[number], cmd);
 			is_heredoc = 1;
 		}
-		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
+		if (cmd[i - 1] != '>' && cmd[i] == '>'
+			&& cmd[i + 1] == '>' && cmd[i + 2] != '>')
 		{
 			if (is_outfile_append == 0)
 				ft_fillpars_outfile_append(pars[number], cmd);
@@ -127,59 +129,57 @@ void	ft_fillstructpars(t_pars **pars, char **tabcmd)
 		ft_fillparsfile(pars, tabcmd[number], number);
 		pars[number]->heredoc_last = ft_is_heredoc_last(tabcmd[number]);
 		pars[number]->outfile_last = ft_is_outfile_last(tabcmd[number]);
-		//////////////////////////////////////////////////////////////
-		if (pars[number]->infile  == NULL)
+		if (pars[number]->infile == NULL)
 			printf("infile: NULL\n");
 		else
 		{
-    		i = 0;
+			i = 0;
 			printf("infile:\n");
 			while (pars[number]->infile[i] != NULL)
 			{
-				printf("%s\n",pars[number]->infile[i]);
+				printf("%s\n", pars[number]->infile[i]);
 				i++;
 			}
 		}
-		if (pars[number]->outfile  == NULL)
+		if (pars[number]->outfile == NULL)
 			printf("outfile: NULL\n");
 		else
 		{
-    		i = 0;
+			i = 0;
 			printf("outfile:\n");
 			while (pars[number]->outfile[i] != NULL)
 			{
-				printf("%s\n",pars[number]->outfile[i]);
+				printf("%s\n", pars[number]->outfile[i]);
 				i++;
 			}
 		}
-		if (pars[number]->heredoc  == NULL)
+		if (pars[number]->heredoc == NULL)
 			printf("heredoc: NULL\n");
 		else
 		{
-    		i = 0;
+			i = 0;
 			printf("heredoc:\n");
 			while (pars[number]->heredoc[i] != NULL)
 			{
-				printf("%s\n",pars[number]->heredoc[i]);
+				printf("%s\n", pars[number]->heredoc[i]);
 				i++;
 			}
 		}
-		if (pars[number]->outfile_append  == NULL)
+		if (pars[number]->outfile_append == NULL)
 			printf("outfile_append: NULL\n");
 		else
 		{
-    		i = 0;
+			i = 0;
 			printf("outfile_append:\n");
 			while (pars[number]->outfile_append[i] != NULL)
 			{
-				printf("%s\n",pars[number]->outfile_append[i]);
+				printf("%s\n", pars[number]->outfile_append[i]);
 				i++;
 			}
 		}
 		printf("heredoc_last: %d\n", pars[number]->heredoc_last);
 		printf("outfile_last: %d\n", pars[number]->outfile_last);
 		printf("----------------\n");
-		///////////////////////////////////////////////////////////
 		number++;
 	}
 }

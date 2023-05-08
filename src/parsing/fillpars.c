@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:05:00 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:23:03 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] == '<' && cmd[i + 2] != '<')
+		if (cmd[i - 1] != '<' && cmd[i] == '<'
+			&& cmd[i + 1] == '<' && cmd[i + 2] != '<')
 		{
 			if (pars->heredoc == NULL)
 			{
@@ -51,7 +52,8 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
+		if (cmd[i - 1] != '>' && cmd[i] == '>'
+			&& cmd[i + 1] == '>' && cmd[i + 2] != '>')
 		{
 			if (pars->outfile_append == NULL)
 			{
@@ -65,7 +67,8 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 			else
 			{
 				outfile_append = ft_fillnamefile(cmd, i + 1);
-				pars->outfile_append = ft_filetodouble(pars->outfile_append, outfile_append);
+				pars->outfile_append
+					= ft_filetodouble(pars->outfile_append, outfile_append);
 			}
 		}
 		i++;
