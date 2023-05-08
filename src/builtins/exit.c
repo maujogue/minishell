@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:22:40 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:38:51 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,49 +22,28 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-long long	ft_atoi_exit(const char *str, int i, int *pbm)
+long long	ft_atoi_exit(const char *str, int *err)
 {
-	int			j;
+	int			i;
 	long		neg;
 	long long	sum;
 
+	i = 0;
 	neg = 1;
 	sum = 0;
-	j = 0;
 	if (str[i] && (str[i] == '-' || str[i] == '+'))
 		if (str[i++] == '-')
 			neg *= -1;
 	while (str[i] && (ft_isspace(str[i]) || str[i] == '0'))
 		i++;
-	while (str[i] >= '0' && str[i] <= '9' && ++j)
-	{
-		sum = (sum * 10) + (str[i] - 48);
-		if (((i == 18 && neg == 1) && (str[i] > '7' && str[i] <= '9'))
-			|| ((i == 19 && neg == -1) && (str[i] == '9')))
-			*pbm = 1;
-		i++;
-	}
-	while (str[i++])
-		j++;
-	if ((j > 19 && neg == 1) || (j > 20 && neg == -1))
-		*pbm = 1;
-	return (sum * neg);
-}
-
-int	check_numeric(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
 	while (str[i])
 	{
+		sum = (sum * 10) + (str[i] - 48);
 		if (str[i] < '0' || str[i] > '9')
-			return (1);
+			*err = 1;
 		i++;
 	}
-	return (0);
+	return (sum * neg);
 }
 
 void	ft_exit(char **cmd)
@@ -79,7 +58,7 @@ void	ft_exit(char **cmd)
 	}
 	else if (cmd[1])
 	{
-		code = ft_atoi_exit(cmd[1], 0, &err);
+		code = ft_atoi_exit(cmd[1], &err);
 		if (err == 1)
 		{
 			write_error("exit\nbash: exit: ",

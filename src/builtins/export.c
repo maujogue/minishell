@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/08 10:47:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:15:45 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_listenv	*ft_fill_var_export(t_listenv *listexport, t_all *all, char **cmd)
 	if (ft_strlen_array(cmd) > 1)
 		ft_export_fill_lstvar(&listexport, cmd, &all);
 	else
-		ft_print_listexport(listexport, all);
+		ft_print_listexport(all);
 	return (listexport);
 }
 

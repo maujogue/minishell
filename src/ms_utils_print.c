@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:09:34 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:18:11 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_print_tabexport(char **tab)
 	int	i;
 
 	i = 0;
-	while (ft_strcmp(tab[i], "\0") != 0)
+	while (tab[i])
 	{
 		printf("declare -x %s\n", tab[i]);
 		i++;
