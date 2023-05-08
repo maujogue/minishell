@@ -3,22 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2023/05/08 13:53:38 by avaganay         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/08 13:40:46 by maujogue         ###   ########.fr       */
->>>>>>> 2fa590cef0bcbb47935265269cb68c4e6cf21565
-=======
-/*   Updated: 2023/05/08 11:09:32 by avaganay         ###   ########.fr       */
->>>>>>> parent of eedccc1... norminette
-=======
-/*   Updated: 2023/05/08 11:09:32 by avaganay         ###   ########.fr       */
->>>>>>> parent of eedccc1... norminette
+/*   Updated: 2023/05/08 14:19:57 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
