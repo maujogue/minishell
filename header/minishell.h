@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:20:06 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:01:02 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char		*ft_fillnamefile(char *cmd, int i);
 char		**ft_filetodouble(char **tab, char *file);
 int			ft_strlen_triple_char(char ***str);
 void		ft_fillstructpars(t_pars **pars, char **tabcmd);
+char        *ft_replace_var(t_all *all, char *cmd);
 
 /****************************SIGNALS********************************/
 
