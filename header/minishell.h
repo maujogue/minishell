@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 14:19:57 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:24:52 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int			ft_check_double_var(char *var, t_listenv *listexport, t_all **all);
 int			ft_check_name_var(char *var);
 void		ft_export_fillkeycontentvar(t_listenv *new, char *var);
 char		*ft_substrexportkey(char const *s, unsigned int start, size_t len);
-char		*ft_substrexportcontent(char const *s, unsigned int start, size_t len);
+char		*ft_substrexportcontent(char const *s,
+				unsigned int start, size_t len);
 void		ft_sort_env(char **envp);
 
 /****************************PARSING********************************/

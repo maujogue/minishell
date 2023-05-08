@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:23:03 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:33:25 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,8 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 				pars->infile = res;
 			}
 			else
-			{
-				infile = ft_fillnamefile(cmd, i);
-				pars->infile = ft_filetodouble(pars->infile, infile);
-			}
+				pars->infile = ft_filetodouble(pars->infile,
+						ft_fillnamefile(cmd, i));
 		}
 		i++;
 	}
@@ -126,10 +124,8 @@ void	ft_fillpars_outfile(t_pars *pars, char *cmd)
 				pars->outfile = res;
 			}
 			else
-			{
-				outfile = ft_fillnamefile(cmd, i);
-				pars->outfile = ft_filetodouble(pars->outfile, outfile);
-			}
+				pars->outfile = ft_filetodouble(pars->outfile,
+						ft_fillnamefile(cmd, i));
 		}
 		i++;
 	}
