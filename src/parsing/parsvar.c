@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 15:37:23 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:04:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 	if (cmd[*i + 1] == '?')
 		return (*i += 1, *var_already_fill = 1, ft_itoa(all->exit_code));
 	start = *i + 1;
-	while (cmd[*i] != ' ' && cmd[*i])
+	while (cmd[*i] != ' ' && cmd[*i] && !(cmd[*i] >= '0' && cmd[*i] <= '9'))
 		*i += 1;
 	var = ft_substr(cmd, start, *i - start);
 	return (var);
