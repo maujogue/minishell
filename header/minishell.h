@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 10:53:56 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:31:19 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void		ft_fillpars_infile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile_append(t_pars *pars, char *cmd);
 void		ft_fillpars_heredoc(t_pars *pars, char *cmd);
+
+int			ft_is_charspe(char c);
 
 /****************************SIGNALS********************************/
 

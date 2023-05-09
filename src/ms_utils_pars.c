@@ -6,8 +6,16 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/03/27 15:36:03 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:26:19 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+int	ft_is_charspe(char c)
+{
+	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64)
+		|| (c >= 91 && c <= 94) || (c >= 123 && c <= 125))
+		return (1);
+	return (0);
+}
