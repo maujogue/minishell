@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 13:53:46 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:52:21 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,26 @@ int	check_point_slash(char *cmd)
 int	check_cmd(t_all *all, t_pip *pip)
 {
 	char	*cmd;
+	int		exit;
 
+	exit = 0;
 	cmd = pip->cmd[0];
 	if (!cmd || cmd[0] == '\0')
-		return (1);
-	if (is_builtin(all, pip) == 0)
-		return (0);
-	if (check_point_slash(cmd) == 1)
-		return (1);
+		exit = 1;
+	else if (is_builtin(all, pip) == 0)
+		exit = 0;
+	else if (check_point_slash(cmd) == 1)
+		exit = 1;
 	else
 	{	
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd)
-			return (write_error("bash: ", cmd, ": command not found\n"), 1);
+		{
+			exit = 1;
+			write_error("bash: ", cmd, ": command not found\n");
+		}
 	}
-	return (0);
+	if (exit == 1)
+		g_status = 127;
+	return (exit);
 }

@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 11:29:03 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:49:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
+
+extern int	g_status;
 
 typedef struct s_listenv
 {
@@ -39,7 +41,7 @@ typedef struct s_all
 	t_listenv		*listenv;
 	t_listenv		*listexport;
 	t_pars			**parspipex;
-	unsigned int	exit_code;
+	int				exit_code;
 }	t_all;
 
 typedef struct pip

@@ -6,13 +6,11 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/08 13:38:51 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:50:36 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
-
-int	g_status;
 
 int	ft_isspace(char c)
 {

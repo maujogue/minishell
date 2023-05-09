@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:16 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:35:42 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:52:17 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_check_valid_arg(char *str)
 	if (str[i] >= '0' && str[i] <= '9')
 	{
 		printf("minishell: unset: '%s': not a valid identifier\n", str);
+		g_status = 1;
 		return (1);
 	}
 	while (str[i])
@@ -30,6 +31,7 @@ int	ft_check_valid_arg(char *str)
 			|| str[i] == '?' || str[i] == '@' || str[i] == '=' || str[i] == ':')
 		{
 			printf("minishell: unset: '%s': not a valid identifier\n", str);
+			g_status = 1;
 			return (1);
 		}
 		i++;

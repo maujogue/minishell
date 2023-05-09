@@ -6,17 +6,18 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:15:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 15:07:55 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:49:08 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-int	g_signal;
+extern int	g_status;
+
 
 void	sigint_handler(int sig)
 {
-	g_signal = sig;
+	g_status = 128 + sig;
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -24,14 +25,13 @@ void	sigint_handler(int sig)
 
 void	sigint_handler_in_process(int sig)
 {
-	(void) sig;
+	g_status = 128 + sig;
 	printf("\n");
 }
 
 void	sigquit_handler_in_process(int sig)
 {
-	(void) sig;
-	printf("Quit (core dumped)\n");
+	g_status = 128 + sig;
 }
 
 void	signals(void)

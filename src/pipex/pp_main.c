@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/08 15:00:47 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:11:25 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	create_pipes(t_all *all, t_pip *pip)
 
 void	init_pip(t_all *all, t_pip *pip)
 {
+	g_status = 0;
 	pip->curr = 0;
 	pip->envp = NULL;
 	pip->tab_cmd = NULL;
@@ -82,6 +83,7 @@ int	pipex(t_all *all)
 		close_p(&pip);
 		wait_id(&pip);
 		free_exit(all, &pip, 0, NULL);
+		printf("%d\n", g_status);
 	}
 	return (0);
 }

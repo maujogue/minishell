@@ -1,91 +1,95 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:21:31 by maujogue         ###   ########.fr       */
+/*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
+/*   Updated: 2023/05/09 16:59:02 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char	**ft_fusion_split(char	**split)
+char	*get_env_content(t_listenv	*listenv, char *arg)
 {
-	int		i;
-
-	i = 2;
-	if (split[2])
+	while (listenv)
 	{
-		while (split[i])
-		{
-			split[1] = ft_strjoin_gnl(split[1], "=");
-			split[1] = ft_strjoin_gnl(split[1], split[i]);
-			i++;
-		}
+		if (ft_strncmp(listenv->key, arg, ft_strlen(arg)) == 0)
+			return (ft_strdup(listenv->content));
+		listenv = listenv->next;
 	}
-	return (split);
+	return (NULL);
 }
 
-t_listenv	*ft_lstenv_new(char *str)
+void	replace_env_arg(t_listenv	*listenv, char *arg, char *replacement)
 {
-	t_listenv	*new;
-	char		**split;
-
-	new = malloc(sizeof(t_listenv) + 1);
-	if (!new)
-		return (NULL);
-	split = ft_split(str, '=');
-	if (!split)
-		return (NULL);
-	new->key = split[0];
-	split = ft_fusion_split(split);
-	new->content = split[1];
-	new->next = NULL;
-	return (new);
+	while (listenv)
+	{
+		if (ft_strncmp(listenv->key, arg, ft_strlen(arg)) == 0)
+		{
+			free(listenv->content);
+			listenv->content = ft_strdup(replacement);
+			return ;
+		}
+		listenv = listenv->next;
+	}
 }
 
-void	ft_lstenvadd_back(t_listenv **lst, t_listenv *new)
+t_listenv	*unset_env_var(char *cmd, t_listenv *lst)
 {
-	t_listenv	*curr;
+	t_listenv	*prev;
+	t_listenv	*tmp;
 
-	curr = *lst;
-	if (*lst == 0)
-		*lst = new;
+	tmp = lst;
+	prev = NULL;
+	while (lst)
+	{
+		if (ft_strcmp(cmd, lst->key) == 0)
+		{
+			free(lst->key);
+			free(lst->content);
+			if (prev)
+			{
+				prev->next = lst->next;
+				free(lst);
+				break ;
+			}
+			else
+				return (free(lst), lst->next);
+		}
+		prev = lst;
+		lst = lst->next;
+	}
+	lst = tmp;
+	return (lst);
+}
+
+void	free_listenv(t_listenv *lst)
+{
+	t_listenv	*temp;
+
+	while (lst)
+	{
+		temp = lst->next;
+		if (!lst->content)
+			free(lst->content);
+		if (!lst->key)
+			free(lst->key);
+		if (!lst)
+			free(lst);
+		lst = temp;
+	}
+}
+
+void	ft_env(t_all *all, t_pip *pip)
+{
+	if (ft_strlen_array(pip->cmd) == 1)
+		ft_print_listenv(all, pip->cmd[0], !pip->path);
 	else
 	{
-		while (curr->next != NULL)
-			curr = curr->next;
-		curr->next = new;
+		g_status = 127;
+		write_error("env: ‘",pip->cmd[1],"’: No such file or directory\n");
 	}
-}
-
-t_listenv	*ft_fill_env(t_listenv *listenv, char **envp)
-{
-	int			i;
-	t_listenv	*node;
-
-	i = 0;
-	while (envp[i])
-	{
-		node = ft_lstenv_new(envp[i]);
-		if (!node)
-			return (NULL);
-		ft_lstenvadd_back(&listenv, node);
-		i++;
-	}
-	return (listenv);
-}
-
-t_listenv	*ft_env(char **envp)
-{
-	t_listenv	*listenv;
-
-	listenv = NULL;
-	listenv = ft_fill_env(listenv, envp);
-	if (!listenv)
-		return (NULL);
-	return (listenv);
 }

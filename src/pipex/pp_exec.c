@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:59:01 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:23:17 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,15 @@ void	wait_id(t_pip *pip)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (++i <= pip->nb_arg)
-		wait(NULL);
+	{
+		wait(&g_status);
+		if (WIFEXITED(g_status))
+			g_status = WEXITSTATUS(g_status);
+		// printf("-->%d %d\n", all->exit_code,g_status);
+		i++;
+	}
 }
 
 void	exec_cmd(t_all *all, t_pip *pip)

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 10:53:56 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:59:49 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			ft_builtins(t_all *all, t_pip *pip);
 int			is_builtin(t_all *all, t_pip *pip);
 
 void		ft_cd(t_all *all, t_pip *pip);
+void		ft_env(t_all *all, t_pip *pip);
 void		ft_echo(t_all *all, char **tabecho);
 void		ft_echo_var(t_all *all, char *arg);
 void		ft_echo_env(t_all *all, char *arg);
@@ -40,7 +41,7 @@ void		ft_exit(char **cmd);
 void		ft_export(char **envp, t_all *all, char **cmd);
 void		ft_pwd(char **cmd);
 void		ft_unset(t_all *all, t_pip *pip);
-t_listenv	*ft_env(char **envp);
+t_listenv	*create_env(char **envp);
 
 /****************************PRINT_UTILS*****************************/
 
@@ -101,4 +102,6 @@ void		ft_fillpars_heredoc(t_pars *pars, char *cmd);
 
 void		signals(void);
 void		signals_in_process(void);
+void		signals_in_heredoc(void);
+
 #endif
