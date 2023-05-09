@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:22:26 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:42:18 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	cmdfinal = ft_replace_var(all, cmd);
 	printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));
-	cmdpars->cmd = ft_fillparscmd(cmd);
+	cmdpars->cmd = ft_fillparscmd(cmdfinal);
 	printf("%s /", cmdpars->cmd);
-	cmdpars->opt2 = ft_fillparsopt2(cmd);
+	cmdpars->opt2 = ft_fillparsopt2(cmdfinal);
 	if (cmdpars->opt2 != NULL)
 		ft_print_tabarg(cmdpars->opt2);
 	else
 		printf("(null)");
-	cmdpars->arg = ft_fillparsarg(all, cmd);
+	cmdpars->arg = ft_fillparsarg(all, cmdfinal);
 	printf("/");
 	if (cmdpars->arg != NULL)
 		ft_print_tabarg(cmdpars->arg);
