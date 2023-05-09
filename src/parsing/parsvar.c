@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 14:35:31 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:16:14 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ char	*ft_fill_to_replace_var(t_all *all, char *cmd,
 	int		start;
 
 	if (cmd[*i + 1] == '?')
-		return (*var_already_fill = 1, ft_itoa(all->exit_code));
+		return (*i += 1, *var_already_fill = 1, ft_itoa(all->exit_code));
 	start = *i + 1;
 	while (cmd[*i] != ' ' && cmd[*i])
 		*i += 1;
 	var = ft_substr(cmd, start, *i - start);
 	return (var);
 }
-//////////////////////////////TEST
+
 char	*ft_replace_var(t_all *all, char *cmd)
 {
 	char	*cmdfinal;
@@ -60,6 +60,10 @@ char	*ft_replace_var(t_all *all, char *cmd)
 				var = ft_fill_replace_var(all->listenv, var);
 			printf("VAR AFTER: %s\n", var);
 		}
+		else
+			var = ft_substr(cmd, i, 1);
+		if (var != NULL)
+			cmdfinal = ft_strjoin(cmdfinal, var);
 		i++;
 	}
 	return (cmdfinal);
