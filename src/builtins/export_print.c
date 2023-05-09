@@ -6,26 +6,13 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:04:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 15:04:06 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:56:33 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char	*ft_strdupexport_utils(char *res, char *key, size_t *i)
-{
-	while (key && key[*i])
-	{
-		res[*i] = key[*i];
-		i++;
-	}
-	res[*i] = '=';
-	res[*i + 1] = '"';
-	*i = *i + 2;
-	return (res);
-}
-
-char	*ft_strdupexport(char *key, char *content)
+char	*ft_strdupexport(const char *key, char *content)
 {
 	char		*res;
 	size_t		len;
@@ -40,7 +27,14 @@ char	*ft_strdupexport(char *key, char *content)
 	res = malloc(sizeof(char) * (len + len2 + 4));
 	if (!(res))
 		return (NULL);
-	res = ft_strdupexport_utils(res, key, &i);
+	while (key && key[i])
+	{
+		res[i] = key[i];
+		i++;
+	}
+	res[i] = '=';
+	res[i + 1] = '"';
+	i = i + 2;
 	while (content && content[j])
 	{
 		res[i] = content[j];
@@ -54,8 +48,8 @@ char	*ft_strdupexport(char *key, char *content)
 
 char	**ft_sort_tabexport(char **tabexport)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	char	*tmp;
 
 	i = 0;
@@ -64,11 +58,12 @@ char	**ft_sort_tabexport(char **tabexport)
 		j = i + 1;
 		while (tabexport[j])
 		{
-			if (ft_strcmp(tabexport[i], tabexport[j]) > 0)
+			if (ft_strncmp(tabexport[i], tabexport[j], ft_strlen(tabexport[i])) > 0)
 			{
 				tmp = tabexport[i];
 				tabexport[i] = tabexport[j];
 				tabexport[j] = tmp;
+				printf("%s\n", tmp);
 			}
 			j++;
 		}
@@ -118,11 +113,11 @@ char	**ft_creat_tab_sort_export(t_listenv *listexport, t_all *all)
 	return (tab);
 }
 
-void	ft_print_listexport(t_all *all)
+void	ft_print_listexport(t_listenv *listexport, t_all *all)
 {
 	char	**tabexport;
 
-	tabexport = ft_creat_tab_sort_export(all->listexport, all);
+	tabexport = ft_creat_tab_sort_export(listexport, all);
 	tabexport = ft_sort_tabexport(tabexport);
 	ft_print_tabexport(tabexport);
 }
