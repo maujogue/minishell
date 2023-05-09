@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 13:44:32 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:54:01 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*ft_fill_to_replace_var(t_all *all, char *cmd,
 	return (var);
 }
 /////////////////////////////////////////////////////////////////////////////
+/*LOL*/
 char	*ft_replace_var(t_all *all, char *cmd)
 {
 	char	*cmdfinal;
