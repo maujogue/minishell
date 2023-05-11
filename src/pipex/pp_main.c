@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 17:11:25 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:25:05 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	pipex(t_all *all)
 		close_p(&pip);
 		wait_id(&pip);
 		free_exit(all, &pip, 0, NULL);
-		printf("%d\n", g_status);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:52:21 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 15:50:12 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:42:11 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	single_here_doc(char **heredoc, int fd[2], int i)
 	char	*line;
 	int		n;
 
-	n = 0;
+	n = 1;
 	while (1)
 	{
 		if (g_status == 130)

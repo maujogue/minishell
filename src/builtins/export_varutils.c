@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_varutils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:41:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 11:27:21 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/11 11:20:06 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int	ft_check_name_var(char *var)
 	len = ft_strlen(var);
 	i = 0;
 	if (var[0] >= '0' && var[0] <= '9')
-		return (write_error("minishell: export: ", var
+		return (g_status = 1, write_error("minishell: export: ", var
 				, ": not a valid identifier\n"), 1);
 	while (var[i] && var[i] != '=' && i <= len)
 	{
 		if (var[i] >= 33 && var[i] <= 47 && var[i] != 34 && var[i] != 39)
-			return (write_error("minishell: export: ", var
+			return (g_status = 1, write_error("minishell: export: ", var
 					, ": not a valid identifier\n"), 1);
 		i++;
 	}
@@ -108,10 +108,11 @@ void	ft_replace_double(char *var, t_listenv *listexport, t_all **all)
 	tmp = listexport;
 	while (listexport)
 	{
-		if (ft_strcmp(var, listexport->key) == 0)
+		if (ft_strncmp(var, listexport->key, ft_strlen(listexport->key)) == 0)
 		{
 			while (var[i] != '=' && var[i])
 				i++;
+			i++;
 			if (var[i])
 			{
 				printf("REPLACE NO =\n");

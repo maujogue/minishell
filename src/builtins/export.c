@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/08 10:47:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/11 11:02:51 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,15 @@ void	ft_export_fill_lstvar(t_listenv **listexport, char **var, t_all **all)
 
 t_listenv	*ft_fill_var_export(t_listenv *listexport, t_all *all, char **cmd)
 {
+	if (ft_strlen_array(cmd) == 1)
+		ft_print_listexport(listexport, all);
+	return (listexport);
+}
+
+t_listenv	*ft_fill_var_env(t_listenv *listexport, t_all *all, char **cmd)
+{
 	if (ft_strlen_array(cmd) > 1)
 		ft_export_fill_lstvar(&listexport, cmd, &all);
-	else
-		ft_print_listexport(listexport, all);
 	return (listexport);
 }
 
@@ -57,4 +62,5 @@ void	ft_export(char **envp, t_all *all, char **cmd)
 {
 	ft_sort_env(envp);
 	all->listexport = ft_fill_var_export(all->listexport, all, cmd);
+	all->listenv = ft_fill_var_env(all->listenv, all, cmd);
 }

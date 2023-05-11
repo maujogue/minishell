@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:15:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 15:49:08 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:40:48 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	sigint_handler_in_process(int sig)
 void	sigquit_handler_in_process(int sig)
 {
 	g_status = 128 + sig;
+	printf("Quit (core dumped)\n");
 }
 
 void	signals(void)

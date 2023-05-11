@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsvar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 15:37:23 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:26:02 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ char	*ft_fill_replace_dollar(t_listenv *listenv, char *var, int *i)
 	return (NULL);
 }
 
-char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
+char	*ft_fill_to_replace_dollar(char *cmd,
 	int *i, int *var_already_fill)
 {
 	char	*var;
 	int		start;
 
 	if (cmd[*i + 1] == '?')
-		return (*i += 1, *var_already_fill = 1, ft_itoa(all->exit_code));
+		return (*i += 1, *var_already_fill = 1, ft_itoa(g_status));
 	start = *i + 1;
 	while (cmd[*i] != ' ' && cmd[*i])
 		*i += 1;
@@ -48,7 +48,7 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 
 	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
-		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
+		var = ft_fill_to_replace_dollar(cmd, i, var_already_fill);
 		// printf("\nVAR BEFORE: %s\n", var);
 		if (*var_already_fill == 0)
 			var = ft_fill_replace_dollar(all->listenv, var, i);

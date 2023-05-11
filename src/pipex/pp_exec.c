@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 17:23:17 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:25:38 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	close_p(t_pip *pip)
 void	wait_id(t_pip *pip)
 {
 	int	i;
+	int status;
 
 	i = 0;
 	while (++i <= pip->nb_arg)
 	{
-		wait(&g_status);
-		if (WIFEXITED(g_status))
-			g_status = WEXITSTATUS(g_status);
-		// printf("-->%d %d\n", all->exit_code,g_status);
+		wait(&status);
+		if (WIFEXITED(status))
+			g_status = WEXITSTATUS(status);
 		i++;
 	}
 }
