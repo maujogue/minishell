@@ -6,23 +6,43 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/12 14:54:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:29:36 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char	*ft_fill_replace_dollar(t_listenv *listenv, char *var, int *i)
+char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 {
-	while (listenv)
+	t_listenv	*tmp;
+	t_listenv	*tmp_res;
+
+	tmp = all->listenv;
+	while (all->listenv)
 	{
-		if (ft_strcmp(var, listenv->key) == 0)
+		tmp_res = all->listenv;
+		if (ft_strcmp(var, all->listenv->key) == 0)
 		{
 			*i -= 1;
-			return (listenv->content);
+			all->listenv = tmp;
+			return (tmp_res->content);
 		}
-		listenv = listenv->next;
+		all->listenv = all->listenv->next;
 	}
+	all->listenv = tmp;
+	tmp = all->listexport;
+	while (all->listexport)
+	{
+		tmp_res = all->listexport;
+		if (ft_strcmp(var, all->listexport->key) == 0)
+		{
+			*i -= 1;
+			all->listexport = tmp;
+			return (tmp_res->content);
+		}
+		all->listexport = all->listexport->next;
+	}
+	all->listexport = tmp;
 	return (NULL);
 }
 
@@ -54,7 +74,7 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
 		printf("\nVAR BEFORE: %s\n", var);
 		if (*var_already_fill == 0)
-			var = ft_fill_replace_dollar(all->listenv, var, i);
+			var = ft_fill_replace_dollar(all, var, i);
 		printf("VAR AFTER: %s\n", var);
 	}
 	else
