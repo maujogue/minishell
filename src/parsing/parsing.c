@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 15:42:18 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:56:13 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ char	*ft_fillparscmd(char *cmd)
 	int		len;
 	int		nospace;
 	char	*res;
+	int		is_cmd;
 
 	len = 0;
 	nospace = 0;
+	is_cmd = 0;
 	while (cmd[len] == ' ')
 	{
 		len++;
@@ -49,8 +51,12 @@ char	*ft_fillparscmd(char *cmd)
 	}
 	while (cmd[len] != '\0' && cmd[len] != ' ')
 	{
-		if (cmd[len] == '<' || cmd[len] == '>')
+		if (cmd[len] != '<' && cmd[len] != '>')
+			is_cmd = 1;
+		if ((cmd[len] == '<' || cmd[len] == '>') && is_cmd == 0)
 			return (ft_fill_cmd_is_file(cmd, len));
+		if ((cmd[len] == '<' || cmd[len] == '>') && is_cmd == 1)
+			return (ft_substr(cmd, nospace, len - nospace));
 		len++;
 	}
 	res = ft_substr(cmd, nospace, len - nospace);
