@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 13:24:04 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/12 14:12:31 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:36:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ char	*ft_fill_cmdfinal_simplequote(char *cmd, int *i)
 	char	*piece;
 
 	if (cmd[*i] == '\'')
-	{
 		piece = ft_fill_piece_simplequote(cmd, i);
-	}
 	else
 		piece = ft_substr(cmd, *i, 1);
 	return (piece);

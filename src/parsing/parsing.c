@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/12 13:35:28 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:37:51 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	t_pars	*cmdpars;
 	char	*cmdfinal;
 
+//juste pour test les quotes
 	cmdfinal = ft_parsquote(cmd);
+///////////////////////
 	cmdfinal = ft_replace_var(all, cmd);
 	printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));
