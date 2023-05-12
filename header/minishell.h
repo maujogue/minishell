@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 17:31:19 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:32:48 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ char		**ft_filetodouble(char **tab, char *file);
 int			ft_strlen_triple_char(char ***str);
 void		ft_fillstructpars(t_pars **pars, char **tabcmd);
 char		*ft_replace_var(t_all *all, char *cmd);
+char		*ft_parsquote(char *cmd);
 void		ft_fillpars_infile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile_append(t_pars *pars, char *cmd);

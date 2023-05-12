@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/12 12:56:13 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:35:28 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	t_pars	*cmdpars;
 	char	*cmdfinal;
 
+	cmdfinal = ft_parsquote(cmd);
 	cmdfinal = ft_replace_var(all, cmd);
 	printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));
@@ -101,7 +102,7 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 	all->parspipex = malloc(sizeof(t_pars) * (len + 1));
 	while (i < len)
 	{
-		printf("cmd %d:", i);
+		printf("cmd %d:\n", i);
 		all->parspipex[i] = ft_cleanpipe(all, tabcmd[i]);
 		i++;
 	}
