@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 17:30:52 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:37:52 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 	if (cmd[*i + 1] == '?')
 		return (*i += 1, *var_already_fill = 1, ft_itoa(all->exit_code));
 	start = *i + 1;
-	while (cmd[*i] != ' ' && cmd[*i] && ft_is_charspe(cmd[*i]) == 0)
+	while (cmd[*i] != ' ' && cmd[*i])// && ft_is_charspe(cmd[*i]) == 0)
 		*i += 1;
+	// printf("%d\n", *i);
 	var = ft_substr(cmd, start, *i - start);
 	return (var);
 }
@@ -49,10 +50,10 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
-		// printf("\nVAR BEFORE: %s\n", var);
+		printf("\nVAR BEFORE: %s\n", var);
 		if (*var_already_fill == 0)
 			var = ft_fill_replace_dollar(all->listenv, var, i);
-		// printf("VAR AFTER: %s\n", var);
+		printf("VAR AFTER: %s\n", var);
 	}
 	else
 		var = ft_substr(cmd, *i, 1);
