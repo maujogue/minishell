@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 15:54:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:56:30 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		ft_print_list(t_listenv *lst);
 void		ft_print_tab(char **tab);
 void		ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);
-void		ft_print_listexport(t_listenv *listexport, t_all *all);
+void		ft_print_listexport(t_listenv *lst);
 void		ft_print_tabarg(char **tab);
 
 /****************************STRCMP_UTILS****************************/
@@ -66,10 +66,12 @@ void		replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 /****************************EXPORT_UTILS***************************/
 
 void		free_listenv(t_listenv *lst);
-t_listenv	*ft_lstexport_new(char *var);
+t_listenv	*ft_lstexport_new(char *key, char *content);
 t_listenv	*ft_lstexportlast(t_listenv *lst);
-void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
+void		ft_lstexport_add_back(t_listenv **lst, t_listenv *new);
 int			ft_lstexportsize(t_listenv *lst);
+t_listenv	*ft_lstcat(t_listenv *lst1, t_listenv *lst2);
+t_listenv	*ft_lst_dup(t_listenv *lst);
 void		ft_replace_double(char *var, t_listenv *listexport, t_all **all);
 int			ft_check_double_var(char *var, t_listenv *listexport, t_all **all);
 int			ft_check_name_var(char *var);

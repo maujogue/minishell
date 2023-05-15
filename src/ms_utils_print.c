@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 15:57:20 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:44:13 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ void	ft_print_tabexport(char **tab)
 	}
 }
 
-void	ft_print_list(t_listenv *lst)
+void	ft_print_listexport(t_listenv *lst)
 {
 	while (lst != NULL)
 	{
-		printf("declare -x %s=%s\n", lst->content, lst->key);
+		printf("declare -x %s=%s\n", lst->key, lst->content);
 		lst = lst->next;
 	}
 }
