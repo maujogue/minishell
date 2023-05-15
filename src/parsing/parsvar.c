@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 14:28:36 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:02:46 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,11 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	int		i;
 	char	*var;
 	int		var_already_fill;
+	char	*cmdquote;
 
 	i = 0;
+	cmdquote = ft_cmd_whitout_simplequote(cmd);
+	printf("TEST SIMPLE QUOTE: %s\n", cmdquote);
 	while (cmd[i] && cmd[i] != '$' && ft_is_charspe(cmd[i]) == 0)
 		i++;
 	cmdfinal = ft_substr(cmd, 0, i);
