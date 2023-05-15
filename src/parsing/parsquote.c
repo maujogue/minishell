@@ -6,11 +6,57 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 13:24:04 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/12 14:36:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:49:23 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+int	ft_countquote(char *cmd, char quote)
+{
+	int	res;
+	int	i;
+
+	res = 0;
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == quote)
+			res++;
+		i++;
+	}
+	return (res);
+}
+
+char	*ft_wherequote(t_all *all, char *cmd, int *i)
+{
+	char	*var;
+	int		start;
+	int		len;
+
+	len = 1;
+	// printf("%d\n", all->pos_simplequote);
+	// printf("%d\n", all->pos_doublequote);
+	if (all->pos_simplequote % 2 != 0 && all->pos_doublequote % 2 == 0)
+	{
+		start = *i;
+		while (cmd[*i] != '\'' && cmd[*i])
+		{
+			len++;
+			*i += 1;
+		}
+		// printf("START: %d\n", start);
+		// printf("LEN: %d\n", len);
+		var = ft_substr(cmd, start, len - 1);
+		// printf("VAR: %s\n", var);
+		return (var);
+	}
+	// if (all->pos_simplequote % 2 != 0 && all->pos_doublequote % 2 != 0)
+	// {
+		
+	// }
+	return (NULL);
+}
 
 char	*ft_fill_piece_simplequote(char *cmd, int *i)
 {

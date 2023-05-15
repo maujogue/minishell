@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 11:30:00 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:10:57 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	ft_init_all(t_all *all, char **envp)
 	all->listenv = ft_env(envp);
 	all->listexport = NULL;
 	all->exit_code = 0;
+	all->nb_simplequote = 0;
+	all->nb_doublequote = 0;
+	all->pos_simplequote = 0;
+	all->pos_doublequote = 0;
 	incr_shell_lvl(all, 1);
 }
 

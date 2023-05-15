@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/12 15:33:13 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:28:36 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,12 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 
 	if (cmd[*i + 1] == '?')
 		return (*i += 1, *var_already_fill = 1, ft_itoa(all->exit_code));
+	var = ft_wherequote(all, cmd, i);
+	printf("SANS QUOTE: %s\n", var);
+	if (var != NULL)
+		return (*var_already_fill = 1, var);
 	start = *i + 1;
-	while (cmd[*i] != ' ' && cmd[*i])// && ft_is_charspe(cmd[*i]) == 0)
+	while (cmd[*i] != ' ' && cmd[*i] && cmd[*i] != '\'' && cmd[*i] != '\"')// && ft_is_charspe(cmd[*i]) == 0)
 		*i += 1;
 	// printf("%d\n", *i);
 	var = ft_substr(cmd, start, *i - start);
@@ -60,8 +64,20 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 	char	*var;
 
 	if (cmd[*i] == '\'')
-		var = ft_fill_piece_simplequote(cmd, i);
-	else if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
+	{
+		all->pos_simplequote++;
+		printf("':%d\n", all->pos_simplequote);
+		return (NULL);
+	}
+	if (cmd[*i] == '\"')
+	{
+		all->pos_doublequote++;
+		printf("\":%d\n", all->pos_doublequote);
+		return (NULL);
+	}
+	// if (cmd[*i] == '\'')
+	// 	var = ft_fill_piece_simplequote(cmd, i);
+	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
 		printf("\nVAR BEFORE: %s\n", var);
@@ -82,7 +98,7 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	int		var_already_fill;
 
 	i = 0;
-	while (cmd[i] && cmd[i] != '$' && cmd[i] != '\'')
+	while (cmd[i] && cmd[i] != '$' && ft_is_charspe(cmd[i]) == 0)
 		i++;
 	cmdfinal = ft_substr(cmd, 0, i);
 	while (cmd[i])
@@ -90,8 +106,13 @@ char	*ft_replace_var(t_all *all, char *cmd)
 		var_already_fill = 0;
 		var = ft_fill_replace_var(all, cmd, &i, &var_already_fill);
 		if (var != NULL)
+		{
+			// printf("JOINNNNNNNNNNNNNNN\n");
 			cmdfinal = ft_strjoin(cmdfinal, var);
+		}
 		i++;
 	}
+	all->pos_simplequote = 0;
+	all->pos_doublequote = 0;
 	return (cmdfinal);
 }
