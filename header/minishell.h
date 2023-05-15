@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 16:59:49 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:54:13 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		ft_echo(t_all *all, char **tabecho);
 void		ft_echo_var(t_all *all, char *arg);
 void		ft_echo_env(t_all *all, char *arg);
 void		ft_exit(char **cmd);
-void		ft_export(char **envp, t_all *all, char **cmd);
+void		ft_export(t_all *all, char **cmd);
 void		ft_pwd(char **cmd);
 void		ft_unset(t_all *all, t_pip *pip);
 t_listenv	*create_env(char **envp);
@@ -46,6 +46,7 @@ t_listenv	*create_env(char **envp);
 /****************************PRINT_UTILS*****************************/
 
 void		ft_print_listenv(t_all *all, char *cmd, int path_exists);
+void		ft_print_list(t_listenv *lst);
 void		ft_print_tab(char **tab);
 void		ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:41:25 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/11 11:20:06 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:07:45 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,11 @@ void	ft_replace_double(char *var, t_listenv *listexport, t_all **all)
 		{
 			while (var[i] != '=' && var[i])
 				i++;
-			i++;
 			if (var[i])
 			{
 				printf("REPLACE NO =\n");
 				listexport->content
-					= ft_substrexportcontent(var, i, ft_strlen(var));
+					= ft_substrexportcontent(var, i + 1, ft_strlen(var));
 				listexport = tmp;
 			}
 			return ;
