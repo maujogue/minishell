@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/11 09:51:19 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:58:04 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	char	*temp_path2;
 	int		i;
 
-	if (!cmd || access(cmd, X_OK) == 0 || !pip->path)
+	if (!pip->path || !cmd)
+		return (NULL);
+	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
 	i = 1;
 	tab = ft_split(path, ':');
 	if (!tab)
 		free_exit(all, pip, 1, "Error\nMalloc failed1");
-	while (tab[i + 1])
+	while (tab[i])
 	{
 		temp_path = ft_strjoin(tab[i], "/");
 		temp_path2 = ft_strjoin(temp_path, cmd);
@@ -88,7 +90,7 @@ int	check_cmd(t_all *all, t_pip *pip)
 	else if (check_point_slash(cmd) == 1)
 		exit = 1;
 	else
-	{	
+	{
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd)
 		{
