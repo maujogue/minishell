@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:16 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 16:52:17 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:45:56 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,11 @@ int	ft_check_valid_arg(char *str)
 	i = 0;
 	if (str[i] >= '0' && str[i] <= '9')
 	{
-		printf("minishell: unset: '%s': not a valid identifier\n", str);
+		write_error("minishell: unset: '", str, "': not a valid identifier\n");
 		g_status = 1;
 		return (1);
 	}
-	while (str[i])
-	{
-		if ((str[i] >= 33 && str[i] <= 47) || str[i] == '^' || str[i] == '`'
-			|| str[i] == '[' || str[i] == ']'
-			|| (str[i] >= 123 && str[i] <= 125)
-			|| str[i] == '?' || str[i] == '@' || str[i] == '=' || str[i] == ':')
-		{
-			printf("minishell: unset: '%s': not a valid identifier\n", str);
-			g_status = 1;
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+	return (check_invalid_identifier(str, "unset"));
 }
 
 void	ft_unset(t_all *all, t_pip *pip)

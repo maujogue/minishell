@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 16:07:02 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:46:03 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+int	check_invalid_identifier(char *str, char *cmd)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 33 && str[i] <= 47) || str[i] == '^' || str[i] == '`'
+				|| str[i] == '[' || str[i] == ']' || str[i] == ';' || str[i] == '<'
+				|| str[i] == '}' || str[i] == '{' || str[i] == '|' || str[i] == '>'
+				|| str[i] == '?' || str[i] == '@' || str[i] == '=' || str[i] == ':')
+			{
+				write_error("minishell: ", cmd, ": '");
+				ft_putchar_fd(str[i], 2);
+				write_error("", "", "': not a valid identifier\n");
+				g_status = 1;
+				return (1);
+			}
+		i++;
+	}
+	return (0);
+}
 
 int	is_builtin(t_all *all, t_pip *pip)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 18:56:30 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:42:29 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		ft_export(t_all *all, char **cmd);
 void		ft_pwd(char **cmd);
 void		ft_unset(t_all *all, t_pip *pip);
 t_listenv	*create_env(char **envp);
+int			check_invalid_identifier(char *str, char *cmd);
 
 /****************************PRINT_UTILS*****************************/
 
@@ -61,6 +62,7 @@ int			ft_strncmpunset(const char *s1, const char *s2, size_t n);
 
 t_listenv	*unset_env_var(char *cmd, t_listenv *tmp);
 char		*get_env_content(t_listenv	*listenv, char *arg);
+int			check_lst_key_exists(t_listenv	*listenv, char *arg);
 void		replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 
 /****************************EXPORT_UTILS***************************/

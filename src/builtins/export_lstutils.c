@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_lstutils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:39:58 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 19:00:02 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:13:35 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_listenv	*ft_lst_dup(t_listenv *lst)
 		return (NULL);
 	new = ft_lstexport_new(lst->key, lst->content);
 	temp = new;
+	lst = lst->next;
 	while (lst)
 	{
 		new->next = ft_lstexport_new(lst->key, lst->content);
@@ -91,19 +92,15 @@ t_listenv	*ft_lstcat(t_listenv *lst1, t_listenv *lst2)
 	t_listenv	*temp_original;
 	t_listenv	*temp_final;
 	t_listenv	*final;
+	t_listenv	*dup;
 
-	temp_original = lst1;
 	final = ft_lst_dup(lst1);
+	temp_original = lst1;
 	temp_final = final;
-	final = ft_lstexport_last(lst1);
-	while (lst2)
-	{
-		ft_lstexport_add_back(&final, ft_lst_dup(lst2));
-		lst2 = lst2->next;
-		final = final->next;
-	}
+	final = ft_lstexport_last(final);
+	dup = ft_lst_dup(lst2);
+	ft_lstexport_add_back(&final, dup);
 	lst1 = temp_original;
 	final = temp_final;
-	ft_print_listexport(final);
 	return (final);
 }

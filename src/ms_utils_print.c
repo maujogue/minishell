@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:02:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 18:44:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:06:36 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_print_listenv(t_all *all, char *cmd, int path_exists)
 	if (path_exists == 1)
 	{
 		write_error("bash: env: No such file or directory\n", "", "");
+		g_status = 1;
 		return ;
 	}
 	if (cmd[3] != '\0' && (cmd[4] != ' ' && cmd[4] != '\0'))
@@ -81,7 +82,10 @@ void	ft_print_listexport(t_listenv *lst)
 {
 	while (lst != NULL)
 	{
-		printf("declare -x %s=%s\n", lst->key, lst->content);
+		if (lst->content)
+			printf("declare -x %s=\"%s\"\n", lst->key, lst->content);
+		else
+			printf("declare -x %s\n", lst->key);
 		lst = lst->next;
 	}
 }

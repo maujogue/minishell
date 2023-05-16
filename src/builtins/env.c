@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/15 16:05:46 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:00:19 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,31 @@ char	*get_env_content(t_listenv	*listenv, char *arg)
 {
 	while (listenv)
 	{
-		if (ft_strncmp(listenv->key, arg, ft_strlen(arg)) == 0)
+		if (ft_strcmp(listenv->key, arg) == 0)
 			return (ft_strdup(listenv->content));
 		listenv = listenv->next;
 	}
 	return (NULL);
 }
 
+int	check_lst_key_exists(t_listenv	*listenv, char *arg)
+{
+	while (listenv)
+	{
+		if (ft_strcmp(listenv->key, arg) == 0)
+			return (0);
+		listenv = listenv->next;
+	}
+	return (1);
+}
+
 void	replace_env_arg(t_listenv	*listenv, char *arg, char *replacement)
 {
 	while (listenv)
 	{
-		if (ft_strncmp(listenv->key, arg, ft_strlen(arg)) == 0)
+		if (ft_strcmp(listenv->key, arg) == 0)
 		{
-			free(listenv->content);
+			// free(listenv->content);
 			listenv->content = ft_strdup(replacement);
 			return ;
 		}
@@ -48,8 +59,8 @@ t_listenv	*unset_env_var(char *cmd, t_listenv *lst)
 	{
 		if (ft_strcmp(cmd, lst->key) == 0)
 		{
-			free(lst->key);
-			free(lst->content);
+			// free(lst->key);
+			// free(lst->content);
 			if (prev)
 			{
 				prev->next = lst->next;
