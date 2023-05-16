@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 10:11:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:54:26 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ char	*ft_fill_cmd_is_file(char *cmd, int i)
 	int		start;
 	char	*res;
 
-	while (cmd[i] == '<' || cmd[i] == '>')
-		i++;
-	while (cmd[i] == ' ')
-		i++;
-	while (cmd[i] != ' ' && cmd[i])
-		i++;
-	if (cmd[i] == '\0')
-		return (NULL);
-	while (cmd[i] == ' ')
-		i++;
+	while ((cmd[i] == '<' || cmd[i] == '>') && cmd[i] != '\0')
+	{
+		while (cmd[i] == '<' || cmd[i] == '>')
+			i++;
+		while (cmd[i] == ' ')
+			i++;
+		while (cmd[i] != ' ' && cmd[i])
+			i++;
+		if (cmd[i] == '\0')
+			return (NULL);
+		while (cmd[i] == ' ')
+			i++;
+	}
 	start = i;
 	while (cmd[i] != ' ' && cmd[i])
 		i++;
