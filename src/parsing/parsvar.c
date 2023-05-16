@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/16 14:50:11 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:53:54 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 	}
 	// if (cmd[*i] == '\'')
 	// 	var = ft_fill_piece_simplequote(cmd, i);
-	printf("IIIIIIIIIIIIIIIIII: %d\n", *i);
+	// printf("IIIIIIIIIIIIIIIIII: %d\n", *i);
 	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
@@ -88,7 +88,7 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 		if (*var_already_fill == 0)
 			var = ft_fill_replace_dollar(all, var, i);
 		printf("VAR AFTER: %s\n", var);
-		printf("AAAAAAAAAAAAAAAAAa: %d\n", *i);
+		// printf("AAAAAAAAAAAAAAAAAa: %d\n", *i);
 	}
 	else
 		var = ft_substr(cmd, *i, 1);
