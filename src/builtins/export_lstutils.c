@@ -6,7 +6,7 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:39:58 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/16 13:13:35 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/16 15:58:04 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,6 @@ void	ft_lstexport_add_back(t_listenv **lst, t_listenv *new)
 			curr = curr->next;
 		curr->next = new;
 	}
-}
-
-int	ft_lstexport_size(t_listenv *lst)
-{
-	t_listenv	*curr;
-	int			i;
-
-	curr = lst;
-	i = 0;
-	while (curr != NULL)
-	{
-		curr = curr->next;
-		i++;
-	}
-	return (i);
 }
 
 t_listenv	*ft_lst_dup(t_listenv *lst)

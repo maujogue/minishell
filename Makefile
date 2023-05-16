@@ -11,11 +11,10 @@ HEADER_FILE				= minishell.h pipex.h
 DIR						= src/
 
 SRC			 			=	ms_main.c	ms_signals.c	ms_utils_print.c\
-							builtins/export.c	builtins/export_print.c		builtins/export_lstutils.c	builtins/export_varutils.c	builtins/export_utils.c	\
+							builtins/export.c	builtins/export_fill.c	builtins/export_lstutils.c\
 							builtins/env.c	builtins/env_utils.c builtins/unset.c	builtins/builtins.c	\
 							builtins/cd.c	builtins/exit.c		builtins/pwd.c	\
 							builtins/echo.c builtins/echo_var.c	\
-							builtins/ft_strncmpbuil.c \
               				parsing/parsing.c parsing/parsarg.c	parsing/parsopt.c 	parsing/parsfile.c	parsing/pars.c	parsing/parsvar.c\
 							parsing/utilsparsarg.c 		parsing/fillpars.c	\
 							pipex/pp_main.c	pipex/pp_here_doc.c pipex/pp_free.c pipex/pp_dupes.c	pipex/pp_init_files.c	pipex/pp_utils.c pipex/pp_exec.c pipex/pp_free_utils.c\

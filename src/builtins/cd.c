@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 17:06:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:33:48 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ void	replace_env_pwd(t_listenv	*listenv, char *arg)
 	}
 }
 
-int	cd_empty_or_previous(t_all *all, t_pip *pip, char *pwd, char *old_pwd)
+int	cd_empty(t_all *all, t_pip *pip, char *pwd)
 {
 	char	*arg;
-	char	*temp;
 
 	arg = pip->cmd[1];
 	if (!arg)
@@ -38,13 +37,25 @@ int	cd_empty_or_previous(t_all *all, t_pip *pip, char *pwd, char *old_pwd)
 		if (!arg)
 			return (g_status = 1,
 				write_error("bash: cd: HOME not set\n", "", ""), 2);
+		if (access(arg, F_OK) != 0)
+			return (g_status = 1,
+				write_error("bash: cd: ",arg, ": No such file or directory\n"), 2);
 		replace_env_arg(all->listenv, "OLDPWD", pwd);
 		replace_env_arg(all->listenv, "PWD", arg);
 		chdir(arg);
 		free(arg);
 		return (0);
 	}
-	else if (ft_strncmp(arg, "-\0", 2) == 0)
+	return (1);
+}
+
+int	cd_previous(t_all *all, t_pip *pip, char *pwd, char *old_pwd)
+{
+	char	*arg;
+	char	*temp;
+
+	arg = pip->cmd[1];
+	if (arg && ft_strncmp(arg, "-\0", 2) == 0)
 	{
 		chdir(old_pwd);
 		temp = pwd;
@@ -97,7 +108,7 @@ void	ft_cd(t_all *all, t_pip *pip)
 	}
 	pwd = ft_strdup(get_env_content(all->listenv, "PWD"));
 	old_pwd = ft_strdup(get_env_content(all->listenv, "OLDPWD"));
-	if (cd_empty_or_previous(all, pip, pwd, old_pwd) == 1)
+	if (cd_empty(all, pip, pwd) == 1 && cd_previous(all, pip, pwd, old_pwd) == 1)
 		cd_args(all, pip, pwd);
 	free(pwd);
 	free(old_pwd);
