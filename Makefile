@@ -46,10 +46,10 @@ clear:
 						$(CLEAR)
 						
 $(NAME): 				$(OBJECTS) $(LIB_DIR)$(LIBFT)
-						$(CC) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) -lreadline
+						$(CC) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) -lreadline 
 
 sanitize :				$(OBJECTS)
-						$(CC) -g3 $(SANITIZE) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) -lreadline
+						$(CC) -g3 $(SANITIZE) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) 
 
 lib:
 						@make -C $(LIB_DIR) --no-print-directory
