@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/16 11:02:29 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:50:11 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 		all->listexport = all->listexport->next;
 	}
 	all->listexport = tmp;
-	return (NULL);
+	return (*i -= 1, NULL);
 }
 
 char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
@@ -50,9 +50,11 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 	printf("SANS QUOTE: %s\n", var);
 	if (var != NULL)
 		return (*var_already_fill = 1, var);
-	start = *i + 1;
+	*i += 1;
+	start = *i;
 	while (cmd[*i] != ' ' && cmd[*i] && cmd[*i] != '\''
-		&& cmd[*i] != '\"' && !(cmd[*i] >= 91 && cmd[*i] <= 93))// && ft_is_charspe(cmd[*i]) == 0)
+		&& cmd[*i] != '\"' && !(cmd[*i] >= 91 && cmd[*i] <= 93)
+		&& cmd[*i] != 36)// && ft_is_charspe(cmd[*i]) == 0)
 		*i += 1;
 	// printf("%d\n", *i);
 	var = ft_substr(cmd, start, *i - start);
@@ -78,6 +80,7 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 	}
 	// if (cmd[*i] == '\'')
 	// 	var = ft_fill_piece_simplequote(cmd, i);
+	printf("IIIIIIIIIIIIIIIIII: %d\n", *i);
 	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
@@ -85,6 +88,7 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 		if (*var_already_fill == 0)
 			var = ft_fill_replace_dollar(all, var, i);
 		printf("VAR AFTER: %s\n", var);
+		printf("AAAAAAAAAAAAAAAAAa: %d\n", *i);
 	}
 	else
 		var = ft_substr(cmd, *i, 1);
