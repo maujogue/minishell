@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/16 18:23:57 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/17 15:02:07 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	char	*temp_path2;
 	int		i;
 
-	if (!pip->path || !cmd)
-		return (NULL);
 	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
+	if (!pip->path || !cmd)
+		return (NULL);
 	i = 1;
 	tab = ft_split(path, ':');
 	if (!tab)
@@ -87,15 +87,15 @@ int	check_cmd(t_all *all, t_pip *pip)
 		exit = 0;
 	else if (!cmd || cmd[0] == '\0' || check_point_slash(cmd) == 1)
 		exit = 1;
-	else if (!pip->path)
-	{
-		exit = 1;
-		write_error("bash: ", cmd, ": no such file or directory\n");
-	}
 	else
 	{
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
-		if (!pip->path_cmd)
+		if (!pip->path_cmd && !pip->path)
+		{
+			exit = 1;
+			write_error("bash: ", cmd, ": no such file or directory\n");
+		}
+		else if (!pip->path_cmd)
 		{
 			exit = 1;
 			write_error("bash: ", cmd, ": command not found\n");

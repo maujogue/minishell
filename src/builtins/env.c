@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 10:57:06 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:15:24 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_listenv	*unset_env_var(char *cmd, t_listenv *lst)
 void	ft_env(t_all *all, t_pip *pip)
 {
 	if (ft_strlen_array(pip->cmd) == 1)
-		ft_print_listenv(all, pip->cmd[0], !pip->path);
+		ft_print_listenv(all);
 	else
 	{
 		g_status = 127;
