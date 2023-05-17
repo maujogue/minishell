@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_lstutils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:39:58 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/16 15:58:04 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/17 10:57:17 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

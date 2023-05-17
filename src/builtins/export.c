@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/16 18:08:56 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/17 10:42:13 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,18 @@
 int	check_invalid_identifier_export(char *str, char *cmd, int slash)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '^' || str[i] == '`'
-				|| str[i] == '!' || str[i] == '&' || str[i] == '+' || str[i] == ','
-				|| str[i] == '#' || str[i] == '\'' || str[i] == '*' || str[i] == '.'
-				|| str[i] == '%' || str[i] == '(' || str[i] == ')'
-				
-				|| str[i] == '[' || str[i] == ']' || str[i] == ';' || str[i] == '<'
-				|| str[i] == '}' || str[i] == '{' || str[i] == '|' || str[i] == '>'
-				|| str[i] == '?' || str[0] == '=' || str[i] == ':'
-				|| (str[0] >= '0' && str[0] <= '9') || slash == 1)
-			{
-				write_error("minishell: ", cmd, ": `");
-				write_error("", str, "': not a valid identifier\n");
-				g_status = 1;
-				return (1);
-			}
+		if (ft_strchr("^`!&+,#\\*.%()[];<>{}|?:", str[i]) != NULL
+			|| (str[0] >= '0' && str[0] <= '9') || str[0] == '=' || slash == 1)
+		{
+			write_error("minishell: ", cmd, ": `");
+			write_error("", str, "': not a valid identifier\n");
+			g_status = 1;
+			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -52,29 +45,29 @@ void	swap_nodes(t_listenv *a, t_listenv *b)
 	b->content = temp_content;
 }
 
-void sort_linked_list(t_listenv *head)
+void	sort_linked_list(t_listenv *head)
 {
-    t_listenv	*lptr;
+	t_listenv	*lptr;
 	t_listenv	*ptr1;
-    int			swapped;
-	
+	int			swapped;
+
 	swapped = 1;
 	lptr = NULL;
-    while (swapped)
+	while (swapped)
 	{
-        swapped = 0;
-        ptr1 = head;
-        while (ptr1->next != lptr)
+		swapped = 0;
+		ptr1 = head;
+		while (ptr1->next != lptr)
 		{
-            if (ft_strcmp(ptr1->key, ptr1->next->key) > 0)
+			if (ft_strcmp(ptr1->key, ptr1->next->key) > 0)
 			{
-                swap_nodes(ptr1, ptr1->next);
-                swapped = 1;
-            }
-            ptr1 = ptr1->next;
-        }
-        lptr = ptr1;
-    }
+				swap_nodes(ptr1, ptr1->next);
+				swapped = 1;
+			}
+			ptr1 = ptr1->next;
+		}
+		lptr = ptr1;
+	}
 }
 
 void	display_listexport(t_all *all)
