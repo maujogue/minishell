@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 10:42:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:33:31 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_invalid_identifier_export(char *str, char *cmd, int slash)
 	i = 0;
 	while (str[i])
 	{
-		if (ft_strchr("^`!&+,#\\*.%()[];<>{}|?:", str[i]) != NULL
+		if (ft_strchr("^`!&+,#\\*.%()[];<>{}|?", str[i]) != NULL
 			|| (str[0] >= '0' && str[0] <= '9') || str[0] == '=' || slash == 1)
 		{
 			write_error("minishell: ", cmd, ": `");
