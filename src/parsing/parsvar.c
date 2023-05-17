@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 11:22:54 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:46:44 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 	*i += 1;
 	start = *i;
 	while (cmd[*i] != ' ' && cmd[*i] && cmd[*i] != '\''
-		&& cmd[*i] != '\"' && !(cmd[*i] >= 91 && cmd[*i] <= 93)
-		&& cmd[*i] != 36)// && ft_is_charspe(cmd[*i]) == 0)
+		&& cmd[*i] != '\"' && !(cmd[*i] >= 91 && cmd[*i] <= 94)
+		&& cmd[*i] != 33 && !(cmd[*i] >= 40 && cmd[*i] <= 47)
+		&& !(cmd[*i] >= 58 && cmd[*i] <= 64) && !(cmd[*i] >= 123 && cmd[*i] <= 125)
+		&& !(cmd[*i] >= 35 && cmd[*i] <= 38))// && ft_is_charspe(cmd[*i]) == 0)
 		*i += 1;
 	// printf("%d\n", *i);
 	var = ft_substr(cmd, start, *i - start);
