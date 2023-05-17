@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 15:42:18 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:54:26 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ char	*ft_fill_cmd_is_file(char *cmd, int i)
 	int		start;
 	char	*res;
 
-	while (cmd[i] == '<' || cmd[i] == '>')
-		i++;
-	while (cmd[i] == ' ')
-		i++;
-	while (cmd[i] != ' ' && cmd[i])
-		i++;
-	if (cmd[i] == '\0')
-		return (NULL);
-	while (cmd[i] == ' ')
-		i++;
+	while ((cmd[i] == '<' || cmd[i] == '>') && cmd[i] != '\0')
+	{
+		while (cmd[i] == '<' || cmd[i] == '>')
+			i++;
+		while (cmd[i] == ' ')
+			i++;
+		while (cmd[i] != ' ' && cmd[i])
+			i++;
+		if (cmd[i] == '\0')
+			return (NULL);
+		while (cmd[i] == ' ')
+			i++;
+	}
 	start = i;
 	while (cmd[i] != ' ' && cmd[i])
 		i++;
@@ -39,9 +42,11 @@ char	*ft_fillparscmd(char *cmd)
 	int		len;
 	int		nospace;
 	char	*res;
+	int		is_cmd;
 
 	len = 0;
 	nospace = 0;
+	is_cmd = 0;
 	while (cmd[len] == ' ')
 	{
 		len++;
@@ -49,8 +54,12 @@ char	*ft_fillparscmd(char *cmd)
 	}
 	while (cmd[len] != '\0' && cmd[len] != ' ')
 	{
-		if (cmd[len] == '<' || cmd[len] == '>')
+		if (cmd[len] != '<' && cmd[len] != '>')
+			is_cmd = 1;
+		if ((cmd[len] == '<' || cmd[len] == '>') && is_cmd == 0)
 			return (ft_fill_cmd_is_file(cmd, len));
+		if ((cmd[len] == '<' || cmd[len] == '>') && is_cmd == 1)
+			return (ft_substr(cmd, nospace, len - nospace));
 		len++;
 	}
 	res = ft_substr(cmd, nospace, len - nospace);
@@ -62,6 +71,11 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	t_pars	*cmdpars;
 	char	*cmdfinal;
 
+	all->nb_simplequote = ft_countquote(cmd, '\'');
+	all->nb_doublequote = ft_countquote(cmd, '\"');
+//juste pour test les quotes
+	// cmdfinal = ft_parsquote(cmd);
+///////////////////////
 	cmdfinal = ft_replace_var(all, cmd);
 	printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));
@@ -95,7 +109,7 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 	all->parspipex = malloc(sizeof(t_pars) * (len + 1));
 	while (i < len)
 	{
-		printf("cmd %d:", i);
+		printf("cmd %d:\n", i);
 		all->parspipex[i] = ft_cleanpipe(all, tabcmd[i]);
 		i++;
 	}
