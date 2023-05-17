@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:06 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/05 14:19:58 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:16:53 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@ void	ft_printecho(t_all *all, char *arg)
 	int	i;
 
 	i = 0;
-	if (arg[0] == '$' || ((arg[0] >= 33 && arg[0] <= 41) && arg[1] == '$')
-		|| ((arg[0] >= 91 && arg[0] <= 93) && arg[1] == '$'))
-	{
-		ft_echo_var(all, arg);
-		ft_echo_env(all, arg);
-		return ;
-	}
-	while (arg[i] == '"')
-		i++;
+	(void)all;
+	// if (arg[0] == '$' || ((arg[0] >= 33 && arg[0] <= 41) && arg[1] == '$')
+	// 	|| ((arg[0] >= 91 && arg[0] <= 93) && arg[1] == '$'))
+	// {
+	// 	ft_echo_var(all, arg);
+	// 	ft_echo_env(all, arg);
+	// 	return ;
+	// }
+	// while (arg[i] == '"')
+	// 	i++;
 	while (arg[i])
 	{
-		if (arg[i] != '"')
+		// if (arg[i] != '"')
 			printf("%c", arg[i]);
 		i++;
 	}

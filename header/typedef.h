@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:08:22 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 15:49:46 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:20:43 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ typedef struct s_all
 	t_listenv		*listenv;
 	t_listenv		*listexport;
 	t_pars			**parspipex;
-	int				exit_code;
+	unsigned int	exit_code;
+	int				nb_simplequote;
+	int				nb_doublequote;
+	int				pos_simplequote;
+	int				pos_doublequote;
 }	t_all;
 
 typedef struct pip

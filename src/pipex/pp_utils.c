@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/15 10:58:04 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:23:57 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,15 @@ int	check_cmd(t_all *all, t_pip *pip)
 
 	exit = 0;
 	cmd = pip->cmd[0];
-	if (!cmd || cmd[0] == '\0')
-		exit = 1;
-	else if (is_builtin(all, pip) == 0)
+	if (is_builtin(all, pip) == 0)
 		exit = 0;
-	else if (check_point_slash(cmd) == 1)
+	else if (!cmd || cmd[0] == '\0' || check_point_slash(cmd) == 1)
 		exit = 1;
+	else if (!pip->path)
+	{
+		exit = 1;
+		write_error("bash: ", cmd, ": no such file or directory\n");
+	}
 	else
 	{
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);

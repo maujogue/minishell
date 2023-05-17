@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 15:54:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:25:39 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		ft_echo_var(t_all *all, char *arg);
 void		ft_echo_env(t_all *all, char *arg);
 void		ft_exit(char **cmd);
 void		ft_export(t_all *all, char **cmd);
-void		ft_pwd(char **cmd);
+void		ft_pwd();
 void		ft_unset(t_all *all, t_pip *pip);
 t_listenv	*create_env(char **envp);
 
@@ -50,36 +50,29 @@ void		ft_print_list(t_listenv *lst);
 void		ft_print_tab(char **tab);
 void		ft_print_tab_pipe(char **tab);
 void		ft_print_tabexport(char **tab);
-void		ft_print_listexport(t_listenv *listexport, t_all *all);
+void		ft_print_listexport(t_listenv *lst);
 void		ft_print_tabarg(char **tab);
 
-/****************************STRCMP_UTILS****************************/
-
-int			ft_strncmpecho(const char *s1, const char *s2, size_t n);
-int			ft_strncmpexport(const char *s1, const char *s2, size_t n);
-int			ft_strncmpunset(const char *s1, const char *s2, size_t n);
+/****************************ENV_UTILS****************************/
 
 t_listenv	*unset_env_var(char *cmd, t_listenv *tmp);
 char		*get_env_content(t_listenv	*listenv, char *arg);
+int			check_lst_key_exists(t_listenv	*listenv, char *arg);
 void		replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 
 /****************************EXPORT_UTILS***************************/
 
-void		free_listenv(t_listenv *lst);
-t_listenv	*ft_lstexport_new(char *var);
+t_listenv	*ft_lstexport_new(char *key, char *content);
 t_listenv	*ft_lstexportlast(t_listenv *lst);
-void		ft_lstexportadd_back(t_listenv **lst, t_listenv *new);
-int			ft_lstexportsize(t_listenv *lst);
-void		ft_replace_double(char *var, t_listenv *listexport, t_all **all);
-int			ft_check_double_var(char *var, t_listenv *listexport, t_all **all);
-int			ft_check_name_var(char *var);
-void		ft_export_fillkeycontentvar(t_listenv *new, char *var);
-char		*ft_substrexportkey(char const *s, unsigned int start, size_t len);
-char		*ft_substrexportcontent(char const *s,
-				unsigned int start, size_t len);
-void		ft_sort_env(char **envp);
+t_listenv	*ft_lstcat(t_listenv *lst1, t_listenv *lst2);
+t_listenv	*ft_lst_dup(t_listenv *lst);
+void		ft_lstexport_add_back(t_listenv **lst, t_listenv *new);
+void		free_listenv(t_listenv *lst);
+void		fill_export(t_all *all, char **tab_cmd);
+int         check_invalid_identifier_export(char *str, char *cmd, int slash);
 
-/****************************PARSING********************************/
+
+/****************************PARSING*********************************/
 
 void		ft_parsing(t_all *all, char *cmd);
 void		ft_initpars(t_pars *pars);
@@ -87,17 +80,36 @@ int			ft_isredir(char *cmd, int i);
 void		ft_jump_redir(char *cmd, int *i);
 void		ft_jumpfile(char *cmd, int *i);
 int			ft_isopt(char *cmd, int i);
-char		**ft_fillparsopt2(char *cmd);
-char		**ft_fillparsarg(t_all *all, char *cmd);
-char		*ft_fillnamefile(char *cmd, int i);
-char		**ft_filetodouble(char **tab, char *file);
+int			ft_is_charspe(char c);
 int			ft_strlen_triple_char(char ***str);
 void		ft_fillstructpars(t_pars **pars, char **tabcmd);
-char		*ft_replace_var(t_all *all, char *cmd);
+int			ft_strlen_triple_char(char ***str);
+
+/****************************PARSING_ARG*****************************/
+
+char		**ft_fillparsopt2(char *cmd);
+char		**ft_fillparsarg(t_all *all, char *cmd);
+
+/****************************PARSING_FILE****************************/
+
 void		ft_fillpars_infile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile_append(t_pars *pars, char *cmd);
 void		ft_fillpars_heredoc(t_pars *pars, char *cmd);
+char		*ft_fillnamefile(char *cmd, int i);
+char		**ft_filetodouble(char **tab, char *file);
+
+/****************************PARSING_VAR_QUOTE***********************/
+
+char		*ft_replace_var(t_all *all, char *cmd);
+
+int			ft_countquote(char *cmd, char quote);
+char		*ft_parsquote(char *cmd);
+char		*ft_fill_piece_simplequote(char *cmd, int *i);
+char		*ft_wherequote(t_all *all, char *cmd, int *i);
+int			ft_simplequote_start(char *cmd, int i);
+int			ft_doublequote_start(char *cmd, int i);
+char		*ft_cmd_whitout_simplequote(char *cmd);
 
 /****************************SIGNALS********************************/
 

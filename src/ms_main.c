@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/09 16:58:15 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:25:57 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	ft_init_all(t_all *all, char **envp)
 	all->listenv = create_env(envp);
 	all->listexport = NULL;
 	all->exit_code = 0;
+	all->nb_simplequote = 0;
+	all->nb_doublequote = 0;
+	all->pos_simplequote = 0;
+	all->pos_doublequote = 0;
 	incr_shell_lvl(all, 1);
 }
 
