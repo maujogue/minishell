@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 11:19:11 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:22:54 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 	return (*i -= 1, NULL);
 }
 
-char	*ft_fill_to_replace_dollar(char *cmd,
+char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 	int *i, int *var_already_fill)
 {
 	char	*var;

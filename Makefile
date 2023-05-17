@@ -10,13 +10,14 @@ HEADER_FILE				= minishell.h pipex.h
 
 DIR						= src/
 
-SRC			 			=	ms_main.c	ms_signals.c	ms_utils_print.c	ms_utils_pars.c\
-							builtins/export.c	builtins/export_print.c		builtins/export_lstutils.c	builtins/export_varutils.c	builtins/export_utils.c	\
+SRC			 			=	ms_main.c	ms_signals.c	ms_utils_print.c	ms_utils_pars.c \
+							builtins/export.c	builtins/export_fill.c	builtins/export_lstutils.c\
 							builtins/env.c	builtins/env_utils.c builtins/unset.c	builtins/builtins.c	\
 							builtins/cd.c	builtins/exit.c		builtins/pwd.c	\
 							builtins/echo.c builtins/echo_var.c	\
-							builtins/ft_strncmpbuil.c \
-              				parsing/parsing.c parsing/parsarg.c	parsing/parsopt.c 	parsing/parsfile.c	parsing/pars.c	parsing/parsvar.c	parsing/parsquote.c		parsing/utilsparsquote.c	parsing/parsimplequote.c \
+              				parsing/parsing.c parsing/parsarg.c	parsing/parsopt.c 	\
+							parsing/parsfile.c	parsing/pars.c	parsing/parsvar.c	\
+							parsing/parsquote.c		parsing/utilsparsquote.c	parsing/parsimplequote.c \
 							parsing/utilsparsarg.c 		parsing/fillpars.c	\
 							pipex/pp_main.c	pipex/pp_here_doc.c pipex/pp_free.c pipex/pp_dupes.c	pipex/pp_init_files.c	pipex/pp_utils.c pipex/pp_exec.c pipex/pp_free_utils.c\
 							pipex/pp_get_env_cmds.c pipex/pp_cmds_to_pip.c \
@@ -46,10 +47,10 @@ clear:
 						$(CLEAR)
 						
 $(NAME): 				$(OBJECTS) $(LIB_DIR)$(LIBFT)
-						$(CC) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) -lreadline
+						$(CC) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) -lreadline 
 
 sanitize :				$(OBJECTS)
-						$(CC) -g3 $(SANITIZE) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) -lreadline
+						$(CC) -g3 $(SANITIZE) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) 
 
 lib:
 						@make -C $(LIB_DIR) --no-print-directory
