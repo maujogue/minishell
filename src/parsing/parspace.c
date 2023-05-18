@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:29:20 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/18 13:19:51 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:15:25 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,22 @@ char	*ft_fill_caret_when_space(char *cmd)
 {
 	size_t	len;
 	char	*res;
-	int		quoteopen;
+	int		doublequoteopen;
+	int		simplequoteopen;
 	int		i;
 
 	i = 0;
-	quoteopen = 0;
+	simplequoteopen = 0;
+	doublequoteopen = 0;
 	len = ft_strlen(cmd);
 	res = (char *)malloc((len + 1) * sizeof(char));
 	while (cmd[i])
 	{
+		if (cmd[i] == '\'')
+			simplequoteopen = !simplequoteopen;
 		if (cmd[i] == '"')
-			quoteopen = !quoteopen;
-		if (cmd[i] == ' ' && quoteopen)
+			doublequoteopen = !doublequoteopen;
+		if (cmd[i] == ' ' && (doublequoteopen || simplequoteopen))
 			res[i] = 127;
 		else
 			res[i] = cmd[i];
