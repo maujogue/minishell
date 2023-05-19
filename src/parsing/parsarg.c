@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/05 15:40:28 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:29:29 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ char	*ft_fillarg(t_all *all, char *cmd, int *i)
 	if (isarg == 0)
 		return (NULL);
 	res = ft_substr(cmd, start, *i - start);
+	res = ft_replace_caret(res);
 	return (res);
 }
 
