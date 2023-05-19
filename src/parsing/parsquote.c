@@ -6,27 +6,11 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 13:24:04 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/18 14:26:39 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:56:41 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
-
-int	ft_countquote(char *cmd, char quote)
-{
-	int	res;
-	int	i;
-
-	res = 0;
-	i = 0;
-	while (cmd[i])
-	{
-		if (cmd[i] == quote)
-			res++;
-		i++;
-	}
-	return (res);
-}
 
 char	*ft_wherequote(t_all *all, char *cmd, int *i)
 {
@@ -35,8 +19,6 @@ char	*ft_wherequote(t_all *all, char *cmd, int *i)
 	int		len;
 
 	len = 1;
-	// printf("%d\n", all->pos_simplequote);
-	// printf("%d\n", all->pos_doublequote);
 	if (all->pos_simplequote % 2 != 0 && all->pos_doublequote % 2 == 0)
 	{
 		start = *i;
@@ -45,10 +27,7 @@ char	*ft_wherequote(t_all *all, char *cmd, int *i)
 			len++;
 			*i += 1;
 		}
-		// printf("START: %d\n", start);
-		// printf("LEN: %d\n", len);
 		var = ft_substr(cmd, start, len - 1);
-		// printf("VAR: %s\n", var);
 		return (var);
 	}
 	if (all->pos_simplequote % 2 != 0 && all->pos_doublequote % 2 != 0)
@@ -68,21 +47,6 @@ char	*ft_wherequote(t_all *all, char *cmd, int *i)
 			printf("VAR: %s\n", var);
 			return (var);
 		}
-		// else
-		// {
-		// 	while (cmd[*i] != '\"' && *i >= 0)
-		// 		*i -= 1;
-		// 	start = *i + 1;
-		// 	*i += 1;
-		// 	while (cmd[*i] != '\"' && cmd[*i])
-		// 	{
-		// 		len++;
-		// 		*i += 1;
-		// 	}
-		// 	var = ft_substr(cmd, start, len - 1);
-		// 	printf("VAR: %s\n", var);
-		// 	return (var);
-		// }
 	}
 	return (NULL);
 }
