@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 13:46:44 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:24:31 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,22 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	char	*var;
 	int		var_already_fill;
 	char	*cmdquote;
+	char	*cmdcaret;
 
 	i = 0;
 	cmdquote = ft_cmd_whitout_simplequote(cmd);
 	printf("TEST SIMPLE QUOTE: %s\n", cmdquote);
-	while (cmd[i] && cmd[i] != '$' && ft_is_charspe(cmd[i]) == 0)
+	cmdcaret = ft_fill_caret_when_space(cmd);
+	printf("TEST AVEC CARET: %s\n", cmdcaret);
+	all->pos_simplequote = 0;
+	all->pos_doublequote = 0;
+	while (cmdcaret[i] && cmdcaret[i] != '$' && ft_is_charspe(cmdcaret[i]) == 0)
 		i++;
-	cmdfinal = ft_substr(cmd, 0, i);
-	while (cmd[i])
+	cmdfinal = ft_substr(cmdcaret, 0, i);
+	while (cmdcaret[i])
 	{
 		var_already_fill = 0;
-		var = ft_fill_replace_var(all, cmd, &i, &var_already_fill);
+		var = ft_fill_replace_var(all, cmdcaret, &i, &var_already_fill);
 		if (var != NULL)
 		{
 			// printf("JOINNNNNNNNNNNNNNN\n");

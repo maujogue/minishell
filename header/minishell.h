@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 10:43:40 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:20:06 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int			ft_is_charspe(char c);
 int			ft_strlen_triple_char(char ***str);
 void		ft_fillstructpars(t_pars **pars, char **tabcmd);
 int			ft_strlen_triple_char(char ***str);
+char		*ft_fill_caret_when_space(char *cmd);
+char		*ft_replace_caret(char *src);
 
 /****************************PARSING_ARG*****************************/
 
