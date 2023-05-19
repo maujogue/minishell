@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 11:25:57 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:51:51 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@ void	incr_shell_lvl(t_all *all, int n)
 	int		lvl_int;
 
 	lvl_char = get_env_content(all->listenv, "SHLVL");
-	lvl_int = ft_atoi(lvl_char);
-	lvl_int += n;
-	free(lvl_char);
-	lvl_char = ft_itoa(lvl_int);
-	replace_env_arg(all->listenv, "SHLVL", lvl_char);
-	free(lvl_char);
+	if (lvl_char)
+	{
+		lvl_int = ft_atoi(lvl_char);
+		lvl_int += n;
+		free(lvl_char);
+		lvl_char = ft_itoa(lvl_int);
+		replace_env_arg(all->listenv, "SHLVL", lvl_char);
+		free(lvl_char);
+	}
 }
 
 void	ft_init_all(t_all *all, char **envp)
 {
 	all->listenv = NULL;
+	(void)envp;
 	all->listenv = create_env(envp);
 	all->listexport = NULL;
 	all->exit_code = 0;
@@ -52,6 +56,8 @@ void	ft_initpars(t_pars *pars)
 	pars->outfile_last = 0;
 }
 
+
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -67,7 +73,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!cmd)
 		{
 			printf("exit\n");
-			exit(0);
+			exit(g_status);
 		}
 		add_history(cmd);
 		ft_parsing(&all, cmd);

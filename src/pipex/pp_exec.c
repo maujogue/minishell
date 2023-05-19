@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 11:15:43 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:57:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	wait_id(t_pip *pip)
 	int	status;
 
 	i = 0;
-	while (++i <= pip->nb_arg)
+	while (i <= pip->nb_arg)
 	{
 		wait(&status);
 		if (WIFEXITED(status))

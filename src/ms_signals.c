@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:15:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/16 15:54:08 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/05/17 14:20:17 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	sigint_handler(int sig)
 {
 	g_status = 128 + sig;
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
-	// rl_replace_line("", 0);
-	// rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_on_new_line();
 }
 
 void	sigint_handler_in_process(int sig)

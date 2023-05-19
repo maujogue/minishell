@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 16:58:58 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:36:17 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,37 @@ void	ft_lstenvadd_back(t_listenv **lst, t_listenv *new)
 	}
 }
 
+t_listenv	*create_node_env_i(t_listenv *listenv, char *key, char *content)
+{
+	char		*str;
+	t_listenv	*node;
+
+	str = ft_strjoin(key, content);
+	if (!str)
+		return (NULL);
+	node = ft_lstenv_new(str);
+	if (!node)
+		return (NULL);
+	free(str);
+	ft_lstenvadd_back(&listenv, node);
+	return (listenv);
+}
+
 t_listenv	*ft_fill_env(t_listenv *listenv, char **envp)
 {
 	int			i;
 	t_listenv	*node;
+	char		*str;
 
 	i = 0;
+	if (!envp[0])
+	{
+		str = getcwd(NULL, 0);
+		listenv = create_node_env_i(listenv, "PWD=", str);
+		free(str);
+		listenv = create_node_env_i(listenv, "SHLVL=", "1");
+		listenv = create_node_env_i(listenv, "_=", "/usr/bin/env");
+	}
 	while (envp[i])
 	{
 		node = ft_lstenv_new(envp[i]);
