@@ -6,20 +6,14 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:33:10 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/15 16:21:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:41:39 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char	*ft_fill_var_quote(char *cmd, int *i)
+char	*ft_fill_var_quote_part(char *cmd, int *i, int start, int len)
 {
-	char	*res;
-	int		start;
-	int		len;
-
-	len = 0;
-	start = *i;
 	if (cmd[*i] == '\"')
 	{
 		*i += 1;
@@ -29,8 +23,7 @@ char	*ft_fill_var_quote(char *cmd, int *i)
 			len++;
 			*i += 1;
 		}
-		res = ft_substr(cmd, start, len + 1);
-		return (res);
+		return (ft_substr(cmd, start, len + 1));
 	}
 	else if (cmd[*i] == '\'')
 	{
@@ -41,9 +34,22 @@ char	*ft_fill_var_quote(char *cmd, int *i)
 			len++;
 			*i += 1;
 		}
-		res = ft_substr(cmd, start, len);
-		return (res);
+		return (ft_substr(cmd, start, len));
 	}
+	return (NULL);
+}
+
+char	*ft_fill_var_quote(char *cmd, int *i)
+{
+	char	*res;
+	int		start;
+	int		len;
+
+	len = 0;
+	start = *i;
+	res = ft_fill_var_quote_part(cmd, i, start, len);
+	if (res != NULL)
+		return (res);
 	while (cmd[*i] != '\"' && cmd[*i] != '\'' && cmd[*i])
 	{
 		len++;
