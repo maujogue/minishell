@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsvar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 11:24:31 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:35:27 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 	int		start;
 
 	if (cmd[*i + 1] == '?')
-		return (*i += 1, *var_already_fill = 1, ft_itoa(all->exit_code));
+		return (*i += 1, *var_already_fill = 1, ft_itoa(g_status));
 	var = ft_wherequote(all, cmd, i);
 	printf("SANS QUOTE: %s\n", var);
 	if (var != NULL)

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/19 11:31:10 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:49:39 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	close_p(t_pip *pip, int all)
 	int	i;
 
 	i = 0;
-	while (i < pip->curr * 2)
+	while (i < pip->curr * all)
 	{
 		close(pip->fds[i]);
-		i += all;
+		i++;
 	}
 }
 
@@ -28,7 +28,9 @@ void	wait_id(t_pip *pip)
 {
 	int	i;
 	int	status;
+	int	temp;
 
+	temp = g_status;
 	i = 0;
 	status = 0;
 	while (i <= pip->nb_arg)
@@ -38,6 +40,8 @@ void	wait_id(t_pip *pip)
 			g_status = WEXITSTATUS(status);
 		i++;
 	}
+	if (g_status == 0)
+		g_status = temp;
 }
 
 void	exec_cmd(t_all *all, t_pip *pip)

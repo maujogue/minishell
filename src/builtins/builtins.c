@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 11:24:39 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:28:06 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_builtins(t_all *all, t_pip *pip)
 	if (ft_strncmp(pip->cmd[0], "exit\0", 5) == 0)
 		ft_exit(pip->cmd);
 	else if (ft_strncmp(pip->cmd[0], "echo\0", 5) == 0)
-		ft_echo(all, pip->cmd);
+		ft_echo(pip->cmd);
 	else if (ft_strncmp(pip->cmd[0], "env\0", 4) == 0)
 		ft_env(all, pip);
 	else if (ft_strncmp(pip->cmd[0], "export\0", 7) == 0)

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:20:46 by mathisaujog       #+#    #+#             */
-/*   Updated: 2023/05/17 11:33:42 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:20:43 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	fill_export(t_all *all, char **tab_cmd)
 		if (check_invalid_identifier_export(tab_cmd[i], "export", 0) == 1)
 			return ;
 		new = get_export_node(tab_cmd[i]);
-		if (ft_strchr(new->key, '/') != NULL || ft_strchr(new->key, '@') != NULL
-			|| ft_strchr(new->key, '-') != NULL || ft_strchr(new->key, ':') != NULL)
+		if (ft_strchr(new->key, '/') != 0 || ft_strchr(new->key, '@') != 0
+			|| ft_strchr(new->key, '-') != 0 || ft_strchr(new->key, ':') != 0)
 		{
 			check_invalid_identifier_export(tab_cmd[i], "export", 1);
 			return ;

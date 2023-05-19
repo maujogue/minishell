@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 14:20:06 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:29:04 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ int			is_builtin(t_all *all, t_pip *pip);
 
 void		ft_cd(t_all *all, t_pip *pip);
 void		ft_env(t_all *all, t_pip *pip);
-void		ft_echo(t_all *all, char **tabecho);
-void		ft_echo_var(t_all *all, char *arg);
-void		ft_echo_env(t_all *all, char *arg);
+void		ft_echo(char **tabecho);
 void		ft_exit(char **cmd);
 void		ft_export(t_all *all, char **cmd);
 void		ft_pwd(void);

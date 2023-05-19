@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/19 14:13:19 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:47:34 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	create_pipes(t_all *all, t_pip *pip)
 	int	i;
 
 	i = 0;
-	pip->fds = malloc(sizeof(int) * (pip->nb_arg * (2)));
+	pip->fds = malloc(sizeof(int) * (pip->nb_arg * (3)));
 	if (!pip->fds)
 		free_exit(all, pip, 1, "Error\nMalloc failed");
 	while (i < pip->nb_arg)

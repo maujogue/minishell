@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:40:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 11:46:12 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:29:30 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,6 @@ char	*ft_mallockey_var(char *arg, int *i)
 		key[*i - 1] = '\0';
 	}
 	return (key);
-}
-
-void	ft_echo_var(t_all *all, char *arg)
-{
-	char		*key;
-	int			i;
-	t_listenv	*tmp;
-
-	tmp = all->listexport;
-	i = 0;
-	key = ft_mallockey_var(arg, &i);
-	if (!all->listexport)
-		return ;
-	while (all->listexport != NULL)
-	{
-		if (ft_strcmp(key, all->listexport->key) == 0)
-		{
-			if (all->listexport->content != NULL)
-				printf("%s", all->listexport->content);
-			all->listexport = tmp;
-			return ;
-		}
-		all->listexport = all->listexport->next;
-	}
-	all->listexport = tmp;
-	free(key);
 }
 
 void	ft_print_before_var(char *arg)
@@ -100,31 +74,4 @@ char	*ft_mallockey_env(char *arg, int *i)
 		key[*i - 1] = '\0';
 	}
 	return (key);
-}
-
-void	ft_echo_env(t_all *all, char *arg)
-{
-	char		*key;
-	int			i;
-	t_listenv	*tmp;
-
-	tmp = all->listenv;
-	i = 0;
-	key = ft_mallockey_env(arg, &i);
-	ft_print_before_var(arg);
-	if (!all->listenv)
-		return ;
-	while (all->listenv != NULL)
-	{
-		if (ft_strcmp(key, all->listenv->key) == 0)
-		{
-			if (all->listenv->content != NULL)
-				printf("%s", all->listenv->content);
-			all->listenv = tmp;
-			return ;
-		}
-		all->listenv = all->listenv->next;
-	}
-	all->listenv = tmp;
-	free(key);
 }
