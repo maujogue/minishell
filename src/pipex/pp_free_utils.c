@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:57 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 10:56:34 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:40:15 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	free_listenv(t_listenv *lst)
 	while (lst)
 	{
 		temp = lst->next;
-		// free(lst->content);
-		// free(lst->key);
-		// free(lst);
+		free(lst->content);
+		free(lst->key);
+		free(lst);
 		lst = temp;
 	}
 }

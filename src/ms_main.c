@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 14:51:51 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:18:31 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	incr_shell_lvl(t_all *all, int n)
 		free(lvl_char);
 		lvl_char = ft_itoa(lvl_int);
 		replace_env_arg(all->listenv, "SHLVL", lvl_char);
-		free(lvl_char);
 	}
+	free(lvl_char);
 }
 
 void	ft_init_all(t_all *all, char **envp)
 {
 	all->listenv = NULL;
-	(void)envp;
 	all->listenv = create_env(envp);
 	all->listexport = NULL;
 	all->exit_code = 0;
@@ -68,11 +67,15 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_all(&all, envp);
 	while (1)
 	{
-		signals();
+		if (ft_atoi(get_env_content(all.listenv, "SHLVL")) > 2)
+			signals_inside_minishell();
+		else
+			signals();
 		cmd = readline(">>");
 		if (!cmd)
 		{
 			printf("exit\n");
+			free_exit_all_pipex(&all);
 			exit(g_status);
 		}
 		add_history(cmd);
@@ -80,5 +83,6 @@ int	main(int argc, char **argv, char **envp)
 		pipex(&all);
 	}
 	incr_shell_lvl(&all, -1);
+	free_exit_all_pipex(&all);
 	return (0);
 }

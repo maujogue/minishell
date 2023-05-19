@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 10:54:08 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:33:30 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void	free_files(t_all *all, int i)
 
 void	free_exit_all_pipex(t_all *all)
 {
+	close(0);
+	close(1);
+	close(2);
 	free_listenv(all->listenv);
 	free_listenv(all->listexport);
-	free_parse_tab(all);
 }
 
 void	free_exit(t_all *all, t_pip *pip, int i, char *message)
@@ -62,7 +64,7 @@ void	free_exit(t_all *all, t_pip *pip, int i, char *message)
 	free(pip->fd_infile);
 	free(pip->fd_outfile);
 	free(pip->fd_outfile_append);
-	free_exit_all_pipex(all);
+	free_parse_tab(all);
 	free(pip->fds);
 	pip->cmd = NULL;
 	pip->path_cmd = NULL;
@@ -71,5 +73,6 @@ void	free_exit(t_all *all, t_pip *pip, int i, char *message)
 	pip->path = NULL;
 	pip->fds = NULL;
 	if (i != 0)
-		write(1, message, ft_strlen(message));
+		exit(g_status);
+	write(1, message, ft_strlen(message));
 }

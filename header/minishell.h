@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 15:15:12 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:43:40 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,12 @@ char		*ft_cmd_whitout_simplequote(char *cmd);
 /****************************SIGNALS********************************/
 
 void		signals(void);
+void        signals_inside_minishell(void);
 void		signals_in_process(void);
 void		signals_in_heredoc(void);
+
+/****************************FREE***********************************/
+
+void	free_exit_all_pipex(t_all *all);
 
 #endif

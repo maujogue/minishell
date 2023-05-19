@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 15:02:07 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:59:08 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	char	*temp_path2;
 	int		i;
 
-	if (access(cmd, X_OK) == 0)
+	if (access(cmd, X_OK) == 0 && ft_strcmp(cmd, "minishell"))
 		return (ft_strdup(cmd));
 	if (!pip->path || !cmd)
 		return (NULL);
@@ -51,9 +51,6 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 		free(temp_path2);
 		i++;
 	}
-	temp_path2 = ft_strjoin(tab[i], cmd);
-	if (access(temp_path, F_OK) == 0)
-		return (free_array(tab), temp_path2);
 	return (free_array(tab), NULL);
 }
 
@@ -61,6 +58,12 @@ int	check_point_slash(char *cmd)
 {
 	int	i;
 
+	i = 0;
+	// while (cmd[i] == '<' || cmd[i] == '>' || cmd[i] == ' ')
+	// 	i++;
+	if (ft_strcmp(cmd, ":\0") == 0
+		|| ft_strcmp(cmd, "\n\0") == 0 || ft_strcmp(cmd, "!\0") == 0)
+		return (1);
 	i = 0;
 	if (ft_strcmp(".", cmd) == 0)
 		return (write_error("bash: ", cmd, ": filename argument required\n"), 1);
@@ -91,15 +94,10 @@ int	check_cmd(t_all *all, t_pip *pip)
 	{
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd && !pip->path)
-		{
-			exit = 1;
 			write_error("bash: ", cmd, ": no such file or directory\n");
-		}
 		else if (!pip->path_cmd)
-		{
-			exit = 1;
 			write_error("bash: ", cmd, ": command not found\n");
-		}
+		exit = 1;
 	}
 	if (exit == 1)
 		g_status = 127;
