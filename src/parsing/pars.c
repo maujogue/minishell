@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 09:53:49 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 10:14:09 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,33 @@ void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
 	is_outfile_append = 0;
 	while (cmd[i])
 	{
-		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
+		if ((i == 0 && cmd[i] == '<' && cmd[i + 1] != '<') || (i != 0
+				&& cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<'))
 		{
 			if (is_infile == 0)
 				ft_fillpars_infile(pars[number], cmd);
 			is_infile = 1;
 		}
-		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>')
+		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] != '>') || (i != 0
+				&& cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '<'))
 		{
 			if (is_outfile == 0)
 				ft_fillpars_outfile(pars[number], cmd);
 			is_outfile = 1;
 		}
-		if (cmd[i - 1] != '<' && cmd[i] == '<'
-			&& cmd[i + 1] == '<' && cmd[i + 2] != '<')
+		if ((i == 0 && cmd[i] == '<' && cmd[i + 1] == '<'
+				&& cmd[i + 2] != '<')
+			|| (i != 0 && cmd[i - 1] != '<' && cmd[i] == '<'
+				&& cmd[i + 1] == '<' && cmd[i + 2] != '<'))
 		{
 			if (is_heredoc == 0)
 				ft_fillpars_heredoc(pars[number], cmd);
 			is_heredoc = 1;
 		}
-		if (cmd[i - 1] != '>' && cmd[i] == '>'
-			&& cmd[i + 1] == '>' && cmd[i + 2] != '>')
+		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] == '>'
+				&& cmd[i + 2] != '>')
+			|| (i != 0 && cmd[i - 1] != '>' && cmd[i] == '>'
+				&& cmd[i + 1] == '>' && cmd[i + 2] != '>'))
 		{
 			if (is_outfile_append == 0)
 				ft_fillpars_outfile_append(pars[number], cmd);
