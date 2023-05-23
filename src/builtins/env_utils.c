@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 12:49:01 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:53:34 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,16 @@ t_listenv	*ft_lstenv_new(char *str)
 	t_listenv	*new;
 	char		**split;
 
-	new = malloc(sizeof(t_listenv) + 1);
+	new = malloc(sizeof(t_listenv));
 	if (!new)
 		return (NULL);
 	split = ft_split(str, '=');
 	if (!split)
-		return (NULL);
+		return (free(new), NULL);
 	new->key = ft_strdup(split[0]);
 	split = ft_fusion_split(split);
 	new->content = ft_strdup(split[1]);
+	// free(new->content);
 	new->next = NULL;
 	free_array(split);
 	return (new);

@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 16:14:01 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:44:38 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	free_parse_tab(t_all *all)
 		return ;
 	while (all->parspipex[i])
 	{
-		printf("\nOKKKKKKKKKKKKKKKKKKKK\n");
 		free_array(all->parspipex[i]->tabfinal);
 		free_array(all->parspipex[i]->arg);
 		free_array(all->parspipex[i]->opt2);

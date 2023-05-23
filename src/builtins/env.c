@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 15:15:24 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:55:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	replace_env_arg(t_listenv	*listenv, char *arg, char *replacement)
 	{
 		if (ft_strcmp(listenv->key, arg) == 0)
 		{
-			// free(listenv->content);
+			free(listenv->content);
 			listenv->content = ft_strdup(replacement);
 			return ;
 		}
@@ -59,8 +59,8 @@ t_listenv	*unset_env_var(char *cmd, t_listenv *lst)
 	{
 		if (ft_strcmp(cmd, lst->key) == 0)
 		{
-			// free(lst->key);
-			// free(lst->content);
+			free(lst->key);
+			free(lst->content);
 			if (prev)
 			{
 				prev->next = lst->next;

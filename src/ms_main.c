@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 15:31:11 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:58:16 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	ft_initpars(t_pars *pars)
 	pars->outfile_last = 0;
 }
 
-
-
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -74,10 +72,6 @@ int	main(int argc, char **argv, char **envp)
 		{
 			printf("exit\n");
 			free_all(&all);
-			// if (all.parspipex)
-			// 	printf("                   EXIST                      ");
-			// else
-			// 	printf("                   NOPE                      ");
 			exit(g_status);
 		}
 		add_history(cmd);
