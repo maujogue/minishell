@@ -6,41 +6,25 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:29:20 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/18 14:15:25 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:56:48 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char	*ft_fill_caret(t_all *all, char *cmd, int *i)
+int	ft_countquote(char *cmd, char quote)
 {
-	char	*res;
-	int		len;
-	int		start;
+	int	res;
+	int	i;
 
-	len = 0;
-	*i += 1;
-	start = *i;
-	while (cmd[*i] != '\"' && cmd[*i])
+	res = 0;
+	i = 0;
+	while (cmd[i])
 	{
-		len++;
-		*i += 1;
+		if (cmd[i] == quote)
+			res++;
+		i++;
 	}
-	*i = start;
-	res = malloc(sizeof(char) * (len + 1));
-	len = 0;
-	while (cmd[*i] != '\"' && cmd[*i])
-	{
-		if (cmd[*i] == ' ')
-			res[len] = '^';
-			// res[len] = 127;
-		else
-			res[len] = cmd[*i];
-		len++;
-		*i += 1;
-	}
-	res[len] = '\0';
-	all->pos_doublequote++;
 	return (res);
 }
 

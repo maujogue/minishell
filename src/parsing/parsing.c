@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 14:18:17 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:53:56 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 
 	all->nb_simplequote = ft_countquote(cmd, '\'');
 	all->nb_doublequote = ft_countquote(cmd, '\"');
-//juste pour test les quotes
-	// cmdfinal = ft_parsquote(cmd);
-///////////////////////
 	cmdfinal = ft_replace_var(all, cmd);
 	printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsvar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 15:35:27 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:54:20 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 	while (cmd[*i] != ' ' && cmd[*i] && cmd[*i] != '\''
 		&& cmd[*i] != '\"' && !(cmd[*i] >= 91 && cmd[*i] <= 94)
 		&& cmd[*i] != 33 && !(cmd[*i] >= 40 && cmd[*i] <= 47)
-		&& !(cmd[*i] >= 58 && cmd[*i] <= 64) && !(cmd[*i] >= 123 && cmd[*i] <= 125)
-		&& !(cmd[*i] >= 35 && cmd[*i] <= 38))// && ft_is_charspe(cmd[*i]) == 0)
+		&& !(cmd[*i] >= 58 && cmd[*i] <= 64)
+		&& !(cmd[*i] >= 123 && cmd[*i] <= 125)
+		&& !(cmd[*i] >= 35 && cmd[*i] <= 38))
 		*i += 1;
-	// printf("%d\n", *i);
 	var = ft_substr(cmd, start, *i - start);
 	return (var);
 }
@@ -80,9 +80,6 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 		printf("\":%d\n", all->pos_doublequote);
 		return (NULL);
 	}
-	// if (cmd[*i] == '\'')
-	// 	var = ft_fill_piece_simplequote(cmd, i);
-	// printf("IIIIIIIIIIIIIIIIII: %d\n", *i);
 	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
@@ -90,7 +87,6 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 		if (*var_already_fill == 0)
 			var = ft_fill_replace_dollar(all, var, i);
 		printf("VAR AFTER: %s\n", var);
-		// printf("AAAAAAAAAAAAAAAAAa: %d\n", *i);
 	}
 	else
 		var = ft_substr(cmd, *i, 1);
@@ -103,12 +99,9 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	int		i;
 	char	*var;
 	int		var_already_fill;
-	char	*cmdquote;
 	char	*cmdcaret;
 
 	i = 0;
-	cmdquote = ft_cmd_whitout_simplequote(cmd);
-	printf("TEST SIMPLE QUOTE: %s\n", cmdquote);
 	cmdcaret = ft_fill_caret_when_space(cmd);
 	printf("TEST AVEC CARET: %s\n", cmdcaret);
 	all->pos_simplequote = 0;
@@ -121,10 +114,7 @@ char	*ft_replace_var(t_all *all, char *cmd)
 		var_already_fill = 0;
 		var = ft_fill_replace_var(all, cmdcaret, &i, &var_already_fill);
 		if (var != NULL)
-		{
-			// printf("JOINNNNNNNNNNNNNNN\n");
 			cmdfinal = ft_strjoin(cmdfinal, var);
-		}
 		i++;
 	}
 	all->pos_simplequote = 0;
