@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/19 11:33:30 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:31:18 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,34 @@ void	free_exit_all_pipex(t_all *all)
 	free_listenv(all->listexport);
 }
 
-void	free_exit(t_all *all, t_pip *pip, int i, char *message)
+void	free_each_pipe(t_pip *pip)
 {
 	free_array(pip->cmd);
 	free(pip->path_cmd);
-	free_array(pip->envp);
-	free_triple_array(pip->tab_cmd);
-	free(pip->path);
 	free(pip->fd_infile);
 	free(pip->fd_outfile);
 	free(pip->fd_outfile_append);
-	free_parse_tab(all);
-	free(pip->fds);
 	pip->cmd = NULL;
 	pip->path_cmd = NULL;
+	pip->fd_infile = NULL;
+	pip->fd_outfile = NULL;
+	pip->fd_outfile_append = NULL;
+}
+
+void	free_exit(t_all *all, t_pip *pip, int i, char *message)
+{
+	free_array(pip->envp);
+	free_triple_array(pip->tab_cmd);
+	free(pip->path);
+	free(pip->fds);
+	free_parse_tab(all);
+
 	pip->envp = NULL;
 	pip->tab_cmd = NULL;
 	pip->path = NULL;
 	pip->fds = NULL;
+
+	free_each_pipe(pip);
 	if (i != 0)
 		exit(g_status);
 	write(1, message, ft_strlen(message));
