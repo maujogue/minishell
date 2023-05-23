@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/09 15:50:36 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:16:37 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ long long	ft_atoi_exit(const char *str, int *err)
 	return (sum * neg);
 }
 
-void	ft_exit(char **cmd)
+void	ft_exit(t_all *all, t_pip *pip)
 {
 	long long	code;
 	int			err;
 
-	if (ft_strlen_array(cmd) > 2)
+	if (ft_strlen_array(pip->cmd) > 2)
 	{
 		write_error("exit\nbash: ", "exit", ": too many arguments\n");
 		g_status = 1;
 	}
-	else if (cmd[1])
+	else if (pip->cmd[1])
 	{
-		code = ft_atoi_exit(cmd[1], &err);
+		code = ft_atoi_exit(pip->cmd[1], &err);
 		if (err == 1)
 		{
 			write_error("exit\nbash: exit: ",
-				cmd[1], ": numeric argument required\n");
+				pip->cmd[1], ": numeric argument required\n");
 			g_status = 2;
 		}
 		else
@@ -68,5 +68,5 @@ void	ft_exit(char **cmd)
 	}
 	else
 		g_status = 0;
-	exit(g_status);
+	free_exit(all, pip, 1, "");
 }

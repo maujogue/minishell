@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 10:56:31 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:16:46 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			is_builtin(t_all *all, t_pip *pip);
 void		ft_cd(t_all *all, t_pip *pip);
 void		ft_env(t_all *all, t_pip *pip);
 void		ft_echo(char **tabecho);
-void		ft_exit(char **cmd);
+void        ft_exit(t_all *all, t_pip *pip);
 void		ft_export(t_all *all, char **cmd);
 void		ft_pwd(void);
 void		ft_unset(t_all *all, t_pip *pip);
@@ -113,12 +113,12 @@ char		*ft_cmd_whitout_simplequote(char *cmd);
 
 /****************************SIGNALS********************************/
 
-void        signals_on(t_all *all);
+void		signals_on(t_all *all);
 void		signals_in_process(void);
 void		signals_in_heredoc(void);
 
 /****************************FREE***********************************/
 
-void	free_exit_all_pipex(t_all *all);
+void		free_all(t_all *all);
 
 #endif

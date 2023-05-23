@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 11:01:58 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:47:52 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,15 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	all->nb_simplequote = ft_countquote(cmd, '\'');
 	all->nb_doublequote = ft_countquote(cmd, '\"');
 	cmdfinal = ft_replace_var(all, cmd);
-	printf("CMD SANS VAR: %s\n", cmdfinal);
+	// printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));
 	cmdpars->cmd = ft_fillparscmd(cmdfinal);
-	printf("%s /", cmdpars->cmd);
+	// printf("%s /", cmdpars->cmd);
 	cmdpars->opt2 = ft_fillparsopt2(cmdfinal);
-	if (cmdpars->opt2 != NULL)
-		ft_print_tabarg(cmdpars->opt2);
-	else
-		printf("(null)");
+	// if (cmdpars->opt2 != NULL)
+	// 	ft_print_tabarg(cmdpars->opt2);
+	// else
+	// 	printf("(null)");
 	cmdpars->arg = ft_fillparsarg(all, cmdfinal);
 	printf("/");
 	if (cmdpars->arg != NULL)

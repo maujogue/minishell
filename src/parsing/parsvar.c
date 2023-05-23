@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsvar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 13:23:44 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:55:53 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*ft_replace_var(t_all *all, char *cmd)
 		var_already_fill = 0;
 		var = ft_fill_replace_var(all, cmdcaret, &i, &var_already_fill);
 		if (var != NULL)
-			cmdfinal = ft_strjoin(cmdfinal, var);
+			cmdfinal = ft_strjoin_gnl(cmdfinal, var);
 		i++;
 		free(var);
 	}

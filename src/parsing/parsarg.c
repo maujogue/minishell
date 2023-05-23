@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsarg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/18 12:29:29 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:53:29 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	ft_nbargcmd(char *cmd, int i)
 char	*ft_fillarg(t_all *all, char *cmd, int *i)
 {
 	char	*res;
+	char	*temp;
 	int		start;
 	int		isarg;
 
@@ -81,8 +82,9 @@ char	*ft_fillarg(t_all *all, char *cmd, int *i)
 	}
 	if (isarg == 0)
 		return (NULL);
-	res = ft_substr(cmd, start, *i - start);
-	res = ft_replace_caret(res);
+	temp = ft_substr(cmd, start, *i - start);
+	res = ft_replace_caret(temp);
+	free(temp);
 	return (res);
 }
 
@@ -98,7 +100,7 @@ char	**ft_fillparsarg(t_all *all, char *cmd)
 	nb = ft_nbargcmd(cmd, i);
 	tab = malloc(sizeof(char *) * (nb + 1));
 	if (nb == 0)
-		return (NULL);
+		return (free(tab), NULL);
 	while (cmd[i] && count < nb)
 	{
 		while (cmd[i] == ' ')

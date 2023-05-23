@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 14:09:29 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:31:11 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	incr_shell_lvl(t_all *all, int n)
 
 void	ft_init_all(t_all *all, char **envp)
 {
+	all->parspipex = NULL;
 	all->listenv = NULL;
 	create_env(all, envp);
 	all->listexport = NULL;
@@ -72,7 +73,11 @@ int	main(int argc, char **argv, char **envp)
 		if (!cmd)
 		{
 			printf("exit\n");
-			free_exit_all_pipex(&all);
+			free_all(&all);
+			// if (all.parspipex)
+			// 	printf("                   EXIST                      ");
+			// else
+			// 	printf("                   NOPE                      ");
 			exit(g_status);
 		}
 		add_history(cmd);
@@ -80,6 +85,5 @@ int	main(int argc, char **argv, char **envp)
 		pipex(&all);
 	}
 	incr_shell_lvl(&all, -1);
-	free_exit_all_pipex(&all);
 	return (0);
 }

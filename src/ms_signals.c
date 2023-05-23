@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:15:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 12:51:23 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:28:00 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	sigquit_handler_in_process(int sig)
 
 void	signals_in_process(void)
 {
-	signal(SIGINT, sigint_handler);
+	signal(SIGINT, sigint_handler_in_process);
 	signal(SIGQUIT, sigquit_handler_in_process);
 }
 
@@ -57,8 +57,8 @@ void	signals_on(t_all *all)
 	shlvl = get_env_content(all->listenv, "SHLVL");
 	if (ft_atoi(shlvl) > 2)
 	{
-		signal(SIGINT, sigint_handler_inside_minishell);
-		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, sigint_handler_in_process);
+		signal(SIGQUIT, sigquit_handler_in_process);
 	}
 	else
 	{
