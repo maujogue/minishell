@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/19 15:55:52 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:07:23 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 {
 	char	**tab;
 	char	*temp_path;
-	char	*temp_path2;
 	int		i;
 
 	if (access(cmd, X_OK) == 0 && ft_strcmp(cmd, "minishell"))
@@ -44,11 +43,10 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	while (tab[i])
 	{
 		temp_path = ft_strjoin(tab[i], "/");
-		temp_path2 = ft_strjoin(temp_path, cmd);
+		temp_path = ft_strjoin_gnl(temp_path, cmd);
+		if (access(temp_path, X_OK) == 0)
+			return (free_array(tab), temp_path);
 		free(temp_path);
-		if (access(temp_path2, X_OK) == 0)
-			return (free_array(tab), temp_path2);
-		free(temp_path2);
 		i++;
 	}
 	return (free_array(tab), NULL);
