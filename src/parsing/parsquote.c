@@ -6,11 +6,29 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 13:24:04 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 14:56:41 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:36:44 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+char	*ft_wherequote_utils(char *cmd, int *i, int start, int len)
+{
+	char	*var;
+
+	while (cmd[*i] != '\'' && *i >= 0)
+		*i -= 1;
+	start = *i + 1;
+	*i += 1;
+	while (cmd[*i] != '\'' && cmd[*i])
+	{
+		len++;
+		*i += 1;
+	}
+	var = ft_substr(cmd, start, len - 1);
+	printf("VAR: %s\n", var);
+	return (var);
+}
 
 char	*ft_wherequote(t_all *all, char *cmd, int *i)
 {
@@ -19,6 +37,7 @@ char	*ft_wherequote(t_all *all, char *cmd, int *i)
 	int		len;
 
 	len = 1;
+	start = 0;
 	if (all->pos_simplequote % 2 != 0 && all->pos_doublequote % 2 == 0)
 	{
 		start = *i;
@@ -33,20 +52,7 @@ char	*ft_wherequote(t_all *all, char *cmd, int *i)
 	if (all->pos_simplequote % 2 != 0 && all->pos_doublequote % 2 != 0)
 	{
 		if (ft_doublequote_start(cmd, *i))
-		{
-			while (cmd[*i] != '\'' && *i >= 0)
-				*i -= 1;
-			start = *i + 1;
-			*i += 1;
-			while (cmd[*i] != '\'' && cmd[*i])
-			{
-				len++;
-				*i += 1;
-			}
-			var = ft_substr(cmd, start, len - 1);
-			printf("VAR: %s\n", var);
-			return (var);
-		}
+			return (ft_wherequote_utils(cmd, i, start, len));
 	}
 	return (NULL);
 }
