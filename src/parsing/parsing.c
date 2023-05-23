@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 15:47:52 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:12:08 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	else
 		printf("(null)");
 	printf("\n");
+	free(cmdfinal);
 	return (cmdpars);
 }
 

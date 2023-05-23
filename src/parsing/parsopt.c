@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsopt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:45:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:02:05 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:04:25 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	**ft_fillparsopt2(char *cmd)
 	{
 		res = ft_fillopt(cmd, i);
 		split = ft_split(res, ' ');
+		free(res);
 		return (split);
 	}
 	return (NULL);

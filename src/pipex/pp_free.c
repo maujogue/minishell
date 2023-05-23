@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 15:47:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:14:01 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ void	free_parse_tab(t_all *all)
 		all->parspipex[i]->arg = NULL;
 		all->parspipex[i]->opt2 = NULL;
 		all->parspipex[i]->cmd = NULL;
+		free(all->parspipex[i]);
+		all->parspipex[i] = NULL;
 		i++;
 	}
-	// free(all->parspipex);
-	// all->parspipex = NULL;
+	free(all->parspipex);
+	all->parspipex = NULL;
 }
 
 void	free_all(t_all *all)
@@ -78,7 +80,7 @@ void	free_pipex(t_all *all, t_pip *pip)
 	free_triple_array(pip->tab_cmd);
 	free(pip->path);
 	free(pip->fds);
-	// free_parse_tab(all);
+	free_parse_tab(all);
 	(void)all;
 	pip->envp = NULL;
 	pip->tab_cmd = NULL;
