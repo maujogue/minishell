@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 14:49:21 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:03:28 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 				infile = ft_fillnamefile(cmd, i);
 				res = malloc(sizeof(char *) * 2);
 				res[0] = infile;
+				free(infile);
 				res[1] = NULL;
 				pars->infile = res;
 			}
