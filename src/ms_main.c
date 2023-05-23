@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 13:27:27 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:09:29 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	incr_shell_lvl(t_all *all, int n)
 
 void	ft_init_all(t_all *all, char **envp)
 {
-	all->listenv = create_env(envp);
+	all->listenv = NULL;
+	create_env(all, envp);
 	all->listexport = NULL;
 	all->exit_code = 0;
 	all->nb_simplequote = 0;
