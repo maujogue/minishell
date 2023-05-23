@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/19 15:47:48 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:31:42 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_triple_array(char ***tab);
 void	free_files(t_all *all, int i);
 void	free_fd(void);
 void	free_exit(t_all *all, t_pip *pip, int i, char *message);
+void	free_each_pipe(t_pip *pip);
 
 /****************************EXEC********************************/
 
