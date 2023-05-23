@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 14:40:30 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:49:49 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	incr_shell_lvl(t_all *all, int n)
 void	ft_init_all(t_all *all, char **envp)
 {
 	all->listenv = NULL;
-	all->listenv = create_env(envp);
+	create_env(all, envp);
 	all->listexport = NULL;
 	all->exit_code = 0;
 	all->nb_simplequote = 0;
@@ -67,10 +67,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_all(&all, envp);
 	while (1)
 	{
-		if (ft_atoi(get_env_content(all.listenv, "SHLVL")) > 2)
-			signals_inside_minishell();
-		else
-			signals();
+		signals_on(&all);
 		cmd = readline(">>");
 		if (!cmd)
 		{
