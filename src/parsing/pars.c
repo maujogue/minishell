@@ -6,69 +6,46 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 10:14:09 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/23 10:27:31 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
+void	ft_init_pars_number(t_pars **pars, int number)
+{
+	pars[number]->infile = NULL;
+	pars[number]->outfile = NULL;
+	pars[number]->heredoc = NULL;
+	pars[number]->outfile_append = NULL;
+}
+
 void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
 {
 	int	i;
-	int	is_infile;
-	int	is_outfile;
-	int	is_heredoc;
-	int	is_outfile_append;
 
 	i = 0;
-	is_infile = 0;
-	is_outfile = 0;
-	is_heredoc = 0;
-	is_outfile_append = 0;
+	ft_init_pars_number(pars, number);
 	while (cmd[i])
 	{
 		if ((i == 0 && cmd[i] == '<' && cmd[i + 1] != '<') || (i != 0
 				&& cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<'))
-		{
-			if (is_infile == 0)
-				ft_fillpars_infile(pars[number], cmd);
-			is_infile = 1;
-		}
+			ft_fillpars_infile(pars[number], cmd);
 		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] != '>') || (i != 0
 				&& cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '<'))
-		{
-			if (is_outfile == 0)
-				ft_fillpars_outfile(pars[number], cmd);
-			is_outfile = 1;
-		}
+			ft_fillpars_outfile(pars[number], cmd);
 		if ((i == 0 && cmd[i] == '<' && cmd[i + 1] == '<'
 				&& cmd[i + 2] != '<')
 			|| (i != 0 && cmd[i - 1] != '<' && cmd[i] == '<'
 				&& cmd[i + 1] == '<' && cmd[i + 2] != '<'))
-		{
-			if (is_heredoc == 0)
-				ft_fillpars_heredoc(pars[number], cmd);
-			is_heredoc = 1;
-		}
+			ft_fillpars_heredoc(pars[number], cmd);
 		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] == '>'
 				&& cmd[i + 2] != '>')
 			|| (i != 0 && cmd[i - 1] != '>' && cmd[i] == '>'
 				&& cmd[i + 1] == '>' && cmd[i + 2] != '>'))
-		{
-			if (is_outfile_append == 0)
-				ft_fillpars_outfile_append(pars[number], cmd);
-			is_outfile_append = 1;
-		}
+			ft_fillpars_outfile_append(pars[number], cmd);
 		i++;
 	}
-	if (is_infile == 0)
-		pars[number]->infile = NULL;
-	if (is_outfile == 0)
-		pars[number]->outfile = NULL;
-	if (is_heredoc == 0)
-		pars[number]->heredoc = NULL;
-	if (is_outfile_append == 0)
-		pars[number]->outfile_append = NULL;
 }
 
 int	ft_is_heredoc_last(char *cmd)
