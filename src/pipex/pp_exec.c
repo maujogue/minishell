@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/19 15:49:39 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:46:08 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	close_p(t_pip *pip, int all)
 	int	i;
 
 	i = 0;
-	while (i < pip->curr * all)
+	while (i < (pip->curr + 1) * all)
 	{
 		close(pip->fds[i]);
 		i++;
