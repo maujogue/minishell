@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 13:12:27 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:42:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 				res[1] = NULL;
 				pars->outfile_append = res;
 				free(outfile_append);
-				free_array(res);
 				res = NULL;
 			}
 			else
@@ -107,7 +106,6 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 				res = ft_filetodouble(pars->outfile_append,
 						ft_fillnamefile(cmd, i + 1));
 				pars->outfile_append = res;
-				free_array(res);
 			}
 		}
 		if (cmd[i])
@@ -164,14 +162,12 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 				res[1] = NULL;
 				pars->infile = res;
 				free(infile);
-				free_array(res);
 			}
 			else
 			{
 				res = ft_filetodouble(pars->infile,
 						ft_fillnamefile(cmd, i));
 				pars->infile = res;
-				free_array(res);
 			}
 		}
 		i++;
@@ -227,14 +223,12 @@ void	ft_fillpars_outfile(t_pars *pars, char *cmd)
 				res[1] = NULL;
 				pars->outfile = res;
 				free(outfile);
-				free_array(res);
 			}
 			else
 			{
 				res = ft_filetodouble(pars->outfile,
 						ft_fillnamefile(cmd, i));
 				pars->outfile = res;
-				free_array(res);
 			}
 		}
 		i++;
