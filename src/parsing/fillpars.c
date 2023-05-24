@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/24 15:34:29 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:56:25 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,9 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (cmd[i - 1] != '>' && cmd[i] == '>'
-			&& cmd[i + 1] == '>' && cmd[i + 2] != '>')
+		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
+			|| (i != 0 && cmd[i - 1] != '>' && cmd[i] == '>'
+				&& cmd[i + 1] == '>' && cmd[i + 2] != '>'))
 		{
 			if (pars->outfile_append == NULL)
 			{
