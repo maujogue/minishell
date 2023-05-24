@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/24 15:24:59 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:34:29 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,8 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
+		if ((i == 0 && cmd[i] == '<' && cmd[i + 1] != '<') || (i != 0
+				&& cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<'))
 		{
 			if (pars->infile == NULL)
 			{
@@ -249,7 +250,8 @@ void	ft_fillpars_outfile(t_pars *pars, char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>')
+		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] != '>') || (i != 0
+				&& cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>'))
 		{
 			if (pars->outfile == NULL)
 			{
