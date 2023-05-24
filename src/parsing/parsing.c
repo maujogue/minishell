@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 11:01:58 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:38:02 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ void	ft_parsing(t_all *all, char *cmd)
 {
 	char	**tabcmd;
 
+	if (ft_is_solo_pipe(cmd))
+		return ;
 	tabcmd = ft_split(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
 	ft_fillstructpars(all->parspipex, tabcmd);

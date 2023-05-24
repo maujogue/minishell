@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 10:56:31 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:59:53 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void		ft_fillstructpars(t_pars **pars, char **tabcmd);
 int			ft_strlen_triple_char(char ***str);
 char		*ft_fill_caret_when_space(char *cmd);
 char		*ft_replace_caret(char *src);
+int			ft_is_solo_pipe(char *cmd);
 
 /****************************PARSING_ARG*****************************/
 

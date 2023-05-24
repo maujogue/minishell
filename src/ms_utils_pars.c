@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/12 11:50:36 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:01:20 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,27 @@ int	ft_is_charspe(char c)
 	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64)
 		|| (c >= 91 && c <= 94) || (c >= 123 && c <= 125))
 		return (1);
+	return (0);
+}
+
+int	ft_is_solo_pipe(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '|')
+		{
+			if (cmd[i + 1] != '|')
+				write(2 ,"bash: syntax error near unexpected token `|'\n", 45);
+			else
+				write(2 ,"bash: syntax error near unexpected token `||'\n", 46);
+			return (1);
+		}
+		if (cmd[i] != ' ' && cmd[i] != '|')
+			return (0);
+		i++;
+	}
 	return (0);
 }
