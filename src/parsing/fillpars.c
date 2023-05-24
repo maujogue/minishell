@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/24 12:42:42 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:24:59 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,41 +77,6 @@ void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 }
 
 
-void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
-{
-	int		i;
-	char	*outfile_append;
-	char	**res;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
-			|| (i != 0 && cmd[i - 1] != '>' && cmd[i] == '>'
-				&& cmd[i + 1] == '>' && cmd[i + 2] != '>'))
-		{
-			if (pars->outfile_append == NULL)
-			{
-				pars->outfile_append = NULL;
-				outfile_append = ft_fillnamefile(cmd, i + 1);
-				res = malloc(sizeof(char *) * 2);
-				res[0] = outfile_append;
-				res[1] = NULL;
-				pars->outfile_append = res;
-				free(outfile_append);
-				res = NULL;
-			}
-			else
-			{
-				res = ft_filetodouble(pars->outfile_append,
-						ft_fillnamefile(cmd, i + 1));
-				pars->outfile_append = res;
-			}
-		}
-		if (cmd[i])
-			i++;
-	}
-}
 // void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 // {
 // 	int		i;
@@ -121,8 +86,9 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 // 	i = 0;
 // 	while (cmd[i])
 // 	{
-// 		if (cmd[i - 1] != '>' && cmd[i] == '>'
-// 			&& cmd[i + 1] == '>' && cmd[i + 2] != '>')
+// 		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] == '>' && cmd[i + 2] != '>')
+// 			|| (i != 0 && cmd[i - 1] != '>' && cmd[i] == '>'
+// 				&& cmd[i + 1] == '>' && cmd[i + 2] != '>'))
 // 		{
 // 			if (pars->outfile_append == NULL)
 // 			{
@@ -132,43 +98,46 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 // 				res[0] = outfile_append;
 // 				res[1] = NULL;
 // 				pars->outfile_append = res;
+// 				free(outfile_append);
+// 				free_array(res);
+// 				res = NULL;
 // 			}
 // 			else
-// 				pars->outfile_append = ft_filetodouble(pars->outfile_append,
+// 			{
+// 				res = ft_filetodouble(pars->outfile_append,
 // 						ft_fillnamefile(cmd, i + 1));
+// 				pars->outfile_append = res;
+// 				free_array(res);
+// 			}
 // 		}
-// 		i++;
+// 		if (cmd[i])
+// 			i++;
 // 	}
 // }
-
-void	ft_fillpars_infile(t_pars *pars, char *cmd)
+void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 {
 	int		i;
-	char	*infile;
+	char	*outfile_append;
 	char	**res;
 
 	i = 0;
 	while (cmd[i])
 	{
-		if ((i == 0 && cmd[i] == '<' && cmd[i + 1] != '<') || (i != 0
-				&& cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<'))
+		if (cmd[i - 1] != '>' && cmd[i] == '>'
+			&& cmd[i + 1] == '>' && cmd[i + 2] != '>')
 		{
-			if (pars->infile == NULL)
+			if (pars->outfile_append == NULL)
 			{
-				pars->infile = NULL;
-				infile = ft_fillnamefile(cmd, i);
+				pars->outfile_append = NULL;
+				outfile_append = ft_fillnamefile(cmd, i + 1);
 				res = malloc(sizeof(char *) * 2);
-				res[0] = infile;
+				res[0] = outfile_append;
 				res[1] = NULL;
-				pars->infile = res;
-				free(infile);
+				pars->outfile_append = res;
 			}
 			else
-			{
-				res = ft_filetodouble(pars->infile,
-						ft_fillnamefile(cmd, i));
-				pars->infile = res;
-			}
+				pars->outfile_append = ft_filetodouble(pars->outfile_append,
+						ft_fillnamefile(cmd, i + 1));
 		}
 		i++;
 	}
@@ -183,7 +152,8 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 // 	i = 0;
 // 	while (cmd[i])
 // 	{
-// 		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
+// 		if ((i == 0 && cmd[i] == '<' && cmd[i + 1] != '<') || (i != 0
+// 				&& cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<'))
 // 		{
 // 			if (pars->infile == NULL)
 // 			{
@@ -193,47 +163,49 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 // 				res[0] = infile;
 // 				res[1] = NULL;
 // 				pars->infile = res;
+// 				free(infile);
+// 				free_array(res);
 // 			}
 // 			else
-// 				pars->infile = ft_filetodouble(pars->infile,
+// 			{
+// 				res = ft_filetodouble(pars->infile,
 // 						ft_fillnamefile(cmd, i));
+// 				pars->infile = res;
+// 				free_array(res);
+// 			}
 // 		}
 // 		i++;
 // 	}
 // }
 
-void	ft_fillpars_outfile(t_pars *pars, char *cmd)
+void	ft_fillpars_infile(t_pars *pars, char *cmd)
 {
 	int		i;
-	char	*outfile;
+	char	*infile;
 	char	**res;
 
 	i = 0;
 	while (cmd[i])
 	{
-		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] != '>') || (i != 0
-				&& cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>'))
+		if (cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')
 		{
-			if (pars->outfile == NULL)
+			if (pars->infile == NULL)
 			{
-				pars->outfile = NULL;
-				outfile = ft_fillnamefile(cmd, i);
+				pars->infile = NULL;
+				infile = ft_fillnamefile(cmd, i);
 				res = malloc(sizeof(char *) * 2);
-				res[0] = outfile;
+				res[0] = infile;
 				res[1] = NULL;
-				pars->outfile = res;
-				free(outfile);
+				pars->infile = res;
 			}
 			else
-			{
-				res = ft_filetodouble(pars->outfile,
+				pars->infile = ft_filetodouble(pars->infile,
 						ft_fillnamefile(cmd, i));
-				pars->outfile = res;
-			}
 		}
 		i++;
 	}
 }
+
 // void	ft_fillpars_outfile(t_pars *pars, char *cmd)
 // {
 // 	int		i;
@@ -243,7 +215,8 @@ void	ft_fillpars_outfile(t_pars *pars, char *cmd)
 // 	i = 0;
 // 	while (cmd[i])
 // 	{
-// 		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>')
+// 		if ((i == 0 && cmd[i] == '>' && cmd[i + 1] != '>') || (i != 0
+// 				&& cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>'))
 // 		{
 // 			if (pars->outfile == NULL)
 // 			{
@@ -253,11 +226,44 @@ void	ft_fillpars_outfile(t_pars *pars, char *cmd)
 // 				res[0] = outfile;
 // 				res[1] = NULL;
 // 				pars->outfile = res;
+// 				free(outfile);
+// 				free_array(res);
 // 			}
 // 			else
-// 				pars->outfile = ft_filetodouble(pars->outfile,
+// 			{
+// 				res = ft_filetodouble(pars->outfile,
 // 						ft_fillnamefile(cmd, i));
+// 				pars->outfile = res;
+// 				free_array(res);
+// 			}
 // 		}
 // 		i++;
 // 	}
 // }
+void	ft_fillpars_outfile(t_pars *pars, char *cmd)
+{
+	int		i;
+	char	*outfile;
+	char	**res;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '>')
+		{
+			if (pars->outfile == NULL)
+			{
+				pars->outfile = NULL;
+				outfile = ft_fillnamefile(cmd, i);
+				res = malloc(sizeof(char *) * 2);
+				res[0] = outfile;
+				res[1] = NULL;
+				pars->outfile = res;
+			}
+			else
+				pars->outfile = ft_filetodouble(pars->outfile,
+						ft_fillnamefile(cmd, i));
+		}
+		i++;
+	}
+}
