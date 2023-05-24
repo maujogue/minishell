@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 10:23:36 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:16:58 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	free_array(char **tab);
 void	free_triple_array(char ***tab);
 void	free_files(t_all *all, int i);
 void	free_fd(void);
-void	free_exit(t_all *all, t_pip *pip, int i, char *message);
 void	free_each_pipe(t_pip *pip);
-void	free_parse_tab(t_all *all);
-void	free_pipex(t_all *all, t_pip *pip);
+void	free_exit(t_all *all, t_pip *pip, int i, char *message);
 
 /****************************EXEC********************************/
 
@@ -40,7 +38,7 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path);
 void	exec_cmd(t_all *all, t_pip *pip);
 int		pipex(t_all *all);
 void	wait_id(t_pip *pip);
-void	close_p(t_pip *pip, int nb);
+void	close_p(t_pip *pip, int all);
 void	dup_pipe(t_all *all, t_pip *pip);
 
 /****************************ALL_TO_PIP**************************/

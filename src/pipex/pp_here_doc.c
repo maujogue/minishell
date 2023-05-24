@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:52:21 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 14:22:56 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:34:30 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	single_here_doc(char **heredoc, int fd[2], int i)
 			write(fd[1], "\n", 1);
 		}
 		n++;
+		free(line);
 	}
-	free(line);
 }
 
 void	init_all_here_doc(t_all *all, char **heredoc, t_pip *pip)
@@ -72,6 +72,7 @@ void	init_all_here_doc(t_all *all, char **heredoc, t_pip *pip)
 	int		i;
 
 	i = 0;
+	pip->fd_heredoc = -2;
 	if (heredoc)
 	{
 		signals_in_heredoc();
