@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 12:33:39 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:15:44 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	create_pipes(t_all *all, t_pip *pip)
 			free_exit(all, pip, 1, "Error\nPipe failed");
 		i++;
 	}
-	printf("number of pipes created: (x2) %d\n", i - 1);
 }
 
 void	init_pip(t_all *all, t_pip *pip)
@@ -69,6 +68,7 @@ int	pipex(t_all *all)
 	if (is_no_command_with_files(pip.nb_arg, all) == 0)
 	{
 		only_files(all, &pip);
+		//to be continued
 		return (0);
 	}
 	if (pip.nb_arg >= 1)
