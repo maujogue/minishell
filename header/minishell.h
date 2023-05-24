@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 15:16:46 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 09:55:01 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 /****************************BUILTINS********************************/
 
 int			ft_builtins(t_all *all, t_pip *pip);
-int			is_builtin(t_all *all, t_pip *pip);
+int			is_builtin(t_pip *pip);
 
 void		ft_cd(t_all *all, t_pip *pip);
 void		ft_env(t_all *all, t_pip *pip);

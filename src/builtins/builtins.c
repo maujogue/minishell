@@ -6,15 +6,16 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 15:17:04 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 09:55:20 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-int	is_builtin(t_all *all, t_pip *pip)
+int	is_builtin(t_pip *pip)
 {
-	(void)all;
+	if (!pip->cmd)
+		return (1);
 	if (ft_strncmp(pip->cmd[0], "exit\0", 5) == 0
 		|| ft_strncmp(pip->cmd[0], "echo\0", 5) == 0
 		|| ft_strncmp(pip->cmd[0], "env\0", 4) == 0

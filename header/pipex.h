@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 14:41:31 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:23:36 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path);
 void	exec_cmd(t_all *all, t_pip *pip);
 int		pipex(t_all *all);
 void	wait_id(t_pip *pip);
-void	close_p(t_pip *pip, int all);
+void	close_p(t_pip *pip, int nb);
 void	dup_pipe(t_all *all, t_pip *pip);
 
 /****************************ALL_TO_PIP**************************/

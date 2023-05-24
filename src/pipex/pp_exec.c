@@ -6,18 +6,18 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 12:46:08 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:24:49 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-void	close_p(t_pip *pip, int all)
+void	close_p(t_pip *pip, int nb)
 {
 	int	i;
 
 	i = 0;
-	while (i < (pip->curr + 1) * all)
+	while (i < nb * 2)
 	{
 		close(pip->fds[i]);
 		i++;
@@ -57,15 +57,15 @@ void	exec_cmd(t_all *all, t_pip *pip)
 	if (pid == 0)
 	{
 		dup_pipe(all, pip);
-		close_p(pip, 2);
-		if (is_builtin(all, pip) == 1)
+		close_p(pip, pip->curr);
+		if (is_builtin(pip) == 1)
 			return (execve(pip->path_cmd, pip->cmd, pip->envp), perror(""));
 		else if (ft_strlen_triple_char(pip->tab_cmd) > 1
 			|| all->parspipex[pip->curr]->outfile)
 			ft_builtins(all, pip);
 		free_exit(all, pip, 0, "");
 	}
-	if (is_builtin(all, pip) == 0
+	if (is_builtin(pip) == 0
 		&& ft_strlen_triple_char(pip->tab_cmd) == 1
 		&& !all->parspipex[pip->curr]->outfile)
 		ft_builtins(all, pip);

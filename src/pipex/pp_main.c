@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 14:41:14 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:24:10 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	create_pipes(t_all *all, t_pip *pip)
 			free_exit(all, pip, 1, "Error\nPipe failed");
 		i++;
 	}
+	printf("number of pipes created: (x2) %d\n", i - 1);
 }
 
 void	init_pip(t_all *all, t_pip *pip)
@@ -81,7 +82,7 @@ int	pipex(t_all *all)
 			free_each_pipe(&pip);
 			pip.curr += 1;
 		}
-		close_p(&pip, 1);
+		close_p(&pip, pip.nb_arg);
 		wait_id(&pip);
 		free_pipex(all, &pip);
 	}

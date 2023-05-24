@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 14:07:23 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 09:55:13 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_cmd(t_all *all, t_pip *pip)
 	cmd = pip->cmd[0];
 	if (!cmd || cmd[0] == '\0' || check_point_slash(cmd) == 1)
 		return (g_status = 126, 1);
-	else if (is_builtin(all, pip) == 0)
+	else if (is_builtin(pip) == 0)
 		return (0);
 	else
 	{
