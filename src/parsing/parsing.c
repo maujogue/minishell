@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 16:12:08 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:23:52 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ void	ft_parsing(t_all *all, char *cmd)
 {
 	char	**tabcmd;
 
+	if (ft_is_solo_pipe(cmd))
+		return ;
 	tabcmd = ft_split(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
 	ft_fillstructpars(all->parspipex, tabcmd);
