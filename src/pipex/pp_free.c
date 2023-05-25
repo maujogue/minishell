@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 16:15:55 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:56:04 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ void	close_fd_tab(int *tab)
 {
 	int	i;
 
-	i = -1;
-	while (tab[++i] != -2)
+	i = 0;
+	while (tab[i] != -2)
+	{
 		close(tab[i]);
+		i++;
+	}
 }
 
 void	free_parse_tab(t_all *all)
@@ -77,7 +80,8 @@ void	free_each_pipe(t_pip *pip)
 	// close_fd_tab(pip->fd_infile); to be fixed
 	close_fd_tab(pip->fd_outfile);
 	close_fd_tab(pip->fd_outfile_append);
-	close(pip->fd_heredoc);
+	if (pip->fd_heredoc != -2)
+		close(pip->fd_heredoc);
 	free(pip->fd_infile);
 	free(pip->fd_outfile);
 	free(pip->fd_outfile_append);
@@ -95,7 +99,6 @@ void	free_pipex(t_all *all, t_pip *pip)
 	free(pip->path);
 	free(pip->fds);
 	free_parse_tab(all);
-	(void)all;
 	pip->envp = NULL;
 	pip->tab_cmd = NULL;
 	pip->path = NULL;
