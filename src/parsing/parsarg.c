@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsarg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/25 14:04:14 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:32:51 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ char	**ft_fillparsarg(t_all *all, char *cmd)
 	tab = malloc(sizeof(char *) * (nb + 1));
 	if (nb == 0)
 		return (free(tab), NULL);
+	(void)all;
 	while (cmd[i] && count < nb)
 	{
 		while (cmd[i] == ' ')
@@ -107,7 +108,8 @@ char	**ft_fillparsarg(t_all *all, char *cmd)
 			ft_jump_redir(cmd, &i);
 		tab[count] = ft_fillarg(all, cmd, &i);
 		count++;
-		i++;
+		if (i < (int)ft_strlen(cmd))
+			i++;
 	}
 	tab[count] = NULL;
 	return (tab);
