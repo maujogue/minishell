@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/25 13:56:04 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:28:19 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	close_fd_tab(int *tab)
 	int	i;
 
 	i = 0;
-	while (tab[i] != -2)
+	while (tab[i] != -2 && tab[i] != -1)
 	{
 		close(tab[i]);
 		i++;
@@ -75,9 +75,7 @@ void	free_each_pipe(t_pip *pip)
 {
 	free_array(pip->cmd);
 	free(pip->path_cmd);
-	// printf("-->%d\n", pip->fd_infile[0]);
-	// printf("-->%d\n", pip->fd_infile[1]);
-	// close_fd_tab(pip->fd_infile); to be fixed
+	close_fd_tab(pip->fd_infile);
 	close_fd_tab(pip->fd_outfile);
 	close_fd_tab(pip->fd_outfile_append);
 	if (pip->fd_heredoc != -2)

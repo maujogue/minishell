@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:10:39 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 16:12:58 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:27:48 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	dup_infile(t_all *all, t_pip *pip)
 		{
 			write_error("bash: ", all->parspipex[pip->curr]->infile[i],
 				" :No such file or directory\n");
+			close_p(pip, pip->nb_arg);
 			free_exit(all, pip, 1, "");
 		}
 		else if (dup2(pip->fd_infile[i], STDIN_FILENO) < 0)
