@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsvar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 15:55:53 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:16:02 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 	{
 		tmp_res = all->listenv;
 		if (ft_strcmp(var, all->listenv->key) == 0)
-			return (*i -= 1, all->listenv = tmp, tmp_res->content);
+			return (free(var), *i -= 1, all->listenv = tmp, tmp_res->content);
 		all->listenv = all->listenv->next;
 	}
 	all->listenv = tmp;
@@ -31,11 +31,11 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 	{
 		tmp_res = all->listexport;
 		if (ft_strcmp(var, all->listexport->key) == 0)
-			return (*i -= 1, all->listexport = tmp, tmp_res->content);
+			return (free(var), *i -= 1, all->listexport = tmp, tmp_res->content);
 		all->listexport = all->listexport->next;
 	}
 	all->listexport = tmp;
-	return (*i -= 1, NULL);
+	return (free(var), *i -= 1, NULL);
 }
 
 char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
