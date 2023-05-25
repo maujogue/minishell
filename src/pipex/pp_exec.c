@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 10:24:49 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:53:28 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ void	exec_cmd(t_all *all, t_pip *pip)
 		else if (ft_strlen_triple_char(pip->tab_cmd) > 1
 			|| all->parspipex[pip->curr]->outfile)
 			ft_builtins(all, pip);
+		close_p(pip, pip->nb_arg);
 		free_exit(all, pip, 0, "");
 	}
-	if (is_builtin(pip) == 0
+	else if (is_builtin(pip) == 0
 		&& ft_strlen_triple_char(pip->tab_cmd) == 1
 		&& !all->parspipex[pip->curr]->outfile)
 		ft_builtins(all, pip);
