@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsarg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 15:53:29 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:15:48 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	ft_endcmdopt(char *cmd)
 	while (cmd[i] && cmd[i] != ' ')
 	{
 		if (cmd[i] == '<' || cmd[i] == '>')
-		{
 			ft_jumpfile(cmd, &i);
-		}
 		i++;
 	}
 	while (ft_isopt(cmd, i))

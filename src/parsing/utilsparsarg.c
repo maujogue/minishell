@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:39:38 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/08 10:01:56 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:17:06 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_jump_redir(char *cmd, int *i)
 
 int	ft_isopt(char *cmd, int i)
 {
+	if (cmd[i] == '\0')
+		return (0);
 	while (cmd[i] == ' ')
 		i++;
 	if (cmd[i] == '-')
