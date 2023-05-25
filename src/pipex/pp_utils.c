@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 09:55:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:39:50 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	char	*temp_path;
 	int		i;
 
-	if (access(cmd, X_OK) == 0 && ft_strcmp(cmd, "minishell"))
+	if (access(cmd, X_OK) == 0 && (cmd[0] == '.' || cmd[0] == '/'))
 		return (ft_strdup(cmd));
 	if (!pip->path || !cmd)
 		return (NULL);
