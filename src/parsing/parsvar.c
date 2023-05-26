@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 13:43:54 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:07:22 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 
 	if (cmd[*i + 1] == '?')
 		return (*i += 1, *var_already_fill = 1, ft_itoa(g_status));
+	// printf("DEBUT QUOTE: %s\n", cmd);
 	var = ft_wherequote(all, cmd, i);
 	// printf("SANS QUOTE: %s\n", var);
 	if (var != NULL)
@@ -71,6 +72,8 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 	if (cmd[*i] == '\'')
 	{
 		all->pos_simplequote++;
+		if (all->pos_simplequote % 2 != 0)
+			return (ft_double_quote_in_simple(cmd, i));
 		// printf("':%d\n", all->pos_simplequote);
 		return (NULL);
 	}
@@ -102,7 +105,6 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	char	*cmdcaret;
 
 	i = 0;
-	// printf("TEST AVEC CARET: %s\n", cmd);
 	cmdcaret = ft_fill_caret_when_space(cmd);
 	// printf("TEST AVEC CARET: %s\n", cmdcaret);
 	all->pos_simplequote = 0;

@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 10:50:22 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:05:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ char		*ft_wherequote(t_all *all, char *cmd, int *i);
 int			ft_simplequote_start(char *cmd, int i);
 int			ft_doublequote_start(char *cmd, int i);
 char		*ft_cmd_whitout_simplequote(char *cmd);
+char		*ft_double_quote_in_simple(char *cmd, int *i);
 
 /****************************SIGNALS********************************/
 
