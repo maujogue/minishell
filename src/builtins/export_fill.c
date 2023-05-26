@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:20:46 by mathisaujog       #+#    #+#             */
-/*   Updated: 2023/05/19 15:20:43 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:15:57 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,23 @@ t_listenv	*get_export_node(char *cmd)
 	t_listenv	*node;
 	char		*key;
 	char		*content;
+	char		*temp;
 
 	key = NULL;
 	content = ft_strdup(ft_strchr(cmd, '='));
 	if (content)
 	{	
-		content = content + 1;
+		temp = ft_strdup(content + 1);
+		free(content);
+		content = ft_strdup(temp);
+		free(temp);
 		key = ft_substr(cmd, 0, get_index_of_equal(cmd));
 	}
 	else
 		key = ft_strdup(cmd);
 	node = ft_lstexport_new(key, content);
+	free(key);
+	free(content);
 	return (node);
 }
 
