@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:39:58 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/17 10:57:17 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:59:36 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_listenv	*ft_lstexport_new(char *key, char *content)
 	new = malloc(sizeof(t_listenv));
 	if (!new)
 		return (NULL);
-	new->key = key;
-	new->content = content;
+	new->key = ft_strdup(key);
+	new->content = ft_strdup(content);
 	new->next = NULL;
 	return (new);
 }
@@ -55,12 +55,14 @@ void	ft_lstexport_add_back(t_listenv **lst, t_listenv *new)
 t_listenv	*ft_lst_dup(t_listenv *lst)
 {
 	t_listenv	*new;
-	t_listenv	*temp;
+	t_listenv	*temp_lst;
+	t_listenv	*temp_new;
 
 	if (!lst)
 		return (NULL);
 	new = ft_lstexport_new(lst->key, lst->content);
-	temp = new;
+	temp_lst = lst;
+	temp_new = new;
 	lst = lst->next;
 	while (lst)
 	{
@@ -68,8 +70,9 @@ t_listenv	*ft_lst_dup(t_listenv *lst)
 		new = new->next;
 		lst = lst->next;
 	}
-	lst = temp;
-	return (lst);
+	lst = temp_lst;
+	new = temp_new;
+	return (new);
 }
 
 t_listenv	*ft_lstcat(t_listenv *lst1, t_listenv *lst2)

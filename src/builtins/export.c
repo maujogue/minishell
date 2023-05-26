@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/25 16:15:21 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:00:57 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	display_listexport(t_all *all)
 	export = ft_lstcat(env_copy, all->listexport);
 	sort_linked_list(export);
 	ft_print_listexport(export);
-	// free_listenv(env_copy);
-	// free_listenv(export);
+	free_listenv(env_copy);
+	free_listenv(export);
 }
 
 void	ft_export(t_all *all, char **cmd)
