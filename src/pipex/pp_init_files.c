@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:12:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 15:45:53 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:07:40 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,10 @@ int	init_outfile_append_tab(char **outfile_append, t_pip *pip)
 void	init_files(t_all *all, t_pip *pip)
 {
 	init_infile_tab(all->parspipex[pip->curr]->infile, pip);
+	if (pip->fd_infile[0] == -1 && !all->parspipex[pip->curr]->cmd)
+		write_error("bash: ", all->parspipex[0]->infile[0],
+			" :No such file or directory\n");
 	init_outfile_tab(all->parspipex[pip->curr]->outfile, pip);
 	init_outfile_append_tab(all->parspipex[pip->curr]->outfile_append, pip);
 	init_all_here_doc(all, all->parspipex[pip->curr]->heredoc, pip);
-}
-
-void	only_files(t_all *all, t_pip *pip)
-{
-	init_infile_tab(all->parspipex[0]->infile, pip);
-	init_outfile_tab(all->parspipex[0]->outfile, pip);
-	init_outfile_append_tab(all->parspipex[0]->outfile_append, pip);
-	init_all_here_doc(all, all->parspipex[0]->heredoc, pip);
 }

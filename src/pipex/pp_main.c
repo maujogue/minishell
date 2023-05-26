@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/25 16:02:36 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:07:49 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ int	pipex(t_all *all)
 	t_pip	pip;
 
 	pip.nb_arg = ft_strlen_parse(all->parspipex);
-	if (is_no_command_with_files(pip.nb_arg, all) == 0)
-	{
-		only_files(all, &pip);
-		//to be continued
-		return (0);
-	}
 	if (pip.nb_arg >= 1)
 	{
 		init_pip(all, &pip);

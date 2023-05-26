@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/25 16:05:11 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:12:29 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ void	free_all(t_all *all)
 	all->listexport = NULL;
 }
 
-void	free_each_pipe(t_pip *pip)
+void	free_pipex_files_tab(t_pip *pip)
 {
-	free_array(pip->cmd);
-	free(pip->path_cmd);
 	close_fd_tab(pip->fd_infile);
 	close_fd_tab(pip->fd_outfile);
 	close_fd_tab(pip->fd_outfile_append);
@@ -83,11 +81,18 @@ void	free_each_pipe(t_pip *pip)
 	free(pip->fd_infile);
 	free(pip->fd_outfile);
 	free(pip->fd_outfile_append);
-	pip->cmd = NULL;
-	pip->path_cmd = NULL;
 	pip->fd_infile = NULL;
 	pip->fd_outfile = NULL;
 	pip->fd_outfile_append = NULL;
+}
+
+void	free_each_pipe(t_pip *pip)
+{
+	free_array(pip->cmd);
+	free(pip->path_cmd);
+	pip->cmd = NULL;
+	pip->path_cmd = NULL;
+	free_pipex_files_tab(pip);
 }
 
 void	free_pipex(t_all *all, t_pip *pip)
