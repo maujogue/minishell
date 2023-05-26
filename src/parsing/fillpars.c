@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 16:28:55 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:33:26 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 		}
 		i++;
 	}
-	ft_print_tab(pars->heredoc);
 }
 
 
