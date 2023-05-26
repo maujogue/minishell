@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:29:20 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/19 14:56:48 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:40:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ char	*ft_fill_caret_when_space(char *cmd)
 	{
 		if (cmd[i] == '\'')
 			simplequoteopen = !simplequoteopen;
-		if (cmd[i] == '"')
+		if (cmd[i] == '\"')
 			doublequoteopen = !doublequoteopen;
 		if (cmd[i] == ' ' && (doublequoteopen || simplequoteopen))
-			res[i] = 127;
+			res[i] = '^';
 		else
 			res[i] = cmd[i];
 		i++;
@@ -73,7 +73,7 @@ char	*ft_replace_caret(char *src)
 	}
 	while (src[i])
 	{
-		if (src[i] == 127)
+		if (src[i] == '^')
 			dest[i] = ' ';
 		else
 			dest[i] = src[i];
