@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 15:51:49 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:23:52 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 		}
 		i++;
 	}
-	ft_print_tab(pars->heredoc);
 }
 
 
