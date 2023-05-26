@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsvar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/25 15:13:34 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:29:37 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 	{
 		tmp_res = all->listenv;
 		if (ft_strcmp(var, all->listenv->key) == 0)
-			return (free(var), *i -= 1, all->listenv = tmp, tmp_res->content);
+			return (free(var), *i -= 1, all->listenv = tmp, ft_strdup(tmp_res->content));
 		all->listenv = all->listenv->next;
 	}
 	all->listenv = tmp;
@@ -31,7 +31,7 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 	{
 		tmp_res = all->listexport;
 		if (ft_strcmp(var, all->listexport->key) == 0)
-			return (free(var), *i -= 1, all->listexport = tmp, tmp_res->content);
+			return (free(var), *i -= 1, all->listexport = tmp, ft_strdup(tmp_res->content));
 		all->listexport = all->listexport->next;
 	}
 	all->listexport = tmp;
@@ -114,12 +114,15 @@ char	*ft_replace_var(t_all *all, char *cmd)
 		var_already_fill = 0;
 		var = ft_fill_replace_var(all, cmdcaret, &i, &var_already_fill);
 		if (var != NULL)
+		{
 			cmdfinal = ft_strjoin_gnl(cmdfinal, var);
-		i++;
+		}
 		free(var);
+		i++;
 	}
 	all->pos_simplequote = 0;
 	all->pos_doublequote = 0;
+	printf("AAAAAAAAAAAA%s\n", cmdfinal);
 	free(cmdcaret);
 	return (cmdfinal);
 }
