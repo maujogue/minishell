@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:52:21 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/24 15:34:30 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:34:40 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	init_all_here_doc(t_all *all, char **heredoc, t_pip *pip)
 	pip->fd_heredoc = -2;
 	if (heredoc)
 	{
+		printf("%d", ft_strlen_array(heredoc));
 		signals_in_heredoc();
 		if (pipe(fd) < 0)
 			free_exit(all, pip, 1, "Error: open failed \n");
