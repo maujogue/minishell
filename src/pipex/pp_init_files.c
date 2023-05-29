@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:12:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/26 15:07:40 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:15:51 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ int	init_infile_tab(char **infile, t_pip *pip)
 		while (infile[i])
 		{
 			pip->fd_infile[i] = open(infile[i], O_RDONLY);
+			if (pip->fd_infile[i] == -1 && access(infile[i], F_OK) == 0)
+				return (write_error("bash: ", infile[i],
+						" : Permission denied\n"), g_status = 1, 1);
 			if (pip->fd_infile[i] == -1)
-				return (g_status = 1, 1);
+				return (write_error("bash: ", infile[i],
+						" : No such file or directory\n"), g_status = 1, 1);
 			i++;
 		}
 	}
@@ -45,7 +49,8 @@ int	init_outfile_tab(char **outfile, t_pip *pip)
 			pip->fd_outfile[i] = open(outfile[i],
 					O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			if (pip->fd_outfile[i] == -1)
-				return (g_status = 1, 1);
+				return (write_error("bash: ", outfile[i],
+						": Permission denied\n"), g_status = 1, 1);
 			i++;
 		}
 	}
@@ -67,7 +72,8 @@ int	init_outfile_append_tab(char **outfile_append, t_pip *pip)
 			pip->fd_outfile_append[i] = open(outfile_append[i],
 					O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (pip->fd_outfile_append[i] == -1)
-				return (g_status = 1, 1);
+				return (write_error("bash: ", outfile_append[i],
+						": Permission denied\n"), g_status = 1, 1);
 			i++;
 		}
 	}
