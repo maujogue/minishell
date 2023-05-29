@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:52:06 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 15:02:33 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:23:46 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,32 @@ char	*ft_double_quote_in_simple(char *cmd, int *i)
 	}
 	res_in_simple_quote = ft_substr(cmd, start, len);
 	return (res_in_simple_quote);
+}
+
+char	*ft_simple_quote_in_double(char *cmd, int *i)
+{
+	char	*res;
+	int		j;
+	int		len;
+	int		start;
+
+	len = 0;
+	*i += 1;
+	j = *i;
+	start = *i;
+	while (cmd[j])
+	{
+		if (cmd[j] == '\'')
+			break ;
+		if (cmd[j] == '"' || cmd[j + 1] == '\0')
+			return (ft_substr(cmd, *i, 1));
+		j++;
+	}
+	while (cmd[*i] != '\"' && cmd[*i])
+	{
+		*i += 1;
+		len++;
+	}
+	res = ft_substr(cmd, start, len);
+	return (res);
 }
