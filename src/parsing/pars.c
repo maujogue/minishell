@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 13:26:36 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:42:54 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
 		if (is_in(cmd, i) && ((i == 0 && cmd[i] == '<' && cmd[i + 1] == '<'
 				&& cmd[i + 2] != '<')
 			|| (i != 0 && cmd[i - 1] != '<' && cmd[i] == '<'
-				&& cmd[i + 1] == '<' && cmd[i + 2] != '<')))
+				&& cmd[i + 1] == '<' && cmd[i + 2] != '<')) && !pars[number]->heredoc)
 			ft_fillpars_heredoc(pars[number], cmd);
 		if (is_in(cmd, i) && ((i == 0 && cmd[i] == '>' && cmd[i + 1] == '>'
 				&& cmd[i + 2] != '>')
