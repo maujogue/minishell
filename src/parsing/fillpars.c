@@ -6,11 +6,35 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/24 16:00:58 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/29 13:23:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+int	is_in(char *str, int i)
+{
+	int	single_quote_count;
+	int	double_quote_count;
+	int	j;
+
+	single_quote_count = 0;
+	double_quote_count = 0;
+	j = 0;
+	while (j < i)
+	{
+		if (str[j] == '\'')
+			single_quote_count++;
+		else if (str[j] == '\"')
+			double_quote_count++;
+		j++;
+	}
+	if (single_quote_count % 2 == 1 && double_quote_count % 2 == 0)
+		return (0);
+	if (single_quote_count % 2 == 0 && double_quote_count % 2 == 1)
+		return (0);
+	return (1);
+}
 
 // void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 // {
