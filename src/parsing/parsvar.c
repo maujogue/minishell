@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 15:50:53 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:53:18 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 
 	if (cmd[*i + 1] == '?')
 		return (*i += 1, *var_already_fill = 1, ft_itoa(g_status));
-	// printf("DEBUT QUOTE: %s\n", cmd);
 	var = ft_wherequote(all, cmd, i);
-	// printf("SANS QUOTE: %s\n", var);
 	if (var != NULL)
 		return (*var_already_fill = 1, var);
 	*i += 1;
@@ -86,10 +84,8 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
-		// printf("\nVAR BEFORE: %s\n", var);
 		if (*var_already_fill == 0)
 			var = ft_fill_replace_dollar(all, var, i);
-		// printf("VAR AFTER: %s\n", var);
 	}
 	else
 		var = ft_substr(cmd, *i, 1);
@@ -106,7 +102,6 @@ char	*ft_replace_var(t_all *all, char *cmd)
 
 	i = 0;
 	cmdcaret = ft_fill_caret_when_space(cmd);
-	// printf("TEST AVEC CARET: %s\n", cmdcaret);
 	all->pos_simplequote = 0;
 	all->pos_doublequote = 0;
 	while (cmdcaret[i] && cmdcaret[i] != '$' && ft_is_charspe(cmdcaret[i]) == 0)

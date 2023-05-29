@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 13:24:04 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 13:43:00 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:53:24 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*ft_wherequote_utils(char *cmd, int *i, int start, int len)
 		*i += 1;
 	}
 	var = ft_substr(cmd, start, len - 1);
-	// printf("VAR: %s\n", var);
 	return (var);
 }
 
