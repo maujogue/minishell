@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 15:01:41 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/29 13:20:49 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char		*ft_replace_caret(char *src);
 int			ft_is_solo_pipe(char *cmd);
 int			ft_is_solo_bracket_left(char *cmd);
 int			ft_is_solo_bracket_right(char *cmd);
+char		**ft_split_with_quote(char *str, char c);
 
 /****************************PARSING_ARG*****************************/
 
@@ -95,6 +96,7 @@ char		**ft_fillparsarg(t_all *all, char *cmd);
 
 /****************************PARSING_FILE****************************/
 
+int			is_in(char *str, int i);
 void		ft_fillpars_infile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile(t_pars *pars, char *cmd);
 void		ft_fillpars_outfile_append(t_pars *pars, char *cmd);
