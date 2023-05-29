@@ -6,11 +6,12 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/26 13:57:43 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/29 10:09:11 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+#include <limits.h>
 
 int	ft_isspace(char c)
 {
@@ -41,6 +42,8 @@ long long	ft_atoi_exit(const char *str, int *err)
 			*err = 1;
 		i++;
 	}
+	if (sum * neg >= LONG_MAX || sum * neg <= LONG_MIN)
+		*err = 1;
 	return (sum * neg);
 }
 
