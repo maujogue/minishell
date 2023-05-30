@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   parsopt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:45:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/23 16:04:25 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:18:32 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+void	ft_init_fillparscmd(char *cmd, int *len, int *nospace, int *is_cmd)
+{
+	*len = 0;
+	*nospace = 0;
+	*is_cmd = 0;
+	while (cmd[*len] == ' ')
+	{
+		*len += 1;
+		*nospace += 1;
+	}
+}
 
 int	ft_endcmd(char *cmd)
 {
