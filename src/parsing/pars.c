@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:37:27 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 14:42:54 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/30 10:40:06 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,31 @@ void	ft_init_pars_number(t_pars **pars, int number)
 	pars[number]->outfile_append = NULL;
 }
 
-void	ft_fillparsfile(t_pars **pars, char *cmd, int number)
+void	ft_fillparsfile(t_pars **pars, char *c, int number)
 {
 	int	i;
 
 	i = 0;
 	ft_init_pars_number(pars, number);
-	while (cmd[i])
+	while (c[i])
 	{
-		if (is_in(cmd, i) && ((i == 0 && cmd[i] == '<' && cmd[i + 1] != '<') || (i != 0
-				&& cmd[i - 1] != '<' && cmd[i] == '<' && cmd[i + 1] != '<')))
-			ft_fillpars_infile(pars[number], cmd);
-		if (is_in(cmd, i) && ((i == 0 && cmd[i] == '>' && cmd[i + 1] != '>') || (i != 0
-				&& cmd[i - 1] != '>' && cmd[i] == '>' && cmd[i + 1] != '<')))
-			ft_fillpars_outfile(pars[number], cmd);
-		if (is_in(cmd, i) && ((i == 0 && cmd[i] == '<' && cmd[i + 1] == '<'
-				&& cmd[i + 2] != '<')
-			|| (i != 0 && cmd[i - 1] != '<' && cmd[i] == '<'
-				&& cmd[i + 1] == '<' && cmd[i + 2] != '<')) && !pars[number]->heredoc)
-			ft_fillpars_heredoc(pars[number], cmd);
-		if (is_in(cmd, i) && ((i == 0 && cmd[i] == '>' && cmd[i + 1] == '>'
-				&& cmd[i + 2] != '>')
-			|| (i != 0 && cmd[i - 1] != '>' && cmd[i] == '>'
-				&& cmd[i + 1] == '>' && cmd[i + 2] != '>')))
-			ft_fillpars_outfile_append(pars[number], cmd);
+		if (is(c, i) && ((i == 0 && c[i] == '<' && c[i + 1] != '<') || (i != 0
+					&& c[i - 1] != '<' && c[i] == '<' && c[i + 1] != '<')))
+			ft_fillpars_infile(pars[number], c);
+		if (is(c, i) && ((i == 0 && c[i] == '>' && c[i + 1] != '>') || (i != 0
+					&& c[i - 1] != '>' && c[i] == '>' && c[i + 1] != '<')))
+			ft_fillpars_outfile(pars[number], c);
+		if (is(c, i) && ((i == 0 && c[i] == '<' && c[i + 1] == '<'
+					&& c[i + 2] != '<')
+				|| (i != 0 && c[i - 1] != '<' && c[i] == '<'
+					&& c[i + 1] == '<' && c[i + 2] != '<'))
+			&& !pars[number]->heredoc)
+			ft_fillpars_heredoc(pars[number], c);
+		if (is(c, i) && ((i == 0 && c[i] == '>' && c[i + 1] == '>'
+					&& c[i + 2] != '>')
+				|| (i != 0 && c[i - 1] != '>' && c[i] == '>'
+					&& c[i + 1] == '>' && c[i + 2] != '>')))
+			ft_fillpars_outfile_append(pars[number], c);
 		i++;
 	}
 }
