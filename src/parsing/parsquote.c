@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 13:24:04 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 15:53:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/30 10:41:35 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ char	*ft_parsquote(char *cmd)
 			cmdfinal = ft_strjoin(cmdfinal, piece);
 		i++;
 	}
-	// printf("Sans quote: %s\n\n\n", cmdfinal);
 	return (cmdfinal);
 }

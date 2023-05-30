@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/30 10:38:50 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:08:44 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int			is_builtin(t_pip *pip);
 void		ft_cd(t_all *all, t_pip *pip);
 void		ft_env(t_all *all, t_pip *pip);
 void		ft_echo(char **tabecho);
-void        ft_exit(t_all *all, t_pip *pip);
+void		ft_exit(t_all *all, t_pip *pip);
 void		ft_export(t_all *all, char **cmd);
 void		ft_pwd(void);
 void		ft_unset(t_all *all, t_pip *pip);
-void        create_env(t_all *all, char **envp);
+void		create_env(t_all *all, char **envp);
 
 /****************************PRINT_UTILS*****************************/
 
@@ -69,7 +69,6 @@ void		free_listenv(t_listenv *lst);
 void		fill_export(t_all *all, char **tab_cmd);
 int			check_invalid_identifier_export(char *str, char *cmd, int slash);
 
-
 /****************************PARSING*********************************/
 
 void		ft_parsing(t_all *all, char *cmd);
@@ -93,6 +92,7 @@ char		**ft_split_with_quote(char *str, char c);
 
 char		**ft_fillparsopt2(char *cmd);
 char		**ft_fillparsarg(t_all *all, char *cmd);
+void		ft_init_fillparscmd(char *cmd, int *len, int *nospace, int *is_cmd);
 
 /****************************PARSING_FILE****************************/
 

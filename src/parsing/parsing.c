@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 15:52:58 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/30 10:44:04 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,7 @@ char	*ft_fillparscmd(char *cmd)
 	char	*temp;
 	int		is_cmd;
 
-	len = 0;
-	nospace = 0;
-	is_cmd = 0;
-	while (cmd[len] == ' ')
-	{
-		len++;
-		nospace++;
-	}
+	ft_init_fillparscmd(cmd, &len, &nospace, &is_cmd);
 	while (cmd[len] != '\0' && cmd[len] != ' ')
 	{
 		if (cmd[len] != '<' && cmd[len] != '>')

@@ -6,11 +6,23 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:08:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 11:41:03 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/30 10:44:22 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+void	ft_init_fillparscmd(char *cmd, int *len, int *nospace, int *is_cmd)
+{
+	*len = 0;
+	*nospace = 0;
+	*is_cmd = 0;
+	while (cmd[*len] == ' ')
+	{
+		*len += 1;
+		*nospace += 1;
+	}
+}
 
 int	get_nb_word(char *str, char delimiter)
 {

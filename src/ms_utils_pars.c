@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 14:58:23 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:12:56 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_is_solo_pipe(char *cmd)
 		if (cmd[i] == '|')
 		{
 			if (cmd[i + 1] != '|')
-				write(2 ,"bash: syntax error near unexpected token `|'\n", 45);
+				write(2, "bash: syntax error near unexpected token `|'\n", 45);
 			else
-				write(2 ,"bash: syntax error near unexpected token `||'\n", 46);
+				write(2, "bash: syntax error near unexpected token `||'\n", 46);
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '|')
@@ -70,9 +70,11 @@ int	ft_is_solo_bracket_left(char *cmd)
 		if (cmd[i] == '<' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '<')
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 45);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					45);
 			else
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 46);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					46);
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '<')
@@ -94,9 +96,11 @@ int	ft_is_solo_bracket_right(char *cmd)
 		if (cmd[i] == '>' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '>')
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 45);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					45);
 			else
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 46);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					46);
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '>')
