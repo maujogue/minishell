@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 16:07:53 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:20:34 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int			is_builtin(t_pip *pip);
 void		ft_cd(t_all *all, t_pip *pip);
 void		ft_env(t_all *all, t_pip *pip);
 void		ft_echo(char **tabecho);
-void        ft_exit(t_all *all, t_pip *pip);
+void		ft_exit(t_all *all, t_pip *pip);
 void		ft_export(t_all *all, char **cmd);
-void	    ft_pwd(t_all *all);
+void		ft_pwd(t_all *all);
 void		ft_unset(t_all *all, t_pip *pip);
-void        create_env(t_all *all, char **envp);
+void		create_env(t_all *all, char **envp);
 
 /****************************PRINT_UTILS*****************************/
 
@@ -120,10 +120,10 @@ char		*ft_simple_quote_in_double(char *cmd, int *i);
 
 /****************************SIGNALS********************************/
 
-void	signals_in_process(char *cmd);
+void		signals_in_process(char *cmd);
 void		signals_in_heredoc(void);
-void	    sigint_handler(int sig);
-void	    sigint_handler_inside_minishell(int sig);
+void		sigint_handler(int sig);
+void		sigint_handler_inside_minishell(int sig);
 
 /****************************FREE***********************************/
 
