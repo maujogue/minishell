@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 16:27:06 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:28:39 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ void	ft_parsing(t_all *all, char *cmd)
 	tabcmd = ft_split_with_quote(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
 	ft_fillstructpars(all, all->parspipex, tabcmd);
+	all->exit_code = g_status;
 	free_array(tabcmd);
 }

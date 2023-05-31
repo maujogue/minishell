@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/31 16:11:22 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:28:59 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_exit(t_all *all, t_pip *pip)
 		exit_arg_code(pip);
 	else
 	{
-		g_status = 0;
+		g_status = all->exit_code;
 		write_error("exit\n", "", "");
 	}
 	close_p(pip, pip->nb_arg);
