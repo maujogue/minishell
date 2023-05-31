@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/30 11:12:56 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:14:24 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,30 @@ int	ft_is_solo_bracket_right(char *cmd)
 		}
 		if (cmd[i] != ' ' && cmd[i] != '>')
 			return (0);
+		i++;
+	}
+	return (0);
+}
+
+int ft_is_double_char_spe(char *cmd, char c)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == c)
+		{
+			i++;
+			while (cmd[i] == ' ')
+				i++;
+			if (cmd[i] == c)
+			{
+				write(2, "bash: syntax error near unexpected token `|'\n",
+					45);
+				return (1);
+			}
+		}
 		i++;
 	}
 	return (0);
