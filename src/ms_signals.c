@@ -6,14 +6,13 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:15:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/29 16:00:55 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:10:04 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
 extern int	g_status;
-
 
 void	sigint_handler(int sig)
 {
@@ -22,7 +21,6 @@ void	sigint_handler(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-
 }
 
 void	sigint_handler_inside_minishell(int sig)
@@ -45,28 +43,16 @@ void	sigquit_handler_in_process(int sig)
 	printf("Quit (core dumped)\n");
 }
 
-void	signals_in_process(void)
+void	signals_in_process(char *cmd)
 {
-	signal(SIGINT, sigint_handler_in_process);
-	signal(SIGQUIT, sigquit_handler_in_process);
-}
-
-void	signals_on(t_all *all)
-{
-	char	*shlvl;
-
-	shlvl = get_env_content(all->listenv, "SHLVL");
-	if (shlvl != NULL && ft_atoi(shlvl) > 2)
+	if (ft_strcmp("./minishell", cmd) == 0)
 	{
 		signal(SIGINT, sigint_handler_inside_minishell);
-		signal(SIGQUIT, sigquit_handler_in_process);
+		signal(SIGQUIT, SIG_IGN);
 	}
 	else
-	{
-		signal(SIGINT, sigint_handler);
-		signal(SIGQUIT, SIG_IGN);
-		// SIG_DFL
-		// SIG_IGN
+	{	
+		signal(SIGINT, sigint_handler_in_process);
+		signal(SIGQUIT, sigquit_handler_in_process);
 	}
-	free(shlvl);
 }

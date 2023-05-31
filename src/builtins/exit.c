@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/29 17:00:16 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:11:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_isspace(char c)
 long long	ft_atoi_exit(const char *str, int *err)
 {
 	int			i;
-	int	neg;
+	int			neg;
 	long long	sum;
 
 	i = 0;
@@ -42,7 +42,6 @@ long long	ft_atoi_exit(const char *str, int *err)
 		sum = (sum * 10) + (str[i] - 48);
 		if (str[i] < '0' || str[i] > '9')
 			*err = 1;
-		// printf("%lld %lld %lld\n",sum + 1, sum , sum - 1);
 		if (sum < 0)
 			*err = 1;
 		i++;
@@ -92,7 +91,7 @@ void	exit_arg_code(t_pip *pip)
 	else
 	{
 		g_status = code % 256;
-		write_error("exit\n","","");
+		write_error("exit\n", "", "");
 	}
 }
 
@@ -105,7 +104,7 @@ void	ft_exit(t_all *all, t_pip *pip)
 	else
 	{
 		g_status = 0;
-		write_error("exit\n","","");
+		write_error("exit\n", "", "");
 	}
 	close_p(pip, pip->nb_arg);
 	free_exit(all, pip, 1, "");

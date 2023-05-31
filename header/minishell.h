@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 15:13:33 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:07:53 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,10 @@ char		*ft_simple_quote_in_double(char *cmd, int *i);
 
 /****************************SIGNALS********************************/
 
-void		signals_on(t_all *all);
-void		signals_in_process(void);
+void	signals_in_process(char *cmd);
 void		signals_in_heredoc(void);
+void	    sigint_handler(int sig);
+void	    sigint_handler_inside_minishell(int sig);
 
 /****************************FREE***********************************/
 

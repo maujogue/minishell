@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/31 15:09:19 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:14:48 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ void	cd_args(t_all *all, t_pip *pip, char *pwd)
 	{
 		replace_env_arg(all->listenv, "OLDPWD", pwd);
 		replace_env_pwd(all->listenv, "PWD");
-		free(arg);
-		return ;
+		return (free(arg));
 	}
 	else
 	{
@@ -96,8 +95,9 @@ void	cd_args(t_all *all, t_pip *pip, char *pwd)
 			free(arg);
 		}
 		else
-			return (free(arg),g_status = 127,
-				(void)printf("bash: cd: %s: No such file or directory\n", pip->cmd[1]));
+			return (free(arg), g_status = 127,
+				(void)printf("bash: cd: %s: No such file or directory\n",
+					pip->cmd[1]));
 	}
 }
 
