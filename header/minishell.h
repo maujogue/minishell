@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 13:20:49 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:13:33 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		ft_env(t_all *all, t_pip *pip);
 void		ft_echo(char **tabecho);
 void        ft_exit(t_all *all, t_pip *pip);
 void		ft_export(t_all *all, char **cmd);
-void		ft_pwd(void);
+void	    ft_pwd(t_all *all);
 void		ft_unset(t_all *all, t_pip *pip);
 void        create_env(t_all *all, char **envp);
 
