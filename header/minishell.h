@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 11:18:11 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:35:54 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,17 @@ char		**ft_filetodouble(char **tab, char *file);
 /****************************PARSING_VAR_QUOTE***********************/
 
 char		*ft_replace_var(t_all *all, char *cmd);
+char		*ft_fill_replace_var(t_all *all, char *cmd, int *i,
+				int *var_already_fill);
 
 int			ft_countquote(char *cmd, char quote);
 char		*ft_parsquote(char *cmd);
 char		*ft_fill_piece_simplequote(char *cmd, int *i);
 char		*ft_wherequote(t_all *all, char *cmd, int *i);
-int			ft_simplequote_start(char *cmd, int i);
 int			ft_doublequote_start(char *cmd, int i);
 char		*ft_cmd_whitout_simplequote(char *cmd);
 char		*ft_double_quote_in_simple(char *cmd, int *i);
-char		*ft_simple_quote_in_double(char *cmd, int *i);
+char		*ft_simple_quote_in_double(t_all *all, char *cmd, int *i);
 
 /****************************SIGNALS********************************/
 
