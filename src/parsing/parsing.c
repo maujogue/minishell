@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/30 10:44:04 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:17:13 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	all->nb_doublequote = ft_countquote(cmd, '\"');
 	cmdfinal = ft_replace_var(all, cmd);
 	cmdpars = malloc(sizeof(t_pars));
+	if (!cmdpars)
+		return (free_all(all), exit(1), NULL);
 	cmdpars->cmd = ft_fillparscmd(cmdfinal);
 	cmdpars->opt2 = ft_fillparsopt2(cmdfinal);
 	cmdpars->arg = ft_fillparsarg(all, cmdfinal);
@@ -89,6 +91,8 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 	while (tabcmd[len])
 		len++;
 	all->parspipex = malloc(sizeof(t_pars) * (len + 1));
+	if (!all->parspipex)
+		return (free_all(all), exit(1));
 	while (i < len)
 	{
 		all->parspipex[i] = ft_cleanpipe(all, tabcmd[i]);
@@ -108,6 +112,6 @@ void	ft_parsing(t_all *all, char *cmd)
 		return ;
 	tabcmd = ft_split_with_quote(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
-	ft_fillstructpars(all->parspipex, tabcmd);
+	ft_fillstructpars(all, all->parspipex, tabcmd);
 	free_array(tabcmd);
 }

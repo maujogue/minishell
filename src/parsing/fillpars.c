@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:04:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/30 10:38:58 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:06:48 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is(char *str, int i)
 	return (1);
 }
 
-void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
+void	ft_fillpars_heredoc(t_all *all, t_pars *pars, char *cmd)
 {
 	int		i;
 	char	*heredoc;
@@ -53,6 +53,8 @@ void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 			{
 				heredoc = ft_fillnamefile(cmd, i + 1);
 				res = malloc(sizeof(char *) * 2);
+				if (!res)
+					free_all(all);
 				res[0] = heredoc;
 				res[1] = NULL;
 				pars->heredoc = res;
@@ -65,7 +67,7 @@ void	ft_fillpars_heredoc(t_pars *pars, char *cmd)
 	}
 }
 
-void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
+void	ft_fillpars_outfile_append(t_all *all, t_pars *pars, char *cmd)
 {
 	int		i;
 	char	*outfile_append;
@@ -82,6 +84,8 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 			{
 				outfile_append = ft_fillnamefile(cmd, i + 1);
 				res = malloc(sizeof(char *) * 2);
+				if (!res)
+					free_all(all);
 				res[0] = outfile_append;
 				res[1] = NULL;
 				pars->outfile_append = res;
@@ -94,7 +98,7 @@ void	ft_fillpars_outfile_append(t_pars *pars, char *cmd)
 	}
 }
 
-void	ft_fillpars_infile(t_pars *pars, char *cmd)
+void	ft_fillpars_infile(t_all *all, t_pars *pars, char *cmd)
 {
 	int		i;
 	char	*infile;
@@ -111,6 +115,8 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 				pars->infile = NULL;
 				infile = ft_fillnamefile(cmd, i);
 				res = malloc(sizeof(char *) * 2);
+				if (!res)
+					free_all(all);
 				res[0] = infile;
 				res[1] = NULL;
 				pars->infile = res;
@@ -123,7 +129,7 @@ void	ft_fillpars_infile(t_pars *pars, char *cmd)
 	}
 }
 
-void	ft_fillpars_outfile(t_pars *pars, char *cmd)
+void	ft_fillpars_outfile(t_all *all, t_pars *pars, char *cmd)
 {
 	int		i;
 	char	*outfile;
@@ -140,6 +146,8 @@ void	ft_fillpars_outfile(t_pars *pars, char *cmd)
 				pars->outfile = NULL;
 				outfile = ft_fillnamefile(cmd, i);
 				res = malloc(sizeof(char *) * 2);
+				if (!res)
+					free_all(all);
 				res[0] = outfile;
 				res[1] = NULL;
 				pars->outfile = res;

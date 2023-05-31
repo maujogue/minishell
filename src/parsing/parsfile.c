@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:38:59 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 16:28:48 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:13:54 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,16 @@ char	**ft_filetodouble(char **tab, char *file)
 	i = 0;
 	len = ft_lentab(tab);
 	res = malloc(sizeof(char *) * (len + 2));
+	if (!res)
+		return (free_array(tab), exit(1), NULL);
 	while (tab[i] != NULL)
 	{
 		res[i] = ft_strdup(tab[i]);
 		i++;
 	}
 	res[i] = ft_strdup(file);
+	if (!res)
+		exit(1);
 	res[i + 1] = NULL;
 	free(file);
 	free_array(tab);

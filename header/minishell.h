@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/30 11:08:44 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:18:11 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void		ft_jumpfile(char *cmd, int *i);
 int			ft_isopt(char *cmd, int i);
 int			ft_is_charspe(char c);
 int			ft_strlen_triple_char(char ***str);
-void		ft_fillstructpars(t_pars **pars, char **tabcmd);
+void		ft_fillstructpars(t_all *all, t_pars **pars, char **tabcmd);
 int			ft_strlen_triple_char(char ***str);
-char		*ft_fill_caret_when_space(char *cmd);
+char		*ft_fill_caret_when_space(t_all *all, char *cmd);
 char		*ft_replace_caret(char *src);
 int			ft_is_solo_pipe(char *cmd);
 int			ft_is_solo_bracket_left(char *cmd);
@@ -97,10 +97,10 @@ void		ft_init_fillparscmd(char *cmd, int *len, int *nospace, int *is_cmd);
 /****************************PARSING_FILE****************************/
 
 int			is(char *str, int i);
-void		ft_fillpars_infile(t_pars *pars, char *cmd);
-void		ft_fillpars_outfile(t_pars *pars, char *cmd);
-void		ft_fillpars_outfile_append(t_pars *pars, char *cmd);
-void		ft_fillpars_heredoc(t_pars *pars, char *cmd);
+void		ft_fillpars_infile(t_all *all, t_pars *pars, char *cmd);
+void		ft_fillpars_outfile(t_all *all, t_pars *pars, char *cmd);
+void		ft_fillpars_outfile_append(t_all *all, t_pars *pars, char *cmd);
+void		ft_fillpars_heredoc(t_all *all, t_pars *pars, char *cmd);
 char		*ft_fillnamefile(char *cmd, int i);
 char		**ft_filetodouble(char **tab, char *file);
 
@@ -127,5 +127,6 @@ void		signals_in_heredoc(void);
 /****************************FREE***********************************/
 
 void		free_all(t_all *all);
+void		free_parse(t_pars *parspipex);
 
 #endif

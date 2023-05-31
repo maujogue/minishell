@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 15:28:04 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:13:10 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,10 @@ char	**ft_fillparsarg(t_all *all, char *cmd)
 	i = ft_endcmdopt(cmd);
 	nb = ft_nbargcmd(cmd, i);
 	tab = malloc(sizeof(char *) * (nb + 1));
+	if (!tab)
+		return (free_all(all), exit(1), NULL);
 	if (nb == 0)
 		return (free(tab), NULL);
-	(void)all;
 	while (cmd[i] && count < nb)
 	{
 		while (cmd[i] == ' ')

@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/30 10:52:18 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:17:53 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	char	*cmdcaret;
 
 	i = 0;
-	cmdcaret = ft_fill_caret_when_space(cmd);
+	cmdcaret = ft_fill_caret_when_space(all, cmd);
 	all->pos_simplequote = 0;
 	all->pos_doublequote = 0;
 	while (cmdcaret[i] && cmdcaret[i] != '$' && ft_is_charspe(cmdcaret[i]) == 0)

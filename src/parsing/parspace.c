@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:29:20 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 13:50:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:22:32 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_countquote(char *cmd, char quote)
 	return (res);
 }
 
-char	*ft_fill_caret_when_space(char *cmd)
+char	*ft_fill_caret_when_space(t_all *all, char *cmd)
 {
 	size_t	len;
 	char	*res;
@@ -41,6 +41,8 @@ char	*ft_fill_caret_when_space(char *cmd)
 	doublequoteopen = 0;
 	len = ft_strlen(cmd);
 	res = (char *)malloc((len + 1) * sizeof(char));
+	if (!res)
+		return (free_all(all), exit(1), NULL);
 	while (cmd[i])
 	{
 		if (cmd[i] == '\'')
