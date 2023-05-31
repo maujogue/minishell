@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:08:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 11:41:03 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:22:39 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ int	get_nb_word(char *str, char delimiter)
 	return (count + 1);
 }
 
+void	ft_init_get_next_word(char *str, int *end, int *in_quotes,
+	char delimiter)
+{
+	while (str[*end] != '\0')
+	{
+		if (str[*end] == '\"')
+			*in_quotes = !(*in_quotes);
+		if (!(*in_quotes) && str[*end] == delimiter)
+			break ;
+		*end += 1;
+	}
+}
+
 char	*get_next_word(int *index, char *str, char delimiter, int *in_quotes)
 {
 	char	*word;
@@ -40,17 +53,10 @@ char	*get_next_word(int *index, char *str, char delimiter, int *in_quotes)
 	int		i;
 	int		word_length;
 
-	i = 0;
 	start = *index;
+	i = 0;
 	end = start;
-	while (str[end] != '\0')
-	{
-		if (str[end] == '\"')
-			*in_quotes = !(*in_quotes);
-		if (!(*in_quotes) && str[end] == delimiter)
-			break ;
-		end++;
-	}
+	ft_init_get_next_word(str, &end, in_quotes, delimiter);
 	word_length = end - start;
 	word = (char *)malloc((word_length + 1) * sizeof(char));
 	if (!word)

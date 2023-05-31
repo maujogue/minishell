@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 14:58:23 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:14:24 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_is_solo_pipe(char *cmd)
 		if (cmd[i] == '|')
 		{
 			if (cmd[i + 1] != '|')
-				write(2 ,"bash: syntax error near unexpected token `|'\n", 45);
+				write(2, "bash: syntax error near unexpected token `|'\n", 45);
 			else
-				write(2 ,"bash: syntax error near unexpected token `||'\n", 46);
+				write(2, "bash: syntax error near unexpected token `||'\n", 46);
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '|')
@@ -70,9 +70,11 @@ int	ft_is_solo_bracket_left(char *cmd)
 		if (cmd[i] == '<' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '<')
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 45);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					45);
 			else
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 46);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					46);
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '<')
@@ -94,13 +96,39 @@ int	ft_is_solo_bracket_right(char *cmd)
 		if (cmd[i] == '>' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '>')
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 45);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					45);
 			else
-				write(2 ,"bash: syntax error near unexpected token `newline'\n", 46);
+				write(2, "bash: syntax error near unexpected token `newline'\n",
+					46);
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '>')
 			return (0);
+		i++;
+	}
+	return (0);
+}
+
+int ft_is_double_char_spe(char *cmd, char c)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == c)
+		{
+			i++;
+			while (cmd[i] == ' ')
+				i++;
+			if (cmd[i] == c)
+			{
+				write(2, "bash: syntax error near unexpected token `|'\n",
+					45);
+				return (1);
+			}
+		}
 		i++;
 	}
 	return (0);

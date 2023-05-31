@@ -6,7 +6,11 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/31 16:20:34 by maujogue         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/31 16:12:10 by avaganay         ###   ########.fr       */
+>>>>>>> fe0e5b3ab9274681575cb4efad02c429b7a52ccf
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +73,6 @@ void		free_listenv(t_listenv *lst);
 void		fill_export(t_all *all, char **tab_cmd);
 int			check_invalid_identifier_export(char *str, char *cmd, int slash);
 
-
 /****************************PARSING*********************************/
 
 void		ft_parsing(t_all *all, char *cmd);
@@ -80,43 +83,46 @@ void		ft_jumpfile(char *cmd, int *i);
 int			ft_isopt(char *cmd, int i);
 int			ft_is_charspe(char c);
 int			ft_strlen_triple_char(char ***str);
-void		ft_fillstructpars(t_pars **pars, char **tabcmd);
+void		ft_fillstructpars(t_all *all, t_pars **pars, char **tabcmd);
 int			ft_strlen_triple_char(char ***str);
-char		*ft_fill_caret_when_space(char *cmd);
+char		*ft_fill_caret_when_space(t_all *all, char *cmd);
 char		*ft_replace_caret(char *src);
 int			ft_is_solo_pipe(char *cmd);
 int			ft_is_solo_bracket_left(char *cmd);
 int			ft_is_solo_bracket_right(char *cmd);
+int 		ft_is_double_char_spe(char *cmd, char c);
 char		**ft_split_with_quote(char *str, char c);
 
 /****************************PARSING_ARG*****************************/
 
 char		**ft_fillparsopt2(char *cmd);
 char		**ft_fillparsarg(t_all *all, char *cmd);
+void		ft_init_fillparscmd(char *cmd, int *len, int *nospace, int *is_cmd);
 
 /****************************PARSING_FILE****************************/
 
-int			is_in(char *str, int i);
-void		ft_fillpars_infile(t_pars *pars, char *cmd);
-void		ft_fillpars_outfile(t_pars *pars, char *cmd);
-void		ft_fillpars_outfile_append(t_pars *pars, char *cmd);
-void		ft_fillpars_heredoc(t_pars *pars, char *cmd);
+int			is(char *str, int i);
+void		ft_fillpars_infile(t_all *all, t_pars *pars, char *cmd);
+void		ft_fillpars_outfile(t_all *all, t_pars *pars, char *cmd);
+void		ft_fillpars_outfile_append(t_all *all, t_pars *pars, char *cmd);
+void		ft_fillpars_heredoc(t_all *all, t_pars *pars, char *cmd);
 char		*ft_fillnamefile(char *cmd, int i);
 char		**ft_filetodouble(char **tab, char *file);
 
 /****************************PARSING_VAR_QUOTE***********************/
 
 char		*ft_replace_var(t_all *all, char *cmd);
+char		*ft_fill_replace_var(t_all *all, char *cmd, int *i,
+				int *var_already_fill);
 
 int			ft_countquote(char *cmd, char quote);
 char		*ft_parsquote(char *cmd);
 char		*ft_fill_piece_simplequote(char *cmd, int *i);
 char		*ft_wherequote(t_all *all, char *cmd, int *i);
-int			ft_simplequote_start(char *cmd, int i);
 int			ft_doublequote_start(char *cmd, int i);
 char		*ft_cmd_whitout_simplequote(char *cmd);
 char		*ft_double_quote_in_simple(char *cmd, int *i);
-char		*ft_simple_quote_in_double(char *cmd, int *i);
+char		*ft_simple_quote_in_double(t_all *all, char *cmd, int *i);
 
 /****************************SIGNALS********************************/
 
@@ -128,5 +134,6 @@ void		sigint_handler_inside_minishell(int sig);
 /****************************FREE***********************************/
 
 void		free_all(t_all *all);
+void		free_parse(t_pars *parspipex);
 
 #endif

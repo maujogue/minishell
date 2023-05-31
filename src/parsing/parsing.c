@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 13:38:23 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:14:51 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,10 @@ char	*ft_fillparscmd(char *cmd)
 	int		len;
 	int		nospace;
 	char	*res;
+	char	*temp;
 	int		is_cmd;
 
-	len = 0;
-	nospace = 0;
-	is_cmd = 0;
-	while (cmd[len] == ' ')
-	{
-		len++;
-		nospace++;
-	}
+	ft_init_fillparscmd(cmd, &len, &nospace, &is_cmd);
 	while (cmd[len] != '\0' && cmd[len] != ' ')
 	{
 		if (cmd[len] != '<' && cmd[len] != '>')
@@ -62,7 +56,9 @@ char	*ft_fillparscmd(char *cmd)
 			return (ft_substr(cmd, nospace, len - nospace));
 		len++;
 	}
-	res = ft_substr(cmd, nospace, len - nospace);
+	temp = ft_substr(cmd, nospace, len - nospace);
+	res = ft_replace_caret(temp);
+	free(temp);
 	return (res);
 }
 
@@ -74,22 +70,12 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	all->nb_simplequote = ft_countquote(cmd, '\'');
 	all->nb_doublequote = ft_countquote(cmd, '\"');
 	cmdfinal = ft_replace_var(all, cmd);
-	// printf("CMD SANS VAR: %s\n", cmdfinal);
 	cmdpars = malloc(sizeof(t_pars));
+	if (!cmdpars)
+		return (free_all(all), exit(1), NULL);
 	cmdpars->cmd = ft_fillparscmd(cmdfinal);
-	// printf("%s /", cmdpars->cmd);
 	cmdpars->opt2 = ft_fillparsopt2(cmdfinal);
-	// if (cmdpars->opt2 != NULL)
-	// 	ft_print_tabarg(cmdpars->opt2);
-	// else
-	// 	printf("(null)");
 	cmdpars->arg = ft_fillparsarg(all, cmdfinal);
-	// printf("/");
-	// if (cmdpars->arg != NULL)
-	// 	ft_print_tabarg(cmdpars->arg);
-	// else
-	// 	printf("(null)");
-	// printf("\n");
 	free(cmdfinal);
 	return (cmdpars);
 }
@@ -105,9 +91,10 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 	while (tabcmd[len])
 		len++;
 	all->parspipex = malloc(sizeof(t_pars) * (len + 1));
+	if (!all->parspipex)
+		return (free_all(all), exit(1));
 	while (i < len)
 	{
-		// printf("cmd %d:\n", i);
 		all->parspipex[i] = ft_cleanpipe(all, tabcmd[i]);
 		i++;
 	}
@@ -121,10 +108,11 @@ void	ft_parsing(t_all *all, char *cmd)
 	if (cmd[0] == '\0')
 		return ;
 	if (ft_is_solo_pipe(cmd) || ft_is_solo_bracket_left(cmd)
-		|| ft_is_solo_bracket_right(cmd))
+		|| ft_is_solo_bracket_right(cmd) || ft_is_double_char_spe(cmd, '|')
+		|| ft_is_double_char_spe(cmd, '<') || ft_is_double_char_spe(cmd, '>'))
 		return ;
 	tabcmd = ft_split_with_quote(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
-	ft_fillstructpars(all->parspipex, tabcmd);
+	ft_fillstructpars(all, all->parspipex, tabcmd);
 	free_array(tabcmd);
 }

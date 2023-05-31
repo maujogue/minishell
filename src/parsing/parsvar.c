@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:47:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/29 14:50:25 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:47:06 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 	{
 		tmp_res = all->listenv;
 		if (ft_strcmp(var, all->listenv->key) == 0)
-			return (free(var), *i -= 1, all->listenv = tmp, ft_strdup(tmp_res->content));
+			return (free(var), *i -= 1, all->listenv = tmp,
+				ft_strdup(tmp_res->content));
 		all->listenv = all->listenv->next;
 	}
 	all->listenv = tmp;
@@ -31,7 +32,8 @@ char	*ft_fill_replace_dollar(t_all *all, char *var, int *i)
 	{
 		tmp_res = all->listexport;
 		if (ft_strcmp(var, all->listexport->key) == 0)
-			return (free(var), *i -= 1, all->listexport = tmp, ft_strdup(tmp_res->content));
+			return (free(var), *i -= 1, all->listexport = tmp,
+				ft_strdup(tmp_res->content));
 		all->listexport = all->listexport->next;
 	}
 	all->listexport = tmp;
@@ -46,9 +48,7 @@ char	*ft_fill_to_replace_dollar(t_all *all, char *cmd,
 
 	if (cmd[*i + 1] == '?')
 		return (*i += 1, *var_already_fill = 1, ft_itoa(g_status));
-	// printf("DEBUT QUOTE: %s\n", cmd);
 	var = ft_wherequote(all, cmd, i);
-	// printf("SANS QUOTE: %s\n", var);
 	if (var != NULL)
 		return (*var_already_fill = 1, var);
 	*i += 1;
@@ -80,20 +80,25 @@ char	*ft_fill_replace_var(t_all *all, char *cmd,
 	{
 		all->pos_doublequote += 1;
 		if (all->pos_doublequote % 2 != 0)
-			return (ft_simple_quote_in_double(cmd, i));
+			return (ft_simple_quote_in_double(all, cmd, i));
 		return (NULL);
 	}
 	if (cmd[*i] == '$' && cmd[*i + 1] != '\0' && cmd[*i + 1] != ' ')
 	{
 		var = ft_fill_to_replace_dollar(all, cmd, i, var_already_fill);
-		// printf("\nVAR BEFORE: %s\n", var);
 		if (*var_already_fill == 0)
 			var = ft_fill_replace_dollar(all, var, i);
-		// printf("VAR AFTER: %s\n", var);
 	}
 	else
 		var = ft_substr(cmd, *i, 1);
 	return (var);
+}
+
+void	ft_init_replace_var(t_all *all, char *cmdcaret)
+{
+	all->pos_simplequote = 0;
+	all->pos_doublequote = 0;
+	free(cmdcaret);
 }
 
 char	*ft_replace_var(t_all *all, char *cmd)
@@ -105,8 +110,7 @@ char	*ft_replace_var(t_all *all, char *cmd)
 	char	*cmdcaret;
 
 	i = 0;
-	cmdcaret = ft_fill_caret_when_space(cmd);
-	// printf("TEST AVEC CARET: %s\n", cmdcaret);
+	cmdcaret = ft_fill_caret_when_space(all, cmd);
 	all->pos_simplequote = 0;
 	all->pos_doublequote = 0;
 	while (cmdcaret[i] && cmdcaret[i] != '$' && ft_is_charspe(cmdcaret[i]) == 0)
@@ -117,14 +121,11 @@ char	*ft_replace_var(t_all *all, char *cmd)
 		var_already_fill = 0;
 		var = ft_fill_replace_var(all, cmdcaret, &i, &var_already_fill);
 		if (var != NULL)
-		{
 			cmdfinal = ft_strjoin_gnl(cmdfinal, var);
-		}
 		free(var);
-		i++;
+		if (cmdcaret[i] != '\0')
+			i++;
 	}
-	all->pos_simplequote = 0;
-	all->pos_doublequote = 0;
-	free(cmdcaret);
+	ft_init_replace_var(all, cmdcaret);
 	return (cmdfinal);
 }
