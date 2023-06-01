@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 16:12:10 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:24:00 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		ft_env(t_all *all, t_pip *pip);
 void		ft_echo(char **tabecho);
 void		ft_exit(t_all *all, t_pip *pip);
 void		ft_export(t_all *all, char **cmd);
-void		ft_pwd(void);
+void		ft_pwd(t_all *all);
 void		ft_unset(t_all *all, t_pip *pip);
 void		create_env(t_all *all, char **envp);
 
@@ -122,9 +122,10 @@ char		*ft_simple_quote_in_double(t_all *all, char *cmd, int *i);
 
 /****************************SIGNALS********************************/
 
-void		signals_on(t_all *all);
-void		signals_in_process(void);
+void		signals_in_process(char *cmd);
 void		signals_in_heredoc(void);
+void		sigint_handler(int sig);
+void		sigint_handler_inside_minishell(int sig);
 
 /****************************FREE***********************************/
 

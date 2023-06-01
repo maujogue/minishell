@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:15:34 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/24 09:55:20 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:13:39 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_builtins(t_all *all, t_pip *pip)
 	else if (ft_strncmp(pip->cmd[0], "cd\0", 3) == 0)
 		ft_cd(all, pip);
 	else if (ft_strncmp(pip->cmd[0], "pwd\0", 4) == 0)
-		ft_pwd();
+		ft_pwd(all);
 	else
 		return (1);
 	return (0);

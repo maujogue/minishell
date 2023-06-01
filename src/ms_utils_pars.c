@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_pars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 16:14:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:26:42 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_is_solo_pipe(char *cmd)
 		if (cmd[i] == '|')
 		{
 			if (cmd[i + 1] != '|')
-				write(2, "bash: syntax error near unexpected token `|'\n", 45);
+				write_error("", "bash: syntax error near unexpected token `|'\n", "");
 			else
-				write(2, "bash: syntax error near unexpected token `||'\n", 46);
+				write_error("", "bash: syntax error near unexpected token `||'\n", "");
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '|')
@@ -70,11 +70,9 @@ int	ft_is_solo_bracket_left(char *cmd)
 		if (cmd[i] == '<' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '<')
-				write(2, "bash: syntax error near unexpected token `newline'\n",
-					45);
+				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
 			else
-				write(2, "bash: syntax error near unexpected token `newline'\n",
-					46);
+				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '<')
@@ -96,11 +94,9 @@ int	ft_is_solo_bracket_right(char *cmd)
 		if (cmd[i] == '>' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '>')
-				write(2, "bash: syntax error near unexpected token `newline'\n",
-					45);
+				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
 			else
-				write(2, "bash: syntax error near unexpected token `newline'\n",
-					46);
+				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '>')
@@ -124,8 +120,7 @@ int ft_is_double_char_spe(char *cmd, char c)
 				i++;
 			if (cmd[i] == c)
 			{
-				write(2, "bash: syntax error near unexpected token `|'\n",
-					45);
+				write_error("", "bash: syntax error near unexpected token `|'\n", "");
 				return (1);
 			}
 		}

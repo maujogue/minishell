@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/25 15:50:15 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:45:39 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_all(&all, envp);
 	while (1)
 	{
-		signals_on(&all);
+		signal(SIGINT, sigint_handler);
+		signal(SIGQUIT, SIG_IGN);
 		cmd = readline(">>");
 		if (!cmd)
 		{

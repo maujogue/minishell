@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/01 12:53:45 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/01 12:55:21 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,10 @@ void	ft_parsing(t_all *all, char *cmd)
 	if (ft_is_solo_pipe(cmd) || ft_is_solo_bracket_left(cmd)
 		|| ft_is_solo_bracket_right(cmd) || ft_is_double_char_spe(cmd, '|')
 		|| ft_is_double_char_spe(cmd, '<') || ft_is_double_char_spe(cmd, '>'))
-		return ;
+		return ((void)(g_status = 2));
 	tabcmd = ft_split_with_quote(cmd, '|');
 	ft_fillparspipex(all, tabcmd);
 	ft_fillstructpars(all, all->parspipex, tabcmd);
+	all->exit_code = g_status;
 	free_array(tabcmd);
 }

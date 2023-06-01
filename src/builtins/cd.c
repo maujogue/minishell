@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/26 10:03:27 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:14:48 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 void	replace_env_pwd(t_listenv	*listenv, char *arg)
 {
+	char	*pwd;
+
 	while (listenv)
 	{
 		if (ft_strncmp(listenv->key, arg, ft_strlen(arg)) == 0)
 		{
+			pwd = getcwd(NULL, 0);
+			if (!pwd)
+				return ;
 			free(listenv->content);
-			listenv->content = ft_strdup(getcwd(NULL, 0));
+			listenv->content = ft_strdup(pwd);
+			free(pwd);
 			return ;
 		}
 		listenv = listenv->next;
@@ -69,18 +75,17 @@ int	cd_previous(t_all *all, t_pip *pip, char *pwd, char *old_pwd)
 void	cd_args(t_all *all, t_pip *pip, char *pwd)
 {
 	char	*arg;
-	char	*temp;
 
-	arg = pip->cmd[1];
-	temp = arg;
+	arg = ft_strdup(pip->cmd[1]);
 	if (chdir(arg) == 0 && ft_strncmp(arg, "/", 1) == 0)
 	{
 		replace_env_arg(all->listenv, "OLDPWD", pwd);
 		replace_env_pwd(all->listenv, "PWD");
-		return ;
+		return (free(arg));
 	}
 	else
 	{
+		free(arg);
 		arg = ft_strjoin(pwd, "/");
 		arg = ft_strjoin_gnl(arg, pip->cmd[1]);
 		if (chdir(arg) == 0)
@@ -90,8 +95,9 @@ void	cd_args(t_all *all, t_pip *pip, char *pwd)
 			free(arg);
 		}
 		else
-			return (g_status = 127,
-				(void)printf("bash: cd: %s: No such file or directory\n", temp));
+			return (free(arg), g_status = 127,
+				(void)printf("bash: cd: %s: No such file or directory\n",
+					pip->cmd[1]));
 	}
 }
 

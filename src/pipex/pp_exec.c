@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/25 16:10:00 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:07:48 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	exec_cmd(t_all *all, t_pip *pip)
 
 	if (check_cmd(all, pip) == 1)
 		return ;
-	signals_in_process();
 	pid = fork();
 	if (pid < 0)
 		free_exit(all, pip, 1, "Error\nFork failed");
+	signals_in_process(pip->cmd[0]);
 	if (pid == 0)
 	{
 		dup_pipe(all, pip);

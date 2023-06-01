@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/29 10:09:11 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:28:59 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	ft_isspace(char c)
 long long	ft_atoi_exit(const char *str, int *err)
 {
 	int			i;
-	long		neg;
+	int			neg;
 	long long	sum;
 
 	i = 0;
 	neg = 1;
 	sum = 0;
+	if (ft_strcmp(str, "-9223372036854775808\0") == 0)
+		return (0);
 	if (str[i] && (str[i] == '-' || str[i] == '+'))
 		if (str[i++] == '-')
 			neg *= -1;
@@ -40,10 +42,10 @@ long long	ft_atoi_exit(const char *str, int *err)
 		sum = (sum * 10) + (str[i] - 48);
 		if (str[i] < '0' || str[i] > '9')
 			*err = 1;
+		if (sum < 0)
+			*err = 1;
 		i++;
 	}
-	if (sum * neg >= LONG_MAX || sum * neg <= LONG_MIN)
-		*err = 1;
 	return (sum * neg);
 }
 
@@ -87,7 +89,10 @@ void	exit_arg_code(t_pip *pip)
 		g_status = 1;
 	}
 	else
+	{
 		g_status = code % 256;
+		write_error("exit\n", "", "");
+	}
 }
 
 void	ft_exit(t_all *all, t_pip *pip)
@@ -97,7 +102,10 @@ void	ft_exit(t_all *all, t_pip *pip)
 	else if (pip->cmd[1])
 		exit_arg_code(pip);
 	else
-		g_status = 0;
+	{
+		g_status = all->exit_code;
+		write_error("exit\n", "", "");
+	}
 	close_p(pip, pip->nb_arg);
 	free_exit(all, pip, 1, "");
 }
