@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_pars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 16:26:42 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:06:52 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,13 @@ int ft_is_double_char_spe(char *cmd, char c)
 		if (cmd[i] == c)
 		{
 			i++;
+			if ((c == '>' || c == '<') && cmd[i] == c)
+				i++;
 			while (cmd[i] == ' ')
 				i++;
 			if (cmd[i] == c)
 			{
-				write_error("", "bash: syntax error near unexpected token `|'\n", "");
+				printf("bash: syntax error near unexpected token `%c'\n", c);
 				return (1);
 			}
 		}

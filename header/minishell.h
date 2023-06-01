@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 16:24:00 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/01 13:57:03 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int			check_invalid_identifier_export(char *str, char *cmd, int slash);
 
 void		ft_parsing(t_all *all, char *cmd);
 void		ft_initpars(t_pars *pars);
+char		*ft_tabulation_to_space(char *cmd);
 int			ft_isredir(char *cmd, int i);
 void		ft_jump_redir(char *cmd, int *i);
 void		ft_jumpfile(char *cmd, int *i);
@@ -102,6 +103,9 @@ void		ft_fillpars_infile(t_all *all, t_pars *pars, char *cmd);
 void		ft_fillpars_outfile(t_all *all, t_pars *pars, char *cmd);
 void		ft_fillpars_outfile_append(t_all *all, t_pars *pars, char *cmd);
 void		ft_fillpars_heredoc(t_all *all, t_pars *pars, char *cmd);
+char		**ft_if_fillpars_infile_outfile(t_all *all, char *cmd, int i);
+char		**ft_if_fillpars_heredoc_outfileappend(t_all *all, char *cmd,
+				int i);
 char		*ft_fillnamefile(char *cmd, int i);
 char		**ft_filetodouble(char **tab, char *file);
 
