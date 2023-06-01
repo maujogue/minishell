@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/01 13:57:03 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:10:07 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char		*ft_replace_caret(char *src);
 int			ft_is_solo_pipe(char *cmd);
 int			ft_is_solo_bracket_left(char *cmd);
 int			ft_is_solo_bracket_right(char *cmd);
-int 		ft_is_double_char_spe(char *cmd, char c);
+int			ft_is_double_char_spe(char *cmd, char c);
 char		**ft_split_with_quote(char *str, char c);
 
 /****************************PARSING_ARG*****************************/

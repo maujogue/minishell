@@ -6,19 +6,11 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:04:41 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/01 14:06:52 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:12:32 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-int	ft_is_charspe(char c)
-{
-	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64)
-		|| (c >= 91 && c <= 94) || (c >= 123 && c <= 125))
-		return (1);
-	return (0);
-}
 
 int	ft_is_solo_pipe(char *cmd)
 {
@@ -30,9 +22,11 @@ int	ft_is_solo_pipe(char *cmd)
 		if (cmd[i] == '|')
 		{
 			if (cmd[i + 1] != '|')
-				write_error("", "bash: syntax error near unexpected token `|'\n", "");
+				write_error("", "bash: syntax error near unexpected token `|'\n",
+					"");
 			else
-				write_error("", "bash: syntax error near unexpected token `||'\n", "");
+				write_error("",
+					"bash: syntax error near unexpected token `||'\n", "");
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '|')
@@ -70,9 +64,11 @@ int	ft_is_solo_bracket_left(char *cmd)
 		if (cmd[i] == '<' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '<')
-				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
+				write_error("",
+					"bash: syntax error near unexpected token `newline'\n", "");
 			else
-				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
+				write_error("",
+					"bash: syntax error near unexpected token `newline'\n", "");
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '<')
@@ -94,9 +90,11 @@ int	ft_is_solo_bracket_right(char *cmd)
 		if (cmd[i] == '>' && solo_bracket == 1)
 		{
 			if (cmd[i + 1] != '>')
-				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
+				write_error("",
+					"bash: syntax error near unexpected token `newline'\n", "");
 			else
-				write_error("", "bash: syntax error near unexpected token `newline'\n", "");
+				write_error("",
+					"bash: syntax error near unexpected token `newline'\n", "");
 			return (1);
 		}
 		if (cmd[i] != ' ' && cmd[i] != '>')
@@ -106,7 +104,7 @@ int	ft_is_solo_bracket_right(char *cmd)
 	return (0);
 }
 
-int ft_is_double_char_spe(char *cmd, char c)
+int	ft_is_double_char_spe(char *cmd, char c)
 {
 	int	i;
 
