@@ -6,11 +6,35 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:29:20 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 11:22:32 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/01 13:54:53 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+int	is(char *str, int i)
+{
+	int	single_quote_count;
+	int	double_quote_count;
+	int	j;
+
+	single_quote_count = 0;
+	double_quote_count = 0;
+	j = 0;
+	while (j < i)
+	{
+		if (str[j] == '\'')
+			single_quote_count++;
+		else if (str[j] == '\"')
+			double_quote_count++;
+		j++;
+	}
+	if (single_quote_count % 2 == 1 && double_quote_count % 2 == 0)
+		return (0);
+	if (single_quote_count % 2 == 0 && double_quote_count % 2 == 1)
+		return (0);
+	return (1);
+}
 
 int	ft_countquote(char *cmd, char quote)
 {
@@ -28,6 +52,14 @@ int	ft_countquote(char *cmd, char quote)
 	return (res);
 }
 
+void	ft_init_fill_caret_when_space(int *i, int *simplequoteopen,
+	int *doublequoteopen)
+{
+	*i = 0;
+	*simplequoteopen = 0;
+	*doublequoteopen = 0;
+}
+
 char	*ft_fill_caret_when_space(t_all *all, char *cmd)
 {
 	size_t	len;
@@ -36,9 +68,7 @@ char	*ft_fill_caret_when_space(t_all *all, char *cmd)
 	int		simplequoteopen;
 	int		i;
 
-	i = 0;
-	simplequoteopen = 0;
-	doublequoteopen = 0;
+	ft_init_fill_caret_when_space(&i, &simplequoteopen, &doublequoteopen);
 	len = ft_strlen(cmd);
 	res = (char *)malloc((len + 1) * sizeof(char));
 	if (!res)

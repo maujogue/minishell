@@ -6,24 +6,11 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:52:06 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 15:47:22 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/01 13:27:03 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
-
-int	ft_doublequote_start(char *cmd, int i)
-{
-	while (i >= 0)
-	{
-		if (cmd[i] == '\"')
-			return (1);
-		if (cmd[i] == '\'')
-			return (0);
-		i--;
-	}
-	return (0);
-}
 
 char	*ft_double_quote_in_simple(char *cmd, int *i)
 {
@@ -68,7 +55,8 @@ char	*ft_replace_var_in_quote(t_all *all, char *str)
 	return (res);
 }
 
-char	*ft_end_simple_quote_in_double(t_all *all, char *cmd, int len, int start)
+char	*ft_end_simple_quote_in_double(t_all *all, char *cmd, int len,
+	int start)
 {
 	char	*res_no_var;
 	char	*res;
@@ -76,6 +64,15 @@ char	*ft_end_simple_quote_in_double(t_all *all, char *cmd, int len, int start)
 	res_no_var = ft_substr(cmd, start, len);
 	res = ft_replace_var_in_quote(all, res_no_var);
 	return (res);
+}
+
+void	ft_simple_quote_in_double_while(char *cmd, int *i, int *len)
+{
+	while (cmd[*i] != '\"' && cmd[*i])
+	{
+		*i += 1;
+		*len += 1;
+	}
 }
 
 char	*ft_simple_quote_in_double(t_all *all, char *cmd, int *i)
@@ -102,11 +99,7 @@ char	*ft_simple_quote_in_double(t_all *all, char *cmd, int *i)
 		}
 		j++;
 	}
-	while (cmd[*i] != '\"' && cmd[*i])
-	{
-		*i += 1;
-		len++;
-	}
+	ft_simple_quote_in_double_while(cmd, i, &len);
 	res = ft_end_simple_quote_in_double(all, cmd, len, start);
 	return (res);
 }

@@ -6,11 +6,29 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:08:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/30 11:22:39 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/01 13:20:01 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+char	*ft_tabulation_to_space(char *cmd)
+{
+	char	*res;
+	int		i;
+
+	i = 0;
+	res = malloc(sizeof(char) * (ft_strlen(cmd) + 1));
+	while (cmd[i])
+	{
+		if (cmd[i] == '\t')
+			res[i] = ' ';
+		else
+			res[i] = cmd[i];
+		i++;
+	}
+	return (res);
+}
 
 int	get_nb_word(char *str, char delimiter)
 {
