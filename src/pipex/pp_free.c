@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/26 15:12:29 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:08:20 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,17 @@ void	free_pipex(t_all *all, t_pip *pip)
 	pip->fds = NULL;
 }
 
-void	free_exit(t_all *all, t_pip *pip, int i, char *message)
+void	free_exit(t_all *all, t_pip *pip, int malloc_status, char *message)
 {
-	free_pipex(all, pip);
-	free_each_pipe(pip);
+	if (pip)
+	{
+		free_pipex(all, pip);
+		free_each_pipe(pip);
+	}
 	free_all(all);
-	if (i != 0)
-		exit(g_status);
-	write(1, message, ft_strlen(message));
+	if (malloc_status == 1)
+		ft_putstr_fd("bash: Malloc error\n", 2);
+	else
+		ft_putstr_fd(message, 2);
+	exit(g_status);
 }

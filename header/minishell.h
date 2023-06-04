@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:42:36 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 16:24:00 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 11:31:54 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		ft_cd(t_all *all, t_pip *pip);
 void		ft_env(t_all *all, t_pip *pip);
 void		ft_echo(char **tabecho);
 void		ft_exit(t_all *all, t_pip *pip);
-void		ft_export(t_all *all, char **cmd);
-void		ft_pwd(t_all *all);
+void		ft_export(t_all *all, t_pip *pip);
+void		ft_pwd(t_all *all, t_pip *pip);
 void		ft_unset(t_all *all, t_pip *pip);
 void		create_env(t_all *all, char **envp);
 
@@ -54,9 +54,9 @@ void		ft_print_tabarg(char **tab);
 /****************************ENV_UTILS****************************/
 
 t_listenv	*unset_env_var(char *cmd, t_listenv *tmp);
-char		*get_env_content(t_listenv	*listenv, char *arg);
+char		*get_env_content(t_all *all, t_pip *pip, t_listenv	*listenv, char *arg);
 int			check_lst_key_exists(t_listenv	*listenv, char *arg);
-void		replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
+int			replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 
 /****************************EXPORT_UTILS***************************/
 
@@ -66,7 +66,7 @@ t_listenv	*ft_lstcat(t_listenv *lst1, t_listenv *lst2);
 t_listenv	*ft_lst_dup(t_listenv *lst);
 void		ft_lstexport_add_back(t_listenv **lst, t_listenv *new);
 void		free_listenv(t_listenv *lst);
-void		fill_export(t_all *all, char **tab_cmd);
+void		fill_export(t_all *all, t_pip *pip);
 int			check_invalid_identifier_export(char *str, char *cmd, int slash);
 
 /****************************PARSING*********************************/
@@ -131,5 +131,7 @@ void		sigint_handler_inside_minishell(int sig);
 
 void		free_all(t_all *all);
 void		free_parse(t_pars *parspipex);
+void		malloc_protection(t_all *all, t_pip *pip, char *str);
+void		free_exit_only_all(t_all *all);
 
 #endif

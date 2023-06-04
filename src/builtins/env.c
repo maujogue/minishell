@@ -3,21 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/23 16:55:46 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:59:40 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-char	*get_env_content(t_listenv	*listenv, char *arg)
+char	*get_env_content(t_all *all, t_pip *pip, t_listenv	*listenv, char *arg)
 {
+	char	*res;
+	
 	while (listenv)
 	{
 		if (ft_strcmp(listenv->key, arg) == 0)
-			return (ft_strdup(listenv->content));
+		{
+			if (!(res = ft_strdup(listenv->content)))
+				free_exit(all, pip, 1, "");
+			return (res);
+		}
 		listenv = listenv->next;
 	}
 	return (NULL);
@@ -34,7 +40,7 @@ int	check_lst_key_exists(t_listenv	*listenv, char *arg)
 	return (1);
 }
 
-void	replace_env_arg(t_listenv	*listenv, char *arg, char *replacement)
+int	replace_env_arg(t_listenv	*listenv, char *arg, char *replacement)
 {
 	while (listenv)
 	{
@@ -42,39 +48,13 @@ void	replace_env_arg(t_listenv	*listenv, char *arg, char *replacement)
 		{
 			free(listenv->content);
 			listenv->content = ft_strdup(replacement);
-			return ;
+			if (!listenv->content)
+				return (1);
+			return (0);
 		}
 		listenv = listenv->next;
 	}
-}
-
-t_listenv	*unset_env_var(char *cmd, t_listenv *lst)
-{
-	t_listenv	*prev;
-	t_listenv	*tmp;
-
-	tmp = lst;
-	prev = NULL;
-	while (lst)
-	{
-		if (ft_strcmp(cmd, lst->key) == 0)
-		{
-			free(lst->key);
-			free(lst->content);
-			if (prev)
-			{
-				prev->next = lst->next;
-				free(lst);
-				break ;
-			}
-			else
-				return (free(lst), lst->next);
-		}
-		prev = lst;
-		lst = lst->next;
-	}
-	lst = tmp;
-	return (lst);
+	return (0);
 }
 
 void	ft_env(t_all *all, t_pip *pip)

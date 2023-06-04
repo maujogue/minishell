@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/26 11:00:57 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:04:00 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,27 @@ void	sort_linked_list(t_listenv *head)
 	}
 }
 
-void	display_listexport(t_all *all)
+void	display_listexport(t_all *all, t_pip *pip)
 {
 	t_listenv	*export;
 	t_listenv	*env_copy;
 
 	env_copy = ft_lst_dup(all->listenv);
+	if (!env_copy)
+		free_exit(all, pip, 1, "");
 	export = ft_lstcat(env_copy, all->listexport);
+	if (!export)
+		free_exit(all, pip, 1, "");
 	sort_linked_list(export);
 	ft_print_listexport(export);
 	free_listenv(env_copy);
 	free_listenv(export);
 }
 
-void	ft_export(t_all *all, char **cmd)
+void	ft_export(t_all *all, t_pip *pip)
 {
-	if (ft_strlen_array(cmd) == 1)
-		display_listexport(all);
-	if (ft_strlen_array(cmd) > 1)
-		fill_export(all, cmd);
+	if (ft_strlen_array(pip->cmd) == 1)
+		display_listexport(all, pip);
+	if (ft_strlen_array(pip->cmd) > 1)
+		fill_export(all, pip);
 }

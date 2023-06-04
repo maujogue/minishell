@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_lstutils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:39:58 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/26 10:59:36 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:02:19 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,16 @@ t_listenv	*ft_lst_dup(t_listenv *lst)
 	if (!lst)
 		return (NULL);
 	new = ft_lstexport_new(lst->key, lst->content);
+	if (!new)
+		return (NULL);
 	temp_lst = lst;
 	temp_new = new;
 	lst = lst->next;
 	while (lst)
 	{
 		new->next = ft_lstexport_new(lst->key, lst->content);
+		if (!new->next)
+			return (NULL);
 		new = new->next;
 		lst = lst->next;
 	}
@@ -83,6 +87,8 @@ t_listenv	*ft_lstcat(t_listenv *lst1, t_listenv *lst2)
 	t_listenv	*dup;
 
 	final = ft_lst_dup(lst1);
+	if (!final)
+		return (NULL);
 	temp_original = lst1;
 	temp_final = final;
 	final = ft_lstexport_last(final);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:16 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/17 10:40:57 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:59:48 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,35 @@ int	check_invalid_identifier_unset(char *str, char *cmd)
 		i++;
 	}
 	return (0);
+}
+
+t_listenv	*unset_env_var(char *cmd, t_listenv *lst)
+{
+	t_listenv	*prev;
+	t_listenv	*tmp;
+
+	tmp = lst;
+	prev = NULL;
+	while (lst)
+	{
+		if (ft_strcmp(cmd, lst->key) == 0)
+		{
+			free(lst->key);
+			free(lst->content);
+			if (prev)
+			{
+				prev->next = lst->next;
+				free(lst);
+				break ;
+			}
+			else
+				return (free(lst), lst->next);
+		}
+		prev = lst;
+		lst = lst->next;
+	}
+	lst = tmp;
+	return (lst);
 }
 
 void	ft_unset(t_all *all, t_pip *pip)
