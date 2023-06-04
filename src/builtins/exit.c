@@ -6,7 +6,7 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:00 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 12:12:03 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/04 16:54:16 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ void	ft_exit(t_all *all, t_pip *pip)
 		write_error("exit\n", "", "");
 	}
 	close_p(pip, pip->nb_arg);
-	free_exit(all, pip, 0, "");
+	free_exit(all, pip, 1, "");
 }

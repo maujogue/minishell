@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/31 15:45:39 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 16:48:12 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ void	incr_shell_lvl(t_all *all, int n)
 	char	*lvl_char;
 	int		lvl_int;
 
-	lvl_char = get_env_content(all->listenv, "SHLVL");
+	lvl_char = get_env_content(all, NULL, all->listenv, "SHLVL");
 	if (lvl_char)
 	{
 		lvl_int = ft_atoi(lvl_char);
 		lvl_int += n;
 		free(lvl_char);
-		lvl_char = ft_itoa(lvl_int);
-		replace_env_arg(all->listenv, "SHLVL", lvl_char);
+		if (!(lvl_char = ft_itoa(lvl_int)))
+			free_exit(all, NULL, 1, "");
+		if (replace_env_arg(all->listenv, "SHLVL", lvl_char) == 1)
+			free_exit(all, NULL, 1, "");
 	}
 	free(lvl_char);
 }
@@ -78,6 +80,7 @@ int	main(int argc, char **argv, char **envp)
 		add_history(cmd);
 		ft_parsing(&all, cmd);
 		pipex(&all);
+		free(cmd);
 	}
 	incr_shell_lvl(&all, -1);
 	return (0);

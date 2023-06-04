@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/31 15:19:13 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:05:38 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*get_path_cmd(t_all *all, t_pip *pip, char *cmd, char *path)
 	i = 1;
 	tab = ft_split(path, ':');
 	if (!tab)
-		free_exit(all, pip, 1, "Error\nMalloc failed1");
+		free_exit(all, pip, 1, "bash: Malloc error\n");
 	while (tab[i])
 	{
 		temp_path = ft_strjoin(tab[i], "/");
@@ -105,7 +105,7 @@ int	check_cmd(t_all *all, t_pip *pip)
 	else if (is_builtin(pip) == 0)
 		return (0);
 	else
-	{
+	{(void)all;
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd && !pip->path)
 			return (g_status = 127,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/26 15:07:49 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:36:00 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_cmd(t_all *all, t_pip *pip)
 {
 	pip->cmd = ft_strdup_array(pip->tab_cmd[pip->curr]);
 	if (!pip->cmd)
-		free_exit(all, pip, 1, "Error\nMalloc failed");
+		free_exit(all, pip, 1, "bash: Malloc error\n");
 }
 
 void	create_pipes(t_all *all, t_pip *pip)
@@ -26,11 +26,11 @@ void	create_pipes(t_all *all, t_pip *pip)
 	i = 0;
 	pip->fds = malloc(sizeof(int) * (pip->nb_arg * (2)));
 	if (!pip->fds)
-		free_exit(all, pip, 1, "Error\nMalloc failed");
+		free_exit(all, pip, 0, "bash: Malloc error\n");
 	while (i < pip->nb_arg)
 	{
 		if (pipe(&pip->fds[i * 2]))
-			free_exit(all, pip, 1, "Error\nPipe failed");
+			free_exit(all, pip, 0, "Error\nPipe failed");
 		i++;
 	}
 }
@@ -43,11 +43,14 @@ void	init_pip(t_all *all, t_pip *pip)
 	pip->tab_cmd = NULL;
 	pip->fds = NULL;
 	pip->cmd = NULL;
+	pip->path = NULL;
 	pip->path_cmd = NULL;
-	join_cmds(all->parspipex);
+	join_cmds(all, pip, all->parspipex);
 	pip->envp = lst_to_tab(all->listenv);
+	if (!pip->envp)
+		free_exit(all, pip, 0, "Error\nMalloc failed");
 	pip->path = get_path_envp(pip->envp);
-	pip->tab_cmd = get_pip_cmds(all->parspipex);
+	pip->tab_cmd = get_pip_cmds(all, pip, all->parspipex);
 	create_pipes(all, pip);
 }
 

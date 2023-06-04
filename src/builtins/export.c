@@ -6,7 +6,7 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:11 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 15:04:00 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/04 16:51:26 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void	display_listexport(t_all *all, t_pip *pip)
 
 	env_copy = ft_lst_dup(all->listenv);
 	if (!env_copy)
-		free_exit(all, pip, 1, "");
+		free_exit(all, pip, 1, "bash: Malloc error\n");
 	export = ft_lstcat(env_copy, all->listexport);
 	if (!export)
-		free_exit(all, pip, 1, "");
+		free_exit(all, pip, 1, "bash: Malloc error\n");
 	sort_linked_list(export);
 	ft_print_listexport(export);
 	free_listenv(env_copy);

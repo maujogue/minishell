@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:52:21 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/26 16:34:40 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:15:01 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	sigint_handler_in_heredoc(int sig)
 {
-	(void) sig;
 	g_status = 128 + sig;
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	rl_replace_line("", 0);
@@ -27,17 +26,20 @@ void	signals_in_heredoc(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	write_control_d_here_doc(int n, char *heredoc)
+int	write_control_d_here_doc(int n, char *heredoc)
 {
 	char	*nbr;
-
+	
 	nbr = ft_itoa(n);
+	if (!nbr)
+		return (1);
 	write_error("bash: warning: here-document at line ", nbr, "");
 	write_error(" delimited by end-of-file (wanted `", heredoc, "')\n");
 	free(nbr);
+	return (0);
 }
 
-void	single_here_doc(char **heredoc, int fd[2], int i)
+int	single_here_doc(char **heredoc, int fd[2], int i)
 {
 	char	*line;
 	int		n;
@@ -50,8 +52,8 @@ void	single_here_doc(char **heredoc, int fd[2], int i)
 		line = readline(">");
 		if (!line)
 		{
-			write_control_d_here_doc(n, heredoc[i]);
-			break ;
+			if (write_control_d_here_doc(n, heredoc[i]) == 1)
+				return (1);
 		}
 		if (ft_strncmp(line, heredoc[i], ft_strlen(line)) == 0
 			&& ft_strncmp(line, heredoc[i], ft_strlen(heredoc[i])) == 0)
@@ -64,6 +66,7 @@ void	single_here_doc(char **heredoc, int fd[2], int i)
 		n++;
 		free(line);
 	}
+	return (0);
 }
 
 void	init_all_here_doc(t_all *all, char **heredoc, t_pip *pip)
@@ -80,7 +83,8 @@ void	init_all_here_doc(t_all *all, char **heredoc, t_pip *pip)
 			free_exit(all, pip, 1, "Error: open failed \n");
 		while (heredoc[i])
 		{
-			single_here_doc(heredoc, fd, i);
+			if (single_here_doc(heredoc, fd, i) == 1)
+				free_exit(all, pip, 1, "Error\nMalloc failed");
 			i++;
 		}
 		close(fd[1]);

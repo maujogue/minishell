@@ -6,7 +6,7 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:20:46 by mathisaujog       #+#    #+#             */
-/*   Updated: 2023/06/04 15:25:56 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/04 16:51:26 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	fill_export_empty_variable(t_all *all, t_pip *pip, t_listenv *new)
 	if (check_lst_key_exists(all->listexport, new->key) == 0)
 	{
 		if (replace_env_arg(all->listexport, new->key, new->content) == 1)
-			free_exit(all, pip, 1, "");
+			free_exit(all, pip, 1, "bash: Malloc error\n");
 	}
 	else if (check_lst_key_exists(all->listenv, new->key) == 1)
 		ft_lstexport_add_back(&(all->listexport), new);
@@ -65,7 +65,7 @@ void	fill_export_variable(t_all *all, t_pip *pip, t_listenv *new)
 	if (check_lst_key_exists(all->listenv, new->key) == 0)
 	{
 		if (replace_env_arg(all->listenv, new->key, new->content) == 1)
-			free_exit(all, pip, 1, "");
+			free_exit(all, pip, 1, "bash: Malloc error\n");
 	}
 	else if (check_lst_key_exists(all->listexport, new->key) == 0)
 	{
@@ -87,7 +87,7 @@ void	fill_export(t_all *all, t_pip *pip)
 		if (check_invalid_identifier_export(pip->cmd[i], "export", 0) == 1)
 			return ;
 		if (!(new = get_export_node(pip->cmd[i])))
-			free_exit(all, pip, 1, "");
+			free_exit(all, pip, 1, "bash: Malloc error\n");
 		if (ft_strchr(new->key, '/') != 0 || ft_strchr(new->key, '@') != 0
 			|| ft_strchr(new->key, '-') != 0 || ft_strchr(new->key, ':') != 0)
 		{

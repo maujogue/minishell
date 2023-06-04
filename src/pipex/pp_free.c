@@ -6,23 +6,11 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:05:28 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 12:08:20 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/04 18:09:20 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
-
-void	free_files(t_all *all, int i)
-{
-	free_array(all->parspipex[i]->infile);
-	free_array(all->parspipex[i]->outfile);
-	free_array(all->parspipex[i]->outfile_append);
-	free_array(all->parspipex[i]->heredoc);
-	all->parspipex[i]->infile = NULL;
-	all->parspipex[i]->outfile = NULL;
-	all->parspipex[i]->outfile_append = NULL;
-	all->parspipex[i]->heredoc = NULL;
-}
 
 void	close_fd_tab(int *tab)
 {
@@ -34,41 +22,6 @@ void	close_fd_tab(int *tab)
 		close(tab[i]);
 		i++;
 	}
-}
-
-void	free_parse_tab(t_all *all)
-{
-	int	i;
-
-	i = 0;
-	if (!all->parspipex)
-		return ;
-	while (all->parspipex[i])
-	{
-		free_array(all->parspipex[i]->tabfinal);
-		free_array(all->parspipex[i]->arg);
-		free_array(all->parspipex[i]->opt2);
-		free(all->parspipex[i]->cmd);
-		free_files(all, i);
-		all->parspipex[i]->tabfinal = NULL;
-		all->parspipex[i]->arg = NULL;
-		all->parspipex[i]->opt2 = NULL;
-		all->parspipex[i]->cmd = NULL;
-		free(all->parspipex[i]);
-		all->parspipex[i] = NULL;
-		i++;
-	}
-	free(all->parspipex);
-	all->parspipex = NULL;
-}
-
-void	free_all(t_all *all)
-{
-	free_listenv(all->listenv);
-	free_listenv(all->listexport);
-	free_parse_tab(all);
-	all->listenv = NULL;
-	all->listexport = NULL;
 }
 
 void	free_pipex_files_tab(t_pip *pip)
@@ -108,17 +61,13 @@ void	free_pipex(t_all *all, t_pip *pip)
 	pip->fds = NULL;
 }
 
-void	free_exit(t_all *all, t_pip *pip, int malloc_status, char *message)
+void	free_exit(t_all *all, t_pip *pip, int in_pipex_cmd, char *message)
 {
-	if (pip)
-	{
-		free_pipex(all, pip);
+	if (in_pipex_cmd == 1)
 		free_each_pipe(pip);
-	}
+	if (pip)
+		free_pipex(all, pip);
 	free_all(all);
-	if (malloc_status == 1)
-		ft_putstr_fd("bash: Malloc error\n", 2);
-	else
-		ft_putstr_fd(message, 2);
+	ft_putstr_fd(message, 2);
 	exit(g_status);
 }

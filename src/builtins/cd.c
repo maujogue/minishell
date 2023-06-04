@@ -6,7 +6,7 @@
 /*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 15:30:34 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/04 16:51:26 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	replace_env_pwd(t_all *all, t_pip *pip, t_listenv	*listenv, char *arg)
 		if (ft_strncmp(listenv->key, arg, ft_strlen(arg)) == 0)
 		{
 			if (!(pwd = getcwd(NULL, 0)))
-				free_exit(all, pip, 1, "");
+				free_exit(all, pip, 1, "bash: Malloc error\n");
 			free(listenv->content);
 			listenv->content = NULL;
 			free(pwd);
@@ -80,7 +80,7 @@ void	cd_args(t_all *all, t_pip *pip, char *pwd)
 	char	*arg;
 
 	if (!(arg = ft_strdup(pip->cmd[1])))
-		free_exit(all, pip, 1, "");
+		free_exit(all, pip, 1, "bash: Malloc error\n");
 	if (chdir(arg) == 0 && ft_strncmp(arg, "/", 1) == 0)
 	{
 		if (replace_env_arg(all->listenv, "OLDPWD", pwd) == 1)
@@ -92,9 +92,9 @@ void	cd_args(t_all *all, t_pip *pip, char *pwd)
 	{
 		free(arg);
 		if (!(arg = ft_strjoin(pwd, "/")))
-			free_exit(all, pip, 1, "");
+			free_exit(all, pip, 1, "bash: Malloc error\n");
 		if (!(arg = ft_strjoin_gnl(arg, pip->cmd[1])))
-			free_exit(all, pip, 1, "");
+			free_exit(all, pip, 1, "bash: Malloc error\n");
 		if (chdir(arg) == 0)
 		{
 			if (replace_env_arg(all->listenv, "OLDPWD", pwd) == 1)

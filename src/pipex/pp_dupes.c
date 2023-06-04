@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_dupes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:10:39 by maujogue          #+#    #+#             */
-/*   Updated: 2023/05/29 14:19:37 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/04 16:54:44 by mathisaujog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	dup_infile(t_all *all, t_pip *pip)
 		if (pip->fd_infile[i] == -1)
 		{
 			close_p(pip, pip->nb_arg);
-			free_exit(all, pip, 1, "");
+			free_exit(all, pip, 1, NULL);
 		}
 		else if (dup2(pip->fd_infile[i], STDIN_FILENO) < 0)
 			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
@@ -78,9 +78,9 @@ void	dup_pipe(t_all *all, t_pip *pip)
 	}
 	if (pip->curr != 0 && !(all->parspipex[pip->curr]->heredoc)
 		&& dup2(pip->fds[(pip->curr * 2) - 2], STDIN_FILENO) < 0)
-		free_exit(all, pip, 1, "Error: Dup2 failed 3\n");
+		free_exit(all, pip, 1, "Error: Dup2 failed\n");
 	if (pip->curr < pip->nb_arg - 1 && dup2(pip->fds[pip->curr * 2 + 1], 1) < 0)
-		free_exit(all, pip, 1, "Error: Dup2 failed 4\n");
+		free_exit(all, pip, 1, "Error: Dup2 failed\n");
 	if (all->parspipex[pip->curr]->outfile_last == 1)
 	{
 		dup_outfile_append(all, pip);
