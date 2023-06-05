@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_libft.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:36:15 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/01 14:12:13 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:53:43 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,10 @@ int	ft_is_charspe(char c)
 		|| (c >= 91 && c <= 94) || (c >= 123 && c <= 125))
 		return (1);
 	return (0);
+}
+
+void	write_new_heredoc(int fd, char *line)
+{
+	write(fd, line, ft_strlen(line));
+	write(fd, "\n", 1);
 }

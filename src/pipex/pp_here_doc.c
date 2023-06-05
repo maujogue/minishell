@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:52:21 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/05 14:47:15 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:53:30 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ int	single_here_doc(char **heredoc, int fd[2], int i)
 			break ;
 		line = readline(">");
 		if (!line)
+		{
 			if (write_control_d_here_doc(n, heredoc[i]) == 1)
 				return (1);
+			break ;
+		}
 		if (ft_strncmp(line, heredoc[i], ft_strlen(line)) == 0
 			&& ft_strncmp(line, heredoc[i], ft_strlen(heredoc[i])) == 0)
 			break ;
 		if (heredoc[i + 1] == NULL)
-		{
-			write(fd[1], line, ft_strlen(line));
-			write(fd[1], "\n", 1);
-		}
+			write_new_heredoc(fd[1], line);
 		n++;
 		free(line);
 	}
