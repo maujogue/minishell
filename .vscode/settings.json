@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "signal.h": "c",
-        "signum.h": "c",
-        "minishell.h": "c",
-        "pipex.h": "c",
-        "errno.h": "c"
-    }
-}
