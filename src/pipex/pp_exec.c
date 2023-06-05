@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:53:34 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 16:54:52 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 13:50:37 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	exec_cmd(t_all *all, t_pip *pip)
 {
 	int	pid;
 
-	if (check_cmd(all, pip) == 1)
-		return ;
 	pid = fork();
 	if (pid < 0)
 		free_exit(all, pip, 1, "Error\nFork failed");
@@ -61,13 +59,15 @@ void	exec_cmd(t_all *all, t_pip *pip)
 		if (is_builtin(pip) == 1)
 			return (execve(pip->path_cmd, pip->cmd, pip->envp), perror(""));
 		else if (ft_strlen_triple_char(pip->tab_cmd) > 1
-			|| all->parspipex[pip->curr]->outfile)
+			|| all->parspipex[pip->curr]->outfile
+			|| all->parspipex[pip->curr]->outfile_append)
 			ft_builtins(all, pip);
 		close_p(pip, pip->nb_arg);
 		free_exit(all, pip, 1, "");
 	}
 	else if (is_builtin(pip) == 0
 		&& ft_strlen_triple_char(pip->tab_cmd) == 1
-		&& !all->parspipex[pip->curr]->outfile)
+		&& !all->parspipex[pip->curr]->outfile
+		&& !all->parspipex[pip->curr]->outfile_append)
 		ft_builtins(all, pip);
 }

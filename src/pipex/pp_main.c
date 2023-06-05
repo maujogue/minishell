@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 17:36:00 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 13:51:04 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	pipex(t_all *all)
 		{
 			init_files(all, &pip);
 			init_cmd(all, &pip);
-			exec_cmd(all, &pip);
+			if (check_cmd(all, &pip) == 0)
+				exec_cmd(all, &pip);
 			free_each_pipe(&pip);
 			pip.curr += 1;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:28:48 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/04 16:48:12 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 13:43:36 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	incr_shell_lvl(t_all *all, int n)
 		lvl_int = ft_atoi(lvl_char);
 		lvl_int += n;
 		free(lvl_char);
-		if (!(lvl_char = ft_itoa(lvl_int)))
+		lvl_char = ft_itoa(lvl_int);
+		if (!lvl_char)
 			free_exit(all, NULL, 1, "");
 		if (replace_env_arg(all->listenv, "SHLVL", lvl_char) == 1)
 			free_exit(all, NULL, 1, "");

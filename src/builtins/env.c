@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:28:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 16:51:26 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 13:42:22 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 char	*get_env_content(t_all *all, t_pip *pip, t_listenv	*listenv, char *arg)
 {
 	char	*res;
-	
+
 	while (listenv)
 	{
 		if (ft_strcmp(listenv->key, arg) == 0)
 		{
-			if (!(res = ft_strdup(listenv->content)))
-				free_exit(all, pip, 1, "bash: Malloc error\n");
-			return (res);
+			if (!listenv->content)
+				res = NULL;
+			else
+			{
+				res = ft_strdup(listenv->content);
+				if (!res)
+					free_exit(all, pip, 1, "bash: Malloc error\n");
+				return (res);
+			}
 		}
 		listenv = listenv->next;
 	}

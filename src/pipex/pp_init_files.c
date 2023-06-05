@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_init_files.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:12:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 18:02:11 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 13:46:02 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void	init_files(t_all *all, t_pip *pip)
 		free_exit(all, pip, 1, "Error\nMalloc failed");
 	if (init_outfile_tab(all->parspipex[pip->curr]->outfile, pip) == -1)
 		free_exit(all, pip, 0, "Error\nMalloc failed");
-	if (init_outfile_append_tab(all->parspipex[pip->curr]->outfile_append, pip) == -1)
+	if (init_outfile_append_tab(all->parspipex[pip->curr]->outfile_append,
+			pip) == -1)
 		free_exit(all, pip, 0, "Error\nMalloc failed");
 	init_all_here_doc(all, all->parspipex[pip->curr]->heredoc, pip);
 }

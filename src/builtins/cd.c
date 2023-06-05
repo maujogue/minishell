@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 16:51:26 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 13:40:27 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@ void	replace_env_pwd(t_all *all, t_pip *pip, t_listenv	*listenv, char *arg)
 	{
 		if (ft_strncmp(listenv->key, arg, ft_strlen(arg)) == 0)
 		{
-			if (!(pwd = getcwd(NULL, 0)))
-				free_exit(all, pip, 1, "bash: Malloc error\n");
 			free(listenv->content);
-			listenv->content = NULL;
-			free(pwd);
+			pwd = getcwd(NULL, 0);
+			if (!pwd)
+				free_exit(all, pip, 1, "bash: Malloc error\n");
+			if (!pwd)
+				listenv->content = NULL;
+			else
+			{
+				listenv->content = ft_strdup(pwd);
+				if (!listenv->content)
+					free_exit(all, pip, 1, "bash: Malloc error\n");
+			}
 			return ;
 		}
 		listenv = listenv->next;
