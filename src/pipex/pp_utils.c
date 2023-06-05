@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:07:18 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 18:05:38 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 14:46:47 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	check_cmd(t_all *all, t_pip *pip)
 	else if (is_builtin(pip) == 0)
 		return (0);
 	else
-	{(void)all;
+	{
 		pip->path_cmd = get_path_cmd(all, pip, cmd, pip->path);
 		if (!pip->path_cmd && !pip->path)
 			return (g_status = 127,

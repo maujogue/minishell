@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:08 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 15:57:56 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 14:03:10 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,6 @@ t_listenv	*ft_lstenv_new(char *str)
 	return (new);
 }
 
-void	ft_lstenvadd_back(t_listenv **lst, t_listenv *new)
-{
-	t_listenv	*curr;
-
-	curr = *lst;
-	if (*lst == 0)
-		*lst = new;
-	else
-	{
-		while (curr->next != NULL)
-			curr = curr->next;
-		curr->next = new;
-	}
-}
-
 t_listenv	*create_node_env_i(t_listenv *listenv, char *key, char *content)
 {
 	char		*str;
@@ -85,35 +70,45 @@ t_listenv	*create_node_env_i(t_listenv *listenv, char *key, char *content)
 	if (!node)
 		return (NULL);
 	free(str);
-	ft_lstenvadd_back(&listenv, node);
+	ft_lstexport_add_back(&listenv, node);
 	return (listenv);
+}
+
+void	create_env_i(t_all *all, char **envp)
+{
+	char		*str;
+
+	if (!envp[0])
+	{
+		str = getcwd(NULL, 0);
+		if (!str)
+			free_exit(all, NULL, 1, "");
+		all->listenv = create_node_env_i(all->listenv, "PWD=", str);
+		if (!all->listenv)
+			free_exit(all, NULL, 1, "");
+		free(str);
+		all->listenv = create_node_env_i(all->listenv, "SHLVL=", "1");
+		if (!all->listenv)
+			free_exit(all, NULL, 1, "");
+		all->listenv = create_node_env_i(all->listenv, "_=", "/usr/bin/env");
+		if (!all->listenv)
+			free_exit(all, NULL, 1, "");
+	}
 }
 
 void	create_env(t_all *all, char **envp)
 {
 	int			i;
 	t_listenv	*node;
-	char		*str;
 
 	i = 0;
-	if (!envp[0])
-	{
-		if (!(str = getcwd(NULL, 0)))
-			free_exit(all, NULL, 1, "");
-		if (!(all->listenv = create_node_env_i(all->listenv, "PWD=", str)))
-			free_exit(all, NULL, 1, "");
-		free(str);
-		if (!(all->listenv = create_node_env_i(all->listenv, "SHLVL=", "1")))
-			free_exit(all, NULL, 1, "");
-		if (!(all->listenv = create_node_env_i(all->listenv, "_=", "/usr/bin/env")))
-			free_exit(all, NULL, 1, "");
-	}
+	create_env_i(all, envp);
 	while (envp[i])
 	{
 		node = ft_lstenv_new(envp[i]);
 		if (!node)
 			free_exit(all, NULL, 1, "");
-		ft_lstenvadd_back(&(all->listenv), node);
+		ft_lstexport_add_back(&(all->listenv), node);
 		i++;
 	}
 }

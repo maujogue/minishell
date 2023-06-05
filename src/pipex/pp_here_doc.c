@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:52:21 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 18:15:01 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 14:47:15 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	signals_in_heredoc(void)
 int	write_control_d_here_doc(int n, char *heredoc)
 {
 	char	*nbr;
-	
+
 	nbr = ft_itoa(n);
 	if (!nbr)
 		return (1);
@@ -51,10 +51,8 @@ int	single_here_doc(char **heredoc, int fd[2], int i)
 			break ;
 		line = readline(">");
 		if (!line)
-		{
 			if (write_control_d_here_doc(n, heredoc[i]) == 1)
 				return (1);
-		}
 		if (ft_strncmp(line, heredoc[i], ft_strlen(line)) == 0
 			&& ft_strncmp(line, heredoc[i], ft_strlen(heredoc[i])) == 0)
 			break ;

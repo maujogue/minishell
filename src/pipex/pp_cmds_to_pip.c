@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_cmds_to_pip.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:21:59 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 16:56:24 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 14:46:34 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char	**ft_strdup_array(char **s1)
 		return (NULL);
 	while (s1[i] != NULL)
 	{
-		if (!(s2[i] = ft_strdup(s1[i])))
+		s2[i] = ft_strdup(s1[i]);
+		if (!s2[i])
 			return (free_array(s2), NULL);
 		i++;
 	}

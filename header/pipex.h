@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 17:36:14 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 15:33:33 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	***get_pip_cmds(t_all *all, t_pip *pip, t_pars **parspipex);
 int		ft_strlen_parse(t_pars **parspipex);
 char	**ft_strdup_array(char **s1);
 int		ft_strlen_array(char **str);
-char	**lst_to_tab(t_listenv	*listenv);
+char	**lst_to_tab(t_listenv	*listenv, char **envp);
 int		ft_lstsize_env(t_listenv *lst);
 void	join_cmds(t_all *all, t_pip *pip, t_pars **parspipex);
 

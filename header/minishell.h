@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/06/04 16:11:48 by mathisaujog      ###   ########.fr       */
+/*   Created: 2023/06/05 14:47:43 by maujogue          #+#    #+#             */
+/*   Updated: 2023/06/05 14:47:47 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -42,6 +41,13 @@ void		ft_pwd(t_all *all, t_pip *pip);
 void		ft_unset(t_all *all, t_pip *pip);
 void		create_env(t_all *all, char **envp);
 
+/****************************CD_UTILS*****************************/
+
+void		replace_env_pwd(t_all *all, t_pip *pip,
+				t_listenv	*listenv, char *arg);
+int			cd_empty(t_all *all, t_pip *pip, char *pwd);
+int			cd_previous(t_all *all, t_pip *pip, char *pwd, char *old_pwd);
+
 /****************************PRINT_UTILS*****************************/
 
 void		ft_print_listenv(t_all *all);
@@ -55,7 +61,8 @@ void		ft_print_tabarg(char **tab);
 /****************************ENV_UTILS****************************/
 
 t_listenv	*unset_env_var(char *cmd, t_listenv *tmp);
-char		*get_env_content(t_all *all, t_pip *pip, t_listenv	*listenv, char *arg);
+char		*get_env_content(t_all *all, t_pip *pip, t_listenv	*listenv,
+				char *arg);
 int			check_lst_key_exists(t_listenv	*listenv, char *arg);
 int			replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 

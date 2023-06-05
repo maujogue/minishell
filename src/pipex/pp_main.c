@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:43:44 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/05 13:51:04 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:35:14 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	create_pipes(t_all *all, t_pip *pip)
 
 void	init_pip(t_all *all, t_pip *pip)
 {
+	char	**envp;
+
 	g_status = 0;
 	pip->curr = 0;
 	pip->envp = NULL;
@@ -46,7 +48,10 @@ void	init_pip(t_all *all, t_pip *pip)
 	pip->path = NULL;
 	pip->path_cmd = NULL;
 	join_cmds(all, pip, all->parspipex);
-	pip->envp = lst_to_tab(all->listenv);
+	envp = malloc(sizeof(char *) * (ft_lstsize_env(all->listenv) + 1));
+	if (!envp)
+		free_exit(all, pip, 0, "Error\nMalloc failed");
+	pip->envp = lst_to_tab(all->listenv, envp);
 	if (!pip->envp)
 		free_exit(all, pip, 0, "Error\nMalloc failed");
 	pip->path = get_path_envp(pip->envp);
