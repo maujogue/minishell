@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:27:22 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/01 13:33:16 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:06:48 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_nbargcmd(char *cmd, int i)
 	{
 		while (cmd[i] == ' ')
 			i++;
-		if (cmd[i] == '<' || cmd [i] == '>')
+		if ((cmd[i] == '<' || cmd[i] == '>') && cmd[i + 1] != '^')
 		{
 			while (cmd[i] != ' ' && cmd[i])
 				i++;
@@ -113,7 +113,7 @@ char	**ft_fillparsarg(t_all *all, char *cmd)
 	{
 		while (cmd[i] == ' ')
 			i++;
-		if (cmd[i] == '<' || cmd [i] == '>')
+		if ((cmd[i] == '<' || cmd [i] == '>') && cmd[i + 1] != '^')
 			ft_jump_redir(cmd, &i);
 		tab[count] = ft_fillarg(all, cmd, &i);
 		count++;
