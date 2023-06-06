@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:08:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/04 16:13:46 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/05 16:03:21 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-char	*ft_tabulation_to_space(char *cmd)
-{
-	char	*res;
-	int		i;
-
-	i = 0;
-	res = malloc(sizeof(char) * (ft_strlen(cmd) + 1));
-	while (cmd[i])
-	{
-		if (cmd[i] == '\t')
-			res[i] = ' ';
-		else
-			res[i] = cmd[i];
-		i++;
-	}
-	return (res);
-}
 
 int	get_nb_word(char *str, char delimiter)
 {

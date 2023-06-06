@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:38:15 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/05 15:33:33 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:10:43 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	write_error(char *bash, char *str, char *message);
 void	free_array(char **tab);
 void	free_triple_array(char ***tab);
 void	free_files(t_all *all, int i);
-void	free_fd(void);
 void	free_each_pipe(t_pip *pip);
 void	free_exit(t_all *all, t_pip *pip, int i, char *message);
 void	free_pipex(t_all *all, t_pip *pip);
@@ -58,6 +57,6 @@ void	join_cmds(t_all *all, t_pip *pip, t_pars **parspipex);
 
 void	init_all_here_doc(t_all *all, char **heredoc, t_pip *pip);
 void	init_files(t_all *all, t_pip *pip);
-void	only_files(t_all *all, t_pip *pip);
+void	write_new_heredoc(int fd, char *line);
 
 #endif

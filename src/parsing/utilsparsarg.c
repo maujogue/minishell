@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utilsparsarg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:39:38 by avaganay          #+#    #+#             */
-/*   Updated: 2023/05/24 16:17:06 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:03:35 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
-
-int	ft_isredir(char *cmd, int i)
-{
-	while (cmd[i])
-	{
-		if (cmd[i] == '<' || cmd[i] == '>')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 void	ft_jump_redir(char *cmd, int *i)
 {

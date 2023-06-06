@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:47:43 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/05 14:47:47 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:09:50 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ void		replace_env_pwd(t_all *all, t_pip *pip,
 int			cd_empty(t_all *all, t_pip *pip, char *pwd);
 int			cd_previous(t_all *all, t_pip *pip, char *pwd, char *old_pwd);
 
-/****************************PRINT_UTILS*****************************/
-
-void		ft_print_listenv(t_all *all);
-void		ft_print_list(t_listenv *lst);
-void		ft_print_tab(char **tab);
-void		ft_print_tab_pipe(char **tab);
-void		ft_print_tabexport(char **tab);
-void		ft_print_listexport(t_listenv *lst);
-void		ft_print_tabarg(char **tab);
-
 /****************************ENV_UTILS****************************/
 
 t_listenv	*unset_env_var(char *cmd, t_listenv *tmp);
@@ -69,7 +59,6 @@ int			replace_env_arg(t_listenv	*listenv, char *arg, char *replacement);
 /****************************EXPORT_UTILS***************************/
 
 t_listenv	*ft_lstexport_new(char *key, char *content);
-t_listenv	*ft_lstexportlast(t_listenv *lst);
 t_listenv	*ft_lstcat(t_listenv *lst1, t_listenv *lst2);
 t_listenv	*ft_lst_dup(t_listenv *lst);
 void		ft_lstexport_add_back(t_listenv **lst, t_listenv *new);
@@ -79,10 +68,10 @@ int			check_invalid_identifier_export(char *str, char *cmd, int slash);
 
 /****************************PARSING*********************************/
 
+void		ft_print_listexport(t_listenv *lst);
+void		ft_print_listenv(t_all *all);
 void		ft_parsing(t_all *all, char *cmd);
 void		ft_initpars(t_pars *pars);
-char		*ft_tabulation_to_space(char *cmd);
-int			ft_isredir(char *cmd, int i);
 void		ft_jump_redir(char *cmd, int *i);
 void		ft_jumpfile(char *cmd, int *i);
 int			ft_isopt(char *cmd, int i);
@@ -122,7 +111,6 @@ char		**ft_filetodouble(char **tab, char *file);
 char		*ft_replace_var(t_all *all, char *cmd);
 char		*ft_fill_replace_var(t_all *all, char *cmd, int *i,
 				int *var_already_fill);
-
 int			ft_countquote(char *cmd, char quote);
 char		*ft_parsquote(char *cmd);
 char		*ft_fill_piece_simplequote(char *cmd, int *i);
@@ -143,7 +131,5 @@ void		sigint_handler_inside_minishell(int sig);
 
 void		free_all(t_all *all);
 void		free_parse(t_pars *parspipex);
-void		malloc_protection(t_all *all, t_pip *pip, char *str);
-void		free_exit_only_all(t_all *all);
 
 #endif

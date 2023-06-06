@@ -10,7 +10,7 @@ HEADER_FILE				= minishell.h pipex.h
 
 DIR						= src/
 
-SRC			 			=	ms_main.c	ms_signals.c	ms_utils_print.c	ms_utils_pars.c		ms_utils_split.c	ms_utils_print_list.c 	ms_utils_free.c		ms_utils_libft.c \
+SRC			 			=	ms_main.c	ms_signals.c	ms_utils_pars.c		ms_utils_split.c	ms_utils_print_list.c 	ms_utils_free.c		ms_utils_libft.c \
 							builtins/export.c	builtins/export_fill.c	builtins/export_lstutils.c\
 							builtins/env.c	builtins/env_utils.c builtins/unset.c	builtins/builtins.c	\
 							builtins/cd.c	builtins/cd_utils.c	builtins/exit.c		builtins/pwd.c	\
