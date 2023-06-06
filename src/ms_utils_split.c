@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:08:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/05 16:03:21 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:12:10 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@ int	get_nb_word(char *str, char delimiter)
 {
 	int	count;
 	int	in_quotes;
+	int	in_single_quotes;
 	int	i;
 
 	i = 0;
 	count = 0;
 	in_quotes = 0;
+	in_single_quotes = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\"')
+		if (str[i] == '\"' && !in_single_quotes)
 			in_quotes = !in_quotes;
-		if (!in_quotes && str[i] == delimiter)
+		if (str[i] == '\'' && !in_quotes)
+			in_single_quotes = !in_single_quotes;
+		if (!in_quotes && !in_single_quotes && str[i] == delimiter)
 			count++;
 		i++;
 	}
@@ -33,19 +37,22 @@ int	get_nb_word(char *str, char delimiter)
 }
 
 void	ft_init_get_next_word(char *str, int *end, int *in_quotes,
-	char delimiter)
+	int *in_single_quotes)
 {
 	while (str[*end] != '\0')
 	{
-		if (str[*end] == '\"')
+		if (str[*end] == '\"' && !(*in_single_quotes))
 			*in_quotes = !(*in_quotes);
-		if (!(*in_quotes) && str[*end] == delimiter)
+		if (str[*end] == '\'' && !(*in_quotes))
+			*in_single_quotes = !(*in_single_quotes);
+		if (!(*in_quotes) && !(*in_single_quotes) && str[*end] == '|')
 			break ;
 		*end += 1;
 	}
 }
 
-char	*get_next_word(int *index, char *str, char delimiter, int *in_quotes)
+char	*get_next_word(int *index, char *str, int *in_quotes,
+	int *in_single_quotes)
 {
 	char	*word;
 	int		start;
@@ -56,7 +63,7 @@ char	*get_next_word(int *index, char *str, char delimiter, int *in_quotes)
 	start = *index;
 	i = 0;
 	end = start;
-	ft_init_get_next_word(str, &end, in_quotes, delimiter);
+	ft_init_get_next_word(str, &end, in_quotes, in_single_quotes);
 	word_length = end - start;
 	word = (char *)malloc((word_length + 1) * sizeof(char));
 	if (!word)
@@ -71,7 +78,7 @@ char	*get_next_word(int *index, char *str, char delimiter, int *in_quotes)
 	return (word);
 }
 
-char	**ft_split_with_quote(char *str, char c)
+char	**ft_split_with_quote(char *str, char c, int in_single_quotes)
 {
 	char	**res;
 	int		nb_word;
@@ -90,7 +97,7 @@ char	**ft_split_with_quote(char *str, char c)
 		return (NULL);
 	while (i < nb_word)
 	{
-		res[i] = get_next_word(&j, str, c, &in_quotes);
+		res[i] = get_next_word(&j, str, &in_quotes, &in_single_quotes);
 		if (!res[i++])
 		{
 			free_array(res);

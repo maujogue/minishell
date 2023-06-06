@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/01 14:05:31 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:09:13 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,16 @@ void	ft_fillparspipex(t_all *all, char **tabcmd)
 void	ft_parsing(t_all *all, char *cmd)
 {
 	char	**tabcmd;
+	int		in_single_quotes;
 
+	in_single_quotes = 0;
 	if (cmd[0] == '\0')
 		return ;
 	if (ft_is_solo_pipe(cmd) || ft_is_solo_bracket_left(cmd)
 		|| ft_is_solo_bracket_right(cmd) || ft_is_double_char_spe(cmd, '|')
 		|| ft_is_double_char_spe(cmd, '<') || ft_is_double_char_spe(cmd, '>'))
 		return ((void)(g_status = 2));
-	tabcmd = ft_split_with_quote(cmd, '|');
+	tabcmd = ft_split_with_quote(cmd, '|', in_single_quotes);
 	ft_fillparspipex(all, tabcmd);
 	ft_fillstructpars(all, all->parspipex, tabcmd);
 	all->exit_code = g_status;

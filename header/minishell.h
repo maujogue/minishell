@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:47:43 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/05 16:09:50 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:09:24 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int			ft_is_solo_pipe(char *cmd);
 int			ft_is_solo_bracket_left(char *cmd);
 int			ft_is_solo_bracket_right(char *cmd);
 int			ft_is_double_char_spe(char *cmd, char c);
-char		**ft_split_with_quote(char *str, char c);
+char		**ft_split_with_quote(char *str, char c, int in_single_quotes);
 
 /****************************PARSING_ARG*****************************/
 
