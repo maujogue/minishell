@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:44:42 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/09 10:50:07 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:54:56 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ int	ft_is_double_char_spe(char *cmd, char c)
 				while (cmd[i] == ' ')
 					i++;
 				if (cmd[i] == c)
-					return (printf("bash: syntax error near \
-						unexpected token `%c'\n", c), 1);
+					return (
+						printf("bash: syntax error near unexpected token `%c'\n",
+							c), 1);
 			}
 		}
 		i++;

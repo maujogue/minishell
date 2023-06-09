@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:29:20 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/01 13:54:53 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:12:03 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	is(char *str, int i)
 			double_quote_count++;
 		j++;
 	}
+	if (single_quote_count % 2 == 1 && double_quote_count % 2 == 1)
+		return (0);
 	if (single_quote_count % 2 == 1 && double_quote_count % 2 == 0)
 		return (0);
 	if (single_quote_count % 2 == 0 && double_quote_count % 2 == 1)
