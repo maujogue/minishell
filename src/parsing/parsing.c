@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/09 12:35:45 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:39:08 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_fillparscmd(char *cmd)
 		{
 			while (cmd[len] != '\"')
 				len++;
-			return (ft_substr(cmd, nospace, len - nospace));
+			return (ft_replace_caret(ft_substr(cmd, nospace, len - nospace)));
 		}
 		len++;
 	}
