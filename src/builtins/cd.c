@@ -6,7 +6,7 @@
 /*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:07:02 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/05 14:11:31 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:07:31 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	cd_get_full_path(t_all *all, t_pip *pip, char *pwd)
 		free(arg);
 	}
 	else
-		return (free(arg), g_status = 127,
+		return (free(arg), g_status = 1,
 			(void)printf("bash: cd: %s: No such file or directory\n",
 				pip->cmd[1]));
 }
