@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_dupes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathisaujogue <mathisaujogue@student.42    +#+  +:+       +#+        */
+/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:10:39 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/04 16:54:44 by mathisaujog      ###   ########.fr       */
+/*   Updated: 2023/06/09 11:32:40 by maujogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	dup_infile(t_all *all, t_pip *pip)
 			free_exit(all, pip, 1, NULL);
 		}
 		else if (dup2(pip->fd_infile[i], STDIN_FILENO) < 0)
-			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+			free_exit(all, pip, 1, "Error: Dup2 failed\n");
 		i++;
 	}
 }
@@ -37,8 +37,13 @@ void	dup_outfile(t_all *all, t_pip *pip)
 	i = 0;
 	while (all->parspipex[pip->curr]->outfile && pip->fd_outfile[i] != -2)
 	{
+		if (pip->fd_outfile[i] == -1)
+		{
+			close_p(pip, pip->nb_arg);
+			free_exit(all, pip, 1, NULL);
+		}
 		if (dup2(pip->fd_outfile[i], STDOUT_FILENO) < 0)
-			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+			free_exit(all, pip, 1, "Error: Dup2 failed\n");
 		i++;
 	}
 }
@@ -51,8 +56,13 @@ void	dup_outfile_append(t_all *all, t_pip *pip)
 	while (all->parspipex[pip->curr]->outfile_append
 		&& pip->fd_outfile_append[i] != -2)
 	{
+		if (pip->fd_outfile_append[i] == -1)
+		{
+			close_p(pip, pip->nb_arg);
+			free_exit(all, pip, 1, NULL);
+		}
 		if (dup2(pip->fd_outfile_append[i], STDOUT_FILENO) < 0)
-			free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+			free_exit(all, pip, 1, "Error: Dup2 failed\n");
 		i++;
 	}
 }
@@ -61,7 +71,7 @@ void	dup_heredoc(t_all *all, t_pip *pip)
 {
 	if (all->parspipex[pip->curr]->heredoc
 		&& dup2(pip->fd_heredoc, STDIN_FILENO) < 0)
-		free_exit(all, pip, 1, "Error: Dup2 failed 1\n");
+		free_exit(all, pip, 1, "Error: Dup2 failed\n");
 }
 
 void	dup_pipe(t_all *all, t_pip *pip)
