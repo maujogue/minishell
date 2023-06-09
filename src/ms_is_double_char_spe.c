@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:44:42 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/09 10:54:56 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:40:07 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@ int	ft_if_is_double_char_spe(int in_quotes, char *cmd, int i)
 	return (in_quotes);
 }
 
+void	ft_init_is_double_char_spe(int *i, int *in_quotes)
+{
+	*i = 0;
+	*in_quotes = 0;
+}
+
 int	ft_is_double_char_spe(char *cmd, char c)
 {
 	int	i;
 	int	in_quotes;
 
-	i = 0;
-	in_quotes = 0;
+	ft_init_is_double_char_spe(&i, &in_quotes);
 	while (cmd[i])
 	{
 		in_quotes = ft_if_is_double_char_spe(in_quotes, cmd, i);
