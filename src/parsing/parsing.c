@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maujogue <maujogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:34:45 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/09 15:15:50 by maujogue         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:06:34 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_fill_cmd_is_file(char *cmd, int i)
 	return (res);
 }
 
-char	*ft_fillparscmd(char *cmd)
+char	*ft_fillparscmd(t_all *all, char *cmd)
 {
 	int		len;
 	int		nospace;
@@ -53,21 +53,15 @@ char	*ft_fillparscmd(char *cmd)
 		if ((cmd[len] == '<' || cmd[len] == '>') && is_cmd == 0)
 			return (ft_fill_cmd_is_file(cmd, len));
 		if ((cmd[len] == '<' || cmd[len] == '>') && is_cmd == 1)
-		{
-			while (cmd[len] != '\"' && cmd[len] != '\'' && cmd[len])
-				len++;
-			temp = ft_substr(cmd, nospace, len - nospace);
-			res = ft_replace_caret(temp);
-			free(temp);
-			return (res);
-		}
+			return (ft_if_fillparscmd(all, cmd, len, nospace));
 		if (cmd[len] != '\0')
 			len++;
 	}
 	temp = ft_substr(cmd, nospace, len - nospace);
+	if (!temp)
+		return (free_all(all), exit(1), NULL);
 	res = ft_replace_caret(temp);
-	free(temp);
-	return (res);
+	return (free(temp), res);
 }
 
 t_pars	*ft_cleanpipe(t_all *all, char *cmd)
@@ -81,7 +75,7 @@ t_pars	*ft_cleanpipe(t_all *all, char *cmd)
 	cmdpars = malloc(sizeof(t_pars));
 	if (!cmdpars)
 		return (free_all(all), exit(1), NULL);
-	cmdpars->cmd = ft_fillparscmd(cmdfinal);
+	cmdpars->cmd = ft_fillparscmd(all, cmdfinal);
 	cmdpars->opt2 = ft_fillparsopt2(cmdfinal);
 	cmdpars->arg = ft_fillparsarg(all, cmdfinal);
 	free(cmdfinal);

@@ -6,11 +6,26 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:08:55 by avaganay          #+#    #+#             */
-/*   Updated: 2023/06/06 11:12:10 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:06:42 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+char	*ft_if_fillparscmd(t_all *all, char *cmd, int len, int nospace)
+{
+	char	*temp;
+	char	*res;
+
+	while (cmd[len] != '\"' && cmd[len] != '\'' && cmd[len])
+		len++;
+	temp = ft_substr(cmd, nospace, len - nospace);
+	if (!temp)
+		return (free_all(all), exit(1), NULL);
+	res = ft_replace_caret(temp);
+	free(temp);
+	return (res);
+}
 
 int	get_nb_word(char *str, char delimiter)
 {

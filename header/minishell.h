@@ -6,7 +6,7 @@
 /*   By: avaganay <avaganay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:47:43 by maujogue          #+#    #+#             */
-/*   Updated: 2023/06/06 11:09:24 by avaganay         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:06:51 by avaganay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ char		**ft_split_with_quote(char *str, char c, int in_single_quotes);
 char		**ft_fillparsopt2(char *cmd);
 char		**ft_fillparsarg(t_all *all, char *cmd);
 void		ft_init_fillparscmd(char *cmd, int *len, int *nospace, int *is_cmd);
+char		*ft_if_fillparscmd(t_all *all, char *cmd, int len, int nospace);
 
 /****************************PARSING_FILE****************************/
 
